@@ -1,0 +1,108 @@
+.p-flowlist {
+  ul {
+    display: flex;
+    justify-content: space-between;
+    @include breakpoint-md {
+      flex-direction: column;
+    }
+  }
+  &__box {
+    flex-basis: 24%;
+    text-align: center;
+    @include breakpoint-md {
+      margin-bottom: 20px;
+    }
+    &.num01 {
+      .p-flowlist__num {
+        color: $color-main;
+        &::after {
+          background: $color-main;
+        }
+      }
+      .p-flowlist__icon {
+        background: $color-main;
+      }
+    }
+    &.num02 {
+      .p-flowlist__num {
+        color: #b7c4fc;
+        &::after {
+          background: #b7c4fc;
+        }
+      }
+      .p-flowlist__icon {
+        background: #b7c4fc;
+      }
+    }
+    &.num03 {
+      .p-flowlist__num {
+        color: #a1c4fc;
+        &::after {
+          background: #a1c4fc;
+        }
+      }
+      .p-flowlist__icon {
+        background: #a1c4fc;
+      }
+    }
+    &.num04 {
+      .p-flowlist__num {
+        color: $color-sub;
+        &::after {
+          background: $color-sub;
+        }
+      }
+      .p-flowlist__icon {
+        background: $color-sub;
+      }
+    }
+  }
+  &__num {
+    @include font-en(600);
+    font-size: 1.875rem;
+    line-height: 100%;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    &::after {
+      position: absolute;
+      content: "";
+      width: 10px;
+      height: 10px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      border-radius: 10px;
+    }
+  }
+  &__icon {
+    border-radius: 100px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    @include breakpoint-md {
+      width: 120px;
+      height: 120px;
+    }
+    img {
+      width: auto;
+      height: 60px;
+      @include breakpoint-md {
+        height: 50px;
+      }
+    }
+  }
+  p {
+    font-size: 1.25rem;
+    line-height: 160%;
+    font-weight: bold;
+    margin-top: 10px;
+    @include breakpoint-md {
+      font-size: 1rem;
+    }
+  }
+}

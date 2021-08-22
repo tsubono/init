@@ -1,0 +1,131 @@
+header {
+  @include gradient;
+  position: fixed;
+  top: 2%;
+  left: 0;
+  right: 0;
+  width: 98%;
+  margin: auto;
+  border-radius: 100px;
+  box-shadow: 20px 10px 50px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  @include breakpoint-md {
+    border-radius: 10px;
+    top: 1%;
+    width: 98%;
+  }
+  .navbar {
+    padding: 20px 60px;
+    display: flex;
+    align-items: center;
+    @include breakpoint-lg {
+      padding: 20px 20px;
+    }
+    @include breakpoint-md {
+      padding: 10px 20px;
+    }
+    #Navber {
+      justify-content: flex-end;
+      ul {
+        display: flex;
+        justify-content: flex-end;
+        @include breakpoint-md {
+          margin-top: 30px;
+        }
+        li {
+          &.nav-link {
+            margin-right: 30px;
+            @include breakpoint-lg {
+              margin-right: 10px;
+            }
+            &__login {
+              margin-right: 0;
+              position: relative;
+              padding-left: 30px;
+              @include breakpoint-md {
+                padding-left: 0;
+              }
+              &::before {
+                position: absolute;
+                content: "";
+                background: #fff;
+                width: 2px;
+                height: 15px;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                @include breakpoint-md {
+                  display: none;
+                }
+              }
+              a {
+                color: $color-extra;
+                position: relative;
+                padding-left: 30px;
+                display: block;
+                &::before {
+                  content: "";
+                  position: absolute;
+                  background: url(../img/nav-icon-login.svg) no-repeat 0 0 /
+                    contain;
+                  width: 20px;
+                  height: 20px;
+                  left: 0;
+                  top: 0;
+                  bottom: 0;
+                  margin: auto;
+                }
+              }
+            }
+            &.active {
+              a {
+                position: relative;
+                &::after {
+                  content: "";
+                  position: absolute;
+                  width: 14px;
+                  height: 2px;
+                  bottom: -10px;
+                  left: 0;
+                  right: 0;
+                  margin: auto;
+                  background: #fff;
+                  border-radius: 100px;
+                  @include breakpoint-md {
+                    bottom: 0;
+                    top: 0;
+                    right: inherit;
+                    left: -16px;
+                    width: 8px;
+                  }
+                }
+              }
+            }
+          }
+          a {
+            color: #fff;
+            font-weight: bold;
+
+            @include breakpoint-md {
+              padding: 15px 0;
+              display: block;
+            }
+            &:hover {
+              color: $color-extra;
+            }
+          }
+        }
+      }
+    }
+    /* ハンバーガーメニューの色変更 */
+    &.navbar-light {
+      .navbar-toggler {
+        border: none;
+      }
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+      }
+    }
+  }
+}

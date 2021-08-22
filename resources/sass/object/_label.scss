@@ -1,0 +1,65 @@
+/* age */
+.p-label__age {
+  position: relative;
+  padding-left: 30px;
+  min-height: 30px;
+  &::before {
+    position: absolute;
+    content: "";
+    background: no-repeat 0 0 / contain;
+    width: 20px;
+    height: 30px;
+    margin-left: -30px;
+  }
+  &.men {
+    &::before {
+      background-image: url(../img/icon-men.svg);
+    }
+  }
+  &.woman {
+    &::before {
+      background-image: url(../img/icon-woman.svg);
+    }
+  }
+}
+/* レッスン可能時間帯 */
+.p-timezone {
+  &__list {
+    li {
+      margin-bottom: 5px;
+
+      @include breakpoint-lg {
+        font-size: 80%;
+      }
+      .time {
+        @include font-en(400);
+        &-first {
+          position: relative;
+          padding-right: 26px;
+          margin-right: 10px;
+          @include breakpoint-lg {
+            padding-right: 15px;
+            margin-right: 5px;
+          }
+          &::after {
+            position: absolute;
+            content: "";
+            width: 16px;
+            height: 1px;
+            background: #b7b7b7;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            @include breakpoint-lg {
+              width: 10px;
+            }
+          }
+        }
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

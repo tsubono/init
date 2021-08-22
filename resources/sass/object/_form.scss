@@ -1,0 +1,123 @@
+.p-form {
+  &__label {
+    margin-bottom: 10px;
+  }
+  &__pass {
+    max-width: 400px;
+    @include breakpoint-md {
+      max-width: inherit;
+    }
+  }
+  .form-control {
+    padding: 15px;
+    @include breakpoint-md {
+      margin-bottom: 20px;
+    }
+  }
+  .form-select {
+    padding: 15px;
+    @include breakpoint-md {
+      margin-bottom: 20px;
+    }
+  }
+  .form-file {
+    padding: 0.375rem 0.75rem;
+    &__img {
+      width: 100%;
+      height: 300px;
+      background: #efefef url(../img/form-img.svg) no-repeat 50% 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+  .form-check {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    @include breakpoint-md {
+      margin-bottom: 10px;
+    }
+    label {
+      padding: 15px;
+      display: block;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      padding-left: 40px;
+    }
+    &-input {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 15px;
+      margin: auto;
+      float: none;
+    }
+    input[type="radio"]:checked + .form-check-label {
+      border-color: #a1c3f7;
+      background-color: #ebf2fd;
+    }
+    input[type="checkbox"]:checked + .form-check-label {
+      border-color: #a1c3f7;
+      background-color: #ebf2fd;
+    }
+  }
+  /* モーダルウィンドウ カテゴリ */
+  #form-categorymodal {
+    .form-check {
+      font-size: 90%;
+      font-weight: bold;
+      &-input {
+        top: 15px;
+        bottom: inherit;
+        left: 0;
+        right: 0;
+      }
+      &-label {
+        padding: 15px 0;
+        padding-top: 40px;
+        text-align: center;
+      }
+      input[type="checkbox"]:checked + .form-check-label {
+        border-color: #d5c5f8;
+        background-color: #f7f2fe;
+      }
+    }
+    .p-card2__icon {
+      img {
+        height: 40px;
+      }
+    }
+  }
+  &__timezone {
+    border: solid 1px #e6e6e6;
+    width: 100%;
+    tr {
+      th {
+        background-color: $color-light;
+        padding: 20px;
+        vertical-align: middle;
+        text-align: center;
+      }
+      td {
+        padding: 10px 20px;
+        vertical-align: middle;
+      }
+    }
+    &__column {
+      display: flex;
+      align-items: center;
+    }
+    .form-control {
+      padding: 8px;
+      margin-bottom: 0;
+    }
+    span {
+      margin: 0 10px;
+    }
+  }
+}

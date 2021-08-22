@@ -1,0 +1,28 @@
+.p-layer-head {
+  @include gradient;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  @include breakpoint-md {
+    height: 260px;
+    padding-top: 10%;
+  }
+  &__title {
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 140%;
+    color: #fff;
+    margin-top: 10%;
+    @include breakpoint-md {
+      font-size: 24px;
+    }
+  }
+  &__en {
+    @include font-en(600);
+    display: block;
+    font-size: 30px;
+    @include breakpoint-md {
+      font-size: 16px;
+    }
+  }
+}
