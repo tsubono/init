@@ -128,19 +128,19 @@
       line-height: 100%;
     }
     &.business {
-      background-image: url(../img/room-business.png);
+      background-image: url(/img/room-business.png);
       &::before {
         content: "#01 Business";
       }
     }
     &.yourself {
-      background-image: url(../img/room-yourself.png);
+      background-image: url(/img/room-yourself.png);
       &::before {
         content: "#02 Polish yourself";
       }
     }
     &.skillup {
-      background-image: url(../img/room-skillup.png);
+      background-image: url(/img/room-skillup.png);
       &::before {
         content: "#03 Skill up";
       }

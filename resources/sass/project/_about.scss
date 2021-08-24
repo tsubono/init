@@ -66,7 +66,7 @@
           &::after {
             position: absolute;
             content: "";
-            background: url(../img/icon-plus-white.svg) no-repeat 0 0 / contain;
+            background: url(/img/icon-plus-white.svg) no-repeat 0 0 / contain;
             width: 50px;
             height: 50px;
             right: 60px;
@@ -81,7 +81,7 @@
           }
           &[aria-expanded="true"] {
             &::after {
-              background-image: url(../img/icon-minus-white.svg);
+              background-image: url(/img/icon-minus-white.svg);
             }
           }
         }

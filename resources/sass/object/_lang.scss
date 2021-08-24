@@ -12,17 +12,17 @@
   }
   &__japan {
     &::before {
-      background-image: url(../img/lang/lang-japan.svg);
+      background-image: url(/img/lang/lang-japan.svg);
     }
   }
   &__france {
     &::before {
-      background-image: url(../img/lang/lang-france.svg);
+      background-image: url(/img/lang/lang-france.svg);
     }
   }
   &__america {
     &::before {
-      background-image: url(../img/lang/lang-america.svg);
+      background-image: url(/img/lang/lang-america.svg);
     }
   }
 }

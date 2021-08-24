@@ -44,7 +44,7 @@
       &::after {
         content: "";
         position: absolute;
-        background: url(../img/icon-edit-black.svg) no-repeat 50% 50% / contain;
+        background: url(/img/icon-edit-black.svg) no-repeat 50% 50% / contain;
         width: 1em;
         height: 1em;
         margin-top: 0.2em;
@@ -52,7 +52,7 @@
       }
       &:hover {
         &::after {
-          background-image: url(../img/icon-edit-white.svg);
+          background-image: url(/img/icon-edit-white.svg);
         }
       }
     }
