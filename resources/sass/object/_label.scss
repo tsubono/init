@@ -13,12 +13,12 @@
   }
   &.men {
     &::before {
-      background-image: url(../img/icon-men.svg);
+      background-image: url(/img/icon-men.svg);
     }
   }
   &.woman {
     &::before {
-      background-image: url(../img/icon-woman.svg);
+      background-image: url(/img/icon-woman.svg);
     }
   }
 }
