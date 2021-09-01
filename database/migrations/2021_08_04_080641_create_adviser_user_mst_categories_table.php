@@ -13,10 +13,10 @@ class CreateAdviserUserMstCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('adviser_user_mst_categories', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('id');
-            $table->bigInteger('adviser_user_id')->unsigned()->comment('講師ユーザーID');
-            $table->bigInteger('mst_category_id')->unsigned()->comment('カテゴリマスターID');
+        Schema::create('adviser_user_mst_category', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('adviser_user_id')->comment('講師ユーザーID');
+            $table->unsignedBigInteger('mst_category_id')->comment('カテゴリマスターID');
 
             $table->foreign('adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');
             $table->foreign('mst_category_id')->references('id')->on('mst_categories')->onDelete('CASCADE');
@@ -30,6 +30,6 @@ class CreateAdviserUserMstCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adviser_user_mst_categories');
+        Schema::dropIfExists('adviser_user_mst_category');
     }
 }

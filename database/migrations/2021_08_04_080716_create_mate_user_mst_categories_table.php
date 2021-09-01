@@ -13,10 +13,10 @@ class CreateMateUserMstCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('mate_user_mst_categories', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('id');
-            $table->bigInteger('mate_user_id')->unsigned()->comment('生徒ユーザーID');
-            $table->bigInteger('mst_category_id')->unsigned()->comment('カテゴリマスターID');
+        Schema::create('mate_user_mst_category', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('mate_user_id')->comment('生徒ユーザーID');
+            $table->unsignedBigInteger('mst_category_id')->comment('カテゴリマスターID');
 
             $table->foreign('mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');
             $table->foreign('mst_category_id')->references('id')->on('mst_countries')->onDelete('CASCADE');
@@ -30,6 +30,6 @@ class CreateMateUserMstCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mate_user_mst_categories');
+        Schema::dropIfExists('mate_user_mst_category');
     }
 }

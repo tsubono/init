@@ -13,8 +13,8 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('id');
+        Schema::create('setting', function (Blueprint $table) {
+            $table->id();
             $table->boolean('is_maintenance')->nullable()->default(FALSE)->comment('メンテナンスフラグ');
         });
     }
@@ -26,6 +26,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('setting');
     }
 }

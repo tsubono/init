@@ -14,11 +14,11 @@ class CreateLessonImagesTable extends Migration
     public function up()
     {
         Schema::create('lesson_images', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('id');
-            $table->bigInteger('lesson_id')->unsigned()->comment('レッスンID');
+            $table->id();
+            $table->unsignedBigInteger('lesson_id')->comment('レッスンID');
             $table->string('image_path')->comment('画像パス');
-            $table->timestamp('created_at')->nullable()->default(null)->comment('作成日時');
-            $table->timestamp('updated_at')->nullable()->default(null)->comment('更新日時');
+            $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('CASCADE');
         });

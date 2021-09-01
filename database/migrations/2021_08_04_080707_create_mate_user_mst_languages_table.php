@@ -13,10 +13,10 @@ class CreateMateUserMstLanguagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('mate_user_mst_languages', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('id');
-            $table->bigInteger('mate_user_id')->unsigned()->comment('生徒ユーザーID');
-            $table->bigInteger('mst_language_id')->unsigned()->comment('言語マスターID');
+        Schema::create('mate_user_mst_language', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('mate_user_id')->comment('生徒ユーザーID');
+            $table->unsignedBigInteger('mst_language_id')->comment('言語マスターID');
 
             $table->foreign('mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');
             $table->foreign('mst_language_id')->references('id')->on('mst_languages')->onDelete('CASCADE');
@@ -30,6 +30,6 @@ class CreateMateUserMstLanguagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mate_user_mst_languages');
+        Schema::dropIfExists('mate_user_mst_language');
     }
 }

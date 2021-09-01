@@ -14,7 +14,7 @@ class CreateMstLanguagesTable extends Migration
     public function up()
     {
         Schema::create('mst_languages', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('id');
+            $table->id();
             $table->string('name')->comment('言語名');
         });
     }

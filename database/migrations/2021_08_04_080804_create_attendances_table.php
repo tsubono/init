@@ -14,16 +14,15 @@ class CreateAttendancesTable extends Migration
     public function up()
     {
         Schema::create('attendances', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('id');
-            $table->bigInteger('mate_user_id')->unsigned()->comment('生徒ユーザーID');
-            $table->bigInteger('lesson_id')->unsigned()->comment('レッスンID');
+            $table->id();
+            $table->unsignedBigInteger('mate_user_id')->comment('生徒ユーザーID');
+            $table->unsignedBigInteger('lesson_id')->comment('レッスンID');
             $table->tinyInteger('status')->comment('ステータス');
-            $table->text('request_text')->nullable()->default(null)->comment('受講申請メッセージ');
-            $table->text('reject_text')->nullable()->default(null)->comment('受講拒否メッセージ');
-            $table->bigInteger('cancel_by_user_id')->unsigned()->comment('キャンセルユーザーID');
-            $table->timestamp('created_at')->nullable()->default(null)->comment('作成日時');
-            $table->timestamp('updated_at')->nullable()->default(null)->comment('更新日時');
-            $table->timestamp('deleted_at')->nullable()->default(null)->comment('削除日時');
+            $table->text('request_text')->nullable()->comment('受講申請メッセージ');
+            $table->text('reject_text')->nullable()->comment('受講拒否メッセージ');
+            $table->unsignedBigInteger('cancel_by_user_id')->comment('キャンセルユーザーID');
+            $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('CASCADE');

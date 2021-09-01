@@ -14,7 +14,7 @@ class CreateMstCategoriesTable extends Migration
     public function up()
     {
         Schema::create('mst_categories', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('id');
+            $table->id();
             $table->string('name')->comment('カテゴリ名');
         });
     }

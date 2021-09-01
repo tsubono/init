@@ -13,10 +13,10 @@ class CreateLessonMstCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lesson_mst_categories', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('id');
-            $table->bigInteger('lesson_id')->unsigned()->comment('レッスンID');
-            $table->bigInteger('mst_category_id')->unsigned()->comment('カテゴリマスターID');
+        Schema::create('lesson_mst_category', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('lesson_id')->comment('レッスンID');
+            $table->unsignedBigInteger('mst_category_id')->comment('カテゴリマスターID');
 
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('CASCADE');
             $table->foreign('mst_category_id')->references('id')->on('mst_categories')->onDelete('CASCADE');
@@ -30,6 +30,6 @@ class CreateLessonMstCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lesson_mst_categories');
+        Schema::dropIfExists('lesson_mst_category');
     }
 }

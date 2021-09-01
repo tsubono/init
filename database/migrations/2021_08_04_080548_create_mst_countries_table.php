@@ -14,7 +14,7 @@ class CreateMstCountriesTable extends Migration
     public function up()
     {
         Schema::create('mst_countries', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('id');
+            $table->id();
             $table->string('name')->comment('国名');
         });
     }

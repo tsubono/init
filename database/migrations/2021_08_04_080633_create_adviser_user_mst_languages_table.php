@@ -13,10 +13,10 @@ class CreateAdviserUserMstLanguagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('adviser_user_mst_languages', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('id');
-            $table->bigInteger('adviser_user_id')->unsigned()->comment('講師ユーザーID');
-            $table->bigInteger('mst_language_id')->unsigned()->comment('言語マスターID');
+        Schema::create('adviser_user_mst_language', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('adviser_user_id')->comment('講師ユーザーID');
+            $table->unsignedBigInteger('mst_language_id')->comment('言語マスターID');
 
             $table->foreign('adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');
             $table->foreign('mst_language_id')->references('id')->on('mst_languages')->onDelete('CASCADE');
@@ -30,6 +30,6 @@ class CreateAdviserUserMstLanguagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adviser_user_mst_languages');
+        Schema::dropIfExists('adviser_user_mst_language');
     }
 }
