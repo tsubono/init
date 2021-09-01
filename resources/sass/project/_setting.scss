@@ -1,0 +1,61 @@
+.p-setting {
+  &__tab {
+    margin-bottom: 40px;
+    @include breakpoint-md {
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .nav-item {
+      // flex-basis: 22%;
+      margin: 0 0.5%;
+      @include breakpoint-md {
+        flex-basis: 46%;
+        margin: 1%;
+      }
+    }
+    .nav-link {
+      border: solid 1px $color-line;
+      width: 100%;
+      text-align: center;
+      padding: 15px 0;
+      &.active {
+        @include gradient;
+        border: none;
+        font-weight: bold;
+      }
+    }
+  }
+  &__content {
+    .p-heading1 {
+      font-size: 1.875rem;
+      margin-bottom: 0;
+      @include breakpoint-md {
+        font-size: 1.25rem;
+      }
+    }
+  }
+  .p-btn__defalut {
+    width: 250px;
+    margin: 40px auto 0;
+  }
+  .p-btn__black {
+    width: 300px;
+    @include breakpoint-md {
+      width: 100%;
+    }
+  }
+  .p-modal {
+    .modal-body {
+      padding: 30px;
+    }
+    .form-check {
+      margin-bottom: 20px;
+      @include breakpoint-md {
+        margin-bottom: 10px;
+      }
+    }
+    .p-btn__defalut {
+      margin-top: 0px;
+    }
+  }
+}

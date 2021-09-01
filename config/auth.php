@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'mate',
+        'passwords' => 'mate_users',
     ],
 
     /*
@@ -36,14 +36,24 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'mate' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'mate_users',
+        ],
+
+        'adviser' => [
+            'driver' => 'session',
+            'provider' => 'adviser_users',
+        ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin_users',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'mate_users',
             'hash' => false,
         ],
     ],
@@ -66,9 +76,19 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'mate_users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\MateUser::class,
+        ],
+
+        'adviser_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\AdviserUser::class,
+        ],
+
+        'admin_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\AdminUser::class,
         ],
 
         // 'users' => [
@@ -93,8 +113,22 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'mate_users' => [
+            'provider' => 'mate_users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'adviser_users' => [
+            'provider' => 'adviser_users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'admin_users' => [
+            'provider' => 'admin_users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

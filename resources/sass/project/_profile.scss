@@ -1,0 +1,112 @@
+.p-profile {
+  &__avatar {
+    border-radius: 400px;
+    overflow: hidden;
+    position: relative;
+    max-width: 250px;
+    margin: auto;
+    &::before {
+      content: "";
+      display: block;
+      padding-top: 100%;
+    }
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      object-fit: cover;
+    }
+  }
+  &__name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+  }
+  &__edit {
+    display: flex;
+    justify-content: flex-end;
+    @include breakpoint-md {
+      margin-bottom: 30px;
+    }
+    a {
+      position: relative;
+      padding: 12px 50px;
+      font-weight: normal;
+      @include breakpoint-md {
+        flex-basis: 100%;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        background: url(/img/icon-edit-black.svg) no-repeat 50% 50% / contain;
+        width: 1em;
+        height: 1em;
+        margin-top: 0.2em;
+        margin-left: 0.5em;
+      }
+      &:hover {
+        &::after {
+          background-image: url(/img/icon-edit-white.svg);
+        }
+      }
+    }
+  }
+  .p-status {
+    display: flex;
+    flex-wrap: wrap;
+    &__box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-basis: 50%;
+      padding: 10px;
+    }
+    &__icon {
+      flex-basis: 22%;
+      img {
+        width: 100%;
+      }
+    }
+    &__info {
+      text-align: center;
+      flex-basis: 70%;
+      color: $color-text;
+      font-size: 80%;
+      line-height: 140%;
+      .num {
+        @include font-en(400);
+        color: $color-catch;
+        font-size: 120%;
+      }
+    }
+  }
+  &__language {
+    li {
+      margin-bottom: 10px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &__category {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @include breakpoint-md {
+      flex-direction: column;
+    }
+    li {
+      flex-basis: 49%;
+      margin-bottom: 10px;
+    }
+    .p-category {
+      display: block;
+    }
+  }
+}

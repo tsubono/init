@@ -1,0 +1,103 @@
+.p-searchblock {
+  &__all {
+    position: relative;
+    padding-left: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    @include breakpoint-md {
+      padding-left: 20px;
+      font-size: 18px;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      background: url(/img/icon-search.svg) no-repeat 0 0 / contain;
+      width: 35px;
+      height: 35px;
+      @include breakpoint-md {
+        width: 25px;
+        height: 25px;
+      }
+    }
+    .form-select {
+      max-width: 250px;
+      margin: 0 10px 0 20px;
+      @include breakpoint-md {
+        max-width: 170px;
+        padding: 10px;
+      }
+    }
+  }
+  .p-heading3 {
+    text-align: center;
+    background: $color-light;
+  }
+  .p-btn__outline {
+    padding: 15px;
+  }
+  .collapse {
+    display: block;
+    @include breakpoint-md {
+      display: none;
+      padding-top: 20px;
+    }
+    &.show {
+      display: block;
+    }
+  }
+}
+.p-searchresult {
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    @include breakpoint-md {
+      flex-direction: column;
+    }
+  }
+  &__num {
+    font-size: 1.25rem;
+    @include breakpoint-md {
+      margin-bottom: 20px;
+    }
+    .num {
+      @include font-en(400);
+      position: relative;
+      padding-left: 20px;
+      margin-left: 10px;
+      &::before {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background: #707070;
+        width: 1px;
+        height: 20px;
+        transform: rotate(45deg);
+      }
+      &::after {
+        content: "人";
+        position: absolute;
+        font-size: 0.875rem;
+      }
+    }
+  }
+  &__tab {
+    &list {
+      li {
+        padding: 0 10px;
+      }
+    }
+  }
+}
+.p-search__content {
+  margin-top: 30px;
+}

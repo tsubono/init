@@ -1,0 +1,28 @@
+.p-lang {
+  position: relative;
+  padding-left: 30px;
+  &::before {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    margin-left: -30px;
+    background: no-repeat 0 0 / contain;
+    border-radius: 100px;
+  }
+  &__japan {
+    &::before {
+      background-image: url(/img/lang/lang-japan.svg);
+    }
+  }
+  &__france {
+    &::before {
+      background-image: url(/img/lang/lang-france.svg);
+    }
+  }
+  &__america {
+    &::before {
+      background-image: url(/img/lang/lang-america.svg);
+    }
+  }
+}

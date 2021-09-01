@@ -1,0 +1,91 @@
+/*--------------------------------------------------------------
+# Setting
+--------------------------------------------------------------*/
+/* color */
+$color-main: #d9c3fc;
+$color-main-lt: lighten($color-main, 10%);
+$color-main-dk: darken($color-main, 5%);
+$color-sub: #96c4fc;
+$color-sub-lt: lighten($color-sub, 10%);
+$color-sub-dk: darken($color-sub, 5%);
+$color-extra: #ffff70;
+
+/* gradient */
+@mixin gradient {
+  background: $color-main;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from($color-main),
+    to($color-sub)
+  );
+  background: linear-gradient(to right, $color-main 0%, $color-sub 100%);
+}
+@mixin gradient-lt {
+  background: $color-main-lt;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from($color-main-lt),
+    to($color-sub-lt)
+  );
+  background: linear-gradient(to right, $color-main-lt 0%, $color-sub-lt 100%);
+}
+@mixin gradient-dk {
+  background: $color-main-lt;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from($color-main-dk),
+    to($color-sub-dk)
+  );
+  background: linear-gradient(to right, $color-main-dk 0%, $color-sub-dk 100%);
+}
+
+/* text */
+$color-catch: #333333;
+$color-text: #5c5c5c;
+$color-line: #e6e6e6;
+$color-light: #f2f2f2;
+//$color-ph : #919599;
+
+@mixin font-en($font-weight) {
+  font-family: "Jost", sans-serif;
+  font-weight: $font-weight;
+}
+
+@mixin move-trans {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+$sp-side: 576px; // 小デバイス（横向きモバイル, 576px 以上）
+$sp-length: 768px; // 中デバイス（タブレット, 768px 以上）
+$tab-length: 992px; // 大デバイス（デスクトップ, 992px 以上）
+$pc-length: 1200px; // 特大デバイス（ワイド・デスクトップ, 1200px 以上）
+$max-width: 1200px; // コンテンツ最大幅
+$maxin-width: 710px; // コンテンツ最大幅
+
+@mixin breakpoint-sm {
+  @media screen and (min-width: 0px) and (max-width: ($sp-side)) {
+    @content;
+  }
+}
+@mixin breakpoint-md {
+  @media screen and (min-width: 0px) and (max-width: ($sp-length)) {
+    @content;
+  }
+}
+@mixin breakpoint-lg {
+  @media screen and (min-width: 0px) and (max-width: ($tab-length)) {
+    @content;
+  }
+}
+@mixin breakpoint-xl {
+  @media (min-width: ($pc-length)) {
+    @content;
+  }
+}

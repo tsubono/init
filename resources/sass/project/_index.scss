@@ -1,0 +1,236 @@
+.p-index-main {
+  position: relative;
+  width: 100%;
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  @include breakpoint-md {
+    height: 700px;
+  }
+  &__inner {
+    position: relative;
+    z-index: 2;
+    margin: auto;
+    max-width: $max-width;
+    padding-left: 40%;
+    @include breakpoint-md {
+      padding-left: 0;
+      padding-bottom: 180px;
+      width: 90%;
+      text-align: center;
+    }
+  }
+  &__catch {
+    font-size: 2.25rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    line-height: 160%;
+    @include breakpoint-md {
+      font-size: 1.375rem;
+      margin-bottom: 20px;
+    }
+  }
+  &__read {
+    font-size: 1.25rem;
+    font-weight: bold;
+    line-height: 160%;
+    @include breakpoint-md {
+      font-size: 0.875rem;
+    }
+  }
+  &__btn {
+    max-width: 250px;
+    margin-top: 40px;
+    @include breakpoint-md {
+      margin: 30px auto;
+    }
+  }
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 70% 50%;
+      @include breakpoint-md {
+        object-position: 50% 50%;
+      }
+    }
+  }
+}
+
+.p-index-about {
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include breakpoint-md {
+      flex-direction: column;
+    }
+  }
+  &__text {
+    flex-basis: 38%;
+    p {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 40px;
+      @include breakpoint-md {
+        font-size: 1rem;
+      }
+    }
+  }
+  &__img {
+    flex-basis: 57%;
+    @include breakpoint-md {
+      margin-bottom: 40px;
+    }
+    img {
+      width: 100%;
+      box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.1);
+    }
+  }
+  &__btn {
+    max-width: 250px;
+    @include breakpoint-md {
+      max-width: 300px;
+    }
+  }
+}
+
+.p-room-intro {
+  &__box {
+    display: flex;
+    flex-direction: column;
+    padding: 60px;
+    margin-left: calc(1rem + 20px);
+    position: relative;
+    color: #fff;
+    background: no-repeat 50% 50% / cover;
+    margin-bottom: 1px;
+    @include breakpoint-md {
+      padding: 40px;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      writing-mode: vertical-lr;
+      @include font-en(400);
+      font-size: 1.25rem;
+      font-style: italic;
+      left: calc(-1rem - 20px);
+      top: 0;
+      line-height: 100%;
+    }
+    &.business {
+      background-image: url(/img/room-business.png);
+      &::before {
+        content: "#01 Business";
+      }
+    }
+    &.yourself {
+      background-image: url(/img/room-yourself.png);
+      &::before {
+        content: "#02 Polish yourself";
+      }
+    }
+    &.skillup {
+      background-image: url(/img/room-skillup.png);
+      &::before {
+        content: "#03 Skill up";
+      }
+    }
+  }
+  &__head {
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    @include breakpoint-md {
+      font-size: 1.25rem;
+    }
+  }
+  p {
+    @include breakpoint-md {
+      font-size: 0.875rem;
+    }
+  }
+  &__btn {
+    border-radius: 100px;
+    border: solid 1px #fff;
+    max-width: 170px;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    padding: 15px 0;
+    margin-top: 30px;
+    line-height: 100%;
+    @include breakpoint-md {
+      margin-top: 20px;
+      max-width: inherit;
+    }
+
+    &:hover {
+      background: #fff;
+      color: $color-catch;
+    }
+  }
+  &__btn2 {
+    max-width: 250px;
+    margin: 40px auto;
+    @include breakpoint-md {
+      max-width: 300px;
+    }
+  }
+}
+.p-index-advisor {
+  &__list {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    @include breakpoint-md {
+      flex-direction: column;
+    }
+    .p-card {
+      flex-basis: 32%;
+      @include breakpoint-md {
+        margin-bottom: 30px;
+      }
+    }
+  }
+  &__btn {
+    max-width: 300px;
+    margin: 40px auto;
+    @include breakpoint-md {
+      margin-top: 10px;
+    }
+  }
+}
+.p-index-lesson {
+  &__list {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 40px 0;
+    @include breakpoint-md {
+      margin-left: -50vw;
+      margin-right: -50vw;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      // padding: 20px 0;
+    }
+  }
+  &__btn {
+    max-width: 300px;
+    margin: 40px auto;
+    @include breakpoint-md {
+      max-width: 300px;
+      margin-top: 30px;
+    }
+  }
+}
