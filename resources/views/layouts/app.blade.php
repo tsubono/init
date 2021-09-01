@@ -13,12 +13,12 @@
     <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ek" crossorigin="anonymous"></script>
 
     <!-- Styles -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;400;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
-    <title>トップページ</title>
+    <title>@yield('title', '') | INIT</title>
 </head>
 <body>
     <header>
@@ -30,11 +30,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="Navber">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-link active" aria-current="page"><a href="#">ホーム</a></li>
-                        <li class="nav-link"><a href="#">はじめての方</a></li>
-                        <li class="nav-link"><a href="#">レッスン検索</a></li>
-                        <li class="nav-link"><a href="#">アドバイザー検索</a></li>
-                        <li class="nav-link nav-link__login"><a href="#">ログイン</a></li>
+                        <li class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page"><a href="{{ route('top') }}">ホーム</a></li>
+                        <li class="nav-link {{ request()->is('about') ? 'active' : '' }}"><a href="{{ route('about') }}">はじめての方</a></li>
+                        <li class="nav-link {{ request()->is('lessons', 'lessons/*') ? 'active' : '' }}"><a href="{{ route('lessons.index') }}">レッスン検索</a></li>
+                        <li class="nav-link {{ request()->is('advisers', 'advisers/*') ? 'active' : '' }}"><a href="{{ route('advisers.index') }}">アドバイザー検索</a></li>
+                        <li class="nav-link nav-link__login {{ request()->is('mate/login') ? 'active' : '' }}"><a href="{{ route('mate.login') }}">ログイン</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -50,12 +50,12 @@
             </div>
             <div class="footer-nav-list">
                 <ul>
-                    <li><a href="#">INIT運営チームについて</a></li>
-                    <li><a href="#">特商法に基づく表示</a></li>
-                    <li><a href="#">プライバシーポリシー</a></li>
-                    <li><a href="#">キャンセルポリシー</a></li>
-                    <li><a href="#">受講者規約</a></li>
-                    <li><a href="#">アドバイザー規約</a></li>
+                    <li><a href="{{ route('team') }}">INIT運営チームについて</a></li>
+                    <li><a href="{{ route('tradelaw') }}">特商法に基づく表示</a></li>
+                    <li><a href="{{ route('privacy') }}">プライバシーポリシー</a></li>
+                    <li><a href="{{ route('privacy') }}">キャンセルポリシー</a></li>
+                    <li><a href="{{ route('cancel-policy-mate') }}">受講者規約</a></li>
+                    <li><a href="{{ route('cancel-policy-adviser') }}">アドバイザー規約</a></li>
                 </ul>
             </div>
             <address>Copyright &copy; 2021 INIT. All Rights Reserved.</address>
