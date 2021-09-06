@@ -397,7 +397,7 @@
                                                             </div>
                                                         </div>
                                                     </div><!-- /. row -->
-                                                    <button type="submit" class="p-btn p-btn__defalut">保存する</button>
+                                                    <button type="button" class="p-btn p-btn__defalut" data-bs-dismiss="modal">保存する</button>
                                                 </div><!-- /.modal-body -->
                                             </div><!-- /.modal-content -->
                                         </div><!-- /.modal-dialog -->
@@ -541,7 +541,7 @@
                                                         </div><!-- /.row  -->
 
                                                     </div><!-- /. row -->
-                                                    <button type="submit" class="p-btn p-btn__defalut">保存する</button>
+                                                    <button type="button" class="p-btn p-btn__defalut" data-bs-dismiss="modal">保存する</button>
                                                 </div><!-- /.modal-body -->
                                             </div><!-- /.modal-content -->
                                         </div><!-- /.modal-dialog -->

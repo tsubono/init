@@ -16,6 +16,7 @@ class CreateMstCategoriesTable extends Migration
         Schema::create('mst_categories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('mst_room_id')->nullable()->comment('ルームID');
+            $table->string('icon_path')->comment('アイコンパス');
             $table->string('name')->comment('カテゴリ名');
 
             $table->foreign('mst_room_id')->references('id')->on('mst_rooms')->onDelete('CASCADE');

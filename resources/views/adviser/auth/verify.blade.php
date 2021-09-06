@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'メール確認')
+
 @section('content')
     <section class="p-layer-head">
         <div class="container">

@@ -15,6 +15,7 @@ class CreateLessonsTable extends Migration
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('adviser_user_id')->comment('アドバイザーユーザーID');
             $table->string('name')->comment('レッスン名');
             $table->integer('coin_amount')->comment('必要コイン数');
             $table->text('description')->comment('説明');
@@ -24,6 +25,7 @@ class CreateLessonsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');
             $table->foreign('mst_language_id')->references('id')->on('mst_languages')->onDelete('CASCADE');
         });
     }

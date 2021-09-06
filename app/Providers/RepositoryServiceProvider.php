@@ -42,6 +42,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\MstRoom\MstRoomRepositoryInterface::class,
             \App\Repositories\MstRoom\MstRoomRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\Lesson\LessonRepositoryInterface::class,
+            \App\Repositories\Lesson\LessonRepository::class
+        );
     }
 
     /**

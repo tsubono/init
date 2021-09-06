@@ -3,18 +3,32 @@
 namespace App\Http\Controllers\Adviser;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lesson;
+use App\Repositories\Lesson\LessonRepositoryInterface;
+use App\Repositories\MstLanguage\MstLanguageRepositoryInterface;
+use App\Repositories\MstRoom\MstRoomRepositoryInterface;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
+    private LessonRepositoryInterface $lessonRepository;
+    private MstLanguageRepositoryInterface $mstLanguageRepository;
+    private MstRoomRepositoryInterface $mstRoomRepository;
+
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * LessonController constructor.
+     * @param LessonRepositoryInterface $lessonRepository
+     * @param MstLanguageRepositoryInterface $mstLanguageRepository
+     * @param MstRoomRepositoryInterface $mstRoomRepository
      */
-    public function __construct()
-    {
-        //
+    public function __construct(
+        LessonRepositoryInterface $lessonRepository,
+        MstLanguageRepositoryInterface $mstLanguageRepository,
+        MstRoomRepositoryInterface $mstRoomRepository
+    ) {
+        $this->lessonRepository = $lessonRepository;
+        $this->mstLanguageRepository = $mstLanguageRepository;
+        $this->mstRoomRepository = $mstRoomRepository;
     }
 
     /**
@@ -24,7 +38,10 @@ class LessonController extends Controller
      */
     public function index()
     {
-        return view('adviser.lessons.index');
+        $user = auth()->guard('adviser')->user();
+        $lessons = $this->lessonRepository->getByAdviserIdPaginate($user->id);
+
+        return view('adviser.lessons.index', compact('lessons'));
     }
 
     /**
@@ -34,46 +51,66 @@ class LessonController extends Controller
      */
     public function create()
     {
-        return view('adviser.lessons.create');
+        $lesson = new Lesson();
+        $mst_languages = $this->mstLanguageRepository->all();
+        $mst_rooms = $this->mstRoomRepository->all();
+
+        return view('adviser.lessons.create',
+            compact('lesson', 'mst_languages', 'mst_rooms'));
     }
 
     /**
-     * (アドバイザーマイページ) レッスン登録処理
+     *  (アドバイザーマイページ) レッスン登録処理
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store()
+    public function store(Request $request)
     {
-        // TODO
+        $user = auth()->guard('adviser')->user();
+        $this->lessonRepository->store($request->all() + ['adviser_user_id' => $user->id]);
+
+        return redirect(route('adviser.lessons.index'))->with('success-message', 'レッスン情報を登録しました');
     }
 
     /**
      * (アドバイザーマイページ) レッスン編集フォーム
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Lesson $lesson
+     * @return \Illuminate\Contracts\View\View
      */
-    public function edit()
+    public function edit(Lesson $lesson)
     {
-        return view('adviser.lessons.edit');
+        $mst_languages = $this->mstLanguageRepository->all();
+        $mst_rooms = $this->mstRoomRepository->all();
+
+        return view('adviser.lessons.edit',
+            compact('lesson', 'mst_languages', 'mst_rooms'));
     }
 
     /**
-     * (アドバイザーマイページ) レッスン更新処理
+     *  (アドバイザーマイページ) レッスン更新処理
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Lesson $lesson
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update()
+    public function update(Lesson $lesson, Request $request)
     {
-        // TODO
+        $this->lessonRepository->update($lesson->id, $request->all());
+
+        return redirect(route('adviser.lessons.index'))->with('success-message', 'レッスン情報を更新しました');
     }
 
     /**
      * (アドバイザーマイページ) レッスン削除処理
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy()
+    public function destroy(Lesson $lesson)
     {
-        // TODO
+        $this->lessonRepository->destroy($lesson->id);
+
+        return redirect(route('adviser.lessons.index'))->with('success-message', 'レッスン情報を削除しました');
     }
 }
