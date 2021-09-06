@@ -29,6 +29,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      &--picture {
+        background: #efefef url(/img/form-img-picture.svg) no-repeat 50% 50%;
+      }
       img {
         width: 100%;
         object-fit: contain;
@@ -119,5 +122,15 @@
     span {
       margin: 0 10px;
     }
+  }
+}
+
+.p-input-file {
+  background-color: #F5F5F5;
+  padding: 8px 16px;
+  cursor: pointer;
+
+  input[type=file] {
+    display: none;
   }
 }

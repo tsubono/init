@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class RepositoryServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->bind(
+            \App\Repositories\AdviserUser\AdviserUserRepositoryInterface::class,
+            \App\Repositories\AdviserUser\AdviserUserRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\MateUser\MateUserRepositoryInterface::class,
+            \App\Repositories\MateUser\MateUserRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\MstCategory\MstCategoryRepositoryInterface::class,
+            \App\Repositories\MstCategory\MstCategoryRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\MstCountry\MstCountryRepositoryInterface::class,
+            \App\Repositories\MstCountry\MstCountryRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\MstLanguage\MstLanguageRepositoryInterface::class,
+            \App\Repositories\MstLanguage\MstLanguageRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\MstRoom\MstRoomRepositoryInterface::class,
+            \App\Repositories\MstRoom\MstRoomRepository::class
+        );
+    }
+
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+    }
+}

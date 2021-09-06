@@ -149,7 +149,7 @@
                         <div class="p-aboutlist__text">
                             <h3>Skypeの登録</h3>
                             <p>Initのレッスンでは、Skypeを使用します。<br>
-                                <a href="#" target="_blank">Skypeのダウンロード・登録方法はこちら</a></p>
+                                <a href="#" target="_blank" class="primary-link">Skypeのダウンロード・登録方法はこちら</a></p>
                         </div>
                     </li>
                     <li class="p-aboutlist__box num02">

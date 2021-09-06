@@ -1,0 +1,56 @@
+.p-message {
+  &__avatar {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  &__message-box {
+    border: 1px solid #E6E6E6;
+    padding: 56px;
+
+    & + & {
+      margin-top: -1px;
+    }
+  }
+
+  &__textarea {
+    display: block;
+    width: 100%;
+    border: 1px solid #E6E6E6;
+    padding: 16px 20px;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 150px;
+
+    &::placeholder {
+      color: #ccc;
+    }
+  }
+
+  &__content {
+    padding-left: 50px;
+  }
+
+  &__message {
+    line-height: 2;
+    white-space: pre-line;
+  }
+
+  &__attachment-list {
+    & > li + li {
+      margin-top: 20px;
+    }
+  }
+
+  &__attachment {
+    background-color: #F5F5F5;
+    padding: 8px 50px;
+  }
+
+  &__action {
+    text-align: center;
+    margin-top: 90px;
+  }
+}

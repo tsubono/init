@@ -9,7 +9,7 @@
                 あなただけの講師を見つけよう</h1>
             <div class="p-index-main__read"><span class="p-obi p-obi__blue">“やりたいこと”</span>を<span class="p-obi p-obi__purple">“学びたい言語”</span>で。<br>
                 Init!（イニット）は挑戦する方々を応援します</div>
-            <a href="{{ route('register') }}" class="p-index-main__btn p-btn p-btn__defalut">新規登録する</a>
+            <a href="{{ route('mate.register') }}" class="p-index-main__btn p-btn p-btn__defalut">新規登録する</a>
         </div>
         <div class="p-index-main__bg">
             <img src="{{ asset('img/index-mv.png') }}" class="d-none d-md-block" alt="">

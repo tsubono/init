@@ -1,0 +1,83 @@
+.p-btn {
+  font-weight: bold;
+  padding: 20px;
+  text-align: center;
+  border-radius: 100px;
+  display: block;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
+  &--rect {
+    border-radius: 4px;
+  }
+  &__defalut {
+    z-index: 0;
+    position: relative;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      border-radius: 100px;
+    }
+    &::before {
+      @include gradient;
+      z-index: -1;
+      @include move-trans;
+    }
+    &::after {
+      @include gradient-dk;
+      z-index: -2;
+    }
+    color: #fff;
+    &:hover {
+      color: $color-extra;
+      box-shadow: 30px 20px 50px rgba(0, 0, 0, 0.1);
+      &::before {
+        opacity: 0;
+      }
+    }
+  }
+  &__white {
+    background: #fff;
+  }
+  &__outline {
+    border: solid 1px $color-text;
+    box-shadow: none;
+    &:hover {
+      background: $color-text;
+      color: #fff;
+    }
+  }
+  &__black {
+    box-shadow: none;
+    background: $color-text;
+    color: #fff;
+    &:hover {
+      background-color: $color-catch;
+    }
+  }
+  &--edit {
+    position: relative;
+    padding: 12px 50px;
+    font-weight: normal;
+    @include breakpoint-md {
+      flex-basis: 100%;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      background: url(/img/icon-edit-black.svg) no-repeat 50% 50% / contain;
+      width: 1em;
+      height: 1em;
+      margin-top: 0.2em;
+      margin-left: 0.5em;
+    }
+    &:hover {
+      &::after {
+        background-image: url(/img/icon-edit-white.svg);
+      }
+    }
+  }
+}

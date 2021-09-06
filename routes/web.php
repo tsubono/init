@@ -31,7 +31,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
 /**
  * Auth 共通
  */
-Route::middleware(['auth.adviser', 'auth.mate'])->group(function () {
+Route::middleware(['auth.adviser', 'auth.mate'])->namespace('App\Http\Controllers')->group(function () {
     Route::get('/transactions', 'TransactionController@index')->name('transactions.index');
     Route::get('/transactions/{transaction}', 'TransactionController@show')->name('transactions.show');
     Route::post('/transactions/{transaction}/update-status', 'TransactionController@updateStatus')->name('transactions.update-status');
@@ -46,9 +46,10 @@ Route::middleware(['auth.adviser', 'auth.mate'])->group(function () {
  * アドバイザー Group
  */
 Route::prefix('adviser')->as('adviser.')->namespace('App\Http\Controllers\Adviser')->group(function () {
-    Auth::routes();
+    Auth::routes(['verify' => true]);
+    Route::get('/register/complete', function () { return view('adviser.auth.register-complete'); })->name('register.complete');
 
-    Route::middleware('auth.adviser')->group(function () {
+    Route::middleware(['auth.adviser', 'verified.adviser'])->group(function () {
         // プロフィール
         Route::get('/profile', 'ProfileController@edit')->name('profile.edit');
         Route::post('/profile', 'ProfileController@update')->name('profile.update');
@@ -64,9 +65,10 @@ Route::prefix('adviser')->as('adviser.')->namespace('App\Http\Controllers\Advise
  * メイト Group
  */
 Route::prefix('mate')->as('mate.')->namespace('App\Http\Controllers\Mate')->group(function () {
-    Auth::routes();
+    Auth::routes(['verify' => true]);
+    Route::get('/register/complete', function () { return view('mate.auth.register-complete'); })->name('register.complete');
 
-    Route::middleware('auth.mate')->group(function () {
+    Route::middleware(['auth.mate', 'verified.mate'])->group(function () {
         // プロフィール
         Route::get('/profile', 'ProfileController@edit')->name('profile.edit');
         Route::post('/profile', 'ProfileController@update')->name('profile.update');

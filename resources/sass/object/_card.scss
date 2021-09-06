@@ -1,4 +1,9 @@
 .p-card {
+  &--lesson {
+    flex: 1;
+    max-width: 350px;
+    display: inline-block;
+  }
   a {
     background: #fff;
     display: block;

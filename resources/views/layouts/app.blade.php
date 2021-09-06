@@ -34,7 +34,24 @@
                         <li class="nav-link {{ request()->is('about') ? 'active' : '' }}"><a href="{{ route('about') }}">はじめての方</a></li>
                         <li class="nav-link {{ request()->is('lessons', 'lessons/*') ? 'active' : '' }}"><a href="{{ route('lessons.index') }}">レッスン検索</a></li>
                         <li class="nav-link {{ request()->is('advisers', 'advisers/*') ? 'active' : '' }}"><a href="{{ route('advisers.index') }}">アドバイザー検索</a></li>
-                        <li class="nav-link nav-link__login {{ request()->is('mate/login') ? 'active' : '' }}"><a href="{{ route('mate.login') }}">ログイン</a></li>
+                        @if (auth()->guard('mate')->check())
+                            <li class="nav-link nav-link__login">
+                                <a onclick="document.getElementById('logoutForm').submit()">ログアウト</a>
+                                <form action="{{ route('mate.logout') }}" id="logoutForm" method="post">@csrf</form>
+                            </li>
+                        @elseif (auth()->guard('adviser')->check())
+                            <li class="nav-link nav-link__login">
+                                <a onclick="document.getElementById('logoutForm').submit()">ログアウト</a>
+                                <form action="{{ route('adviser.logout') }}" id="logoutForm" method="post">@csrf</form>
+                            </li>
+                        @elseif (auth()->guard('admin')->check())
+                            <li class="nav-link nav-link__login">
+                                <a onclick="document.getElementById('logoutForm').submit()">ログアウト</a>
+                                <form action="{{ route('admin.logout') }}" id="logoutForm" method="post">@csrf</form>
+                            </li>
+                        @else
+                            <li class="nav-link nav-link__login {{ request()->is('mate/login', 'adviser/login') ? 'active' : '' }}"><a href="{{ route('mate.login') }}">ログイン</a></li>
+                        @endif
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -64,5 +81,6 @@
 
     <script src="//cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+
 </body>
 </html>

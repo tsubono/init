@@ -1,0 +1,54 @@
+$space: 100;
+@while $space > 0 {
+  // Margin
+  .m-#{$space}px {
+    margin: $space + px !important;
+  }
+  .mx-#{$space}px {
+    margin-left: $space + px !important;
+    margin-right: $space + px !important;
+  }
+  .my-#{$space}px {
+    margin-top: $space + px !important;
+    margin-bottom: $space + px !important;
+  }
+  .ms-#{$space}px {
+    margin-left: $space + px !important;
+  }
+  .me-#{$space}px {
+    margin-right: $space + px !important;
+  }
+  .mt-#{$space}px {
+    margin-top: $space + px !important;
+  }
+  .mb-#{$space}px {
+    margin-bottom: $space + px !important;
+  }
+
+  // Padding
+  .p-#{$space}px {
+    padding: $space + px !important;
+  }
+  .px-#{$space}px {
+    padding-left: $space + px !important;
+    padding-right: $space + px !important;
+  }
+  .py-#{$space}px {
+    padding-top: $space + px !important;
+    padding-bottom: $space + px !important;
+  }
+  .ps-#{$space}px {
+    padding-left: $space + px !important;
+  }
+  .pe-#{$space}px {
+    padding-right: $space + px !important;
+  }
+  .pt-#{$space}px {
+    padding-top: $space + px !important;
+  }
+  .pb-#{$space}px {
+    padding-bottom: $space + px !important;
+  }
+
+  $space: $space - 5;
+}

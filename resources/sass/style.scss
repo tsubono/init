@@ -17,6 +17,13 @@
 @import "foundation/normalize";
 
 /* ==========================================================================
+   Util
+========================================================================== */
+
+@import "util/spacing";
+@import "util/white-space";
+
+/* ==========================================================================
    Layout
 ========================================================================== */
 
@@ -30,7 +37,7 @@
 
 /* Component
 ------------------------------------------- */
-// @import "object/button";
+@import "object/button";
 // @import "object/table";
 // @import "object/head";
 @import "object/parts";
@@ -43,6 +50,7 @@
 @import "object/form";
 @import "object/search";
 // @import "object/news";
+@import "object/pagination";
 
 /* Project page
 ------------------------------------------- */
@@ -51,3 +59,8 @@
 @import "project/about";
 @import "project/profile";
 @import "project/setting";
+@import "project/message";
+@import "project/info-list";
+@import "project/info";
+@import "project/lesson-show";
+@import "project/register-complete";

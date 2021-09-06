@@ -21,6 +21,12 @@ button {
   text-decoration: none;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  &.primary-link {
+    color: #4995F2;
+    text-decoration: underline;
+  }
 }
 a:hover {
   color: $color-sub;
