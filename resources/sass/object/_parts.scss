@@ -165,3 +165,51 @@
 .p-error-text {
   color: #dc3545;
 }
+
+.p-notification-icon {
+  cursor: pointer;
+  position: relative;
+  &--has-items {
+    &::before {
+      content: '';
+      position: absolute;
+      right: -2px;
+      bottom: -2px;
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #e03941;
+    }
+  }
+}
+
+.p-notification-popover {
+  max-width: 350px;
+  min-width: 350px;
+  border: none;
+  border-radius: 0;
+
+  &__list {
+    max-height: 200px;
+    overflow-y: auto;
+    color: #404040;
+    & > li {
+      padding: 10px 16px;
+      border-bottom: 1px solid #E6E6E6;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+  }
+
+  &__to-list {
+    padding: 10px 16px;
+    color: #4995F2;
+    display: block;
+    text-align: right;
+    border-top: 1px solid #E6E6E6;
+    margin-top: -1px;
+  }
+}

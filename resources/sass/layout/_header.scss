@@ -28,6 +28,7 @@ header {
       justify-content: flex-end;
       ul {
         display: flex;
+        align-items: center;
         justify-content: flex-end;
         @include breakpoint-md {
           margin-top: 30px;

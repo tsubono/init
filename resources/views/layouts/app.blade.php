@@ -30,6 +30,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="Navber">
                     <ul class="navbar-nav ml-auto">
+                        <li class="me-5">
+                            <a tabindex="0" data-bs-toggle="notification-popover" data-bs-trigger="focus" class="p-notification-icon p-notification-icon--has-items">
+                                <img src="/img/notification.svg" alt="お知らせ">
+                            </a>
+                        </li>
                         <li class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page"><a href="{{ route('top') }}">ホーム</a></li>
                         <li class="nav-link {{ request()->is('about') ? 'active' : '' }}"><a href="{{ route('about') }}">はじめての方</a></li>
                         <li class="nav-link {{ request()->is('lessons', 'lessons/*') ? 'active' : '' }}"><a href="{{ route('lessons.index') }}">レッスン検索</a></li>
@@ -79,8 +84,37 @@
         </div>
     </footer>
 
+    <template id="notification-content">
+        <div>
+            <ul class="p-notification-popover__list">
+                <li><a href="#">お知らせ。お知らせ。お知らせ。</a></li>
+                <li><a href="#">お知らせ。お知らせ。お知らせ。お知らせ。お知らせ。お知らせ。</a></li>
+                <li><a href="#">お知らせ。お知らせ。お知らせ。お知らせ。</a></li>
+                <li><a href="#">お知らせ。お知らせ。お知らせ。お知らせ。お知らせ。お知らせ。お知らせ。</a></li>
+                <li><a href="#">お知らせ。お知らせ。お知らせ。</a></li>
+                <li><a href="#">お知らせ。お知らせ。お知らせ。お知らせ。お知らせ。</a></li>
+                <li><a href="#">お知らせ。お知らせ。お知らせ。お知らせ。お知らせ。</a></li>
+                <li><a href="#">お知らせ。お知らせ。お知らせ。</a></li>
+                <li><a href="#">お知らせ。お知らせ。お知らせ。お知らせ。お知らせ。お知らせ。お知らせ。</a></li>
+                <li><a href="#">お知らせ。</a></li>
+            </ul>
+            <a href="#" class="p-notification-popover__to-list">一覧へ</a>
+        </div>
+    </template>
+
     <script src="//cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
-
+    <script type="text/javascript">
+        var popover = new bootstrap.Popover(document.querySelector('[data-bs-toggle="notification-popover"]'), {
+            template: `
+            <div class="popover p-notification-popover" role="tooltip">
+                <div class="popover-body p-0"></div>
+            </div>`,
+            html: true,
+            content: document.querySelector('#notification-content').content.firstElementChild,
+            offset: [165, 10],
+            placement: 'bottom',
+        });
+    </script>
 </body>
 </html>
