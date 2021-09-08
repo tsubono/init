@@ -19,7 +19,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::get('/', 'TopController@index')->name('top');
     Route::get('/lessons', 'LessonController@index')->name('lessons.index');
     Route::get('/lessons/{lesson}', 'LessonController@show')->name('lessons.show');
-    Route::post('/lessons/{lesson}/request', 'LessonController@request')->name('lessons.request');
+    Route::post('/lessons/{lesson}/request', 'LessonController@request')->name('lessons.request')->middleware(['auth.mate']);
     Route::get('/advisers', 'AdviserController@index')->name('advisers.index');
     Route::get('/advisers/{adviser}', 'AdviserController@show')->name('advisers.show');
     Route::get('/contact', 'ContactController@show')->name('contact.index');
@@ -32,14 +32,15 @@ Route::namespace('App\Http\Controllers')->group(function () {
  * Auth 共通
  */
 Route::middleware(['auth.adviser', 'auth.mate'])->namespace('App\Http\Controllers')->group(function () {
-    Route::get('/transactions', 'TransactionController@index')->name('transactions.index');
-    Route::get('/transactions/{transaction}', 'TransactionController@show')->name('transactions.show');
-    Route::post('/transactions/{transaction}/update-status', 'TransactionController@updateStatus')->name('transactions.update-status');
-    Route::get('/transactions/{transaction}/messages', 'TransactionController@messages')->name('transactions.messages');
-    Route::post('/transactions/{transaction}/send-message', 'TransactionController@sendMessage')->name('transactions.send-message');
-    Route::post('/transactions/{transaction}/review', 'TransactionController@review')->name('transactions.review');
-    Route::post('/transactions/{transaction}/cancel', 'TransactionController@cancel')->name('transactions.cancel');
-    Route::post('/transactions/{transaction}/report', 'TransactionController@report')->name('transactions.report');
+    Route::get('/attendances', 'AttendanceController@index')->name('attendances.index');
+    Route::get('/attendances/{attendance}', 'AttendanceController@show')->name('attendances.show');
+    Route::post('/attendances/{attendance}/approval', 'AttendanceController@approval')->name('attendances.approval');
+    Route::post('/attendances/{attendance}/reject', 'AttendanceController@reject')->name('attendances.reject');
+    Route::get('/attendances/{attendance}/messages', 'AttendanceController@messages')->name('attendances.messages');
+    Route::post('/attendances/{attendance}/send-message', 'AttendanceController@sendMessage')->name('attendances.send-message');
+    Route::post('/attendances/{attendance}/review', 'AttendanceController@review')->name('attendances.review');
+    Route::post('/attendances/{attendance}/cancel', 'AttendanceController@cancel')->name('attendances.cancel');
+    Route::post('/attendances/{attendance}/report', 'AttendanceController@report')->name('attendances.report');
 });
 
 /**
@@ -101,11 +102,11 @@ Route::prefix('admin')->as('admin.')->namespace('App\Http\Controllers\Admin')->g
         Route::get('/coins/{coin}', 'CoinController@show')->name('coins.show');
         Route::post('/coins/export-csv', 'CoinController@exportCsv')->name('coins.export-csv');
         // 取引管理
-        Route::get('/transactions', 'TransactionController@index')->name('transactions.index');
-        Route::get('/transactions/{transaction}', 'TransactionController@show')->name('transactions.show');
+        Route::get('/attendances', 'AttendanceController@index')->name('attendances.index');
+        Route::get('/attendances/{attendance}', 'AttendanceController@show')->name('attendances.show');
         // 振り込み申請管理
         Route::get('/transfer-requests', 'TransferRequestController@index')->name('transfer-requests.index');
-        Route::post('/transfer-requests/{transaction}/update-status', 'TransferRequestController@updateStatus')->name('transfer-requests.update-status');
+        Route::post('/transfer-requests/{attendance}/update-status', 'TransferRequestController@updateStatus')->name('transfer-requests.update-status');
         // お知らせ管理
         Route::resource('/infos', 'InfoController')->except(['show']);
         // お知らせ配信管理

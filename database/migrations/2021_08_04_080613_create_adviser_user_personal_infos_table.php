@@ -18,7 +18,7 @@ class CreateAdviserUserPersonalInfosTable extends Migration
             $table->unsignedBigInteger('adviser_user_id')->comment('講師ユーザーID');
             $table->string('type')->comment('種別');
             $table->string('image_path')->comment('画像パス');
-            $table->integer('sort')->comment('順番');
+            $table->integer('sort')->comment('順番')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

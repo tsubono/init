@@ -17,8 +17,9 @@ class CreateMateUserCoinsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('mate_user_id')->comment('生徒ユーザーID');
             $table->integer('amount')->comment('数量');
-            $table->string('payment_id')->comment('決済ID');
-            $table->date('expiration_date')->comment('有効期限');
+            $table->string('payment_id')->comment('決済ID')->nullable();
+            $table->date('expiration_date')->comment('有効期限')->nullable();
+            $table->text('note')->comment('備考')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -19,7 +19,7 @@ class CreateMateUserMstCategoriesTable extends Migration
             $table->unsignedBigInteger('mst_category_id')->comment('カテゴリマスターID');
 
             $table->foreign('mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');
-            $table->foreign('mst_category_id')->references('id')->on('mst_countries')->onDelete('CASCADE');
+            $table->foreign('mst_category_id')->references('id')->on('mst_categories')->onDelete('CASCADE');
         });
     }
 

@@ -17,6 +17,7 @@ class CreateLessonImagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('lesson_id')->comment('レッスンID');
             $table->string('image_path')->comment('画像パス');
+            $table->integer('sort')->comment('順番')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

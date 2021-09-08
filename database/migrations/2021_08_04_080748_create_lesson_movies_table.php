@@ -16,8 +16,8 @@ class CreateLessonMoviesTable extends Migration
         Schema::create('lesson_movies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('lesson_id')->comment('レッスンID');
-            $table->string('url')->comment('動画パス');
-            $table->integer('sort')->comment('順番');
+            $table->string('movie_path')->comment('動画パス');
+            $table->integer('sort')->comment('順番')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

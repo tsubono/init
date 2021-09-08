@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TransactionController extends Controller
+class AttendanceController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,47 +17,57 @@ class TransactionController extends Controller
     }
 
     /**
-     * 取引一覧
+     * 受講一覧
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        return view('transactions.index');
+        return view('attendances.index');
     }
 
     /**
-     * 取引詳細
+     * 受講詳細
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function show()
     {
-        return view('transactions.show');
+        return view('attendances.show');
     }
 
     /**
-     * 取引ステータス更新
+     * 受講申請承認
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function updateStatus()
+    public function approval()
     {
         // TODO
     }
 
     /**
-     * 取引メッセージ
+     * 受講申請否認
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function reject()
+    {
+        // TODO
+    }
+
+    /**
+     * 受講メッセージ
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function messages()
     {
-        return view('adviser.transactions.show');
+        return view('adviser.attendances.show');
     }
 
     /**
-     * 取引メッセージ送信
+     * 受講メッセージ送信
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */

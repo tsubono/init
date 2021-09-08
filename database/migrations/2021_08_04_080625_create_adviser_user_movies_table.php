@@ -16,8 +16,8 @@ class CreateAdviserUserMoviesTable extends Migration
         Schema::create('adviser_user_movies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('adviser_user_id')->comment('講師ユーザーID');
-            $table->string('url')->comment('URL');
-            $table->integer('sort')->comment('順番');
+            $table->string('movie_path')->comment('動画パス');
+            $table->integer('sort')->comment('順番')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

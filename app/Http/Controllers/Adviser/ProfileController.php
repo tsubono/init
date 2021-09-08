@@ -59,7 +59,10 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        $this->adviserUserRepository->update(auth()->guard('adviser')->user()->id, $request->all());
+        $this->adviserUserRepository->update(
+            auth()->guard('adviser')->user()->id,
+            $request->all() + ['can_open_lesson' => true] // 必須事項入力済みなのでレッスン公開フラグをONにする
+        );
 
         return redirect(route('adviser.profile.edit'))->with('success-message', 'プロフィールを更新しました');
     }

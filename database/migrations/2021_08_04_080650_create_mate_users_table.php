@@ -34,7 +34,6 @@ class CreateMateUsersTable extends Migration
             $table->unsignedBigInteger('from_country_id')->nullable()->comment('出身国ID');
             $table->unsignedBigInteger('residence_country_id')->nullable()->comment('居住国ID');
             $table->text('pr_text')->nullable()->comment('自己PR');
-            $table->integer('coin_amount')->nullable()->default(0)->comment('コイン枚数');
             $table->boolean('is_notice')->nullable()->default(TRUE)->comment('通知設定');
             $table->boolean('can_apply')->nullable()->default(TRUE)->comment('申し込み可能フラグ');
             $table->timestamps();

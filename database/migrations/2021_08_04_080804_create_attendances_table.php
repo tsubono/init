@@ -18,15 +18,18 @@ class CreateAttendancesTable extends Migration
             $table->unsignedBigInteger('mate_user_id')->comment('生徒ユーザーID');
             $table->unsignedBigInteger('lesson_id')->comment('レッスンID');
             $table->tinyInteger('status')->comment('ステータス');
+            $table->dateTime('datetime')->nullable()->comment('受講日時');
             $table->text('request_text')->nullable()->comment('受講申請メッセージ');
             $table->text('reject_text')->nullable()->comment('受講拒否メッセージ');
-            $table->unsignedBigInteger('cancel_by_user_id')->comment('キャンセルユーザーID');
+            $table->unsignedBigInteger('cancel_cause_mate_user_id')->comment('キャンセルの起因となったメイトユーザーID')->nullable();
+            $table->unsignedBigInteger('cancel_cause_adviser_user_id')->comment('キャンセルの起因となったアドバイザーユーザーID')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('CASCADE');
-            $table->foreign('cancel_by_user_id')->references('id')->on('admin_users')->onDelete('CASCADE');
+            $table->foreign('cancel_cause_mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');
+            $table->foreign('cancel_cause_adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');
         });
     }
 

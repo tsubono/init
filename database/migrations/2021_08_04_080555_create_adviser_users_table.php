@@ -56,8 +56,7 @@ class CreateAdviserUsersTable extends Migration
             $table->string('paypal_email')->nullable()->comment('paypalメールアドレス');
             $table->string('account_image_1')->nullable()->comment('口座画像1');
             $table->string('account_image_2')->nullable()->comment('口座画像2');
-            $table->integer('coin_amount')->nullable()->default(0)->comment('コイン枚数');
-            $table->boolean('can_create_lesson')->nullable()->default(FALSE)->comment('レッスン作成可能フラグ');
+            $table->boolean('can_open_lesson')->nullable()->default(FALSE)->comment('レッスン作成可能フラグ');
             $table->integer('fee_rate')->nullable()->comment('マッチングフィー率');
             $table->timestamps();
             $table->softDeletes();
