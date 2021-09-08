@@ -15,7 +15,7 @@ class CreateMateUserMstCategoriesTable extends Migration
     {
         Schema::create('mate_user_mst_category', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mate_user_id')->comment('生徒ユーザーID');
+            $table->unsignedBigInteger('mate_user_id')->comment('メイトユーザーID');
             $table->unsignedBigInteger('mst_category_id')->comment('カテゴリマスターID');
 
             $table->foreign('mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');

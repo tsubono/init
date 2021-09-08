@@ -15,7 +15,7 @@ class CreateAdviserUserImagesTable extends Migration
     {
         Schema::create('adviser_user_images', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('adviser_user_id')->comment('講師ユーザーID');
+            $table->unsignedBigInteger('adviser_user_id')->comment('アドバイザーユーザーID');
             $table->string('image_path')->comment('画像パス');
             $table->integer('sort')->comment('順番')->nullable();
             $table->timestamps();

@@ -22,7 +22,7 @@ class LessonImageFactory extends Factory
     public function definition()
     {
         return [
-            'image_path' => $this->faker->randomElement([asset('images/lesson-img01.png'), asset('images/lesson-img02.png'), asset('images/lesson-img03.png')]),
+            'image_path' => $this->faker->randomElement([asset('img/lesson-img01.png'), asset('img/lesson-img02.png'), asset('img/lesson-img03.png')]),
         ];
     }
 }

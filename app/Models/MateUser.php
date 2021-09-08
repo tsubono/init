@@ -25,6 +25,7 @@ class MateUser extends Authenticatable implements MustVerifyEmail
         $this->notify(new MateVerifyEmail());
     }
 
+    // ============ Relations ============
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -47,5 +48,13 @@ class MateUser extends Authenticatable implements MustVerifyEmail
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(MstCategory::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function attendances(): HasMany
+    {
+        return $this->hasMany(Attendance::class);
     }
 }

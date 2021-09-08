@@ -23,7 +23,7 @@ class AdviserUserPersonalInfoFactory extends Factory
     {
         return [
             'type' => $this->faker->randomElement(['表面', '裏面']),
-            'image_path' => $this->faker->randomElement([asset('images/form-img-picture.svg'), asset('images/profile-img01.png'), asset('images/profile-img02.png'), asset('images/profile-img03.png'), asset('images/avatar-sample01@2x.png'), asset('images/avatar-sample02@2x.png'), asset('images/avatar-sample03@2x.png')]),
+            'image_path' => $this->faker->randomElement([asset('img/form-img-picture.svg'), asset('img/profile-img01.png'), asset('img/profile-img02.png'), asset('img/profile-img03.png'), asset('img/avatar-sample01@2x.png'), asset('img/avatar-sample02@2x.png'), asset('img/avatar-sample03@2x.png')]),
         ];
     }
 }

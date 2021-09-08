@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Repositories\Lesson;
+namespace App\Repositories\Attendance;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-interface LessonRepositoryInterface
+interface AttendanceRepositoryInterface
 {
     public function getPaginate(int $perCount = 10): LengthAwarePaginator;
-    public function getByAdviserIdPaginate(int $adviserUserId, int $perCount = 10): LengthAwarePaginator;
     public function store(array $data): void;
     public function update(int $id, array $data): void;
-    public function destroy(int $id): void;
 }

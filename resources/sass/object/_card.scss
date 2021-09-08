@@ -195,12 +195,12 @@
       }
       .p-category {
         padding: 7px;
-        padding-left: 40px;
         font-weight: normal;
         color: $color-text;
-        &::before {
+
+        img {
+          margin: 0 5px 0 0;
           width: 20px;
-          height: 20px;
         }
       }
     }

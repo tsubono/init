@@ -21,6 +21,18 @@ class LessonRepository implements LessonRepositoryInterface
     }
 
     /**
+     * @param int $perCount
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getPaginate(int $perCount = 10): LengthAwarePaginator
+    {
+        return $this->lesson
+            ->query()
+            ->orderBy('created_at', 'desc')
+            ->paginate($perCount);
+    }
+
+    /**
      * @param int $adviserUserId
      * @param int $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator

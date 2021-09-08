@@ -58,6 +58,7 @@ class CreateAdviserUsersTable extends Migration
             $table->string('account_image_2')->nullable()->comment('口座画像2');
             $table->boolean('can_open_lesson')->nullable()->default(FALSE)->comment('レッスン作成可能フラグ');
             $table->integer('fee_rate')->nullable()->comment('マッチングフィー率');
+            $table->timestamp('last_login_at')->nullable()->comment('最終ログイン日時');
             $table->timestamps();
             $table->softDeletes();
 

@@ -21,7 +21,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::get('/lessons/{lesson}', 'LessonController@show')->name('lessons.show');
     Route::post('/lessons/{lesson}/request', 'LessonController@request')->name('lessons.request')->middleware(['auth.mate']);
     Route::get('/advisers', 'AdviserController@index')->name('advisers.index');
-    Route::get('/advisers/{adviser}', 'AdviserController@show')->name('advisers.show');
+    Route::get('/advisers/{adviserUser}', 'AdviserController@show')->name('advisers.show');
     Route::get('/contact', 'ContactController@show')->name('contact.index');
     Route::post('/contact/send', 'ContactController@send')->name('contact.send');
     Route::get('/infos', 'InfoController@index')->name('infos.index');

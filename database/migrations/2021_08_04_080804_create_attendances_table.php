@@ -15,7 +15,8 @@ class CreateAttendancesTable extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mate_user_id')->comment('生徒ユーザーID');
+            $table->unsignedBigInteger('mate_user_id')->comment('メイトユーザーID');
+            $table->unsignedBigInteger('adviser_user_id')->comment('アドバイザーユーザーID');
             $table->unsignedBigInteger('lesson_id')->comment('レッスンID');
             $table->tinyInteger('status')->comment('ステータス');
             $table->dateTime('datetime')->nullable()->comment('受講日時');
@@ -26,6 +27,7 @@ class CreateAttendancesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');
             $table->foreign('mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('CASCADE');
             $table->foreign('cancel_cause_mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');

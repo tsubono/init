@@ -2,37 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdviserUser;
+use App\Repositories\AdviserUser\AdviserUserRepositoryInterface;
 use Illuminate\Http\Request;
 
 class AdviserController extends Controller
 {
+    private AdviserUserRepositoryInterface $adviserUserRepository;
+
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * AdviserController constructor.
+     * @param AdviserUserRepositoryInterface $adviserUserRepository
      */
-    public function __construct()
-    {
-        //
+    public function __construct(
+        AdviserUserRepositoryInterface $adviserUserRepository
+    ) {
+        $this->adviserUserRepository = $adviserUserRepository;
     }
 
     /**
-     * 講師検索
+     * アドバイザー検索
      *
+     * @param Request $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('advisers.index');
+        // TODO: 検索: Repositoryに検索用のメソッド (ex: getByCondition($searchParam) など) を作成して呼び出す
+        $advisers = $this->adviserUserRepository->getPaginate();
+
+        return view('advisers.index', compact('advisers'));
     }
 
     /**
      * 講師詳細
      *
+     * @param AdviserUser $adviserUser
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function show()
+    public function show(AdviserUser $adviserUser)
     {
-        return view('advisers.show');
+        return view('advisers.show', compact('adviserUser'));
     }
 }

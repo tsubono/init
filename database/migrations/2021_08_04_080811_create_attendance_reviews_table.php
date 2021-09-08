@@ -16,8 +16,8 @@ class CreateAttendanceReviewsTable extends Migration
         Schema::create('attendance_reviews', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('attendance_id')->comment('受講ID');
-            $table->unsignedBigInteger('adviser_user_id')->nullable()->comment('講師ユーザーID');
-            $table->unsignedBigInteger('mate_user_id')->nullable()->comment('生徒ユーザーID');
+            $table->unsignedBigInteger('adviser_user_id')->nullable()->comment('アドバイザーユーザーID');
+            $table->unsignedBigInteger('mate_user_id')->nullable()->comment('メイトユーザーID');
             $table->integer('rate')->comment('評点');
             $table->text('content')->comment('内容');
             $table->timestamps();

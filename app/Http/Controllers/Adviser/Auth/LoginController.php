@@ -83,4 +83,19 @@ class LoginController extends Controller
             ? new JsonResponse([], 204)
             : redirect('/adviser/login');
     }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        $user->logged_in_at = now();
+        $user->save();
+
+        return redirect()->intended($this->redirectPath());
+    }
 }

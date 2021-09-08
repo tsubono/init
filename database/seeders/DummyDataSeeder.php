@@ -56,6 +56,7 @@ class DummyDataSeeder extends Seeder
 
                 $lesson = Lesson::all()->random();
                 $attendance = Attendance::create([
+                    'adviser_user_id' => $lesson->adviserUser->id,
                     'mate_user_id' => $mateUser->id,
                     'lesson_id' => $lesson->id,
                     'status' => array_rand([1, 2]),

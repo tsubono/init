@@ -11,6 +11,7 @@ class MstRoom extends Model
 
     protected $guarded = ['id'];
 
+    // ============ Relations ============
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

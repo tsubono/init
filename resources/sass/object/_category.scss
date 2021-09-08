@@ -2,73 +2,12 @@
   border: solid 1px $color-line;
   padding: 12px;
   position: relative;
-  padding-left: 50px;
   font-weight: bold;
-  display: inline-flex;
-  &::before {
-    content: "";
-    position: absolute;
-    left: 10px;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    background: no-repeat 50% 50% / contain;
-    width: 30px;
-    height: 30px;
-  }
-  &.language {
-    &::before {
-      background-image: url(/img/category/icon-language.svg);
-    }
-  }
-  &.qualification {
-    &::before {
-      background-image: url(/img/category/icon-qualification.svg);
-    }
-  }
-  &.beauty {
-    &::before {
-      background-image: url(/img/category/icon-beauty.svg);
-    }
-  }
-  &.design {
-    &::before {
-      background-image: url(/img/category/icon-design.svg);
-    }
-  }
-  &.fashion {
-    &::before {
-      background-image: url(/img/category/icon-fashion.svg);
-    }
-  }
-  &.fitness {
-    &::before {
-      background-image: url(/img/category/icon-fitness.svg);
-    }
-  }
-  &.it {
-    &::before {
-      background-image: url(/img/category/icon-it.svg);
-    }
-  }
-  &.liefestyle {
-    &::before {
-      background-image: url(/img/category/icon-liefestyle.svg);
-    }
-  }
-  &.music {
-    &::before {
-      background-image: url(/img/category/icon-music.svg);
-    }
-  }
-  &.sports {
-    &::before {
-      background-image: url(/img/category/icon-sports.svg);
-    }
-  }
-  &.therapy {
-    &::before {
-      background-image: url(/img/category/icon-therapy.svg);
-    }
+  display: flex;
+  align-items: center;
+
+  img {
+    margin: 0 10px;
+    width: 25px;
   }
 }

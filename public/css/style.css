@@ -2552,13 +2552,12 @@ footer address {
 }
 .p-card3__detail .p-profile__category .p-category {
   padding: 7px;
-  padding-left: 40px;
   font-weight: normal;
   color: #5c5c5c;
 }
-.p-card3__detail .p-profile__category .p-category::before {
+.p-card3__detail .p-profile__category .p-category img {
+  margin: 0 5px 0 0;
   width: 20px;
-  height: 20px;
 }
 .p-card3__country {
   display: flex;
@@ -2943,53 +2942,13 @@ footer address {
   border: solid 1px #e6e6e6;
   padding: 12px;
   position: relative;
-  padding-left: 50px;
   font-weight: bold;
-  display: inline-flex;
+  display: flex;
+  align-items: center;
 }
-.p-category::before {
-  content: "";
-  position: absolute;
-  left: 10px;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  background: no-repeat 50% 50%/contain;
-  width: 30px;
-  height: 30px;
-}
-.p-category.language::before {
-  background-image: url(/img/category/icon-language.svg);
-}
-.p-category.qualification::before {
-  background-image: url(/img/category/icon-qualification.svg);
-}
-.p-category.beauty::before {
-  background-image: url(/img/category/icon-beauty.svg);
-}
-.p-category.design::before {
-  background-image: url(/img/category/icon-design.svg);
-}
-.p-category.fashion::before {
-  background-image: url(/img/category/icon-fashion.svg);
-}
-.p-category.fitness::before {
-  background-image: url(/img/category/icon-fitness.svg);
-}
-.p-category.it::before {
-  background-image: url(/img/category/icon-it.svg);
-}
-.p-category.liefestyle::before {
-  background-image: url(/img/category/icon-liefestyle.svg);
-}
-.p-category.music::before {
-  background-image: url(/img/category/icon-music.svg);
-}
-.p-category.sports::before {
-  background-image: url(/img/category/icon-sports.svg);
-}
-.p-category.therapy::before {
-  background-image: url(/img/category/icon-therapy.svg);
+.p-category img {
+  margin: 0 10px;
+  width: 25px;
 }
 
 /* age */
@@ -3937,9 +3896,6 @@ footer address {
 .p-profile__category li {
   flex-basis: 49%;
   margin-bottom: 10px;
-}
-.p-profile__category .p-category {
-  display: block;
 }
 .p-profile__lesson-block {
   margin: 160px 0 100px;

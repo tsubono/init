@@ -15,6 +15,7 @@
     </section>
     <section class="p-searchblock bg-light l-content-block">
         <div class="container">
+            <!-- TODO: セレクトボックスを実データに置き換え・検索処理実装 -->
             <form action="" class="p-form">
                 <h2 class="p-searchblock__all"><span class="d-none d-md-inline">探しているのは</span>
                     <select class="form-select" id="">
@@ -58,9 +59,7 @@
                                     <option selected>上限コイン</option>
                                 </select>
                             </div>
-
                         </div>
-
                     </div><!-- /.row -->
                 </div><!-- /.collapse -->
 
@@ -70,8 +69,10 @@
     <section class="p-searchresult l-content-block">
         <div class="container">
             <div class="p-searchresult__info">
+                <!-- TODO: 件数を実データに置き換え -->
                 <div class="p-searchresult__num">検索結果 <span class="num">1,000</span></div>
                 <div class="p-searchresult__tab">
+                    <!-- TODO: ソート -->
                     <ul id="p-searchresult__sort" class="nav p-sort" role="tablist">
                         <li role="presentation">
                             <button id="new-tab" class="p-sort__parts active" data-bs-toggle="tab" data-bs-target="#new" type="button" role="tab" aria-controls="new" aria-selected="true">新着順</button>
@@ -96,127 +97,115 @@
             <div class="p-search__content tab-content">
                 <div id="new" class="tab-pane active" role="tabpanel" aria-labelledby="new-tab">
 
-                    <div class="p-card3 p-room">
-                        <div class="p-card3__img2">
-                            <a href="#">
-                                <img src="{{ asset('img/lesson-img01.png') }}" alt="">
-                            </a>
-                        </div>
-                        <div class="p-card3__detail">
-                            <a href="#">
-                                <h3>フリートークフランス語</h3>
-                                <p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章で…<span class="more">もっと見る</span></p>
-                                <div class="p-card3__info">
-                                    <div class="p-card3__info_cate">
-                                        <ul class="p-profile__category">
-                                            <li>
-                                                <div class="p-category language">語学</div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="p-card3__info_point">
-                                        1,200コイン
-                                    </div>
-                                </div><!-- /.p-card3__info -->
-                                <div class="p-card3__advisor">
-                                    <div class="p-card3__advisor_img">
-                                        <img src="{{ asset('img/profile-img01.png') }}" alt="">
-                                    </div>
-                                    <div class="p-card3__advisor_text">
-                                        <h4>佐藤 花子</h4>
-                                        <div class="p-card3__box">
-                                            <h5 class="p-heading3">言語</h5>
-                                            <div class="p-card3__country">
-                                                <p>英語 / 日本語 / フランス語</p>
+                    @forelse ($lessons as $lesson)
+                        <div class="p-card3 p-room">
+                            <div class="p-card3__img2">
+                                <a href="{{ route('lessons.show', compact('lesson')) }}">
+                                    <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->title }}">
+                                </a>
+                            </div>
+                            <div class="p-card3__detail">
+                                <a href="{{ route('lessons.show', compact('lesson')) }}">
+                                    <h3>{{ $lesson->title }}</h3>
+                                    <p>
+                                      {{ Str::limit($lesson->description, 200) }}
+                                        <a href="{{ route('lessons.show', compact('lesson')) }}"><span class="more">もっと見る</span></a>
+                                    </p>
+                                    <div class="p-card3__info">
+                                        <div class="p-card3__info_cate">
+                                            <ul class="p-profile__category">
+                                                @foreach ($lesson->categories as $category)
+                                                <li>
+                                                    <div class="p-category">
+                                                        <img src="{{ $category->icon_path }}" alt="アイコン" />
+                                                        {{ $category->name }}
+                                                    </div>
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <div class="p-card3__info_point">
+                                          {{ number_format($lesson->coin_amount) }}コイン
+                                        </div>
+                                    </div><!-- /.p-card3__info -->
+                                    <div class="p-card3__advisor">
+                                        <div class="p-card3__advisor_img">
+                                            <img src="{{ $lesson->adviserUser->avatar_image }}" alt="アドバイザー画像">
+                                        </div>
+                                        <div class="p-card3__advisor_text">
+                                            <h4>
+                                                {{ $lesson->adviserUser->first_name }} {{ $lesson->adviserUser->middle_name }} {{ $lesson->adviserUser->family_name }}
+                                            </h4>
+                                            <div class="p-card3__box">
+                                                <h5 class="p-heading3">言語</h5>
+                                                <div class="p-card3__country">
+                                                    <p>
+                                                        @foreach ($lesson->adviserUser->languages as $language)
+                                                          {{ $language->name }}
+                                                            @if (!$loop->last) / @endif
+                                                        @endforeach
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div><!--/.p-card3__detail -->
-                        <div class="p-card3__timezone">
-                            <div class="border p-timezone text-center">
-                                <a data-bs-toggle="collapse" href="#collapseDetail2" role="button" aria-expanded="false" aria-controls="collapseDetail2">
-                                    <h3>レッスン可能な時間帯</h3>
                                 </a>
-                                <div class="collapse" id="collapseDetail2">
-                                    <div class="inner py-4">
-                                        <ul class="p-timezone__list">
-                                            <li>月　<span class="time time-first">20:00</span><span class="time time-last">13:30</span></li>
-                                            <li>火　<span class="time time-first">12:00</span><span class="time time-last">13:30</span></li>
-                                            <li>水　<span class="time time-first">20:00</span><span class="time time-last">13:30</span></li>
-                                            <li>木　<span class="time time-first">14:00</span><span class="time time-last">18:30</span></li>
-                                            <li>金　<span class="time time-first">20:00</span><span class="time time-last">13:30</span></li>
-                                            <li>土　<span class="time time-first">20:00</span><span class="time time-last">13:30</span></li>
-                                            <li>日　<span class="time time-first">20:00</span><span class="time time-last">13:30</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!-- /.p-timezone -->
-                        </div><!-- /.p-card3__timezone -->
-                    </div><!-- /.p-card3 -->
-
-                    <div class="p-card3 p-room">
-                        <div class="p-card3__img2">
-                            <a href="#">
-                                <img src="{{ asset('img/lesson-img02.png') }}" alt="">
-                            </a>
-                        </div>
-                        <div class="p-card3__detail">
-                            <a href="#">
-                                <h3>まずは30分! 初めてのヴァイオリンレッスン</h3>
-                                <p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章で…<span class="more">もっと見る</span></p>
-                                <div class="p-card3__info">
-                                    <div class="p-card3__info_cate">
-                                        <ul class="p-profile__category">
-                                            <li>
-                                                <div class="p-category language">語学</div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="p-card3__info_point">
-                                        1,200コイン
-                                    </div>
-                                </div><!-- /.p-card3__info -->
-                                <div class="p-card3__advisor">
-                                    <div class="p-card3__advisor_img">
-                                        <img src="{{ asset('img/profile-img01.png') }}" alt="">
-                                    </div>
-                                    <div class="p-card3__advisor_text">
-                                        <h4>佐藤 花子</h4>
-                                        <div class="p-card3__box">
-                                            <h5 class="p-heading3">言語</h5>
-                                            <div class="p-card3__country">
-                                                <p>英語 / 日本語 / フランス語</p>
-                                            </div>
+                            </div><!--/.p-card3__detail -->
+                            <div class="p-card3__timezone">
+                                <div class="border p-timezone text-center">
+                                    <a data-bs-toggle="collapse" href="#collapseDetail2" role="button" aria-expanded="false" aria-controls="collapseDetail2">
+                                        <h3>レッスン可能な時間帯</h3>
+                                    </a>
+                                    <div class="collapse" id="collapseDetail2">
+                                        <div class="inner py-4">
+                                            <ul class="p-timezone__list">
+                                                <li>
+                                                    月　
+                                                    <span class="time time-first">{{ $lesson->adviserUser->available_time_monday_start }}</span>
+                                                    <span class="time time-last">{{ $lesson->adviserUser->available_time_monday_end }}</span>
+                                                </li>
+                                                <li>
+                                                    火　
+                                                    <span class="time time-first">{{ $lesson->adviserUser->available_time_tuesday_start }}</span>
+                                                    <span class="time time-last">{{ $lesson->adviserUser->available_time_tuesday_end }}</span>
+                                                </li>
+                                                <li>
+                                                    水　
+                                                    <span class="time time-first">{{ $lesson->adviserUser->available_time_wednesday_start }}</span>
+                                                    <span class="time time-last">{{ $lesson->adviserUser->available_time_wednesday_end }}</span>
+                                                </li>
+                                                <li>
+                                                    木　
+                                                    <span class="time time-first">{{ $lesson->adviserUser->available_time_thursday_start }}</span>
+                                                    <span class="time time-last">{{ $lesson->adviserUser->available_time_thursday_end }}</span>
+                                                </li>
+                                                <li>
+                                                    金　
+                                                    <span class="time time-first">{{ $lesson->adviserUser->available_time_friday_start }}</span>
+                                                    <span class="time time-last">{{ $lesson->adviserUser->available_time_friday_end }}</span>
+                                                </li>
+                                                <li>
+                                                    土　
+                                                    <span class="time time-first">{{ $lesson->adviserUser->available_time_saturday_start }}</span>
+                                                    <span class="time time-last">{{ $lesson->adviserUser->available_time_saturday_end }}</span>
+                                                </li>
+                                                <li>
+                                                    日　
+                                                    <span class="time time-first">{{ $lesson->adviserUser->available_time_sunday_start }}</span>
+                                                    <span class="time time-last">{{ $lesson->adviserUser->available_time_sunday_end }}</span>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!--/.p-card3__detail -->
-                        <div class="p-card3__timezone">
-                            <div class="border p-timezone text-center">
-                                <a data-bs-toggle="collapse" href="#collapseDetail2" role="button" aria-expanded="false" aria-controls="collapseDetail2">
-                                    <h3>レッスン可能な時間帯</h3>
-                                </a>
-                                <div class="collapse" id="collapseDetail2">
-                                    <div class="inner py-4">
-                                        <ul class="p-timezone__list">
-                                            <li>月　<span class="time time-first">20:00</span><span class="time time-last">13:30</span></li>
-                                            <li>火　<span class="time time-first">12:00</span><span class="time time-last">13:30</span></li>
-                                            <li>水　<span class="time time-first">20:00</span><span class="time time-last">13:30</span></li>
-                                            <li>木　<span class="time time-first">14:00</span><span class="time time-last">18:30</span></li>
-                                            <li>金　<span class="time time-first">20:00</span><span class="time time-last">13:30</span></li>
-                                            <li>土　<span class="time time-first">20:00</span><span class="time time-last">13:30</span></li>
-                                            <li>日　<span class="time time-first">20:00</span><span class="time time-last">13:30</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!-- /.p-timezone -->
-                        </div><!-- /.p-card3__timezone -->
-                    </div><!-- /.p-card3 -->
+                                </div><!-- /.p-timezone -->
+                            </div><!-- /.p-card3__timezone -->
+                        </div><!-- /.p-card3 -->
+                    @empty
+                        <div>該当のレッスンは見つかりませんでした。</div>
+                    @endforelse
                 </div><!--/.tab-pane -->
+
+                <!-- TODO: ソート -->
                 <div id="fav" class="tab-pane" role="tabpanel" aria-labelledby="fav-tab">
                     <p>人気順</p>
                 </div>

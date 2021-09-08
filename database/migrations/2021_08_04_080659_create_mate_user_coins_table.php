@@ -15,7 +15,7 @@ class CreateMateUserCoinsTable extends Migration
     {
         Schema::create('mate_user_coins', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mate_user_id')->comment('生徒ユーザーID');
+            $table->unsignedBigInteger('mate_user_id')->comment('メイトユーザーID');
             $table->integer('amount')->comment('数量');
             $table->string('payment_id')->comment('決済ID')->nullable();
             $table->date('expiration_date')->comment('有効期限')->nullable();
