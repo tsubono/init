@@ -12,7 +12,7 @@
                     data-bs-toggle="modal"
                     :data-bs-target="`#profire-movieModal${ index }`"
                 >
-                    <img src="/img/movie-sample01@2x.png" class="w-100" alt="">
+                    <MovieThumbnail :movie="movie" />
                 </a>
             </div>
         </div>
@@ -41,11 +41,12 @@
 
 <script>
 import MoviePlayer from './MoviePlayer'
+import MovieThumbnail from './MovieThumbnail'
 
 export default {
     name: 'MovieList',
 
-    components: { MoviePlayer },
+    components: { MoviePlayer, MovieThumbnail },
 
     props: {
         movies: {
