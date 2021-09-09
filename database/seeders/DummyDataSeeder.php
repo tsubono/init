@@ -30,8 +30,31 @@ class DummyDataSeeder extends Seeder
             ->has(Lesson::factory()->count(5))
             ->has(AdviserUserImage::factory()->count(3))
             ->has(AdviserUserPersonalInfo::factory()->count(3))
-            ->has(AdviserUserMovie::factory()->count(3))
-            ->create()->each(function($adviserUser){
+            ->has(AdviserUserMovie::factory([
+                "movie_path" => "https://www.youtube.com/embed/ONUnrwTf2Iw",
+                "type" => "youtube",
+            ]))
+            ->has(AdviserUserMovie::factory([
+                "movie_path" => "https://player.vimeo.com/video/83949049?h=d02aef1c94&title=0&byline=0&portrait=0",
+                "type" => "vimeo",
+            ]))
+            ->has(AdviserUserMovie::factory([
+                "movie_path" => "https://twitter.com/MinoDriven/status/1218462687866150912?ref_src=twsrc%5Etfw",
+                "type" => "twitter",
+            ]))
+            ->has(AdviserUserMovie::factory([
+                "movie_path" => "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Frugbyworldcupjp%2Fvideos%2F361483822288928%2F&show_text=false&width=476&t=0",
+                "type" => "fb",
+            ]))
+            ->has(AdviserUserMovie::factory([
+                "movie_path" => "https://www.instagram.com/p/CTgPLBEBbAr/?utm_source=ig_embed&amp;utm_campaign=loading",
+                "type" => "instagram",
+            ]))
+            ->has(AdviserUserMovie::factory([
+                "movie_path" => "https://www.tiktok.com/@hokkaido_uhbnews/video/6975126181439950082",
+                "type" => "tiktok",
+            ]))
+            ->create()->each(function($adviserUser)  {
                 $categoryIds = MstCategory::all()->random(3)->pluck('id')->toArray();
                 $adviserUser->categories()->sync($categoryIds);
                 $languageIds = MstLanguage::all()->random(3)->pluck('id')->toArray();
