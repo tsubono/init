@@ -93,7 +93,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        $user->logged_in_at = now();
+        $user->last_login_at = now();
         $user->save();
 
         return redirect()->intended($this->redirectPath());
