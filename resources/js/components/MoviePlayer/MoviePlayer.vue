@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import YouTubePlayer from './YouTubePlayer'
-import VimeoPlayer from './VimeoPlayer'
-import TwitterPlayer from './TwitterPlayer'
-import FacebookPlayer from './FacebookPlayer'
-import InstagramPlayer from './InstagramPlayer'
-import TikTokPlayer from './TikTokPlayer'
+import YouTubePlayer from './players/YouTubePlayer'
+import VimeoPlayer from './players/VimeoPlayer'
+import TwitterPlayer from './players/TwitterPlayer'
+import FacebookPlayer from './players/FacebookPlayer'
+import InstagramPlayer from './players/InstagramPlayer'
+import TikTokPlayer from './players/TikTokPlayer'
 
 const players = {
     youtube: YouTubePlayer,

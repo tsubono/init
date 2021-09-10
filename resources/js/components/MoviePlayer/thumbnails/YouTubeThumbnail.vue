@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import { VimeoMovie } from './models/VimeoMovie'
+import { YouTubeMovie } from '../models/YouTubeMovie'
 
 export default {
-    name: 'VimeoThumbnail',
+    name: 'YouTubeThumbnail',
 
     data: () => ({
         thumbnailUrl: '',
@@ -21,7 +21,7 @@ export default {
 
     computed: {
         movie () {
-            return new VimeoMovie(this.path)
+            return new YouTubeMovie(this.path)
         },
     },
 

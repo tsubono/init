@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { VimeoMovie } from './models/VimeoMovie'
+import { VimeoMovie } from '../models/VimeoMovie'
 
 export default {
     name: 'VimeoPlayer',

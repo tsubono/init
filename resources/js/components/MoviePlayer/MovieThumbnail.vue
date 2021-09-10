@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import YouTubeThumbnail from './YouTubeThumbnail'
-import VimeoThumbnail from './VimeoThumbnail'
-import TwitterThumbnail from './TwitterThumbnail'
-import InstagramThumbnail from './InstagramThumbnail'
-import TikTokThumbnail from './TikTokThumbnail'
-import FacebookThumbnail from './FacebookThumbnail'
+import YouTubeThumbnail from './thumbnails/YouTubeThumbnail'
+import VimeoThumbnail from './thumbnails/VimeoThumbnail'
+import TwitterThumbnail from './thumbnails/TwitterThumbnail'
+import InstagramThumbnail from './thumbnails/InstagramThumbnail'
+import TikTokThumbnail from './thumbnails/TikTokThumbnail'
+import FacebookThumbnail from './thumbnails/FacebookThumbnail'
 
 const thumbnails = {
     youtube: YouTubeThumbnail,

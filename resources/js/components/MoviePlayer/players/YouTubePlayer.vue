@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { YouTubeMovie } from './models/YouTubeMovie.js'
+import { YouTubeMovie } from '../models/YouTubeMovie.js'
 
 export default {
     name: 'YouTubePlayer',
