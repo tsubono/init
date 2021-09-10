@@ -30,7 +30,7 @@ class DummyDataSeeder extends Seeder
             ->has(
                 Lesson::factory()
                     ->has(LessonMovie::factory([
-                        "movie_path" => "https://www.youtube.com/embed/ONUnrwTf2Iw",
+                        "movie_path" => "https://www.youtube.com/embed/57wtrBtPma4",
                         "type" => "youtube",
                     ]))
                     ->has(LessonMovie::factory([
@@ -38,7 +38,7 @@ class DummyDataSeeder extends Seeder
                         "type" => "vimeo",
                     ]))
                     ->has(LessonMovie::factory([
-                        "movie_path" => "https://twitter.com/MinoDriven/status/1218462687866150912?ref_src=twsrc%5Etfw",
+                        "movie_path" => "https://twitter.com/ccchisa76/status/1436271453263958021?ref_src=twsrc%5Etfw",
                         "type" => "twitter",
                     ]))
                     ->has(LessonMovie::factory([
@@ -50,7 +50,7 @@ class DummyDataSeeder extends Seeder
                         "type" => "instagram",
                     ]))
                     ->has(LessonMovie::factory([
-                        "movie_path" => "https://www.tiktok.com/@hokkaido_uhbnews/video/6975126181439950082",
+                        "movie_path" => "https://www.tiktok.com/@meeeeeeeu/video/7000386946027490562",
                         "type" => "tiktok",
                     ]))
                     ->count(5)
@@ -58,7 +58,7 @@ class DummyDataSeeder extends Seeder
             ->has(AdviserUserImage::factory()->count(3))
             ->has(AdviserUserPersonalInfo::factory()->count(3))
             ->has(AdviserUserMovie::factory([
-                "movie_path" => "https://www.youtube.com/embed/ONUnrwTf2Iw",
+                "movie_path" => "https://www.youtube.com/embed/57wtrBtPma4",
                 "type" => "youtube",
             ]))
             ->has(AdviserUserMovie::factory([
@@ -66,7 +66,7 @@ class DummyDataSeeder extends Seeder
                 "type" => "vimeo",
             ]))
             ->has(AdviserUserMovie::factory([
-                "movie_path" => "https://twitter.com/MinoDriven/status/1218462687866150912?ref_src=twsrc%5Etfw",
+                "movie_path" => "https://twitter.com/ccchisa76/status/1436271453263958021?ref_src=twsrc%5Etfw",
                 "type" => "twitter",
             ]))
             ->has(AdviserUserMovie::factory([
@@ -78,7 +78,7 @@ class DummyDataSeeder extends Seeder
                 "type" => "instagram",
             ]))
             ->has(AdviserUserMovie::factory([
-                "movie_path" => "https://www.tiktok.com/@hokkaido_uhbnews/video/6975126181439950082",
+                "movie_path" => "https://www.tiktok.com/@meeeeeeeu/video/7000386946027490562",
                 "type" => "tiktok",
             ]))
             ->create()->each(function ($adviserUser) {
