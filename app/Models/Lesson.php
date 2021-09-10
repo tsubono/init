@@ -56,6 +56,14 @@ class Lesson extends Model
         return $this->hasMany(LessonMovie::class)->orderBy('sort');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function lessonMovies(): HasMany
+    {
+        return $this->hasMany(LessonMovie::class)->orderBy('sort');
+    }
+
     // ============ Attributes ============
     /**
      * @return \Illuminate\Database\Eloquent\HigherOrderBuilderProxy|mixed|string
