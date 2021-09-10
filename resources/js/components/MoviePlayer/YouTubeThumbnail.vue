@@ -19,7 +19,7 @@ export default {
         },
 
         thumbnailUrl() {
-            return `https://i.ytimg.com/vi/${this.videoId}/maxresdefault.jpg`
+            return `https://i.ytimg.com/vi/${this.videoId}/sddefault.jpg`
         },
     },
 }
