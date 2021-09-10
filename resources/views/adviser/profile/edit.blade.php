@@ -3,16 +3,6 @@
 @section('title', '（講師）プロフィール設定')
 
 @section('content')
-    <section class="p-layer-head">
-        <div class="container">
-            <div class="p-layer-head__title">
-                <h1>
-                    <span class="p-layer-head__en">Profile Settings</span>
-                    プロフィール設定
-                </h1>
-            </div>
-        </div>
-    </section>
     <section class="l-content-block p-setting">
         <div class="container">
             <!-- タブ部分 -->

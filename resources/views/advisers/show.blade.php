@@ -3,16 +3,6 @@
 @section('title', 'アドバイザープロフィール')
 
 @section('content')
-    <section class="p-layer-head">
-        <div class="container">
-            <div class="p-layer-head__title">
-                <h1>
-                    <span class="p-layer-head__en">Advisor Profile</span>
-                    アドバイザープロフィール
-                </h1>
-            </div>
-        </div>
-    </section>
     <section class="l-content-block p-profile">
         <div class="container">
             <div class="p-profile__edit">

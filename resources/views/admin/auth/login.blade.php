@@ -3,16 +3,6 @@
 @section('title', '管理者ログイン')
 
 @section('content')
-    <section class="p-layer-head">
-        <div class="container">
-            <div class="p-layer-head__title">
-                <h1>
-                    <span class="p-layer-head__en">Login Admin</span>
-                    管理者ログイン
-                </h1>
-            </div>
-        </div>
-    </section>
     <section class="l-content-block p-setting">
         <div class="container">
             <form method="POST" action="{{ route('admin.login') }}">

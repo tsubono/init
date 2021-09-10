@@ -2,7 +2,7 @@
     <img src="{{ $adviserUser->avatar_image }}" alt="アドバイザー画像">
 </div>
 <h2 class="fw-bold fs-4 text-center mx-auto my-20px">
-    {{ $adviserUser->first_name }} {{ $adviserUser->middle_name }} {{ $adviserUser->family_name }}
+    {{ $adviserUser->full_name }}
 </h2>
 <div class="row text-center">
     <div class="col-6 mb-3">

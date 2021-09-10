@@ -23,6 +23,13 @@ class Attendance extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const STATUS_REQUEST = 1;
+    const STATUS_APPROVAL = 2;
+    const STATUS_REJECT = 3;
+    const STATUS_CANCEL = 4;
+    const STATUS_REPORT = 5;
+    const STATUS_CLOSED = 6;
+
     protected $guarded = ['id'];
 
     // ============ Relations ============
@@ -32,6 +39,14 @@ class Attendance extends Model
     public function mateUser(): BelongsTo
     {
         return $this->belongsTo(MateUser::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function adviserUser(): BelongsTo
+    {
+        return $this->belongsTo(AdviserUser::class);
     }
 
     /**

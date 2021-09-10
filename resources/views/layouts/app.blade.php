@@ -58,6 +58,8 @@
         </nav>
     </header>
 
+    @include('components.head')
+
     @yield('content')
 
     <footer>

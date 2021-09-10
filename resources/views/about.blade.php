@@ -3,17 +3,6 @@
 @section('title', 'はじめての方')
 
 @section('content')
-    <section class="p-layer-head">
-        <div class="container">
-            <div class="p-layer-head__title">
-                <h1>
-                    <span class="p-layer-head__en">Beginners</span>
-                    はじめての方
-                </h1>
-            </div>
-        </div>
-    </section>
-
     <section class="p-index-about l-content-block">
         <div class="p-index-about__inner container">
             <div class="p-index-about__img"><img src="{{ asset('img/index-about-img01@2x.png') }}" alt=""></div>

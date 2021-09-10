@@ -34,17 +34,18 @@ class AttendanceRepository implements AttendanceRepositoryInterface
 
     /**
      * @param array $data
-     * @return void
+     * @return Attendance
      */
-    public function store(array $data): void
+    public function store(array $data): Attendance
     {
         DB::beginTransaction();
 
         try {
-            $this->attendance->create($data);
+            $attendance = $this->attendance->create($data);
 
             DB::commit();
 
+            return $attendance;
         } catch (\Exception $e) {
             DB::rollback();
             Log::error($e->getMessage());

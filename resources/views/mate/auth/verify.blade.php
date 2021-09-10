@@ -1,18 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'メール確認')
+@section('title', __('Verify Your Email Address'))
 
 @section('content')
-    <section class="p-layer-head">
-        <div class="container">
-            <div class="p-layer-head__title">
-                <h1>
-                    <span class="p-layer-head__en">Verify Email</span>
-                    {{ __('Verify Your Email Address') }}
-                </h1>
-            </div>
-        </div>
-    </section>
     <section class="l-content-block p-setting">
         <div class="container">
             @if (session('resent'))

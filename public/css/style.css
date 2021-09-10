@@ -2232,6 +2232,7 @@ footer address {
 
 .p-error-text {
   color: #dc3545;
+  margin: 5px 0;
 }
 
 .p-flowlist ul {

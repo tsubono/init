@@ -19,7 +19,6 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::get('/', 'TopController@index')->name('top');
     Route::get('/lessons', 'LessonController@index')->name('lessons.index');
     Route::get('/lessons/{lesson}', 'LessonController@show')->name('lessons.show');
-    Route::post('/lessons/{lesson}/request', 'LessonController@request')->name('lessons.request')->middleware(['auth.mate']);
     Route::get('/advisers', 'AdviserController@index')->name('advisers.index');
     Route::get('/advisers/{adviserUser}', 'AdviserController@show')->name('advisers.show');
     Route::get('/contact', 'ContactController@show')->name('contact.index');
@@ -31,9 +30,10 @@ Route::namespace('App\Http\Controllers')->group(function () {
 /**
  * Auth 共通
  */
-Route::middleware(['auth.adviser', 'auth.mate'])->namespace('App\Http\Controllers')->group(function () {
+Route::middleware(['auth'])->namespace('App\Http\Controllers')->group(function () {
     Route::get('/attendances', 'AttendanceController@index')->name('attendances.index');
     Route::get('/attendances/{attendance}', 'AttendanceController@show')->name('attendances.show');
+    Route::post('/attendances/request/{lesson}', 'AttendanceController@request')->name('attendances.request');
     Route::post('/attendances/{attendance}/approval', 'AttendanceController@approval')->name('attendances.approval');
     Route::post('/attendances/{attendance}/reject', 'AttendanceController@reject')->name('attendances.reject');
     Route::get('/attendances/{attendance}/messages', 'AttendanceController@messages')->name('attendances.messages');
