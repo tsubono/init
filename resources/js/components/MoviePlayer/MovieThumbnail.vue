@@ -1,7 +1,6 @@
 <template>
 <div class="MovieThumbnail">
-    <component v-if="thumbnail" :is="thumbnail" :path="movie.movie_path" />
-    <img v-else src="/img/movie-sample01@2x.png" class="w-100" alt="">
+    <component :is="thumbnail" :path="movie.movie_path" />
 </div>
 </template>
 
@@ -9,11 +8,17 @@
 import YouTubeThumbnail from './YouTubeThumbnail'
 import VimeoThumbnail from './VimeoThumbnail'
 import TwitterThumbnail from './TwitterThumbnail'
+import InstagramThumbnail from './InstagramThumbnail'
+import TikTokThumbnail from './TikTokThumbnail'
+import FacebookThumbnail from './FacebookThumbnail'
 
 const thumbnails = {
     youtube: YouTubeThumbnail,
     vimeo: VimeoThumbnail,
     twitter: TwitterThumbnail,
+    fb: FacebookThumbnail,
+    instagram: InstagramThumbnail,
+    tiktok: TikTokThumbnail,
 }
 
 export default {

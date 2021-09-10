@@ -1,9 +1,10 @@
 <template>
     <div class="TikTokPlayer">
-        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@hokkaido_uhbnews/video/6975126181439950082"
-                    data-video-id="6975126181439950082" style="max-width: 605px;min-width: 325px;">
-            <section><a target="_blank" :title="userId" :href="userUrl"></a></section>
-        </blockquote>
+        <iframe
+            name="__tt_embed__v39952534415998376"
+            :src="embedUrl"
+            style="width: 100%; height: 887px; display: block; visibility: unset; max-height: 887px;"
+        ></iframe>
     </div>
 </template>
 
@@ -22,12 +23,9 @@ export default {
         videoId () {
             return this.path.replace(/^.*video\/([^/]+)\/?.*$/, '$1')
         },
-        userId () {
-            return this.path.replace(/^.*www\.tiktok\.com\/([^/]+)\/?.*$/, '$1')
-        },
-        userUrl () {
-            return this.path.replace(/^(.*)\/video.*$/, '$1')
-        },
+        embedUrl () {
+            return `https://www.tiktok.com/embed/v2/${this.videoId}?lang=ja`
+        }
     },
 }
 </script>
