@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('App\Http\Controllers\Api')->group(function () {
     Route::post('/upload-image', 'FileController@uploadImage');
     Route::get('/proxy/vimeo-thumbnail/{videoId}', 'Proxy\VimeoThumbnailController@get');
+    Route::get('/proxy/tiktok-thumbnail', 'Proxy\TikTokThumbnailController@get');
 });
