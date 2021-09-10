@@ -58,6 +58,14 @@ class Attendance extends Model
         return $this->belongsTo(Lesson::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function mateUserCoin(): BelongsTo
+    {
+        return $this->belongsTo(MateUserCoin::class);
+    }
+
     // ============ Attributes ============
     /**
      * @return string

@@ -52,6 +52,16 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Attendance\AttendanceRepositoryInterface::class,
             \App\Repositories\Attendance\AttendanceRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\MateUserCoin\MateUserCoinRepositoryInterface::class,
+            \App\Repositories\MateUserCoin\MateUserCoinRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\AttendanceSale\AttendanceSaleRepositoryInterface::class,
+            \App\Repositories\AttendanceSale\AttendanceSaleRepository::class
+        );
     }
 
     /**

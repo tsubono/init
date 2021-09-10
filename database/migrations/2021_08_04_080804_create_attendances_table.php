@@ -18,6 +18,7 @@ class CreateAttendancesTable extends Migration
             $table->unsignedBigInteger('mate_user_id')->comment('メイトユーザーID');
             $table->unsignedBigInteger('adviser_user_id')->comment('アドバイザーユーザーID');
             $table->unsignedBigInteger('lesson_id')->comment('レッスンID');
+            $table->unsignedBigInteger('mate_user_coin_id')->comment('メイトユーザーコインID');
             $table->tinyInteger('status')->comment('ステータス');
             $table->dateTime('datetime')->nullable()->comment('受講日時');
             $table->text('request_text')->nullable()->comment('受講申請メッセージ');
@@ -30,6 +31,7 @@ class CreateAttendancesTable extends Migration
             $table->foreign('adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');
             $table->foreign('mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('CASCADE');
+            $table->foreign('mate_user_coin_id')->references('id')->on('mate_user_coins')->onDelete('CASCADE');
             $table->foreign('cancel_cause_mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');
             $table->foreign('cancel_cause_adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');
         });

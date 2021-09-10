@@ -22,7 +22,7 @@ class MateUserCoinFactory extends Factory
     public function definition()
     {
         return [
-            'amount' => $this->faker->numberBetween(-100, 100),
+            'amount' => $this->faker->numberBetween(-100, 1000),
         ];
     }
 }
