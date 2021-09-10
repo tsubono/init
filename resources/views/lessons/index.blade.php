@@ -52,7 +52,6 @@
                         </div>
                     </div><!-- /.row -->
                 </div><!-- /.collapse -->
-
             </form>
         </div>
     </section>
@@ -91,12 +90,12 @@
                         <div class="p-card3 p-room">
                             <div class="p-card3__img2">
                                 <a href="{{ route('lessons.show', compact('lesson')) }}">
-                                    <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->title }}">
+                                    <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->name }}">
                                 </a>
                             </div>
                             <div class="p-card3__detail">
                                 <a href="{{ route('lessons.show', compact('lesson')) }}">
-                                    <h3>{{ $lesson->title }}</h3>
+                                    <h3>{{ $lesson->name }}</h3>
                                     <p>
                                       {{ Str::limit($lesson->description, 200) }}
                                         <a href="{{ route('lessons.show', compact('lesson')) }}"><span class="more">もっと見る</span></a>

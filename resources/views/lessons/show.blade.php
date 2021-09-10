@@ -16,7 +16,7 @@
                         </li>
                     @endforeach
                 </ul>
-                @if (auth()->guard('adviser')->check() && auth()->guard('adviser')->user->id === $lesson->adviser_user_id)
+                @if (auth()->guard('adviser')->check() && auth()->guard('adviser')->user()->id === $lesson->adviser_user_id)
                     <a href="{{ route('adviser.lessons.edit', compact('lesson')) }}" class="p-btn p-btn--edit p-btn__outline">レッスンを編集</a>
                 @endif
             </div>
@@ -24,7 +24,7 @@
                 <div class="col-lg-9 col-md-8">
                     <div class="row">
                         <div class="col-md-12 mb-40px">
-                            <h2 class="fs-2 fw-bold mb-4">{{ $lesson->title }}</h2>
+                            <h2 class="fs-2 fw-bold mb-4">{{ $lesson->name }}</h2>
                             <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->title }}" class="w-100 img-fluid">
                         </div>
                         <div class="col-md-12">

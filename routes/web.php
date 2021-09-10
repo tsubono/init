@@ -30,7 +30,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
 /**
  * Auth 共通
  */
-Route::middleware(['auth'])->namespace('App\Http\Controllers')->group(function () {
+Route::middleware(['auth.common'])->namespace('App\Http\Controllers')->group(function () {
     Route::get('/attendances', 'AttendanceController@index')->name('attendances.index');
     Route::get('/attendances/{attendance}', 'AttendanceController@show')->name('attendances.show');
     Route::post('/attendances/request/{lesson}', 'AttendanceController@request')->name('attendances.request');
@@ -41,6 +41,7 @@ Route::middleware(['auth'])->namespace('App\Http\Controllers')->group(function (
     Route::post('/attendances/{attendance}/review', 'AttendanceController@review')->name('attendances.review');
     Route::post('/attendances/{attendance}/cancel', 'AttendanceController@cancel')->name('attendances.cancel');
     Route::post('/attendances/{attendance}/report', 'AttendanceController@report')->name('attendances.report');
+    Route::post('/attendances/{attendance}/close', 'AttendanceController@close')->name('attendances.close');
 });
 
 /**

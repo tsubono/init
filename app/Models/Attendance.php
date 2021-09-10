@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -55,5 +56,72 @@ class Attendance extends Model
     public function lesson(): BelongsTo
     {
         return $this->belongsTo(Lesson::class);
+    }
+
+    // ============ Attributes ============
+    /**
+     * @return string
+     */
+    public function getDatetimeTxtAttribute(): string
+    {
+        return Carbon::parse($this->datetime)->format('Y/m/d H:i');
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusTxtAttribute(): string
+    {
+        $statusTxt = '';
+        switch ($this->status) {
+            case self::STATUS_REQUEST:
+                $statusTxt = '受講申請中';
+                break;
+            case self::STATUS_APPROVAL:
+                $statusTxt = '受講中';
+                break;
+            case self::STATUS_REJECT:
+                $statusTxt = '受講否認';
+                break;
+            case self::STATUS_CANCEL:
+                $statusTxt = 'キャンセル';
+                break;
+            case self::STATUS_REPORT:
+                $statusTxt = '通報';
+                break;
+            case self::STATUS_CLOSED:
+                $statusTxt = '受講完了';
+                break;
+            default:
+                break;
+        }
+
+        return $statusTxt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusClassAttribute(): string
+    {
+        $statusClass = '';
+        switch ($this->status) {
+            case self::STATUS_REQUEST:
+                $statusClass = 'primary accent';
+                break;
+            case self::STATUS_APPROVAL:
+                $statusClass = 'primary';
+                break;
+            case self::STATUS_REJECT:
+            case self::STATUS_CANCEL:
+            case self::STATUS_REPORT:
+            case self::STATUS_CLOSED:
+            $statusClass = 'default';
+                break;
+            default:
+                break;
+        }
+
+        return $statusClass;
     }
 }

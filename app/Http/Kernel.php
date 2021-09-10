@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'auth.adviser' => \App\Http\Middleware\AdviserAuth::class,
         'auth.mate' => \App\Http\Middleware\MateAuth::class,
         'auth.admin' => \App\Http\Middleware\AdminAuth::class,
+        'auth.common' => \App\Http\Middleware\CommonAuth::class,
     ];
 }

@@ -33,6 +33,34 @@ class AttendanceRepository implements AttendanceRepositoryInterface
     }
 
     /**
+     * @param int $adviserUserId
+     * @param int $perCount
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getByAdviserUserIdPaginate(int $adviserUserId, int $perCount = 10): LengthAwarePaginator
+    {
+        return $this->attendance
+            ->query()
+            ->where('adviser_user_id', $adviserUserId)
+            ->orderBy('created_at', 'desc')
+            ->paginate($perCount);
+    }
+
+    /**
+     * @param int $mateUserId
+     * @param int $perCount
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getByMateUserIdPaginate(int $mateUserId, int $perCount = 10): LengthAwarePaginator
+    {
+        return $this->attendance
+            ->query()
+            ->where('mate_user_id', $mateUserId)
+            ->orderBy('created_at', 'desc')
+            ->paginate($perCount);
+    }
+
+    /**
      * @param array $data
      * @return Attendance
      */
@@ -56,8 +84,9 @@ class AttendanceRepository implements AttendanceRepositoryInterface
     /**
      * @param int $id
      * @param array $data
+     * @return Attendance
      */
-    public function update(int $id, array $data): void
+    public function update(int $id, array $data): Attendance
     {
         DB::beginTransaction();
 
@@ -67,6 +96,7 @@ class AttendanceRepository implements AttendanceRepositoryInterface
 
             DB::commit();
 
+            return $attendance;
         } catch (\Exception $e) {
             DB::rollback();
             Log::error($e->getMessage());
