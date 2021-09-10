@@ -30,11 +30,11 @@ class DummyDataSeeder extends Seeder
             ->has(
                 Lesson::factory()
                     ->has(LessonMovie::factory([
-                        "movie_path" => "https://www.youtube.com/embed/57wtrBtPma4",
+                        "movie_path" => "https://www.youtube.com/watch?v=57wtrBtPma4",
                         "type" => "youtube",
                     ]))
                     ->has(LessonMovie::factory([
-                        "movie_path" => "https://player.vimeo.com/video/83949049?h=d02aef1c94&title=0&byline=0&portrait=0",
+                        "movie_path" => "https://vimeo.com/83949049",
                         "type" => "vimeo",
                     ]))
                     ->has(LessonMovie::factory([
@@ -58,11 +58,11 @@ class DummyDataSeeder extends Seeder
             ->has(AdviserUserImage::factory()->count(3))
             ->has(AdviserUserPersonalInfo::factory()->count(3))
             ->has(AdviserUserMovie::factory([
-                "movie_path" => "https://www.youtube.com/embed/57wtrBtPma4",
+                "movie_path" => "https://www.youtube.com/watch?v=57wtrBtPma4",
                 "type" => "youtube",
             ]))
             ->has(AdviserUserMovie::factory([
-                "movie_path" => "https://player.vimeo.com/video/83949049?h=d02aef1c94&title=0&byline=0&portrait=0",
+                "movie_path" => "https://vimeo.com/83949049",
                 "type" => "vimeo",
             ]))
             ->has(AdviserUserMovie::factory([

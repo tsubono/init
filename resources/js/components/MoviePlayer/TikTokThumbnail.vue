@@ -1,6 +1,6 @@
 <template>
     <div class="TikTokThumbnail">
-        動画URLからのサムネイル取得にはAPIとの連携が必要
+        現状方法が見つからず・・・
     </div>
 </template>
 

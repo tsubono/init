@@ -3,8 +3,14 @@
 </template>
 
 <script>
+import { YouTubeMovie } from './models/YouTubeMovie'
+
 export default {
     name: 'YouTubeThumbnail',
+
+    data: () => ({
+        thumbnailUrl: '',
+    }),
 
     props: {
         path: {
@@ -14,13 +20,13 @@ export default {
     },
 
     computed: {
-        videoId() {
-            return this.path.replace(/^.*\/embed\/([^/]+)\/?.*$/, '$1')
-        },
-
-        thumbnailUrl() {
-            return `https://i.ytimg.com/vi/${this.videoId}/sddefault.jpg`
+        movie () {
+            return new YouTubeMovie(this.path)
         },
     },
+
+    async mounted () {
+        this.thumbnailUrl = await this.movie.getThumbnail()
+    }
 }
 </script>

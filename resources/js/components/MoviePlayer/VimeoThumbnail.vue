@@ -3,8 +3,14 @@
 </template>
 
 <script>
+import { VimeoMovie } from './models/VimeoMovie'
+
 export default {
     name: 'VimeoThumbnail',
+
+    data: () => ({
+        thumbnailUrl: '',
+    }),
 
     props: {
         path: {
@@ -14,14 +20,13 @@ export default {
     },
 
     computed: {
-        videoId() {
-            // https://player.vimeo.com/video/83949049?h=d02aef1c94&title=0&byline=0&portrait=0
-            return this.path.replace(/^.*\/video\/([^/]+)[/?]?.*$/, '$1')
-        },
-
-        thumbnailUrl() {
-            return `https://i.vimeocdn.com/video/523628874?mw=1000&mh=563&q=70`
+        movie () {
+            return new VimeoMovie(this.path)
         },
     },
+
+    async mounted () {
+        this.thumbnailUrl = await this.movie.getThumbnail()
+    }
 }
 </script>
