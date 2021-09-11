@@ -1784,6 +1784,7 @@ header .navbar #Navber {
 }
 header .navbar #Navber ul {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
 }
 @media screen and (min-width: 0px) and (max-width: 768px) {
@@ -2243,6 +2244,50 @@ footer address {
 .p-error-text {
   color: #dc3545;
   margin: 5px 0;
+}
+
+.p-notification-icon {
+  cursor: pointer;
+  position: relative;
+}
+.p-notification-icon--has-items::before {
+  content: "";
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #e03941;
+}
+
+.p-notification-popover {
+  max-width: 350px;
+  min-width: 350px;
+  border: none;
+  border-radius: 0;
+}
+.p-notification-popover__list {
+  max-height: 200px;
+  overflow-y: auto;
+  color: #404040;
+}
+.p-notification-popover__list > li {
+  padding: 10px 16px;
+  border-bottom: 1px solid #E6E6E6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+.p-notification-popover__to-list {
+  padding: 10px 16px;
+  color: #4995F2;
+  display: block;
+  text-align: right;
+  border-top: 1px solid #E6E6E6;
+  margin-top: -1px;
 }
 
 .p-flowlist ul {
