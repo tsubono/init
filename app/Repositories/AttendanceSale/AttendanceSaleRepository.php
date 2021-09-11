@@ -88,4 +88,26 @@ class AttendanceSaleRepository implements AttendanceSaleRepositoryInterface
             ->orderBy('created_at', 'desc')
             ->paginate($perCount);
     }
+
+    /**
+     * @param int $attendance_id
+     * @param array $data
+     */
+    public function updatePriceByReport(int $attendance_id, array $data): void
+    {
+        DB::beginTransaction();
+
+        try {
+            $attendanceSale = $this->attendanceSale->where('attendance_id', $attendance_id);
+            $attendanceSale->update($data);
+
+            DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new \Exception($e);
+        }
+
+    }
 }

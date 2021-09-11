@@ -280,22 +280,7 @@ class AttendanceController extends Controller
         ] + compact('cancel_cause_mate_user_id', 'cancel_cause_adviser_user_id'));
 
         /************* 払い戻し ************/
-        // メイトへの通報返金(講師が授業に現れなかった場合)
-        // TODO::別メソッドに切り出し検討中
-        $this->mateUserCoinRepository->store([
-            'mate_user_id' => auth()->guard('mate')->user()->id,
-            'amount' => -$attendance->mateUserCoin->amount, // 全額返金のため使用した分を払い戻し
-            'note' => "{$attendance->lesson->name}の通報返金",
-        ]);
-        $this->attendanceSaleRepository->update($cancel_cause_adviser_user_id, [
-            'price' => 0,
-        ]);
-
-        // 生徒が授業に現れなかった場合
-        $this->attendanceSaleRepository->update(auth()->guard('adviser')->user()->id, [
-            'price' => $attendance->lesson->coin_amount * 50
-        ]);
-
+        $this->refund($attendance);
 
         /************* メール通知 *************/
         // 相手ユーザーへ通報メール通知
@@ -337,5 +322,30 @@ class AttendanceController extends Controller
         );
 
         return redirect(route('attendances.index'))->with('success_message', 'ステータスを更新しました');
+    }
+
+    /**
+     * 払い戻し処理
+     * 
+     * @param Attendance $attendance
+     */
+    private function refund($attendance): void
+    {
+        if (auth()->guard('adviser')->check()) {
+            // 生徒が授業に現れなかった場合
+            $this->attendanceSaleRepository->updatePriceByReport($attendance->id, [
+                'price' => $attendance->lesson->coin_amount * 50
+            ]);
+        } else {
+            // メイトへの通報返金(講師が授業に現れなかった場合)
+            $this->mateUserCoinRepository->store([
+                'mate_user_id' => auth()->guard('mate')->user()->id,
+                'amount' => -$attendance->mateUserCoin->amount, // 全額返金のため使用した分を払い戻し
+                'note' => "{$attendance->lesson->name}の通報返金",
+            ]);
+            $this->attendanceSaleRepository->updatePriceByReport($attendance->id, [
+                'price' => 0,
+            ]);
+        }
     }
 }
