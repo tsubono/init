@@ -294,7 +294,7 @@ class AttendanceController extends Controller
         // 生徒が授業に現れなかった場合
         $this->attendanceSaleRepository->update(auth()->guard('adviser')->user()->id, [
             'price' => $attendance->lesson->coin_amount * 50
-        ])
+        ]);
 
 
         /************* メール通知 *************/
