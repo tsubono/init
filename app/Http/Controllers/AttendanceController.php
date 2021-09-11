@@ -14,6 +14,7 @@ use App\Models\Lesson;
 use App\Repositories\Attendance\AttendanceRepositoryInterface;
 use App\Repositories\AttendanceSale\AttendanceSaleRepositoryInterface;
 use App\Repositories\MateUserCoin\MateUserCoinRepositoryInterface;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -234,14 +235,19 @@ class AttendanceController extends Controller
             // 原因はメイト
             $cancel_cause_mate_user_id = $attendance->mate_user_id;
         }
-
         /************* DB操作 *************/
         // 受講ステータス更新
         $attendance = $this->attendanceRepository->update($attendance->id, [
                 'status' => Attendance::STATUS_CANCEL,
             ] + compact('cancel_cause_mate_user_id', 'cancel_cause_adviser_user_id'));
-        // TODO: 払い戻し処理
 
+        /************* 払い戻し処理 *********/
+        $dayBefore = $this->dayBefore($attendance);
+        $attendanceSale = $this->attendanceSaleRepository->findByAttendanceId($attendance->id);
+
+        auth()->guard('adviser')->check()
+            ? $this->refundForCancelByAdviser($attendance, $attendanceSale, $dayBefore)
+            : $this->refundForCancelByMate($attendance, $attendanceSale, $dayBefore);
 
         /************* メール通知 *************/
         // 相手ユーザーへキャンセルメール通知
@@ -348,4 +354,68 @@ class AttendanceController extends Controller
             ]);
         }
     }
+
+    /**
+     * キャンセルした日が受講日から何日前かを取得する
+     * 
+     * @param Attendance $attendance
+     * @return int
+     */
+    private function dayBefore(Attendance $attendance): int
+    {
+        $dateOfCourse = Carbon::parse($attendance->datetime)->startOfDay();
+        $dayBefore = Carbon::now()->startOfDay()->diffInDays($dateOfCourse);
+        // 7日前以上は負担率0%なので7日前を指定
+        return $dayBefore > 7 ? 7 : $dayBefore;
+    }
+
+    /**
+     * 講師からのキャンセルによる払い戻し
+     * 
+     * @param Attendance $attendance
+     * @param AttendanceSale $attendanceSale
+     * @param int $dayBefore
+     */
+    private function refundForCancelByAdviser(Attendance $attendance, AttendanceSale $attendanceSale, int $dayBefore): void
+    {
+        // 講師の売上金の更新
+        if ($dayBefore <= 7) {
+            $penaltyPrice = $attendanceSale->price - $attendanceSale->price * config('burden_ratio.to_adviser.' . $dayBefore);
+            $this->attendanceSaleRepository->updatePriceByCancel($attendance->id, [
+                'price' => intval($penaltyPrice)
+            ]);
+        }
+
+        // メイトが使用したコインを払い戻す
+        $this->mateUserCoinRepository->store([
+            'mate_user_id' => $attendance->mateUser->id,
+            'amount' => -$attendance->mateUserCoin->amount, // 全額返金のため使用した分を払い戻し
+            'note' => "{$attendance->lesson->name}のキャンセル返金",
+        ]);
+    }
+
+    /**
+     * 生徒からのキャンセルによる払い戻し
+     * 
+     * @param Attendance $attendance
+     * @param AttendanceSale $attendanceSale
+     * @param int $dayBefore
+     */
+    private function refundForCancelByMate(Attendance $attendance, AttendanceSale $attendanceSale, int $dayBefore): void
+    {
+        // 生徒へのキャンセル返金
+        $penaltyAmount = -$attendance->mateUserCoin->amount - ($attendanceSale->price * config('burden_ratio.to_mate.' . $dayBefore)) / 100;
+        $this->mateUserCoinRepository->store([
+            'mate_user_id' => $attendance->mateUser->id,
+            'amount' => round($penaltyAmount),
+            'note' => "{$attendance->lesson->name}のキャンセル返金",
+        ]);
+
+        // 講師にペナルティ金額の半分を与える
+        $penaltyPrice = ceil($attendanceSale->price * config('burden_ratio.to_mate.'. $dayBefore) / 2);
+        $this->attendanceSaleRepository->updatePriceByCancel($attendance->id, [
+            'price' => intval($penaltyPrice)
+        ]);
+    }
+
 }
