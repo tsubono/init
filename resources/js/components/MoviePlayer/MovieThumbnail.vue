@@ -1,26 +1,14 @@
 <template>
 <div class="MovieThumbnail">
-    <component :is="thumbnail" :path="movie.movie_path" />
+    <img
+        class="w-100"
+        :src="movie.eye_catch_path"
+        :alt="movie.title"
+    >
 </div>
 </template>
 
 <script>
-import YouTubeThumbnail from './thumbnails/YouTubeThumbnail'
-import VimeoThumbnail from './thumbnails/VimeoThumbnail'
-import TwitterThumbnail from './thumbnails/TwitterThumbnail'
-import InstagramThumbnail from './thumbnails/InstagramThumbnail'
-import TikTokThumbnail from './thumbnails/TikTokThumbnail'
-import FacebookThumbnail from './thumbnails/FacebookThumbnail'
-
-const thumbnails = {
-    youtube: YouTubeThumbnail,
-    vimeo: VimeoThumbnail,
-    twitter: TwitterThumbnail,
-    fb: FacebookThumbnail,
-    instagram: InstagramThumbnail,
-    tiktok: TikTokThumbnail,
-}
-
 export default {
     name: 'MovieThumbnail',
 
@@ -30,11 +18,11 @@ export default {
             default: false,
         },
     },
-
-    computed: {
-        thumbnail () {
-            return thumbnails[this.movie.type] || null
-        }
-    },
 }
 </script>
+
+<style scoped>
+.MovieThumbnail {
+    margin-bottom: 20px;
+}
+</style>

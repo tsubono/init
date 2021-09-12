@@ -23,6 +23,7 @@ class LessonMovieFactory extends Factory
     {
         return [
             'movie_path' => $this->faker->randomElement(['https://www.youtube.com/watch?v=sofXBWmHgW4', 'https://www.youtube.com/watch?v=v9SGGEIb0-g', 'https://www.youtube.com/watch?v=DlKP4LH1h3w', 'https://www.youtube.com/watch?v=PBzzcltciN0']),
+            'eye_catch_path' => $this->faker->randomElement([url('img/movie-sample01@2x.png'), url('img/movie-sample02@2x.png'), url('img/movie-sample03@2x.png')]),
         ];
     }
 }
