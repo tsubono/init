@@ -3,16 +3,6 @@
 @section('title', 'アドバイザーを探す')
 
 @section('content')
-    <section class="p-layer-head">
-        <div class="container">
-            <div class="p-layer-head__title">
-                <h1>
-                    <span class="p-layer-head__en">Advisor search</span>
-                    アドバイザーを探す
-                </h1>
-            </div>
-        </div>
-    </section>
     <section class="p-searchblock bg-light l-content-block">
         <div class="container">
             <form action="" class="p-form">

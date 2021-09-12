@@ -3,16 +3,6 @@
 @section('title', 'アドバイザープロフィール')
 
 @section('content')
-    <section class="p-layer-head">
-        <div class="container">
-            <div class="p-layer-head__title">
-                <h1>
-                    <span class="p-layer-head__en">Advisor Profile</span>
-                    アドバイザープロフィール
-                </h1>
-            </div>
-        </div>
-    </section>
     <section class="l-content-block p-profile">
         <div class="container">
             <div class="p-profile__edit">
@@ -91,10 +81,10 @@
                         <div class="p-card p-card--lesson">
                             <a href="{{ route('lessons.show', compact('lesson')) }}" class="h-100">
                                 <div class="p-card__img">
-                                    <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->title }}">
+                                    <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->name }}">
                                 </div>
                                 <div class="p-card__info text-start">
-                                    <div class="p-card__name">{{ $lesson->title }}</div>
+                                    <div class="p-card__name">{{ $lesson->name }}</div>
                                     <div class="text-black-50 mt-2">{{ Str::limit($lesson->descripton, 20) }}</div>
                                     <div class="p-card__category mt-3">
                                         <ul class="justify-content-start">

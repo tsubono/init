@@ -1784,6 +1784,7 @@ header .navbar #Navber {
 }
 header .navbar #Navber ul {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
 }
 @media screen and (min-width: 0px) and (max-width: 768px) {
@@ -2033,6 +2034,7 @@ footer address {
   box-shadow: none;
   background: #5c5c5c;
   color: #fff;
+  border-radius: 10px;
 }
 .p-btn__black:hover {
   background-color: #333333;
@@ -2058,6 +2060,15 @@ footer address {
 }
 .p-btn--edit:hover::after {
   background-image: url(/img/icon-edit-white.svg);
+}
+
+.btn-default {
+  color: #fff;
+  background: #5c5c5c;
+}
+.btn-default:hover {
+  color: #fff !important;
+  background: #333333;
 }
 
 .l-content-block {
@@ -2232,6 +2243,51 @@ footer address {
 
 .p-error-text {
   color: #dc3545;
+  margin: 5px 0;
+}
+
+.p-notification-icon {
+  cursor: pointer;
+  position: relative;
+}
+.p-notification-icon--has-items::before {
+  content: "";
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #e03941;
+}
+
+.p-notification-popover {
+  max-width: 350px;
+  min-width: 350px;
+  border: none;
+  border-radius: 0;
+}
+.p-notification-popover__list {
+  max-height: 200px;
+  overflow-y: auto;
+  color: #404040;
+}
+.p-notification-popover__list > li {
+  padding: 10px 16px;
+  border-bottom: 1px solid #E6E6E6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+.p-notification-popover__to-list {
+  padding: 10px 16px;
+  color: #4995F2;
+  display: block;
+  text-align: right;
+  border-top: 1px solid #E6E6E6;
+  margin-top: -1px;
 }
 
 .p-flowlist ul {
@@ -2443,6 +2499,7 @@ footer address {
   padding: 30px 20px;
   margin-bottom: 30px;
   /* ルームを探す */
+  /* 受講を探す */
 }
 @media screen and (min-width: 0px) and (max-width: 768px) {
   .p-card3 {
@@ -2746,6 +2803,109 @@ footer address {
     margin: 0px auto 30px;
     width: 80%;
   }
+}
+.p-card3.p-attendance {
+  padding: 30px;
+  align-items: normal;
+  justify-content: space-between;
+  position: relative;
+}
+.p-card3.p-attendance .p-card3__advisor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 20%;
+}
+.p-card3.p-attendance .p-card3__advisor_img {
+  border-radius: 400px;
+  overflow: hidden;
+  position: relative;
+  flex-basis: 20%;
+}
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .p-card3.p-attendance .p-card3__advisor_img {
+    width: 50%;
+    margin-bottom: 20px;
+  }
+}
+.p-card3.p-attendance .p-card3__advisor_img::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+.p-card3.p-attendance .p-card3__advisor_img img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.p-card3.p-attendance .p-card3__advisor_text {
+  flex-basis: 75%;
+}
+.p-card3.p-attendance .p-card3__advisor_text h4 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .p-card3.p-attendance .p-card3__advisor_text h4 {
+    font-size: 1rem;
+  }
+}
+.p-card3.p-attendance .p-card3__advisor_text .p-card3__box {
+  display: flex;
+  align-items: center;
+}
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .p-card3.p-attendance .p-card3__advisor_text .p-card3__box {
+    font-size: 90%;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .p-card3.p-attendance .p-card3__advisor_text .p-card3__box .p-heading3 {
+    width: 100%;
+  }
+}
+.p-card3.p-attendance .p-card3__controls {
+  margin-top: 30px;
+  flex-basis: 15%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  align-items: flex-end;
+}
+.p-card3.p-attendance .p-card3__controls button, .p-card3.p-attendance .p-card3__controls a {
+  width: 140px;
+  padding: 3px;
+  margin: 5px 0;
+}
+.p-card3.p-attendance .p-card3__status {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+}
+.p-card3.p-attendance .p-card3__status_label {
+  width: 150px;
+  padding: 10px;
+  text-align: center;
+}
+.p-card3.p-attendance .p-card3__status_label.primary {
+  background: #f8f4fe;
+  background: linear-gradient(to right, #f8f4fe 0%, #c8e0fd 100%);
+  font-weight: bold;
+}
+.p-card3.p-attendance .p-card3__status_label.primary.accent {
+  color: #F80303;
+}
+.p-card3.p-attendance .p-card3__status_label.default {
+  background: #f5f5f5;
 }
 
 .p-lang {

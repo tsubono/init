@@ -57,4 +57,13 @@ class MateUser extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Attendance::class);
     }
+
+    /**
+     * @return string
+     */
+    public function getFullNameAttribute(): string
+    {
+        return !is_null($this->middle_name) ?
+            "{$this->first_name} {$this->middle_name} {$this->family_name}" : "{$this->first_name} {$this->family_name}";
+    }
 }

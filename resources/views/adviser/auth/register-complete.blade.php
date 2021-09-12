@@ -3,16 +3,6 @@
 @section('title', '登録完了')
 
 @section('content')
-    <section class="p-layer-head">
-        <div class="container">
-            <div class="p-layer-head__title">
-                <h1>
-                    <span class="p-layer-head__en">Complete Register</span>
-                    登録完了
-                </h1>
-            </div>
-        </div>
-    </section>
     <section class="l-content-block p-register-complete">
         <div class="container pt-40px pb-100px">
             <h2 class="fs-2 fw-bold text-center mb-5">登録が完了しました</h2>

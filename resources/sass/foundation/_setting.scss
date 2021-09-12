@@ -9,6 +9,7 @@ $color-sub: #96c4fc;
 $color-sub-lt: lighten($color-sub, 10%);
 $color-sub-dk: darken($color-sub, 5%);
 $color-extra: #ffff70;
+$color-danger: #F80303;
 
 /* gradient */
 @mixin gradient {

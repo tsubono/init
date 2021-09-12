@@ -3,16 +3,6 @@
 @section('title', 'レッスンを探す')
 
 @section('content')
-    <section class="p-layer-head">
-        <div class="container">
-            <div class="p-layer-head__title">
-                <h1>
-                    <span class="p-layer-head__en">Lesson search</span>
-                    レッスンを探す
-                </h1>
-            </div>
-        </div>
-    </section>
     <section class="p-searchblock bg-light l-content-block">
         <div class="container">
             <!-- TODO: セレクトボックスを実データに置き換え・検索処理実装 -->
@@ -62,7 +52,6 @@
                         </div>
                     </div><!-- /.row -->
                 </div><!-- /.collapse -->
-
             </form>
         </div>
     </section>
@@ -101,12 +90,12 @@
                         <div class="p-card3 p-room">
                             <div class="p-card3__img2">
                                 <a href="{{ route('lessons.show', compact('lesson')) }}">
-                                    <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->title }}">
+                                    <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->name }}">
                                 </a>
                             </div>
                             <div class="p-card3__detail">
                                 <a href="{{ route('lessons.show', compact('lesson')) }}">
-                                    <h3>{{ $lesson->title }}</h3>
+                                    <h3>{{ $lesson->name }}</h3>
                                     <p>
                                       {{ Str::limit($lesson->description, 200) }}
                                         <a href="{{ route('lessons.show', compact('lesson')) }}"><span class="more">もっと見る</span></a>
@@ -134,7 +123,7 @@
                                         </div>
                                         <div class="p-card3__advisor_text">
                                             <h4>
-                                                {{ $lesson->adviserUser->first_name }} {{ $lesson->adviserUser->middle_name }} {{ $lesson->adviserUser->family_name }}
+                                                {{ $lesson->adviserUser->full_name }}
                                             </h4>
                                             <div class="p-card3__box">
                                                 <h5 class="p-heading3">言語</h5>

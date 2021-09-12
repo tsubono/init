@@ -3,16 +3,6 @@
 @section('title', 'メイトログイン')
 
 @section('content')
-    <section class="p-layer-head">
-        <div class="container">
-            <div class="p-layer-head__title">
-                <h1>
-                    <span class="p-layer-head__en">Login Mate</span>
-                    メイトログイン
-                </h1>
-            </div>
-        </div>
-    </section>
     <section class="l-content-block p-setting">
         <div class="container">
             <form method="POST" action="{{ route('mate.login') }}">

@@ -3,16 +3,6 @@
 @section('title', 'レッスン詳細')
 
 @section('content')
-    <section class="p-layer-head">
-        <div class="container">
-            <div class="p-layer-head__title">
-                <h1>
-                    <span class="p-layer-head__en">Lesson details</span>
-                    レッスン詳細
-                </h1>
-            </div>
-        </div>
-    </section>
     <section class="l-content-block p-lesson-show">
         <div class="container">
             <div class="d-flex align-items-baseline mb-40px">
@@ -26,7 +16,7 @@
                         </li>
                     @endforeach
                 </ul>
-                @if (auth()->guard('adviser')->check() && auth()->guard('adviser')->user->id === $lesson->adviser_user_id)
+                @if (auth()->guard('adviser')->check() && auth()->guard('adviser')->user()->id === $lesson->adviser_user_id)
                     <a href="{{ route('adviser.lessons.edit', compact('lesson')) }}" class="p-btn p-btn--edit p-btn__outline">レッスンを編集</a>
                 @endif
             </div>
@@ -34,7 +24,7 @@
                 <div class="col-lg-9 col-md-8">
                     <div class="row">
                         <div class="col-md-12 mb-40px">
-                            <h2 class="fs-2 fw-bold mb-4">{{ $lesson->title }}</h2>
+                            <h2 class="fs-2 fw-bold mb-4">{{ $lesson->name }}</h2>
                             <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->title }}" class="w-100 img-fluid">
                         </div>
                         <div class="col-md-12">
@@ -57,26 +47,44 @@
                             <h3 class="p-heading2">動画</h3>
                             <movie-list :movies="{{ $lesson->movies }}"></movie-list>
                         </div><!-- /.col-md-12 -->
-                        <div class="col-md-12 mt-5">
-                            <div class="border p-5">
-                                <form class="p-form">
-                                    <div>
-                                        <label class="mb-2">希望日時</label>
-                                        <div class="d-flex pe-100px">
-                                            <input type="text" class="form-control" placeholder="2021/12/12">
-                                            <input type="text" class="form-control ms-4" placeholder="20:30">
+                        @if (auth()->guard('mate')->check())
+                            <div class="col-md-12 mt-5">
+                                <div class="border p-5">
+                                    <form class="p-form" action="{{ route('attendances.request', compact('lesson')) }}" method="post">
+                                        @csrf
+                                        <div>
+                                            <label class="mb-2">希望日時</label>
+                                            <div class="d-flex pe-100px">
+                                                <input type="date" class="form-control" placeholder="2021/12/12" name="date" value="{{ old('date') }}">
+                                                <input type="text" class="form-control ms-4" placeholder="20:30" name="time" value="{{ old('time') }}">
+                                            </div>
+                                            @error('date')
+                                            <div class="p-error-text" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @enderror
+                                            @error('time')
+                                            <div class="p-error-text" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @enderror
                                         </div>
-                                    </div>
-                                    <div class="mt-40px">
-                                        <label class="mb-2">メッセージ</label>
-                                        <textarea class="form-control" rows="6"></textarea>
-                                    </div>
-                                    <div class="text-center mt-5">
-                                        <button type="submit" class="p-btn p-btn__defalut d-inline-block px-90px">受講申請</button>
-                                    </div>
-                                </form>
+                                        <div class="mt-40px">
+                                            <label class="mb-2">メッセージ</label>
+                                            <textarea class="form-control" rows="6" name="request_text">{{ old('request_text') }}</textarea>
+                                            @error('request_text')
+                                            <div class="p-error-text" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @enderror
+                                        </div>
+                                        <div class="text-center mt-5">
+                                            <button type="submit" class="p-btn p-btn__defalut d-inline-block px-90px">受講申請</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4">

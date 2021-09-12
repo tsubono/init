@@ -54,6 +54,7 @@
     box-shadow: none;
     background: $color-text;
     color: #fff;
+    border-radius: 10px;
     &:hover {
       background-color: $color-catch;
     }
@@ -79,5 +80,15 @@
         background-image: url(/img/icon-edit-white.svg);
       }
     }
+  }
+}
+
+.btn-default {
+  color: #fff;
+  background: $color-text;
+
+  &:hover {
+    color: #fff !important;
+    background: $color-catch;
   }
 }

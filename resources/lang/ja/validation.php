@@ -135,12 +135,15 @@ return [
     */
 
     'attributes' => [
-        'family_name'=>'お名前 (姓)',
-        'middle_name'=>'お名前 (ミドルネーム)',
-        'first_name'=>'お名前 (名)',
-        'family_name_kana'=>'ふりがな (姓)',
-        'first_name_kana'=>'ふりがな (名)',
-        'email'=>'メールアドレス',
-        'password'=>'パスワード'
+        'family_name' => 'お名前 (姓)',
+        'middle_name' => 'お名前 (ミドルネーム)',
+        'first_name' => 'お名前 (名)',
+        'family_name_kana' => 'ふりがな (姓)',
+        'first_name_kana' => 'ふりがな (名)',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
+        'date' => '日付',
+        'time' => '時間',
+        'request_text' => 'メッセージ',
     ],
 ];

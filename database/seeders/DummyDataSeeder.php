@@ -105,10 +105,16 @@ class DummyDataSeeder extends Seeder
                 $mateUser->languages()->sync($languageIds);
 
                 $lesson = Lesson::all()->random();
+                $mateUserCoin = MateUserCoin::create([
+                    'mate_user_id' => $mateUser->id,
+                    'amount' => -$lesson->coin_amount,
+                    'note' => "{$lesson->name}の受講に使用"
+                ]);
                 $attendance = Attendance::create([
                     'adviser_user_id' => $lesson->adviserUser->id,
                     'mate_user_id' => $mateUser->id,
                     'lesson_id' => $lesson->id,
+                    'mate_user_coin_id' => $mateUserCoin->id,
                     'status' => array_rand([1, 2]),
                     'datetime' => $this->getRandomDateTime('2021-8-1', '2021-9-10'),
                     'request_text' => '受講申請メッセージテキスト受講申請メッセージテキスト受講申請メッセージテキスト',
