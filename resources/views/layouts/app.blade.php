@@ -64,7 +64,9 @@
     </header>
 
     @include('components.head')
-    @yield('content')
+    <div id="app">
+        @yield('content')
+    </div>
 
     <footer>
         <div class="container">
