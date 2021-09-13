@@ -4,7 +4,14 @@
             type="image"
             accept="image/*"
             :uploader="uploadFile"
+            @file-removed="removeFile"
+            :value="[
+                {
+                    url: imagePath || null,
+                }
+            ]"
         />
+        <input type="hidden" :name="name" :value="hiddenPath">
     </div>
 </template>
 
@@ -13,21 +20,33 @@
 
     export default {
         props: {
+            name: {
+                type: String,
+                required: true,
+            },
             uploadUrl: {
                 type: String,
                 default: '/api/upload-image',
             },
-            dir: {
+            uploadDir: {
                 type: String,
                 default: 'uploaded/lesson',
             },
+            imagePath: {
+                type: String,
+            },
+        },
+        data() {
+            return {
+                hiddenPath: this.imagePath || null,
+            }
         },
         methods: {
             async uploadFile(file, progress, error, option) {
                 try {
                     const axiosInstance = axios.create();
                     const formData = new FormData();
-                    formData.append('dir', this.dir);
+                    formData.append('dir', this.uploadDir);
                     formData.append('img', file);
                     progress(0);
                     const { data } = await axiosInstance.post(this.uploadUrl, formData, {
@@ -35,10 +54,14 @@
                             progress(Math.round((loaded * 100) / total));
                         },
                     });
+                    this.$data.hiddenPath = data.path;
                     return data;
                 } catch (err) {
                     error('Unable to upload file');
                 }
+            },
+            removeFile() {
+                this.$data.hiddenPath = null;
             },
         }
     }

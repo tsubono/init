@@ -8,13 +8,13 @@
         <h3 class="p-heading2">プロフィール画像<span class="badge bg-danger ms-2">必須</span></h3>
         <div class="row">
             <div class="col">
-                <file-upload></file-upload>
+                <file-upload name="image" image-path="{{ isset($lesson->images[0]) ? $lesson->images[0]['image_path'] : null }}"></file-upload>
             </div>
             <div class="col">
-                <file-upload></file-upload>
+                <file-upload name="image" image-path="{{ isset($lesson->images[1]) ? $lesson->images[1]['image_path'] : null }}"></file-upload>
             </div>
             <div class="col">
-                <file-upload></file-upload>
+                <file-upload name="image" image-path="{{ isset($lesson->images[2]) ? $lesson->images[2]['image_path'] : null }}"></file-upload>
             </div>
         </div>
     </div>
