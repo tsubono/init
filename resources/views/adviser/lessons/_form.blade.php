@@ -8,22 +8,13 @@
         <h3 class="p-heading2">プロフィール画像<span class="badge bg-danger ms-2">必須</span></h3>
         <div class="row">
             <div class="col">
-                <div class="form-file__img form-file__img--picture">
-                    <img id="file1-preview">
-                </div>
-                <input class="form-control form-file" type="file" id="form-file1" accept="image/*">
+                <file-upload name="image" image-path="{{ isset($lesson->images[0]) ? $lesson->images[0]['image_path'] : null }}"></file-upload>
             </div>
             <div class="col">
-                <div class="form-file__img form-file__img--picture">
-                    <img id="file2-preview">
-                </div>
-                <input class="form-control form-file" type="file" id="form-file2" accept="image/*">
+                <file-upload name="image" image-path="{{ isset($lesson->images[1]) ? $lesson->images[1]['image_path'] : null }}"></file-upload>
             </div>
             <div class="col">
-                <div class="form-file__img form-file__img--picture">
-                    <img id="file3-preview">
-                </div>
-                <input class="form-control form-file" type="file" id="form-file3" accept="image/*">
+                <file-upload name="image" image-path="{{ isset($lesson->images[2]) ? $lesson->images[2]['image_path'] : null }}"></file-upload>
             </div>
         </div>
     </div>

@@ -64,8 +64,8 @@
     </header>
 
     @include('components.head')
-   
-   <main id="app">
+
+    <main id="app">
         @yield('content')
     </main>
 
