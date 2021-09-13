@@ -104,7 +104,16 @@
                                             @enderror
                                         </div>
                                         <div class="text-center mt-5">
-                                            <button type="submit" class="p-btn p-btn__defalut d-inline-block px-90px">受講申請</button>
+                                            <button type="submit" class="p-btn p-btn__defalut d-inline-block px-90px"
+                                                {{ auth()->guard('mate')->user()->total_coin_amount < $lesson->coin_amount ? 'disabled' : '' }}>
+                                                受講申請
+                                            </button>
+                                            @if (auth()->guard('mate')->user()->total_coin_amount < $lesson->coin_amount)
+                                                <p class="p-error-text">
+                                                    保有コインが不足しています <br>
+                                                    <a href="{{ route('mate.coins.buy') }}" target="_blank" class="primary-link">こちら</a>から購入をお願いします
+                                                </p>
+                                            @endif
                                         </div>
                                     </form>
                                 </div>

@@ -70,7 +70,7 @@ class LessonController extends Controller
         $user = auth()->guard('adviser')->user();
         $this->lessonRepository->store($request->all() + ['adviser_user_id' => $user->id]);
 
-        return redirect(route('adviser.lessons.index'))->with('success-message', 'レッスン情報を登録しました');
+        return redirect(route('adviser.lessons.index'))->with('success_message', 'レッスン情報を登録しました');
     }
 
     /**
@@ -99,7 +99,7 @@ class LessonController extends Controller
     {
         $this->lessonRepository->update($lesson->id, $request->all());
 
-        return redirect(route('adviser.lessons.index'))->with('success-message', 'レッスン情報を更新しました');
+        return redirect(route('adviser.lessons.index'))->with('success_message', 'レッスン情報を更新しました');
     }
 
     /**
@@ -111,6 +111,6 @@ class LessonController extends Controller
     {
         $this->lessonRepository->destroy($lesson->id);
 
-        return redirect(route('adviser.lessons.index'))->with('success-message', 'レッスン情報を削除しました');
+        return redirect(route('adviser.lessons.index'))->with('success_message', 'レッスン情報を削除しました');
     }
 }

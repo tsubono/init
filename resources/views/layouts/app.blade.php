@@ -65,7 +65,9 @@
 
     @include('components.head')
 
-    @yield('content')
+    <main id="app">
+        @yield('content')
+    </main>
 
     <footer>
         <div class="container">
@@ -118,5 +120,7 @@
             placement: 'bottom',
         });
     </script>
+
+    @yield('js')
 </body>
 </html>
