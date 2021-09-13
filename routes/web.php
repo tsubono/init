@@ -77,7 +77,7 @@ Route::prefix('mate')->as('mate.')->namespace('App\Http\Controllers\Mate')->grou
         // コイン管理
         Route::get('/coins', 'CoinController@index')->name('coins.index');
         Route::get('/coins/buy', 'CoinController@buy')->name('coins.buy');
-        // TODO: コイン決済処理
+        Route::post('/coins/payment-by-payjp', 'CoinController@paymentByPayJp')->name('coins.payment-by-payjp');
     });
 });
 

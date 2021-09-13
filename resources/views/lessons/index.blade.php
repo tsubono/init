@@ -208,6 +208,7 @@
                     <p>評価が高い順</p>
                 </div>
             </div><!-- /.p-search__content -->
+            <!-- TODO ページネーション -->
         </div><!-- /.container -->
     </section>
 @endsection

@@ -118,5 +118,7 @@
             placement: 'bottom',
         });
     </script>
+
+    @yield('js')
 </body>
 </html>

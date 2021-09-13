@@ -1,0 +1,24 @@
+.p-coin {
+  .coin-amount {
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  .p-card3 {
+    justify-content: start;
+
+    &__date {
+      flex-basis: 20%;
+    }
+
+    &__amount {
+      flex-basis: 30%;
+      font-size: 25px;
+      font-weight: bold;
+
+      &.minus {
+        color: $color-danger;
+      }
+    }
+  }
+}

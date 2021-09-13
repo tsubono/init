@@ -17,7 +17,9 @@ class CreateMateUserCoinsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('mate_user_id')->comment('メイトユーザーID');
             $table->integer('amount')->comment('数量');
-            $table->string('payment_id')->comment('決済ID')->nullable();
+            $table->string('payjp_charge_id')->comment('PayJp決済ID')->nullable();
+            $table->string('paypal_transaction_id')->comment('Paypal取引ID')->nullable();
+            $table->string('paypal_transaction_status')->comment('Paypal取引ステータス')->nullable();
             $table->date('expiration_date')->comment('有効期限')->nullable();
             $table->text('note')->comment('備考')->nullable();
             $table->timestamps();
