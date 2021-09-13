@@ -21,7 +21,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::get('/lessons/{lesson}', 'LessonController@show')->name('lessons.show');
     Route::get('/advisers', 'AdviserController@index')->name('advisers.index');
     Route::get('/advisers/{adviserUser}', 'AdviserController@show')->name('advisers.show');
-    Route::get('/contact', 'ContactController@show')->name('contact.index');
+    Route::get('/contact', 'ContactController@index')->name('contact.index');
     Route::post('/contact/send', 'ContactController@send')->name('contact.send');
     Route::get('/infos', 'InfoController@index')->name('infos.index');
     Route::get('/infos/{info}', 'InfoController@show')->name('infos.show');
@@ -38,6 +38,7 @@ Route::middleware(['auth.common'])->namespace('App\Http\Controllers')->group(fun
     Route::post('/attendances/{attendance}/reject', 'AttendanceController@reject')->name('attendances.reject');
     Route::get('/attendances/{attendance}/messages', 'AttendanceController@messages')->name('attendances.messages');
     Route::post('/attendances/{attendance}/send-message', 'AttendanceController@sendMessage')->name('attendances.send-message');
+    Route::get('/attendances/{attendance}/download/{attendanceMessage}/{fileIndex}', 'AttendanceController@downloadMessageFile')->name('attendances.download');
     Route::post('/attendances/{attendance}/review', 'AttendanceController@review')->name('attendances.review');
     Route::post('/attendances/{attendance}/cancel', 'AttendanceController@cancel')->name('attendances.cancel');
     Route::post('/attendances/{attendance}/report', 'AttendanceController@report')->name('attendances.report');

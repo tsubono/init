@@ -2,41 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AttendanceMessageRequest;
 use App\Http\Requests\AttendanceRequest;
 use App\Mail\AttendanceCancelMail;
 use App\Mail\AttendanceCloseMail;
+use App\Mail\AttendanceMessageMail;
 use App\Mail\AttendanceReportMail;
 use App\Mail\AttendanceRequestMail;
 use App\Mail\AttendanceRequestResultMail;
 use App\Models\Attendance;
+use App\Models\AttendanceMessage;
 use App\Models\AttendanceSale;
 use App\Models\Lesson;
 use App\Repositories\Attendance\AttendanceRepositoryInterface;
+use App\Repositories\AttendanceMessage\AttendanceMessageRepositoryInterface;
 use App\Repositories\AttendanceSale\AttendanceSaleRepositoryInterface;
 use App\Repositories\MateUserCoin\MateUserCoinRepositoryInterface;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class AttendanceController extends Controller
 {
     private AttendanceRepositoryInterface $attendanceRepository;
     private MateUserCoinRepositoryInterface $mateUserCoinRepository;
     private AttendanceSaleRepositoryInterface $attendanceSaleRepository;
+    private AttendanceMessageRepositoryInterface $attendanceMessageRepository;
 
     /**
      * AttendanceController constructor.
      * @param AttendanceRepositoryInterface $attendanceRepository
      * @param MateUserCoinRepositoryInterface $mateUserCoinRepository
      * @param AttendanceSaleRepositoryInterface $attendanceSaleRepository
+     * @param AttendanceMessageRepositoryInterface $attendanceMessageRepository
      */
     public function __construct(
         AttendanceRepositoryInterface $attendanceRepository,
         MateUserCoinRepositoryInterface $mateUserCoinRepository,
-        AttendanceSaleRepositoryInterface $attendanceSaleRepository
+        AttendanceSaleRepositoryInterface $attendanceSaleRepository,
+        AttendanceMessageRepositoryInterface $attendanceMessageRepository
     ) {
         $this->attendanceRepository = $attendanceRepository;
         $this->mateUserCoinRepository = $mateUserCoinRepository;
         $this->attendanceSaleRepository = $attendanceSaleRepository;
+        $this->attendanceMessageRepository = $attendanceMessageRepository;
     }
 
     /**
@@ -119,7 +131,7 @@ class AttendanceController extends Controller
     public function approval(Attendance $attendance)
     {
         // アドバイザーのみ実行可能
-        if (!auth()->guard('adviser')->check()) {
+        if (!auth()->guard('adviser')->check() || !$this->checkUser($attendance)) {
             abort(404);
         }
 
@@ -160,7 +172,7 @@ class AttendanceController extends Controller
     public function reject(Attendance $attendance, Request $request)
     {
         // アドバイザーのみ実行可能
-        if (!auth()->guard('adviser')->check()) {
+        if (!auth()->guard('adviser')->check() || !$this->checkUser($attendance)) {
             abort(404);
         }
 
@@ -172,7 +184,7 @@ class AttendanceController extends Controller
         ]);
         // メイトが使用したコインを払い戻す
         $this->mateUserCoinRepository->store([
-            'mate_user_id' => auth()->guard('mate')->user()->id,
+            'mate_user_id' => $attendance->mate_user_id,
             'amount' => -$attendance->mateUserCoin->amount, // 否認なので受講時に使用した分を払い戻し
             'note' => "{$attendance->lesson->name}の受講否認のため払い戻し",
         ]);
@@ -189,21 +201,96 @@ class AttendanceController extends Controller
     /**
      * 受講メッセージ
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Attendance $attendance
+     * @return \Illuminate\Contracts\View\View
      */
-    public function messages()
+    public function messages(Attendance $attendance)
     {
-        return view('adviser.attendances.show');
+        // 関係ないユーザー & 受講承認前のものは弾く
+        if (!$this->checkUser($attendance) ||
+            ($attendance->status === Attendance::STATUS_REQUEST || $attendance->status === Attendance::STATUS_REJECT)) {
+            abort(404);
+        }
+
+        // 既読にする
+        $fromUserColumn = auth()->guard('adviser')->check() ? 'mate_user_id' : 'adviser_user_id';
+        $this->attendanceRepository->updateMessagesToRead($attendance->id, $fromUserColumn);
+
+        // アクション可能フラグ (受講中のみメッセージの送信などが可能)
+        $canAction = $attendance->status === Attendance::STATUS_APPROVAL;
+
+        return view('attendances.messages', compact('attendance', 'canAction'));
     }
 
     /**
      * 受講メッセージ送信
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Attendance $attendance
+     * @param AttendanceMessageRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function sendMessage()
+    public function sendMessage(Attendance $attendance, AttendanceMessageRequest $request)
     {
-        // TODO
+        // 関係ないユーザー & 受講承認前のものは弾く
+        if (!$this->checkUser($attendance) ||
+            ($attendance->status === Attendance::STATUS_REQUEST || $attendance->status === Attendance::STATUS_REJECT)) {
+            abort(404);
+        }
+
+        // ログインしているユーザーIDを取得
+        $adviserUserId = auth()->guard('adviser')->check() ? auth()->guard('adviser')->user()->id : null;
+        $mateUserId = auth()->guard('mate')->check() ? auth()->guard('mate')->user()->id : null;
+
+        DB::beginTransaction();
+        try {
+            /************* DB操作 *************/
+            // メッセージ登録
+            $this->attendanceMessageRepository->store($request->all() +
+                [
+                    'attendance_id' => $attendance->id,
+                    'adviser_user_id' => $adviserUserId,
+                    'mate_user_id' => $mateUserId,
+                ]
+            );
+
+            /************* メール通知 *************/
+            // 相手ユーザーへメッセージメール通知
+            $email = !is_null($adviserUserId) ? $attendance->mateUser->email : $attendance->adviserUser->email;
+            $userType = !is_null($adviserUserId) ? 'mate' : 'adviser';
+            Mail::to($email)->send(
+                new AttendanceMessageMail($attendance, $userType)
+            );
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new \Exception($e);
+        }
+
+        return redirect(route('attendances.messages', compact('attendance')))->with('success_message', 'メッセージを送信しました');
+    }
+
+    /**
+     * メッセージ添付ファイルをダウンロード
+     *
+     * @param Attendance $attendance
+     * @param AttendanceMessage $attendanceMessage
+     * @param int $fileIndex
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function downloadMessageFile(Attendance $attendance, AttendanceMessage $attendanceMessage, int $fileIndex)
+    {
+        // 関係ないユーザーは弾く
+        if (!$this->checkUser($attendance)) {
+            abort(404);
+        }
+
+        $filePathColumn = "file_path_{$fileIndex}";
+        $fileNameColumn = "file_name_{$fileIndex}";
+
+        return Storage::disk('public')
+            ->download(str_replace('/storage', '', $attendanceMessage->$filePathColumn), $attendanceMessage->$fileNameColumn);
     }
 
     /**
@@ -224,6 +311,11 @@ class AttendanceController extends Controller
      */
     public function cancel(Attendance $attendance)
     {
+        // 関係ないユーザーは弾く
+        if (!$this->checkUser($attendance)) {
+            abort(404);
+        }
+
         $cancel_cause_mate_user_id = $cancel_cause_adviser_user_id = null;
         // キャンセルしたのがアドバイザーの場合
         if (auth()->guard('adviser')->check()) {
@@ -240,8 +332,14 @@ class AttendanceController extends Controller
         $attendance = $this->attendanceRepository->update($attendance->id, [
                 'status' => Attendance::STATUS_CANCEL,
             ] + compact('cancel_cause_mate_user_id', 'cancel_cause_adviser_user_id'));
-        // TODO: 払い戻し処理
 
+        /************* 払い戻し処理 *********/
+        $dayBefore = $this->dayBefore($attendance);
+        $attendanceSale = $this->attendanceSaleRepository->findByAttendanceId($attendance->id);
+
+        auth()->guard('adviser')->check()
+            ? $this->refundForCancelByAdviser($attendance, $attendanceSale, $dayBefore)
+            : $this->refundForCancelByMate($attendance, $attendanceSale, $dayBefore);
 
         /************* メール通知 *************/
         // 相手ユーザーへキャンセルメール通知
@@ -262,6 +360,11 @@ class AttendanceController extends Controller
      */
     public function report(Attendance $attendance)
     {
+        // 関係ないユーザーは弾く
+        if (!$this->checkUser($attendance)) {
+            abort(404);
+        }
+
         $cancel_cause_mate_user_id = $cancel_cause_adviser_user_id = null;
         // 通報したのがアドバイザーの場合
         if (auth()->guard('adviser')->check()) {
@@ -280,7 +383,7 @@ class AttendanceController extends Controller
         ] + compact('cancel_cause_mate_user_id', 'cancel_cause_adviser_user_id'));
 
         /************* 払い戻し ************/
-        $this->refund($attendance);
+        $this->refundForReport($attendance);
 
         /************* メール通知 *************/
         // 相手ユーザーへ通報メール通知
@@ -303,7 +406,7 @@ class AttendanceController extends Controller
     public function close(Attendance $attendance)
     {
         // アドバイザーのみ実行可能
-        if (!auth()->guard('adviser')->check()) {
+        if (!auth()->guard('adviser')->check() || !$this->checkUser($attendance)) {
             abort(404);
         }
 
@@ -329,7 +432,7 @@ class AttendanceController extends Controller
      * 
      * @param Attendance $attendance
      */
-    private function refund($attendance): void
+    private function refundForReport(Attendance $attendance): void
     {
         if (auth()->guard('adviser')->check()) {
             // 生徒が授業に現れなかった場合
@@ -339,7 +442,7 @@ class AttendanceController extends Controller
         } else {
             // メイトへの通報返金(講師が授業に現れなかった場合)
             $this->mateUserCoinRepository->store([
-                'mate_user_id' => auth()->guard('mate')->user()->id,
+                'mate_user_id' => $attendance->mate_user_id,
                 'amount' => -$attendance->mateUserCoin->amount, // 全額返金のため使用した分を払い戻し
                 'note' => "{$attendance->lesson->name}の通報返金",
             ]);
@@ -347,5 +450,85 @@ class AttendanceController extends Controller
                 'price' => 0,
             ]);
         }
+    }
+
+    /**
+     * キャンセルした日が受講日から何日前かを取得する
+     * 
+     * @param Attendance $attendance
+     * @return int
+     */
+    private function dayBefore(Attendance $attendance): int
+    {
+        $dateOfCourse = Carbon::parse($attendance->datetime)->startOfDay();
+        $dayBefore = Carbon::now()->startOfDay()->diffInDays($dateOfCourse);
+        // 7日前以上は負担率0%なので7日前を指定
+        return $dayBefore > 7 ? 7 : $dayBefore;
+    }
+
+    /**
+     * 講師からのキャンセルによる払い戻し
+     * 
+     * @param Attendance $attendance
+     * @param AttendanceSale $attendanceSale
+     * @param int $dayBefore
+     */
+    private function refundForCancelByAdviser(Attendance $attendance, AttendanceSale $attendanceSale, int $dayBefore): void
+    {
+        // 講師の売上金の更新
+        if ($dayBefore <= 7) {
+            $penaltyPrice = $attendanceSale->price - $attendanceSale->price * config('const.cancel_rate.to_adviser.' . $dayBefore);
+            $this->attendanceSaleRepository->updatePriceByCancel($attendance->id, [
+                'price' => intval($penaltyPrice)
+            ]);
+        }
+
+        // メイトが使用したコインを払い戻す
+        $this->mateUserCoinRepository->store([
+            'mate_user_id' => $attendance->mateUser->id,
+            'amount' => -$attendance->mateUserCoin->amount, // 全額返金のため使用した分を払い戻し
+            'note' => "{$attendance->lesson->name}のキャンセル返金",
+        ]);
+    }
+
+    /**
+     * 生徒からのキャンセルによる払い戻し
+     * 
+     * @param Attendance $attendance
+     * @param AttendanceSale $attendanceSale
+     * @param int $dayBefore
+     */
+    private function refundForCancelByMate(Attendance $attendance, AttendanceSale $attendanceSale, int $dayBefore): void
+    {
+        // 生徒へのキャンセル返金
+        $penaltyAmount = -$attendance->mateUserCoin->amount - ($attendanceSale->price * config('const.cancel_rate.to_mate.' . $dayBefore)) / 100;
+        $this->mateUserCoinRepository->store([
+            'mate_user_id' => $attendance->mateUser->id,
+            'amount' => round($penaltyAmount),
+            'note' => "{$attendance->lesson->name}のキャンセル返金",
+        ]);
+
+        // 講師にペナルティ金額の半分を与える
+        $penaltyPrice = ceil($attendanceSale->price * config('const.cancel_rate.to_mate.'. $dayBefore) / 2);
+        $this->attendanceSaleRepository->updatePriceByCancel($attendance->id, [
+            'price' => intval($penaltyPrice)
+        ]);
+    }
+
+    /*
+     * 権限チェック
+     *
+     * @param Attendance $attendance
+     * @return bool
+     */
+    private function checkUser(Attendance $attendance)
+    {
+        // 関係ないユーザーは弾く
+        if ((auth()->guard('mate')->check() && auth()->guard('mate')->user()->id != $attendance->mate_user_id) ||
+            (auth()->guard('adviser')->check() && auth()->guard('adviser')->user()->id != $attendance->adviser_user_id)) {
+            return false;
+        }
+
+        return true;
     }
 }

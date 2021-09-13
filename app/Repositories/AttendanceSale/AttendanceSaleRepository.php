@@ -110,4 +110,37 @@ class AttendanceSaleRepository implements AttendanceSaleRepositoryInterface
         }
 
     }
+
+    /**
+     * @param int $attendanceId
+     * @param array $data
+     */
+    public function updatePriceByCancel(int $attendanceId, array $data): void
+    {
+        DB::beginTransaction();
+
+        try {
+            $attendanceSale = $this->attendanceSale->where('attendance_id', $attendanceId);
+            $attendanceSale->update($data);
+
+            DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new \Exception($e);
+        }
+    }
+
+    /**
+     * @param int $attendance_id
+     * @return AttendanceSale
+     */
+    public function findByAttendanceId(int $attendanceId): AttendanceSale
+    {
+        return $this->attendanceSale
+            ->query()
+            ->where('attendance_id', $attendanceId)
+            ->first();
+    }
 }

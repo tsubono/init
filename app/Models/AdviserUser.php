@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Notifications\AdviserVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -115,11 +116,27 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
      */
     public function getAgeTxtAttribute()
     {
-        $birthday = $this->birthday;
+        $age = Carbon::parse($this->birthday)->age;
 
-        // TODO
+        switch($age) {
+            case $age <= 19:
+                $ageTxt = '〜19歳';
+                break;
+            case $age <= 29:
+                $ageTxt = '20〜29歳';
+                break;
+            case $age <= 39:
+                $ageTxt = '30〜39歳';
+                break;
+            case $age <= 49:
+                $ageTxt = '40〜49歳';
+                break;
+            case $age <= 59:
+                $ageTxt = '50〜59歳';
+                break;
+        };
 
-        return $birthday;
+        return $ageTxt;
     }
 
     /**
@@ -127,11 +144,12 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
      */
     public function getMateCountAttribute()
     {
-        $mateCount = 0;
-        // TODO: mate_user_idをuniqueにして人数を取得する
-        $lessons = $this->lessons;
+        $lessonIds = $this->lessons->pluck('id')->toArray();
 
-        return $mateCount;
+        return $this->attendances
+                          ->whereIn('lesson_id', $lessonIds)
+                          ->unique('mate_user_id')
+                          ->count();
     }
 
     /**
@@ -140,9 +158,10 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
      */
     public function getCancelRateAttribute()
     {
-        // TODO: 「attandancesの総数 / 自分が原因でキャンセルされたattendancessの総数」で % を 算出
-        $cancelRate = 0;
-        return $cancelRate;
+        $attendanceCount = $this->attendances->count();
+        $cancelCount = $this->attendances->where('cancel_cause_adviser_user_id', $this->id)->count();
+
+        return $cancelCount === 0 ? 0 : $cancelCount / $attendanceCount * 100;
     }
 
     /**
@@ -150,14 +169,34 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
      */
     public function getLastLoginTxtAttribute()
     {
-        // TODO:
         /**
          * ・1時間以内の場合は「○○分」(1桁目は0固定)
          * ・1時間以上1日以内の場合は「○○時間」
          * ・1日以上3日以内の場合は「○○日」
          * ・3日以上の場合は「3日以上」
          */
-        $lastLoginTxt = '30分';
+        $diffDate = Carbon::now()->diff($this->last_login_at);
+        $lastLoginTxt = '未ログイン';
+
+        // dayが1日以上ある場合
+        if ($diffDate->d >= 1) {
+            $lastLoginTxt = $diffDate->d >= 3
+                ? '3日以上'
+                : $diffDate->d . '日';
+        }
+
+        // dayは0日、hourが1時間以上ある場合
+        if ($diffDate->d === 0 && $diffDate->h >= 1) {
+            $lastLoginTxt = $diffDate->h . '時間';
+        }
+
+        // dayは0日、hourが0時間、minutesが1分以上ある場合
+        if ($diffDate->d === 0 && $diffDate->h === 0 && $diffDate->i >= 1) {
+            $minutes = ceil($diffDate->i / 10) * 10;
+            $lastLoginTxt = $minutes === 60
+                ? '1時間'
+                : $minutes . '分';
+        }
 
         return $lastLoginTxt;
     }

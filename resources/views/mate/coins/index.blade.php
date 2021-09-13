@@ -17,10 +17,15 @@
                     @forelse ($coins as $coin)
                         <div class="p-card3">
                             <div class="p-card3__date">
-                              {{ $coin->created_at->format('Y/m/d H:i') }}
+                                <p class="small">購入日</p>
+                                {{ $coin->created_at->format('Y/m/d H:i') }} <br>
+                                @if (!is_null($coin->expiration_date))
+                                    <p class="small">有効期限日</p>
+                                    {{ \Carbon\Carbon::parse($coin->expiration_date)->format('Y/m/d') }} <br>
+                                @endif
                             </div>
                             <div class="p-card3__amount {{ 0 < $coin->amount ? '' : 'minus' }}">
-                                {{ 0 < $coin->amount ? +$coin->amount : -$coin->amount }}
+                                {{ 0 < $coin->amount ? '+'. $coin->amount : $coin->amount }}
                             </div>
                             <div class="p-card3__note">
                                 {{ $coin->note }}

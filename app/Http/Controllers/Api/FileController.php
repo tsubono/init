@@ -20,6 +20,10 @@ class FileController extends Controller
         $filename = now()->format('YmdHis') . rand(1, 9) . "." . $request->file('img')->extension();
         $path = $request->file('img')->storeAs($dir, $filename, 'public');
 
-        return response()->json(['status' => 'ok', 'path' => Storage::url($path)]);
+        return response()->json([
+            'status' => 'ok',
+            'path' => Storage::url($path),
+            'name' => $request->file('img')->getClientOriginalName(),
+        ]);
     }
 }

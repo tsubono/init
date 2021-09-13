@@ -12,4 +12,5 @@ interface AttendanceRepositoryInterface
     public function getByMateUserIdPaginate(int $mateUserId, int $perCount = 10): LengthAwarePaginator;
     public function store(array $data): Attendance;
     public function update(int $id, array $data): Attendance;
+    public function updateMessagesToRead(int $attendanceId, string $fromUserColumn): void;
 }
