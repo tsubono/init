@@ -4,6 +4,11 @@
             type="image"
             accept="image/*"
             :uploader="uploadFile"
+            :value="[
+                {
+                    url: url || null,
+                }
+            ]"
         />
     </div>
 </template>
@@ -20,6 +25,9 @@
             dir: {
                 type: String,
                 default: 'uploaded/lesson',
+            },
+            url: {
+                type: String,
             },
         },
         methods: {
