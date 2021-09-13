@@ -45,32 +45,7 @@
                         </div>
                         <div class="col-md-12">
                             <h3 class="p-heading2">動画</h3>
-                            <div class="row">
-                                @foreach ($lesson->movies as $index => $movie)
-                                    <!-- TODO: アイキャッチ画像の表示 -->
-                                    <div class="col-md-4 mb-3 mb-md-0">
-                                        <a data-bs-toggle="modal" data-bs-target="#profire-movieModal{{ $index }}">
-                                            <img src="{{ asset('img/movie-sample01@2x.png') }}" class="w-100" alt="">
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <!-- 動画モーダルの設定 -->
-                            @foreach ($lesson->movies as $index => $movie)
-                                <!-- TODO: 動画種別によって表示方法を変更する -->
-                                    <div class="modal fade p-modal p-modal__movie" id="profire-movieModal{{ $index }}" tabindex="-1" aria-labelledby="profire-movieModal{{ $index }}Label">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
-                                                <div class="modal-body">
-                                                    <div class="iframe-wrapper">
-                                                        <iframe src="https://www.youtube.com/embed/Ll7mjhBzqpM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                                    </div>
-                                                </div>
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
-                            @endforeach
+                            <movie-list :movies="{{ $lesson->movies }}"></movie-list>
                         </div><!-- /.col-md-12 -->
                         @if (auth()->guard('mate')->check())
                             <div class="col-md-12 mt-5">

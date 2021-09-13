@@ -19,6 +19,8 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+
+Vue.component('movie-list', require('./components/MoviePlayer/MovieList').default)
 Vue.component('file-upload-not-preview', require('./components/FileUploadNoPreview.vue').default);
 
 /**
