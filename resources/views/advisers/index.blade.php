@@ -5,6 +5,7 @@
 @section('content')
     <section class="p-searchblock bg-light l-content-block">
         <div class="container">
+            <!-- TODO: セレクトボックスを実データに置き換え・検索処理実装 -->
             <form action="" class="p-form">
                 <h2 class="p-searchblock__all"><span class="d-none d-md-inline">探しているのは</span>
                     <select class="form-select" id="">
@@ -58,8 +59,10 @@
     <section class="p-searchresult l-content-block">
         <div class="container">
             <div class="p-searchresult__info">
+                <!-- TODO: 件数を実データに置き換え -->
                 <div class="p-searchresult__num">検索結果 <span class="num">1,000</span></div>
                 <div class="p-searchresult__tab">
+                    <!-- TODO: ソート -->
                     <ul id="p-searchresult__sort" class="nav p-sort" role="tablist">
                         <li role="presentation">
                             <button id="new-tab" class="p-sort__parts active" data-bs-toggle="tab" data-bs-target="#new" type="button" role="tab" aria-controls="new" aria-selected="true">新着順</button>
@@ -77,6 +80,7 @@
             <!-- パネル部分 -->
             <div class="p-search__content tab-content">
                 <div id="new" class="tab-pane active" role="tabpanel" aria-labelledby="new-tab">
+                    <!-- TODO: 実データに置き換え -->
                     <div class="p-card3">
                         <div class="p-card3__img">
                             <a href="#">
@@ -289,6 +293,7 @@
                     <p>評価が高い順</p>
                 </div>
             </div><!-- /.p-search__content -->
+            <!-- TODO ページネーション -->
         </div><!-- /.container -->
     </section>
 @endsection

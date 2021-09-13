@@ -61,6 +61,6 @@ class ProfileController extends Controller
     {
         $this->mateUserRepository->update(auth()->guard('mate')->user()->id, $request->all());
 
-        return redirect(route('mate.profile.edit'))->with('success-message', 'プロフィールを更新しました');
+        return redirect(route('mate.profile.edit'))->with('success_message', 'プロフィールを更新しました');
     }
 }

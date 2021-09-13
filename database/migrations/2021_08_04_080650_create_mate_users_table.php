@@ -34,6 +34,7 @@ class CreateMateUsersTable extends Migration
             $table->unsignedBigInteger('from_country_id')->nullable()->comment('出身国ID');
             $table->unsignedBigInteger('residence_country_id')->nullable()->comment('居住国ID');
             $table->text('pr_text')->nullable()->comment('自己PR');
+            $table->string('payjp_customer_id')->nullable()->comment('payjp顧客ID');
             $table->boolean('is_notice')->nullable()->default(TRUE)->comment('通知設定');
             $table->boolean('can_apply')->nullable()->default(TRUE)->comment('申し込み可能フラグ');
             $table->timestamp('last_login_at')->nullable()->comment('最終ログイン日時');

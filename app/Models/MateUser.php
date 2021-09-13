@@ -58,6 +58,7 @@ class MateUser extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Attendance::class);
     }
 
+    // ============ Attributes ============
     /**
      * @return string
      */
@@ -65,5 +66,17 @@ class MateUser extends Authenticatable implements MustVerifyEmail
     {
         return !is_null($this->middle_name) ?
             "{$this->first_name} {$this->middle_name} {$this->family_name}" : "{$this->first_name} {$this->family_name}";
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalCoinAmountAttribute(): int
+    {
+        $totalCoinAmount = $this->mateUserCoins->reduce(function ($carry, MateUserCoin $mateUserCoin) {
+            return $carry + $mateUserCoin->amount;
+        });
+
+        return is_null($totalCoinAmount) ? 0 : $totalCoinAmount;
     }
 }

@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('App\Http\Controllers\Api')->group(function () {
     Route::post('/upload-image', 'FileController@uploadImage');
+    Route::post('/paypal/order-capture', 'PaypalController@orderCapture');
 });

@@ -35,6 +35,27 @@ php artisan db:seed --class=DummyDataSeeder
  php artisan migrate:refresh --seed  
 ```
 
+### 決済に関して
+Paypal & PAY.JP を使用しているので、認証情報を.envに記載必要です
+```
+### PayPal API Credentials ###
+# sandbox (テスト)
+PAYPAL_CLIENT_ID=
+PAYPAL_CLIENT_SECRET=
+# live (本番)
+# PAYPAL_CLIENT_ID=
+# PAYPAL_CLIENT_SECRET=
+
+### PAYJP API Credentials ###
+# テスト
+PAYJP_PUBLIC_KEY=
+PAYJP_SECRET_KEY=
+# 本番
+# PAYJP_PUBLIC_KEY=
+# PAYJP_SECRET_KEY=
+```
+IDとSECRETは個別に聞いてください
+
 ### 資料
 - [XDデザイン](https://xd.adobe.com/view/ee793497-0356-4907-9c78-058d14e2b1c6-bb2a/)
 - [設計](https://docs.google.com/spreadsheets/d/1FI2-o69B-Qwq7OY3VXW4r-EhMBn6x7I7vYLIkmLrm10/edit#gid=2015969446)

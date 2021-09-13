@@ -110,6 +110,7 @@
                                     詳細
                                 </button>
                             </div><!--/.p-card3__detail -->
+                            <!-- TODO 講師が受講承諾するまでの間に、生徒から受講キャンセルが可能としたい -->
                             <div class="p-card3__controls">
                                 @if ($attendance->status_txt === '受講申請中' && auth()->guard('adviser')->check())
                                     <button type="button" class="p-btn--rect btn-success" data-bs-toggle="modal" data-bs-target="#approvalModal{{ $index }}">
@@ -295,6 +296,7 @@
                     @endforelse
                 </div><!--/.tab-pane -->
             </div><!-- /.p-search__content -->
+            <!-- TODO ページネーション -->
         </div><!-- /.container -->
     </section>
 @endsection
