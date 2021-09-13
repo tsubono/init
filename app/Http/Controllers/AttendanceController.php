@@ -172,7 +172,7 @@ class AttendanceController extends Controller
         ]);
         // メイトが使用したコインを払い戻す
         $this->mateUserCoinRepository->store([
-            'mate_user_id' => auth()->guard('mate')->user()->id,
+            'mate_user_id' => $attendance->mate_user_id,
             'amount' => -$attendance->mateUserCoin->amount, // 否認なので受講時に使用した分を払い戻し
             'note' => "{$attendance->lesson->name}の受講否認のため払い戻し",
         ]);
@@ -329,7 +329,7 @@ class AttendanceController extends Controller
      * 
      * @param Attendance $attendance
      */
-    private function refund($attendance): void
+    private function refund(Attendance $attendance): void
     {
         if (auth()->guard('adviser')->check()) {
             // 生徒が授業に現れなかった場合
@@ -339,7 +339,7 @@ class AttendanceController extends Controller
         } else {
             // メイトへの通報返金(講師が授業に現れなかった場合)
             $this->mateUserCoinRepository->store([
-                'mate_user_id' => auth()->guard('mate')->user()->id,
+                'mate_user_id' => $attendance->mate_user_id,
                 'amount' => -$attendance->mateUserCoin->amount, // 全額返金のため使用した分を払い戻し
                 'note' => "{$attendance->lesson->name}の通報返金",
             ]);
