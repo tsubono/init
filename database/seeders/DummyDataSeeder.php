@@ -94,7 +94,6 @@ class DummyDataSeeder extends Seeder
             $lesson->categories()->sync($categoryIds);
 
             LessonImage::factory(['lesson_id' => $lesson->id])->count(3)->create();
-            LessonMovie::factory(['lesson_id' => $lesson->id])->count(3)->create();
         });
 
         MateUser::factory(3)

@@ -144,14 +144,12 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
      */
     public function getMateCountAttribute()
     {
-        $mateCount = 0;
-        $lessons = $this->lessons->pluck('id')->toArray();
-        $mateCount = $this->attendances
-                          ->whereIn('lesson_id', $lessons)
+        $lessonIds = $this->lessons->pluck('id')->toArray();
+
+        return $this->attendances
+                          ->whereIn('lesson_id', $lessonIds)
                           ->unique('mate_user_id')
                           ->count();
-
-        return $mateCount;
     }
 
     /**
@@ -160,12 +158,10 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
      */
     public function getCancelRateAttribute()
     {
-        // TODO: 「attandancesの総数 / 自分が原因でキャンセルされたattendancessの総数」で % を 算出
         $attendanceCount = $this->attendances->count();
         $cancelCount = $this->attendances->where('cancel_cause_adviser_user_id', $this->id)->count();
-        $cancelRate = $attendanceCount / $cancelCount;
-        
-        return $cancelRate;
+
+        return $cancelCount === 0 ? 0 : $cancelCount / $attendanceCount * 100;
     }
 
     /**

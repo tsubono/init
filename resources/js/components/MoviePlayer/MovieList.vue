@@ -2,7 +2,6 @@
 <div class="MovieList">
     <div class="p-profile__movie">
         <div class="row">
-            <!-- TODO: アイキャッチ画像の表示 -->
             <div
                 v-for="(movie, index) in movies"
                 :key="movie.id"
@@ -18,7 +17,6 @@
         </div>
     </div>
     <!-- 動画モーダルの設定 -->
-    <!-- TODO: 動画種別によって表示方法を変更する -->
     <div
         v-for="(movie, index) in movies"
         :key="movie.id"

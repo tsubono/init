@@ -326,6 +326,7 @@ class AttendanceController extends Controller
             // 原因はメイト
             $cancel_cause_mate_user_id = $attendance->mate_user_id;
         }
+
         /************* DB操作 *************/
         // 受講ステータス更新
         $attendance = $this->attendanceRepository->update($attendance->id, [
@@ -382,7 +383,7 @@ class AttendanceController extends Controller
         ] + compact('cancel_cause_mate_user_id', 'cancel_cause_adviser_user_id'));
 
         /************* 払い戻し ************/
-        $this->refund($attendance);
+        $this->refundForReport($attendance);
 
         /************* メール通知 *************/
         // 相手ユーザーへ通報メール通知
@@ -431,7 +432,7 @@ class AttendanceController extends Controller
      * 
      * @param Attendance $attendance
      */
-    private function refund(Attendance $attendance): void
+    private function refundForReport(Attendance $attendance): void
     {
         if (auth()->guard('adviser')->check()) {
             // 生徒が授業に現れなかった場合
@@ -476,7 +477,7 @@ class AttendanceController extends Controller
     {
         // 講師の売上金の更新
         if ($dayBefore <= 7) {
-            $penaltyPrice = $attendanceSale->price - $attendanceSale->price * config('burden_ratio.to_adviser.' . $dayBefore);
+            $penaltyPrice = $attendanceSale->price - $attendanceSale->price * config('const.cancel_rate.to_adviser.' . $dayBefore);
             $this->attendanceSaleRepository->updatePriceByCancel($attendance->id, [
                 'price' => intval($penaltyPrice)
             ]);
@@ -500,7 +501,7 @@ class AttendanceController extends Controller
     private function refundForCancelByMate(Attendance $attendance, AttendanceSale $attendanceSale, int $dayBefore): void
     {
         // 生徒へのキャンセル返金
-        $penaltyAmount = -$attendance->mateUserCoin->amount - ($attendanceSale->price * config('burden_ratio.to_mate.' . $dayBefore)) / 100;
+        $penaltyAmount = -$attendance->mateUserCoin->amount - ($attendanceSale->price * config('const.cancel_rate.to_mate.' . $dayBefore)) / 100;
         $this->mateUserCoinRepository->store([
             'mate_user_id' => $attendance->mateUser->id,
             'amount' => round($penaltyAmount),
@@ -508,7 +509,7 @@ class AttendanceController extends Controller
         ]);
 
         // 講師にペナルティ金額の半分を与える
-        $penaltyPrice = ceil($attendanceSale->price * config('burden_ratio.to_mate.'. $dayBefore) / 2);
+        $penaltyPrice = ceil($attendanceSale->price * config('const.cancel_rate.to_mate.'. $dayBefore) / 2);
         $this->attendanceSaleRepository->updatePriceByCancel($attendance->id, [
             'price' => intval($penaltyPrice)
         ]);
