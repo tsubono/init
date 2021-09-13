@@ -21,7 +21,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::get('/lessons/{lesson}', 'LessonController@show')->name('lessons.show');
     Route::get('/advisers', 'AdviserController@index')->name('advisers.index');
     Route::get('/advisers/{adviserUser}', 'AdviserController@show')->name('advisers.show');
-    Route::get('/contact', 'ContactController@show')->name('contact.index');
+    Route::get('/contact', 'ContactController@index')->name('contact.index');
     Route::post('/contact/send', 'ContactController@send')->name('contact.send');
     Route::get('/infos', 'InfoController@index')->name('infos.index');
     Route::get('/infos/{info}', 'InfoController@show')->name('infos.show');

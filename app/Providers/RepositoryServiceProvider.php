@@ -67,6 +67,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\AttendanceMessage\AttendanceMessageRepositoryInterface::class,
             \App\Repositories\AttendanceMessage\AttendanceMessageRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\Contact\ContactRepositoryInterface::class,
+            \App\Repositories\Contact\ContactRepository::class
+        );
     }
 
     /**

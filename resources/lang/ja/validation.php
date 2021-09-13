@@ -145,6 +145,9 @@ return [
         'date' => '日付',
         'time' => '時間',
         'request_text' => 'メッセージ',
-        'content' => 'メッセージ文',
+        'name' => '氏名',
+        'category' => 'カテゴリ',
+        'title' => '件名',
+        'content' => '内容',
     ],
 ];

@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
+use App\Mail\AttendanceReportMail;
+use App\Mail\ContactMail;
+use App\Repositories\Contact\ContactRepositoryInterface;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
+    private ContactRepositoryInterface $contactRepository;
+
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * ContactController constructor.
+     * @param ContactRepositoryInterface $contactRepository
      */
-    public function __construct()
+    public function __construct(ContactRepositoryInterface $contactRepository)
     {
-        //
+        $this->contactRepository = $contactRepository;
     }
 
     /**
@@ -29,10 +36,32 @@ class ContactController extends Controller
     /**
      * お問い合わせ送信処理
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param ContactRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function send()
+    public function send(ContactRequest $request)
     {
-        return view('contact.send');
+        DB::beginTransaction();
+        try {
+            // DB登録
+            $contact = $this->contactRepository->store($request->all());
+
+            // お問い合わせ元へメール送信
+            Mail::to($contact->email)->send(
+                new ContactMail($contact)
+            );
+            // 管理者へメール送信
+            Mail::to(config('mail.admin_email'))->send(
+                new ContactMail($contact, true)
+            );
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new \Exception($e);
+        }
+
+        return redirect(route('contact.index'))->with('success_message', 'お問い合わせの送信が完了しました');
     }
 }
