@@ -64,6 +64,6 @@ class ProfileController extends Controller
             $request->all() + ['can_open_lesson' => true] // 必須事項入力済みなのでレッスン公開フラグをONにする
         );
 
-        return redirect(route('adviser.profile.edit'))->with('success-message', 'プロフィールを更新しました');
+        return redirect(route('adviser.profile.edit'))->with('success_message', 'プロフィールを更新しました');
     }
 }

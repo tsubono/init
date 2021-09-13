@@ -103,4 +103,34 @@ class AttendanceRepository implements AttendanceRepositoryInterface
             throw new \Exception($e);
         }
     }
+
+    /**
+     * 紐づくメッセージを既読にする
+     *
+     * @param int $attendanceId
+     * @param string $fromUserColumn
+     * @throws \Exception
+     */
+    public function updateMessagesToRead(int $attendanceId, string $fromUserColumn): void
+    {
+        DB::beginTransaction();
+        try {
+
+            $attendance = $this->attendance->findOrFail($attendanceId);
+            // 既読ステータス更新処理
+            $attendance->messages()
+                ->where('is_read', false)
+                ->whereNotNull($fromUserColumn)
+                ->update([
+                    'is_read' => true,
+                ]);
+
+            DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new \Exception($e);
+        }
+    }
 }

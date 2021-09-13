@@ -7,6 +7,7 @@ use App\Models\AdviserUserImage;
 use App\Models\AdviserUserMovie;
 use App\Models\AdviserUserPersonalInfo;
 use App\Models\Attendance;
+use App\Models\AttendanceReview;
 use App\Models\AttendanceSale;
 use App\Models\Lesson;
 use App\Models\LessonImage;
@@ -129,6 +130,11 @@ class DummyDataSeeder extends Seeder
                     'subtotal' => $lesson->coin_amount * 100,
                     'status' => 1,
                 ]);
+                AttendanceReview::factory([
+                    'attendance_id' => $attendance->id,
+                    'lesson_id' => $lesson->id,
+                    'mate_user_id' => $attendance->mateUser->id,
+                ])->count(1)->create();
             });
     }
 

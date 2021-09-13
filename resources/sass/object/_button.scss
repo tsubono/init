@@ -38,6 +38,15 @@
         opacity: 0;
       }
     }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      &:hover {
+        color: #fff;
+      }
+    }
   }
   &__white {
     background: #fff;
