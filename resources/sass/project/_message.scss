@@ -53,4 +53,10 @@
     text-align: center;
     margin-top: 90px;
   }
+
+  &__is-read {
+    color: $color-sub-dk;
+    font-size: 15px;
+    text-align: right;
+  }
 }

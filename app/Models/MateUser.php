@@ -60,6 +60,17 @@ class MateUser extends Authenticatable implements MustVerifyEmail
 
     // ============ Attributes ============
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    /**
+     * @return \Illuminate\Database\Eloquent\HigherOrderBuilderProxy|mixed|string
+     */
+    public function getAvatarImageAttribute()
+    {
+        return !empty($this->image_path) ? $this->image_path : asset('img/default-avatar.png');
+    }
+
+    /**
      * @return string
      */
     public function getFullNameAttribute(): string

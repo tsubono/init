@@ -145,5 +145,6 @@ return [
         'date' => '日付',
         'time' => '時間',
         'request_text' => 'メッセージ',
+        'content' => 'メッセージ文',
     ],
 ];

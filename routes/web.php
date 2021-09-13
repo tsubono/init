@@ -38,6 +38,7 @@ Route::middleware(['auth.common'])->namespace('App\Http\Controllers')->group(fun
     Route::post('/attendances/{attendance}/reject', 'AttendanceController@reject')->name('attendances.reject');
     Route::get('/attendances/{attendance}/messages', 'AttendanceController@messages')->name('attendances.messages');
     Route::post('/attendances/{attendance}/send-message', 'AttendanceController@sendMessage')->name('attendances.send-message');
+    Route::get('/attendances/{attendance}/download/{attendanceMessage}/{fileIndex}', 'AttendanceController@downloadMessageFile')->name('attendances.download');
     Route::post('/attendances/{attendance}/review', 'AttendanceController@review')->name('attendances.review');
     Route::post('/attendances/{attendance}/cancel', 'AttendanceController@cancel')->name('attendances.cancel');
     Route::post('/attendances/{attendance}/report', 'AttendanceController@report')->name('attendances.report');
