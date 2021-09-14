@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\Adviser;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdviserProfileBasicRequest;
 use App\Http\Requests\AdviserUserBasicRequest;
 use App\Http\Requests\AdviserUserPasswordRequest;
 use App\Http\Requests\AdviserUserPersonalRequest;
 use App\Http\Requests\AdviserUserTeachRequest;
-use App\Models\AdviserUserPersonalInfo;
 use App\Repositories\AdviserUser\AdviserUserRepositoryInterface;
 use App\Repositories\MstCountry\MstCountryRepositoryInterface;
 use App\Repositories\MstLanguage\MstLanguageRepositoryInterface;
 use App\Repositories\MstRoom\MstRoomRepositoryInterface;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -56,7 +53,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * アドバイザープロフィール更新処理
+     * アドバイザープロフィール更新処理 (基本情報)
      *
      * @param AdviserUserBasicRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector

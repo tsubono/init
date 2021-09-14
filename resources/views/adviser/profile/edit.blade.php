@@ -121,7 +121,6 @@
                                         </label>
                                     </div>
                                 </div>
-
                                 @error('gender')
                                 <div class="p-error-text" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -201,7 +200,7 @@
 
                                 <div class="col-12">
                                     <h3 class="p-heading2">メールアドレス<span class="badge bg-danger ms-2">必須</span></h3>
-                                    <input type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}">
+                                    <input type="text" class="form-control" name="email" value="{{ old('email', $user->email) }}">
                                     @error('email')
                                     <div class="p-error-text" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -233,27 +232,16 @@
                                     <h3 class="p-heading2">プロフィール画像</h3>
                                 </div>
                                 <div class="row">
-                                    <div class="col">
-                                        <file-upload
-                                                name="images[0]"
-                                                image-path="{{ old('images.0', isset($user->adviserUserImages[0]) ? $user->adviserUserImages[0]['image_path'] : null) }}"
-                                                upload-dir="uploaded/advisers/{{ $user->id }}"
-                                        ></file-upload>
-                                    </div>
-                                    <div class="col">
-                                        <file-upload
-                                                name="images[1]"
-                                                image-path="{{ old('images.1', isset($user->adviserUserImages[1]) ? $user->adviserUserImages[1]['image_path'] : null) }}"
-                                                upload-dir="uploaded/advisers/{{ $user->id }}"
-                                        ></file-upload>
-                                    </div>
-                                    <div class="col">
-                                        <file-upload
-                                                name="images[2]"
-                                                image-path="{{ old('images.2', isset($user->adviserUserImages[2]) ? $user->adviserUserImages[2]['image_path'] : null) }}"
-                                                upload-dir="uploaded/advisers/{{ $user->id }}"
-                                        ></file-upload>
-                                    </div>
+                                    @for ($i=0; $i<3; $i++)
+                                        <div class="col">
+                                            <file-upload
+                                                    name="images[{{ $i }}]"
+                                                    image-path="{{ old("images.{$i}", isset($user->adviserUserImages[$i]) ? $user->adviserUserImages[$i]['image_path'] : null) }}"
+                                                    upload-dir="uploaded/advisers/{{ $user->id }}"
+                                            ></file-upload>
+                                        </div>
+                                    @endfor
+
                                     @error('images')
                                     <div class="p-error-text" role="alert">
                                         <strong>{{ $message }}</strong>

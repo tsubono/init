@@ -79,8 +79,14 @@ Route::prefix('mate')->as('mate.')->namespace('App\Http\Controllers\Mate')->grou
 
     Route::middleware(['auth.mate', 'verified.mate'])->group(function () {
         // プロフィール
-        Route::get('/profile', 'ProfileController@edit')->name('profile.edit');
-        Route::post('/profile', 'ProfileController@update')->name('profile.update');
+        Route::get('/profile/basic', 'ProfileController@editBasic')->name('profile.edit');
+        Route::post('/profile/basic', 'ProfileController@updateBasic')->name('profile.update');
+        Route::get('/profile/learn', 'ProfileController@editLearn')->name('profile.edit.learn');
+        Route::post('/profile/learn', 'ProfileController@updateLearn')->name('profile.update.learn');
+        Route::get('/profile/password', 'ProfileController@editPassword')->name('profile.edit.password');
+        Route::post('/profile/password', 'ProfileController@updatePassword')->name('profile.update.password');
+        Route::get('/profile/notice', 'ProfileController@editNotice')->name('profile.edit.notice');
+        Route::post('/profile/notice', 'ProfileController@updateNotice')->name('profile.update.notice');
         // コイン管理
         Route::get('/coins', 'CoinController@index')->name('coins.index');
         Route::get('/coins/buy', 'CoinController@buy')->name('coins.buy');
