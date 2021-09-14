@@ -1,5 +1,9 @@
 <template>
-    <form action="" class="p-form">
+    <form
+        ref="form"
+        action=""
+        class="p-form"
+    >
         <h2 class="p-searchblock__all">
             <span class="d-none d-md-inline">探しているのは</span>
             <select
@@ -146,7 +150,6 @@ export default {
             .keys(this.formData)
             .forEach(key => {
                 const value = params.get(kebabCase(key))
-                console.log(value)
                 if (value) {
                     this.$set(this.formData, key, value)
                 }
@@ -167,7 +170,8 @@ export default {
 
     methods: {
         search () {
-            location.href = this.searchUrl
+            history.pushState('', '', this.searchUrl)
+            this.$emit('search')
         },
     },
 }
