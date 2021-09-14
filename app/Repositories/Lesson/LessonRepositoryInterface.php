@@ -9,14 +9,14 @@ interface LessonRepositoryInterface
     public function getPaginate(int $perCount = 10): LengthAwarePaginator;
     public function getByAdviserIdPaginate(int $adviserUserId, int $perCount = 10): LengthAwarePaginator;
     public function getByConditionPaginate(
-        int $perCount = 10,
-        string $category = null,
-        string $language = null,
-        string $room = null,
-        string $country = null,
-        string $gender = null,
-        int $coinMin = null,
-        int $coinMax = null
+        int $perCount,
+        ?string $category,
+        ?string $language,
+        ?string $room,
+        ?string $country,
+        ?string $gender,
+        ?int $coinMin,
+        ?int $coinMax
     ): LengthAwarePaginator;
     public function store(array $data): void;
     public function update(int $id, array $data): void;

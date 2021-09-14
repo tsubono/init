@@ -47,8 +47,16 @@ class LessonController extends Controller
         $languages = $this->mstLanguageRepository->all();
         $countries = $this->mstCountryRepository->all();
 
-        // TODO: 検索: Repositoryに検索用のメソッド (ex: getByCondition($searchParam) など) を作成して呼び出す
-        $lessons = $this->lessonRepository->getByConditionPaginate();
+        $lessons = $this->lessonRepository->getByConditionPaginate(
+            10,
+            $request->get('category'),
+            $request->get('language'),
+            $request->get('room'),
+            $request->get('country'),
+            $request->get('gender'),
+            $request->get('coin-min'),
+            $request->get('coin-max')
+        );
 
         return view('lessons.index', compact('categories', 'languages', 'countries', 'lessons'));
     }

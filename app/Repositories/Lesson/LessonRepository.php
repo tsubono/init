@@ -4,6 +4,7 @@ namespace App\Repositories\Lesson;
 
 use App\Models\Lesson;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -48,20 +49,54 @@ class LessonRepository implements LessonRepositoryInterface
     }
 
     public function getByConditionPaginate(
-        int $perCount = 10,
-        string $category = null,
-        string $language = null,
-        string $room = null,
-        string $country = null,
-        string $gender = null,
-        int $coinMin = null,
-        int $coinMax = null
+        int $perCount,
+        ?string $category,
+        ?string $language,
+        ?string $room,
+        ?string $country,
+        ?string $gender,
+        ?int $coinMin,
+        ?int $coinMax
     ): LengthAwarePaginator {
-        return $this->lesson
+        $query = $this->lesson
             ->query()
             ->with('categories')
             ->with('adviserUser')
-            ->with('adviserUser.languages')
+            ->with('adviserUser.languages');
+
+        if ($category) {
+            $query->whereHas('categories', function (Builder $query) use ($category) {
+                $query->where('name', $category);
+            });
+        }
+
+        if ($language) {
+            $query->whereHas('adviserUser.languages', function (Builder $query) use ($language) {
+                $query->where('name', $language);
+            });
+        }
+
+        if ($room) {
+            $query->whereHas('categories.room', function (Builder $query) use ($room) {
+                $query->where('name', 'like', "%$room%");
+            });
+        }
+
+        if ($gender) {
+            $query->whereHas('adviserUser', function (Builder $query) use ($gender) {
+                $query->where('gender', $gender);
+            });
+        }
+
+        if ($coinMin) {
+            $query->where('coin_amount', '>=', $coinMin);
+        }
+
+        if ($coinMax) {
+            $query->where('coin_amount', '<=', $coinMax);
+        }
+
+        return $query
             ->orderBy('created_at', 'desc')
             ->paginate($perCount);
     }
