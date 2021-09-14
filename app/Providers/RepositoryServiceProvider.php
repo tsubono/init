@@ -77,6 +77,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\AttendanceReview\AttendanceReviewRepositoryInterface::class,
             \App\Repositories\AttendanceReview\AttendanceReviewRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\TransferRequest\TransferRequestRepositoryInterface::class,
+            \App\Repositories\TransferRequest\TransferRequestRepository::class
+        );
     }
 
     /**

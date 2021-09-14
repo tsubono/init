@@ -205,6 +205,11 @@ class AttendanceController extends Controller
             $attendance = $this->attendanceRepository->update($attendance->id, [
                 'status' => Attendance::STATUS_APPROVAL
             ]);
+            
+            // 1コイン = 100円
+            $price = $attendance->lesson->coin_amount * 100;
+            // アドバイザーに設定されている手数料率から手数料を算出
+            $fee = $price * ($attendance->adviserUser->fee_rate / 100);
             // アドバイザー売上登録
             $this->attendanceSaleRepository->store([
                'adviser_user_id' =>  $attendance->adviser_user_id,
@@ -212,9 +217,9 @@ class AttendanceController extends Controller
                 'name' => $attendance->lesson->name,
                 'coin_amount' => $attendance->lesson->coin_amount,
                 'description' => $attendance->lesson->description,
-                'price' => $attendance->lesson->coin_amount * 100,
-                'fee' => 0, // TODO: 手数料計算
-                'subtotal' => $attendance->lesson->coin_amount * 100,
+                'price' => $price,
+                'fee' => $fee,
+                'subtotal' => $price - $fee,
                 'status' => AttendanceSale::STATUS_PENDING,
             ]);
 
@@ -564,8 +569,10 @@ class AttendanceController extends Controller
             $attendance = $this->attendanceRepository->update($attendance->id, [
                 'status' => Attendance::STATUS_CLOSED
             ]);
-            // TODO: アドバイザーの売上レコードのステータス更新
-
+            $attendanceSale = $this->attendanceSaleRepository->findByAttendanceId($attendance->id);
+            $this->attendanceSaleRepository->update($attendanceSale->id, [
+               'status' => AttendanceSale::STATUS_CONFIRMED
+            ]);
 
             /************* メール通知 *************/
             // メイトへ受講完了メール通知
@@ -591,12 +598,19 @@ class AttendanceController extends Controller
     private function refundForReport(Attendance $attendance): void
     {
         if (auth()->guard('adviser')->check()) {
-            // 生徒が授業に現れなかった場合
+            /***** メイトが授業に現れなかった場合 *****/
+            // 半額払い戻し
+            $price = $attendance->lesson->coin_amount * 50;
+            // アドバイザーに設定されている手数料率から手数料を算出
+            $fee = $price * ($attendance->adviserUser->fee_rate / 100);
             $this->attendanceSaleRepository->updatePriceByReport($attendance->id, [
-                'price' => $attendance->lesson->coin_amount * 50
+                'price' => $price,
+                'fee' => $fee,
+                'subtotal' => $price + $fee,
             ]);
         } else {
-            // メイトへの通報返金(講師が授業に現れなかった場合)
+            /***** アドバイザーが授業に現れなかった場合 *****/
+            // メイトへの通報返金(アドバイザーが授業に現れなかった場合)
             $this->mateUserCoinRepository->store([
                 'mate_user_id' => $attendance->mate_user_id,
                 'amount' => -$attendance->mateUserCoin->amount, // 全額返金のため使用した分を払い戻し
@@ -604,6 +618,8 @@ class AttendanceController extends Controller
             ]);
             $this->attendanceSaleRepository->updatePriceByReport($attendance->id, [
                 'price' => 0,
+                'fee' => 0,
+                'subtotal' => 0,
             ]);
         }
     }
@@ -623,7 +639,7 @@ class AttendanceController extends Controller
     }
 
     /**
-     * 講師からのキャンセルによる払い戻し
+     * アドバイザーからのキャンセルによる払い戻し
      * 
      * @param Attendance $attendance
      * @param AttendanceSale $attendanceSale
@@ -631,11 +647,15 @@ class AttendanceController extends Controller
      */
     private function refundForCancelByAdviser(Attendance $attendance, AttendanceSale $attendanceSale, int $dayBefore): void
     {
-        // 講師の売上金の更新
+        // アドバイザーの売上金の更新
         if ($dayBefore <= 7) {
             $penaltyPrice = $attendanceSale->price - $attendanceSale->price * config('const.cancel_rate.to_adviser.' . $dayBefore);
+            $price = intval($penaltyPrice);
+            $fee = $price * ($attendance->adviserUser->fee_rate / 100);
             $this->attendanceSaleRepository->updatePriceByCancel($attendance->id, [
-                'price' => intval($penaltyPrice)
+                'price' => intval($penaltyPrice),
+                'fee' => $fee,
+                'subtotal' => $price - $fee,
             ]);
         }
 
@@ -648,7 +668,7 @@ class AttendanceController extends Controller
     }
 
     /**
-     * 生徒からのキャンセルによる払い戻し
+     * メイトからのキャンセルによる払い戻し
      * 
      * @param Attendance $attendance
      * @param AttendanceSale $attendanceSale
@@ -656,7 +676,7 @@ class AttendanceController extends Controller
      */
     private function refundForCancelByMate(Attendance $attendance, AttendanceSale $attendanceSale, int $dayBefore): void
     {
-        // 生徒へのキャンセル返金
+        // メイトへのキャンセル返金
         $penaltyAmount = -$attendance->mateUserCoin->amount - ($attendanceSale->price * config('const.cancel_rate.to_mate.' . $dayBefore)) / 100;
         $this->mateUserCoinRepository->store([
             'mate_user_id' => $attendance->mateUser->id,
@@ -664,10 +684,14 @@ class AttendanceController extends Controller
             'note' => "{$attendance->lesson->name}のキャンセル返金",
         ]);
 
-        // 講師にペナルティ金額の半分を与える
+        // アドバイザーにペナルティ金額の半分を与える
         $penaltyPrice = ceil($attendanceSale->price * config('const.cancel_rate.to_mate.'. $dayBefore) / 2);
+        $price = intval($penaltyPrice);
+        $fee = $price * ($attendance->adviserUser->fee_rate / 100);
         $this->attendanceSaleRepository->updatePriceByCancel($attendance->id, [
-            'price' => intval($penaltyPrice)
+            'price' => $price,
+            'fee' => $fee,
+            'subtotal' => $price - $fee,
         ]);
     }
 

@@ -214,3 +214,26 @@
     margin-top: -1px;
   }
 }
+
+.p-status-label {
+  width: 150px;
+  padding: 10px;
+  text-align: center;
+
+  &.primary {
+    @include gradient-lt;
+    font-weight: bold;
+
+    &.accent {
+      color: $color-danger;
+    }
+  }
+
+  &.default {
+    background: #f5f5f5;
+  }
+}
+
+.p-text-underline {
+  text-decoration: underline;
+}

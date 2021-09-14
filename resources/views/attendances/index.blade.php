@@ -116,9 +116,9 @@
                                     <p>受講日時</p>
                                     <h3>{{ $attendance->datetime_txt }}</h3>
                                 </div>
-                                <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#detailModal{{ $index }}">
-                                    詳細
-                                </button>
+                                <a href="{{ route('attendances.show', compact('attendance')) }}" class="primary-link">
+                                    受講詳細へ
+                                </a>
                             </div><!--/.p-card3__detail -->
 
                             <!-- ********* ステータスに応じた各アクション ********* -->
@@ -166,7 +166,7 @@
 
                             <!-- ********* 右上に表示するステータスラベル ********* -->
                             <div class="p-card3__status">
-                                <div class="p-card3__status_label {{ $attendance->status_class }}">
+                                <div class="p-status-label {{ $attendance->status_class }}">
                                     {{ $attendance->status_txt }}
                                 </div>
                             </div><!-- /.p-card3__status -->
@@ -286,90 +286,6 @@
                             </div><!-- /.modal -->
                             <!-- /通報モーダル -->
                         @endif
-                        <!-- 詳細モーダル -->
-                        <div class="modal p-modal p-setting fade" id="detailModal{{ $index }}" tabindex="-1" aria-labelledby="detailModalLabel{{ $index }}">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
-                                    <div class="modal-body">
-                                        <h2 class="p-heading2 mt-0 text-center">受講詳細</h2>
-                                        <div class="mb-3">
-                                            <h3 class="p-heading3">レッスン名</h3>
-                                            <a href="{{ route('lessons.show', ['lesson' => $attendance->lesson]) }}">
-                                                <p>{{ $attendance->lesson->name }}</p>
-                                            </a>
-                                        </div>
-                                        @if (auth()->guard('mate')->check())
-                                            <div class="mb-3">
-                                                <h3 class="p-heading3">アドバイザー</h3>
-                                                @if ($attendance->adviserUser)
-                                                    <a href="{{ route('advisers.show', ['adviserUser' => $attendance->adviserUser]) }}">
-                                                        <p>{{ $attendance->adviserUser->full_name ?? '退会ユーザー' }}</p>
-                                                    </a>
-                                                @else
-                                                    <p>退会ユーザー</p>
-                                                @endif
-                                            </div>
-                                        @else
-                                            <div class="mb-3">
-                                                <h3 class="p-heading3">メイト</h3>
-                                                <p>{{ $attendance->mateUser->full_name ?? '退会ユーザー' }}</p>
-                                            </div>
-                                        @endif
-                                        <div class="mb-3">
-                                            <h3 class="p-heading3">受講申請メッセージ</h3>
-                                            <p>{!! nl2br(e($attendance->request_text)) !!}</p>
-                                        </div>
-                                        @if (!is_null($attendance->reject_text))
-                                            <div class="mb-3">
-                                                <h3 class="p-heading3">受講否認メッセージ</h3>
-                                                <p>{!! nl2br(e($attendance->reject_text)) !!}</p>
-                                            </div>
-                                        @endif
-                                        <div class="mb-3">
-                                            <h3 class="p-heading3">ステータス</h3>
-                                            <p>{{ $attendance->status_txt }}</p>
-
-                                            @if ($attendance->status == \App\Models\Attendance::STATUS_CANCEL)
-                                                <p>キャンセルしたユーザー: {{ !is_null($attendance->cancel_cause_mate_user_id) ? $attendance->mateUser->full_name ?? '退会ユーザー' : $attendance->adviserUser->full_name ?? '退会ユーザー' }}</p>
-                                            @endif
-                                            @if ($attendance->status == \App\Models\Attendance::STATUS_REPORT)
-                                                <p>通報されたユーザー: {{ !is_null($attendance->cancel_cause_mate_user_id) ? $attendance->mateUser->full_name ?? '退会ユーザー' : $attendance->adviserUser->full_name ?? '退会ユーザー' }}</p>
-                                            @endif
-                                        </div>
-                                        @if (count($attendance->reviews) !== 0)
-                                            <div class="mb-3 p-review">
-                                            <h3 class="p-heading3">レビュー</h3>
-                                            <div class="p-review__list">
-                                                @foreach ($attendance->reviews as $review)
-                                                    <div class="p-review-box my-2 w-100">
-                                                        <div class="p-review-box__rate">
-                                                            <label class="{{ 1 <= $review->rate ? 'active' : '' }}">★</label>
-                                                            <label class="{{ 2 <= $review->rate ? 'active' : '' }}">★</label>
-                                                            <label class="{{ 3 <= $review->rate ? 'active' : '' }}">★</label>
-                                                            <label class="{{ 4 <= $review->rate ? 'active' : '' }}">★</label>
-                                                            <label class="{{ 5 <= $review->rate ? 'active' : '' }}">★</label>
-                                                        </div>
-                                                        <div class="d-flex justify-content-between align-items-center mb-2">
-                                                            <div class="d-flex justify-content-between align-items-center">
-                                                                <img src="{{ $review->user->avatar_image ?? asset('img/default-avatar.png') }}" class="p-review-box__avatar" alt="{{ $review->user ? $review->user->full_name : '退会ユーザー' }}のプロフィール画像">
-                                                                <span class="fw-bold ms-3">{{ $review->user->full_name ?? '退会ユーザー' }}</span>
-                                                            </div>
-                                                            <time>{{ $review->created_at->format('Y/m/d H:i') }}</time>
-                                                        </div>
-                                                        <div class="p-review-box__content ms-3">
-                                                            <div class="content-text">{!! nl2br(e($review->content)) !!}</div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                        @endif
-                                    </div><!-- /.modal-body -->
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
-                        <!-- /詳細モーダル -->
                         <!-- ************ /モーダルたち ************ -->
                     @empty
                         <div>該当の受講は見つかりませんでした。</div>

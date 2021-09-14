@@ -34,6 +34,12 @@
             </div>
             @endif
 
+            @if ($attendance->can_review && !$attendance->done_review)
+                <div class="text-center mb-70px">
+                    <a class="p-btn--rect btn-warning p-4" href="{{ route('attendances.review-form', compact('attendance')) }}">レビュー登録する</a>
+                </div>
+            @endif
+
             <div class="d-flex justify-content-between align-items-center mb-5 flex-wrap mt-3">
                 <h1 class="fs-2 fw-bold">「{{ $attendance->lesson->name }}」 に関するメッセージ</h1>
                 @if (auth()->guard('adviser')->check() && $attendance->can_message_action)

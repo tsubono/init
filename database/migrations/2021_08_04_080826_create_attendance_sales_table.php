@@ -24,11 +24,13 @@ class CreateAttendanceSalesTable extends Migration
             $table->integer('fee')->nullable()->default(0)->comment('手数料');
             $table->integer('subtotal')->nullable()->default(0)->comment('小計');
             $table->tinyInteger('status')->comment('ステータス');
+            $table->unsignedBigInteger('transfer_request_id')->comment('振り込申請ID')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');
-            $table->foreign('attendance_id')->references('id')->on('attendances')->onDelete('CASCADE');
+            $table->foreign('adviser_user_id')->references('id')->on('adviser_users');
+            $table->foreign('attendance_id')->references('id')->on('attendances');
+            $table->foreign('transfer_request_id')->references('id')->on('transfer_requests');
         });
     }
 

@@ -471,24 +471,5 @@
       top: 15px;
       right: 30px;
     }
-
-    .p-card3__status_label {
-      width: 150px;
-      padding: 10px;
-      text-align: center;
-
-      &.primary {
-        @include gradient-lt;
-        font-weight: bold;
-
-        &.accent {
-          color: $color-danger;
-        }
-      }
-
-      &.default {
-        background: #f5f5f5;
-      }
-    }
   }
 }

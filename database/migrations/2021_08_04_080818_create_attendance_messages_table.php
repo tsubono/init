@@ -26,9 +26,9 @@ class CreateAttendanceMessagesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');
-            $table->foreign('attendance_id')->references('id')->on('attendances')->onDelete('CASCADE');
-            $table->foreign('mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');
+            $table->foreign('adviser_user_id')->references('id')->on('adviser_users');
+            $table->foreign('attendance_id')->references('id')->on('attendances');
+            $table->foreign('mate_user_id')->references('id')->on('mate_users');
         });
     }
 
