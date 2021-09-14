@@ -5,16 +5,20 @@
             :languages="languages"
             :countries="countries"
         />
+        <SearchLessonsResult
+            :lessons="lessons"
+        />
     </div>
 </template>
 
 <script>
 import SearchLessonsForm from './SearchLessonsForm'
+import SearchLessonsResult from './SearchLessonsResult'
 
 export default {
     name: 'SearchLessons',
 
-    components: {SearchLessonsForm},
+    components: {SearchLessonsResult, SearchLessonsForm},
 
     props: {
         lessons: {

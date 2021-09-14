@@ -48,7 +48,7 @@ class LessonController extends Controller
         $countries = $this->mstCountryRepository->all();
 
         // TODO: 検索: Repositoryに検索用のメソッド (ex: getByCondition($searchParam) など) を作成して呼び出す
-        $lessons = $this->lessonRepository->getPaginate();
+        $lessons = $this->lessonRepository->getByConditionPaginate();
 
         return view('lessons.index', compact('categories', 'languages', 'countries', 'lessons'));
     }

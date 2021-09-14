@@ -16,12 +16,13 @@ class LessonRepository implements LessonRepositoryInterface
 {
     private Lesson $lesson;
 
-    public function __construct(Lesson $lesson) {
+    public function __construct(Lesson $lesson)
+    {
         $this->lesson = $lesson;
     }
 
     /**
-     * @param int $perCount
+     * @param  int  $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function getPaginate(int $perCount = 10): LengthAwarePaginator
@@ -33,8 +34,8 @@ class LessonRepository implements LessonRepositoryInterface
     }
 
     /**
-     * @param int $adviserUserId
-     * @param int $perCount
+     * @param  int  $adviserUserId
+     * @param  int  $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function getByAdviserIdPaginate(int $adviserUserId, int $perCount = 10): LengthAwarePaginator
@@ -46,8 +47,27 @@ class LessonRepository implements LessonRepositoryInterface
             ->paginate($perCount);
     }
 
+    public function getByConditionPaginate(
+        int $perCount = 10,
+        string $category = null,
+        string $language = null,
+        string $room = null,
+        string $country = null,
+        string $gender = null,
+        int $coinMin = null,
+        int $coinMax = null
+    ): LengthAwarePaginator {
+        return $this->lesson
+            ->query()
+            ->with('categories')
+            ->with('adviserUser')
+            ->with('adviserUser.languages')
+            ->orderBy('created_at', 'desc')
+            ->paginate($perCount);
+    }
+
     /**
-     * @param array $data
+     * @param  array  $data
      * @return void
      */
     public function store(array $data): void
@@ -71,7 +91,7 @@ class LessonRepository implements LessonRepositoryInterface
             // 動画
             foreach ($data['movies'] ?? [] as $sort => $movie) {
                 if (!is_null($movie['eye_catch_path']) && !is_null($movie['type']) && !is_null($movie['movie_path'])) {
-                    $lesson->movies()->create([ 'sort' => $sort ] + $movie);
+                    $lesson->movies()->create(['sort' => $sort] + $movie);
                 }
             }
 
@@ -85,8 +105,8 @@ class LessonRepository implements LessonRepositoryInterface
     }
 
     /**
-     * @param int $id
-     * @param array $data
+     * @param  int  $id
+     * @param  array  $data
      */
     public function update(int $id, array $data): void
     {
@@ -101,7 +121,7 @@ class LessonRepository implements LessonRepositoryInterface
                 if (!is_null($image)) {
                     $lesson->images()->updateOrCreate([
                         'sort' => $sort,
-                    ], [ 'image_path' => $image ]);
+                    ], ['image_path' => $image]);
                 }
             }
             // カテゴリ
@@ -109,7 +129,7 @@ class LessonRepository implements LessonRepositoryInterface
             // 動画
             foreach ($data['movies'] ?? [] as $sort => $movie) {
                 if (!is_null($movie['eye_catch_path']) && !is_null($movie['type']) && !is_null($movie['movie_path'])) {
-                    $lesson->movies()->updateOrCreate([ 'sort' => $sort ], $movie);
+                    $lesson->movies()->updateOrCreate(['sort' => $sort], $movie);
                 }
             }
 
@@ -123,7 +143,7 @@ class LessonRepository implements LessonRepositoryInterface
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      * @return void
      * @throws \Exception
      */

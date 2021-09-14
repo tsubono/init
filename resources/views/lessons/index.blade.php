@@ -7,6 +7,6 @@
         :categories="{{ $categories }}"
         :languages="{{ $languages }}"
         :countries="{{ $countries }}"
-        :lessons="{{ $lessons }}"
+        :lessons="{{ json_encode($lessons->items()) }}"
     ></search-lessons>
 @endsection

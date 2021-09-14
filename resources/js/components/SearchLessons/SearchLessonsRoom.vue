@@ -29,17 +29,17 @@
         </div><!-- /.p-card3__info -->
         <div class="p-card3__advisor">
           <div class="p-card3__advisor_img">
-            <img :src="lesson.adviserUser.avatar_image" alt="アドバイザー画像">
+            <img :src="lesson.adviser_user.avatar_image" alt="アドバイザー画像">
           </div>
           <div class="p-card3__advisor_text">
             <h4>
-              {{ lesson.adviserUser.full_name }}
+              {{ lesson.adviser_user.full_name }}
             </h4>
             <div class="p-card3__box">
               <h5 class="p-heading3">言語</h5>
               <div class="p-card3__country">
                 <p>
-                  {{ lesson.adviserUser.languages.map(({ name }) => name).join(' / ') }}
+                  {{ lesson.adviser_user.languages.map(({ name }) => name).join(' / ') }}
                 </p>
               </div>
             </div>
@@ -58,38 +58,38 @@
             <ul class="p-timezone__list">
               <li>
                 月　
-                <span class="time time-first">{{ lesson.adviserUser.available_time_monday_start }}</span>
-                <span class="time time-last">{{ lesson.adviserUser.available_time_monday_end }}</span>
+                <span class="time time-first">{{ lesson.adviser_user.available_time_monday_start }}</span>
+                <span class="time time-last">{{ lesson.adviser_user.available_time_monday_end }}</span>
               </li>
               <li>
                 火　
-                <span class="time time-first">{{ lesson.adviserUser.available_time_tuesday_start }}</span>
-                <span class="time time-last">{{ lesson.adviserUser.available_time_tuesday_end }}</span>
+                <span class="time time-first">{{ lesson.adviser_user.available_time_tuesday_start }}</span>
+                <span class="time time-last">{{ lesson.adviser_user.available_time_tuesday_end }}</span>
               </li>
               <li>
                 水　
-                <span class="time time-first">{{ lesson.adviserUser.available_time_wednesday_start }}</span>
-                <span class="time time-last">{{ lesson.adviserUser.available_time_wednesday_end }}</span>
+                <span class="time time-first">{{ lesson.adviser_user.available_time_wednesday_start }}</span>
+                <span class="time time-last">{{ lesson.adviser_user.available_time_wednesday_end }}</span>
               </li>
               <li>
                 木　
-                <span class="time time-first">{{ lesson.adviserUser.available_time_thursday_start }}</span>
-                <span class="time time-last">{{ lesson.adviserUser.available_time_thursday_end }}</span>
+                <span class="time time-first">{{ lesson.adviser_user.available_time_thursday_start }}</span>
+                <span class="time time-last">{{ lesson.adviser_user.available_time_thursday_end }}</span>
               </li>
               <li>
                 金　
-                <span class="time time-first">{{ lesson.adviserUser.available_time_friday_start }}</span>
-                <span class="time time-last">{{ lesson.adviserUser.available_time_friday_end }}</span>
+                <span class="time time-first">{{ lesson.adviser_user.available_time_friday_start }}</span>
+                <span class="time time-last">{{ lesson.adviser_user.available_time_friday_end }}</span>
               </li>
               <li>
                 土　
-                <span class="time time-first">{{ lesson.adviserUser.available_time_saturday_start }}</span>
-                <span class="time time-last">{{ lesson.adviserUser.available_time_saturday_end }}</span>
+                <span class="time time-first">{{ lesson.adviser_user.available_time_saturday_start }}</span>
+                <span class="time time-last">{{ lesson.adviser_user.available_time_saturday_end }}</span>
               </li>
               <li>
                 日　
-                <span class="time time-first">{{ lesson.adviserUser.available_time_sunday_start }}</span>
-                <span class="time time-last">{{ lesson.adviserUser.available_time_sunday_end }}</span>
+                <span class="time time-first">{{ lesson.adviser_user.available_time_sunday_start }}</span>
+                <span class="time time-last">{{ lesson.adviser_user.available_time_sunday_end }}</span>
               </li>
             </ul>
           </div>
@@ -116,9 +116,9 @@ export default {
     },
     description () {
       if (this.lesson.description.length <= 200) {
-        return this.lesson
+        return this.lesson.description
       } else {
-        return this.lesson.slice(0, 200) + '...'
+        return this.lesson.description.slice(0, 200) + '...'
       }
     }
   },
