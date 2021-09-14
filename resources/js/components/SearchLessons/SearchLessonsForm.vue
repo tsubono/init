@@ -5,6 +5,7 @@
             <select
                 class="form-select"
                 v-model="formData.category"
+                @change="search"
             >
                 <option value="">すべてのカテゴリ</option>
                 <option
@@ -27,6 +28,7 @@
                     <select
                         class="form-select"
                         v-model="formData.language"
+                        @change="search"
                     >
                         <option value="">指定しない</option>
                         <option
@@ -45,6 +47,7 @@
                         class="form-control"
                         placeholder="記入してください"
                         v-model="formData.room"
+                        @change="search"
                     >
                 </div>
                 <div class="col-lg-3 col-6 mb-md-4">
@@ -52,6 +55,7 @@
                     <select
                         class="form-select"
                         v-model="formData.country"
+                        @change="search"
                     >
                         <option value="">指定しない</option>
                         <option
@@ -68,6 +72,7 @@
                     <select
                         class="form-select"
                         v-model="formData.gender"
+                        @change="search"
                     >
                         <option value="">すべて</option>
                         <option value="男性">男性</option>
@@ -82,6 +87,7 @@
                             class="form-control"
                             placeholder="最低コイン"
                             v-model="formData.coinMin"
+                            @change="search"
                         >
                         <span class="mx-2">〜</span>
                         <input
@@ -89,6 +95,7 @@
                             class="form-control"
                             placeholder="上限コイン"
                             v-model="formData.coinMax"
+                            @change="search"
                         >
                     </div>
                 </div>
@@ -98,6 +105,8 @@
 </template>
 
 <script>
+import { kebabCase } from 'lodash/string'
+
 export default {
     name: 'SearchLessonsForm',
 
@@ -129,6 +138,38 @@ export default {
             coinMax: '',
         },
     }),
+
+    created () {
+        const params = new URLSearchParams(location.search)
+
+        Object
+            .keys(this.formData)
+            .forEach(key => {
+                const value = params.get(kebabCase(key))
+                console.log(value)
+                if (value) {
+                    this.$set(this.formData, key, value)
+                }
+            })
+    },
+
+    computed: {
+        searchUrl () {
+            const params = '?' + Object
+                .entries(this.formData)
+                .filter(([_, value]) => value)
+                .map(([key, value]) => `${kebabCase(key)}=${encodeURIComponent(value)}`)
+                .join('&')
+
+            return location.origin + location.pathname + params
+        },
+    },
+
+    methods: {
+        search () {
+            location.href = this.searchUrl
+        },
+    },
 }
 </script>
 
