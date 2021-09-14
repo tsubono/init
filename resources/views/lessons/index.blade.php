@@ -8,8 +8,11 @@
             <!-- TODO: セレクトボックスを実データに置き換え・検索処理実装 -->
             <form action="" class="p-form">
                 <h2 class="p-searchblock__all"><span class="d-none d-md-inline">探しているのは</span>
-                    <select class="form-select" id="">
+                    <select class="form-select" id="category">
                         <option selected>すべてのカテゴリ</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
                     </select>のレッスン。</h2>
                 <a class="p-btn p-btn__outline d-md-none" data-bs-toggle="collapse" href="#collapseDetail" role="button" aria-expanded="false" aria-controls="collapseDetail">
                     詳細検索
@@ -18,8 +21,11 @@
                     <div class="row">
                         <div class="col-md-6 mb-3 mb-md-4">
                             <h3 class="p-heading3">アドバイザーが話せる言語</h3>
-                            <select class="form-select" id="">
+                            <select class="form-select" id="language">
                                 <option selected>指定しない</option>
+                                @foreach($languages as $language)
+                                    <option value="{{ $language->id  }}">{{ $language->name  }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-6 mb-3 mb-md-4">
@@ -28,26 +34,27 @@
                         </div>
                         <div class="col-lg-3 col-6 mb-md-4">
                             <h3 class="p-heading3"><span class="d-none d-md-inline">アドバイザーの</span>出身国</h3>
-                            <select class="form-select" id="">
+                            <select class="form-select" id="country">
                                 <option selected>指定しない</option>
+                                @foreach($countries as $country)
+                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-lg-3 col-6">
                             <h3 class="p-heading3"><span class="d-none d-md-inline">アドバイザーの</span>性別</h3>
-                            <select class="form-select" id="">
+                            <select class="form-select" id="gender">
                                 <option selected>すべて</option>
+                                <option value="男性">男性</option>
+                                <option value="女性">女性</option>
                             </select>
                         </div>
                         <div class="col-lg-6">
                             <h3 class="p-heading3">必要コイン</h3>
                             <div class="d-flex align-items-center">
-                                <select class="form-select mb-0" id="">
-                                    <option selected>最低コイン</option>
-                                </select>
+                                <input type="number" id="coin-min" class="form-control" placeholder="最低コイン">
                                 <span class="mx-2">〜</span>
-                                <select class="form-select mb-0" id="">
-                                    <option selected>上限コイン</option>
-                                </select>
+                                <input type="number" id="coin-max" class="form-control" placeholder="上限コイン">
                             </div>
                         </div>
                     </div><!-- /.row -->
