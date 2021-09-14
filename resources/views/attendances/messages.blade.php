@@ -5,9 +5,38 @@
 @section('content')
     <section class="p-message l-content-block">
         <div class="container">
+            @if (count($attendance->reviews) !== 0)
+            <div class="p-5 p-review">
+                <h3 class="p-heading3"><b>レビュー</b></h3>
+                <div class="px-5 d-flex flex-column align-items-center p-review__list">
+                    @foreach ($attendance->reviews as $review)
+                        <div class="p-review-box my-2 w-100">
+                            <div class="p-review-box__rate">
+                                <label class="{{ 1 <= $review->rate ? 'active' : '' }}">★</label>
+                                <label class="{{ 2 <= $review->rate ? 'active' : '' }}">★</label>
+                                <label class="{{ 3 <= $review->rate ? 'active' : '' }}">★</label>
+                                <label class="{{ 4 <= $review->rate ? 'active' : '' }}">★</label>
+                                <label class="{{ 5 <= $review->rate ? 'active' : '' }}">★</label>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <img src="{{ $review->user->avatar_image ?? asset('img/default-avatar.png') }}" class="p-review-box__avatar" alt="{{ $review->user ? $review->user->full_name : '退会ユーザー' }}のプロフィール画像">
+                                    <span class="fw-bold ms-3">{{ $review->user->full_name ?? '退会ユーザー' }}</span>
+                                </div>
+                                <time>{{ $review->created_at->format('Y/m/d H:i') }}</time>
+                            </div>
+                            <div class="p-review-box__content ms-3">
+                                <div class="content-text">{!! nl2br(e($review->content)) !!}</div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            @endif
+
             <div class="d-flex justify-content-between align-items-center mb-5 flex-wrap mt-3">
                 <h1 class="fs-2 fw-bold">「{{ $attendance->lesson->name }}」 に関するメッセージ</h1>
-                @if (auth()->guard('adviser')->check() && $canAction)
+                @if (auth()->guard('adviser')->check() && $attendance->can_message_action)
                     <button type="button" class="p-btn p-btn__defalut px-70px mt-3" data-bs-toggle="modal" data-bs-target="#closeModal">
                         受講完了にする
                     </button>
@@ -66,7 +95,7 @@
                 </div>
             @endforelse
 
-            @if ($canAction)
+            @if ($attendance->can_message_action)
                 <div class="p-message__message-box">
                     <form action="{{ route('attendances.send-message', compact('attendance')) }}" method="post">
                         @csrf
@@ -120,11 +149,14 @@
                     @endif
                 </div>
             @else
-                <div class="p-message__message-box text-center p-error-text">この受講は完了しているのでメッセージの送受信は行えません</div>
+                <div class="p-message__message-box text-center p-error-text">
+                    この受講はクローズしているのでメッセージの送受信は行えません。<br>
+                    お困りのことがございましたら<a class="primary-link" href="{{ route('contact.index') }}" target="_blank">お問い合わせ</a>をお願いいたします。
+                </div>
             @endif
         </div><!-- /.container -->
 
-        @if (auth()->guard('adviser')->check() && $canAction)
+        @if (auth()->guard('adviser')->check() && $attendance->can_message_action)
             <!-- 受講完了モーダル -->
             <div class="modal p-modal p-setting fade" id="closeModal" tabindex="-1" aria-labelledby="closeModalLabel">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
