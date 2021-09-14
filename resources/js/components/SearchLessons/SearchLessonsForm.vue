@@ -162,21 +162,17 @@ export default {
     },
 
     computed: {
-        searchUrl () {
-            const params = '?' + Object
+        searchParams () {
+            return Object
                 .entries(this.formData)
                 .filter(([_, value]) => value)
-                .map(([key, value]) => `${kebabCase(key)}=${encodeURIComponent(value)}`)
-                .join('&')
-
-            return location.origin + location.pathname + params
+                .reduce((sub, [key, value]) => ({ ...sub, [kebabCase(key)]: value }), {})
         },
     },
 
     methods: {
         search () {
-            history.pushState('', '', this.searchUrl)
-            this.$emit('search')
+            this.$emit('search', this.searchParams)
         },
     },
 }

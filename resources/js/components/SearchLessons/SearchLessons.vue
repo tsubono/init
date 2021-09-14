@@ -4,10 +4,9 @@
             :categories="categories"
             :languages="languages"
             :countries="countries"
+            @search="handleSearch"
         />
-        <SearchLessonsResult
-            :lessons="lessons"
-        />
+        <SearchLessonsResult :lessons="_lessons" />
     </div>
 </template>
 
@@ -40,6 +39,37 @@ export default {
             type: Array,
             required: true,
         },
+    },
+
+    data: () => ({
+        _lessons: [],
+    }),
+
+    created () {
+        this._lessons = this.lessons
+    },
+
+    methods: {
+        async handleSearch (params) {
+            let response
+
+            try {
+                response = await axios.get('/api/lessons/search', { params })
+            } catch (e) {
+                console.error(e)
+                return
+            }
+
+            this._lessons = response.data
+            this.$forceUpdate()
+            this.setUrl(params)
+        },
+
+        setUrl (params) {
+            const paramsString = Object.entries(params).map((param) => param.join('=')).join('&')
+            const url = location.origin + location.pathname + '?' + paramsString
+            history.pushState('', '', url)
+        }
     },
 }
 </script>
