@@ -56,7 +56,24 @@ class LessonRepository implements LessonRepositoryInterface
 
         try {
             $lesson = $this->lesson->create($data);
-            // TODO: リレーションの登録
+
+            // 画像
+            foreach ($data['images'] ?? [] as $sort => $image) {
+                if (!is_null($image)) {
+                    $lesson->images()->create([
+                        'sort' => $sort,
+                        'image_path' => $image
+                    ]);
+                }
+            }
+            // カテゴリ
+            $lesson->categories()->sync($data['mst_category_ids'] ?? []);
+            // 動画
+            foreach ($data['movies'] ?? [] as $sort => $movie) {
+                if (!is_null($movie['eye_catch_path']) && !is_null($movie['type']) && !is_null($movie['movie_path'])) {
+                    $lesson->movies()->create([ 'sort' => $sort ] + $movie);
+                }
+            }
 
             DB::commit();
 
@@ -79,7 +96,22 @@ class LessonRepository implements LessonRepositoryInterface
             $lesson = $this->lesson->findOrFail($id);
             $lesson->update($data);
 
-            // TODO: リレーションの更新
+            // 画像
+            foreach ($data['images'] ?? [] as $sort => $image) {
+                if (!is_null($image)) {
+                    $lesson->images()->updateOrCreate([
+                        'sort' => $sort,
+                    ], [ 'image_path' => $image ]);
+                }
+            }
+            // カテゴリ
+            $lesson->categories()->sync($data['mst_category_ids'] ?? []);
+            // 動画
+            foreach ($data['movies'] ?? [] as $sort => $movie) {
+                if (!is_null($movie['eye_catch_path']) && !is_null($movie['type']) && !is_null($movie['movie_path'])) {
+                    $lesson->movies()->updateOrCreate([ 'sort' => $sort ], $movie);
+                }
+            }
 
             DB::commit();
 

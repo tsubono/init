@@ -49,5 +49,15 @@ return [
             1 => 1,
             0 => 1,
         ],
-    ]
+    ],
+
+    // 動画種別
+    'movie_types' => [
+      'youtube',
+      'vimeo',
+      'twitter',
+      'fb',
+      'instagram',
+      'tiktok',
+    ],
 ];

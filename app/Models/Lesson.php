@@ -12,6 +12,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Lesson extends Model
 {
     use HasFactory, SoftDeletes;
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
+
+    protected $softCascade = ['images', 'movies', 'categories'];
 
     protected $guarded = ['id'];
 
@@ -73,5 +76,13 @@ class Lesson extends Model
         $image = $this->images()->first();
 
         return !empty($image) ? $image->image_path : asset('img/default-image.png');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoryIdsAttribute()
+    {
+        return $this->categories->pluck('id')->toArray();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Adviser;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LessonRequest;
 use App\Models\Lesson;
 use App\Repositories\Lesson\LessonRepositoryInterface;
 use App\Repositories\MstLanguage\MstLanguageRepositoryInterface;
@@ -62,13 +63,13 @@ class LessonController extends Controller
     /**
      *  (アドバイザーマイページ) レッスン登録処理
      *
-     * @param Request $request
+     * @param LessonRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(LessonRequest $request)
     {
-        $user = auth()->guard('adviser')->user();
-        $this->lessonRepository->store($request->all() + ['adviser_user_id' => $user->id]);
+        $adviserUser = auth()->guard('adviser')->user();
+        $this->lessonRepository->store($request->all() + ['adviser_user_id' => $adviserUser->id]);
 
         return redirect(route('adviser.lessons.index'))->with('success_message', 'レッスン情報を登録しました');
     }
@@ -92,10 +93,10 @@ class LessonController extends Controller
      *  (アドバイザーマイページ) レッスン更新処理
      *
      * @param Lesson $lesson
-     * @param Request $request
+     * @param LessonRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Lesson $lesson, Request $request)
+    public function update(Lesson $lesson, LessonRequest $request)
     {
         $this->lessonRepository->update($lesson->id, $request->all());
 

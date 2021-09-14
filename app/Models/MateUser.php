@@ -90,4 +90,20 @@ class MateUser extends Authenticatable implements MustVerifyEmail
 
         return is_null($totalCoinAmount) ? 0 : $totalCoinAmount;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoryIdsAttribute()
+    {
+        return $this->categories->pluck('id')->toArray();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguageIdsAttribute()
+    {
+        return $this->languages->pluck('id')->toArray();
+    }
 }

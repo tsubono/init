@@ -209,4 +209,20 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
         return !is_null($this->middle_name) ?
             "{$this->first_name} {$this->middle_name} {$this->family_name}" : "{$this->first_name} {$this->family_name}";
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoryIdsAttribute()
+    {
+        return $this->categories->pluck('id')->toArray();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguageIdsAttribute()
+    {
+        return $this->languages->pluck('id')->toArray();
+    }
 }
