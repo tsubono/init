@@ -2,8 +2,11 @@
     <form action="" class="p-form">
         <h2 class="p-searchblock__all">
             <span class="d-none d-md-inline">探しているのは</span>
-            <select class="form-select" id="category">
-                <option selected>すべてのカテゴリ</option>
+            <select
+                class="form-select"
+                v-model="formData.category"
+            >
+                <option value="">すべてのカテゴリ</option>
                 <option
                     v-for="category in categories"
                     :key="category.id"
@@ -21,8 +24,11 @@
             <div class="row">
                 <div class="col-md-6 mb-3 mb-md-4">
                     <h3 class="p-heading3">アドバイザーが話せる言語</h3>
-                    <select class="form-select" id="language">
-                        <option selected>指定しない</option>
+                    <select
+                        class="form-select"
+                        v-model="formData.language"
+                    >
+                        <option value="">指定しない</option>
                         <option
                             v-for="language in languages"
                             :key="language.id"
@@ -34,12 +40,20 @@
                 </div>
                 <div class="col-md-6 mb-3 mb-md-4">
                     <h3 class="p-heading3">ルーム名</h3>
-                    <input type="text" class="form-control" placeholder="記入してください">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="記入してください"
+                        v-model="formData.room"
+                    >
                 </div>
                 <div class="col-lg-3 col-6 mb-md-4">
                     <h3 class="p-heading3"><span class="d-none d-md-inline">アドバイザーの</span>出身国</h3>
-                    <select class="form-select" id="country">
-                        <option selected>指定しない</option>
+                    <select
+                        class="form-select"
+                        v-model="formData.country"
+                    >
+                        <option value="">指定しない</option>
                         <option
                             v-for="country in countries"
                             :key="country.id"
@@ -51,8 +65,11 @@
                 </div>
                 <div class="col-lg-3 col-6">
                     <h3 class="p-heading3"><span class="d-none d-md-inline">アドバイザーの</span>性別</h3>
-                    <select class="form-select" id="gender">
-                        <option selected>すべて</option>
+                    <select
+                        class="form-select"
+                        v-model="formData.gender"
+                    >
+                        <option value="">すべて</option>
                         <option value="男性">男性</option>
                         <option value="女性">女性</option>
                     </select>
@@ -60,9 +77,19 @@
                 <div class="col-lg-6">
                     <h3 class="p-heading3">必要コイン</h3>
                     <div class="d-flex align-items-center">
-                        <input type="number" id="coin-min" class="form-control" placeholder="最低コイン">
+                        <input
+                            type="number"
+                            class="form-control"
+                            placeholder="最低コイン"
+                            v-model="formData.coinMin"
+                        >
                         <span class="mx-2">〜</span>
-                        <input type="number" id="coin-max" class="form-control" placeholder="上限コイン">
+                        <input
+                            type="number"
+                            class="form-control"
+                            placeholder="上限コイン"
+                            v-model="formData.coinMax"
+                        >
                     </div>
                 </div>
             </div><!-- /.row -->
@@ -90,6 +117,18 @@ export default {
             required: true,
         },
     },
+
+    data:() => ({
+        formData: {
+            category: '',
+            language: '',
+            room: '',
+            country: '',
+            gender: '',
+            coinMin: '',
+            coinMax: '',
+        },
+    }),
 }
 </script>
 
