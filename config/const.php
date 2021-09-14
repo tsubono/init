@@ -60,4 +60,9 @@ return [
       'instagram',
       'tiktok',
     ],
+
+    // リマインダー
+    'reminder_minute' => [
+        15,
+    ],
 ];
