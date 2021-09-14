@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Notifications\MateVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -105,5 +106,29 @@ class MateUser extends Authenticatable implements MustVerifyEmail
     public function getLanguageIdsAttribute()
     {
         return $this->languages->pluck('id')->toArray();
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getBirthdayYearAttribute()
+    {
+        return !is_null($this->birthday) ? Carbon::parse($this->birthday)->year : '';
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getBirthdayMonthAttribute()
+    {
+        return !is_null($this->birthday) ? Carbon::parse($this->birthday)->month : '';
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getBirthdayDayAttribute()
+    {
+        return !is_null($this->birthday) ? Carbon::parse($this->birthday)->day : '';
     }
 }

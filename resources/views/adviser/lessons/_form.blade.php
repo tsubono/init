@@ -13,13 +13,25 @@
         <h3 class="p-heading2">画像<span class="badge bg-danger ms-2">必須</span></h3>
         <div class="row">
             <div class="col">
-                <file-upload name="images[0]" image-path="{{ old('images.0', isset($lesson->images[0]) ? $lesson->images[0]['image_path'] : null) }}"></file-upload>
+                <file-upload
+                        name="images[0]"
+                        image-path="{{ old('images.0', isset($lesson->images[0]) ? $lesson->images[0]['image_path'] : null) }}"
+                        upload-dir="uploaded/advisers/{{ auth()->guard('adviser')->user()->id }}/lesson"
+                ></file-upload>
             </div>
             <div class="col">
-                <file-upload name="images[1]" image-path="{{ old('images.1', isset($lesson->images[1]) ? $lesson->images[1]['image_path'] : null) }}"></file-upload>
+                <file-upload
+                        name="images[1]"
+                        image-path="{{ old('images.1', isset($lesson->images[1]) ? $lesson->images[1]['image_path'] : null) }}"
+                        upload-dir="uploaded/advisers/{{ auth()->guard('adviser')->user()->id }}/lesson"
+                ></file-upload>
             </div>
             <div class="col">
-                <file-upload name="images[2]" image-path="{{ old('images.2', isset($lesson->images[2]) ? $lesson->images[2]['image_path'] : null) }}"></file-upload>
+                <file-upload
+                        name="images[2]"
+                        image-path="{{ old('images.2', isset($lesson->images[2]) ? $lesson->images[2]['image_path'] : null) }}"
+                        upload-dir="uploaded/advisers/{{ auth()->guard('adviser')->user()->id }}/lesson"
+                ></file-upload>
             </div>
             @error('images')
             <div class="p-error-text" role="alert">
@@ -157,8 +169,10 @@
             @for ($i=0; $i<3; $i++)
                 <div class="mb-2 mx-2 flex-grow-1">
                     <p class="small">アイキャッチ画像</p>
-                    <file-upload name="movies[{{ $i }}][eye_catch_path]"
-                                 image-path="{{ old("movies.{$i}.eye_catch_path", isset($lesson->movies[$i]) ? $lesson->movies[$i]['eye_catch_path'] : null) }}"
+                    <file-upload
+                            name="movies[{{ $i }}][eye_catch_path]"
+                            image-path="{{ old("movies.{$i}.eye_catch_path", isset($lesson->movies[$i]) ? $lesson->movies[$i]['eye_catch_path'] : null) }}"
+                            upload-dir="uploaded/advisers/{{ auth()->guard('adviser')->user()->id }}/lessons"
                     ></file-upload>
                     <p class="small mt-1">動画種別</p>
                     <select class="form-select col-2" name="movies[{{ $i }}][type]">

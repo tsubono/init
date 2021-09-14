@@ -54,8 +54,14 @@ Route::prefix('adviser')->as('adviser.')->namespace('App\Http\Controllers\Advise
 
     Route::middleware(['auth.adviser', 'verified.adviser'])->group(function () {
         // プロフィール
-        Route::get('/profile', 'ProfileController@edit')->name('profile.edit');
-        Route::post('/profile', 'ProfileController@update')->name('profile.update');
+        Route::get('/profile/basic', 'ProfileController@editBasic')->name('profile.edit');
+        Route::post('/profile/basic', 'ProfileController@updateBasic')->name('profile.update');
+        Route::get('/profile/teach', 'ProfileController@editTeach')->name('profile.edit.teach');
+        Route::post('/profile/teach', 'ProfileController@updateTeach')->name('profile.update.teach');
+        Route::get('/profile/password', 'ProfileController@editPassword')->name('profile.edit.password');
+        Route::post('/profile/password', 'ProfileController@updatePassword')->name('profile.update.password');
+        Route::get('/profile/personal', 'ProfileController@editPersonal')->name('profile.edit.personal');
+        Route::post('/profile/personal', 'ProfileController@updatePersonal')->name('profile.update.personal');
         // レッスン管理
         Route::resource('/lessons', 'LessonController')->except(['show']);
         // 売上管理

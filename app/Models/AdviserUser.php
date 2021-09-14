@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 
 class AdviserUser extends Authenticatable implements MustVerifyEmail
 {
@@ -116,6 +117,7 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
      */
     public function getAgeTxtAttribute()
     {
+        $ageTxt = null;
         $age = Carbon::parse($this->birthday)->age;
 
         switch($age) {
@@ -133,6 +135,21 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
                 break;
             case $age <= 59:
                 $ageTxt = '50〜59歳';
+                break;
+            case $age <= 69:
+                $ageTxt = '60〜69歳';
+                break;
+            case $age <= 79:
+                $ageTxt = '70〜79歳';
+                break;
+            case $age <= 89:
+                $ageTxt = '80〜89歳';
+                break;
+            case $age <= 99:
+                $ageTxt = '90〜99歳';
+                break;
+            case $age <= 109:
+                $ageTxt = '100〜109歳';
                 break;
         };
 
@@ -182,20 +199,20 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
         if ($diffDate->d >= 1) {
             $lastLoginTxt = $diffDate->d >= 3
                 ? '3日以上'
-                : $diffDate->d . '日';
+                : $diffDate->d . '日前';
         }
 
         // dayは0日、hourが1時間以上ある場合
         if ($diffDate->d === 0 && $diffDate->h >= 1) {
-            $lastLoginTxt = $diffDate->h . '時間';
+            $lastLoginTxt = $diffDate->h . '時間前';
         }
 
         // dayは0日、hourが0時間、minutesが1分以上ある場合
         if ($diffDate->d === 0 && $diffDate->h === 0 && $diffDate->i >= 1) {
             $minutes = ceil($diffDate->i / 10) * 10;
             $lastLoginTxt = $minutes === 60
-                ? '1時間'
-                : $minutes . '分';
+                ? '1時間前'
+                : $minutes . '分前';
         }
 
         return $lastLoginTxt;
@@ -224,5 +241,96 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     public function getLanguageIdsAttribute()
     {
         return $this->languages->pluck('id')->toArray();
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getBirthdayYearAttribute()
+    {
+        return !is_null($this->birthday) ? Carbon::parse($this->birthday)->year : '';
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getBirthdayMonthAttribute()
+    {
+        return !is_null($this->birthday) ? Carbon::parse($this->birthday)->month : '';
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getBirthdayDayAttribute()
+    {
+        return !is_null($this->birthday) ? Carbon::parse($this->birthday)->day : '';
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getPersonalInfoFrontAttribute(): Collection
+    {
+        return $this->adviserUserPersonalInfos()
+            ->where('type', '表面')
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getPersonalInfoBackAttribute(): Collection
+    {
+        return $this->adviserUserPersonalInfos()
+            ->where('type', '裏面')
+            ->get();
+    }
+
+    /**
+     * @return false
+     */
+    public function getCanOpenLessonAttribute(): bool
+    {
+        $canOpenLesson = true;
+
+        foreach ($this->getRequiredColumns() as $column) {
+            if (empty($this->$column)) {
+                $canOpenLesson = false;
+                break;
+            }
+        }
+        if ($this->categories()->count() == 0) {
+            $canOpenLesson = false;
+        }
+        if ($this->languages()->count() == 0) {
+            $canOpenLesson = false;
+        }
+        if ($this->adviserUserPersonalInfos()->count() == 0) {
+            $canOpenLesson = false;
+        }
+
+        return $canOpenLesson;
+
+    }
+
+    private function getRequiredColumns()
+    {
+        return [
+          'family_name',
+          'first_name',
+          'family_name_kana',
+          'first_name_kana',
+          'birthday',
+          'tel',
+          'email',
+          'skype_name',
+          'skype_id',
+          'from_country_id',
+          'residence_country_id',
+          'reason_text',
+          'passion_text',
+          'password',
+        ];
     }
 }
