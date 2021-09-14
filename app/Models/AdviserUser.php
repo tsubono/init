@@ -19,6 +19,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
 
     protected $guarded = ['id'];
 
+    protected $appends = ['avatar_image'];
+
     /**
      * 認証メール
      */

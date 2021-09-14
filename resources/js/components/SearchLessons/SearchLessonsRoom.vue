@@ -39,7 +39,7 @@
               <h5 class="p-heading3">言語</h5>
               <div class="p-card3__country">
                 <p>
-                  {{ lesson.adviser_user.languages.map(({ name }) => name).join(' / ') }}
+                  {{ languages}}
                 </p>
               </div>
             </div>
@@ -120,6 +120,9 @@ export default {
       } else {
         return this.lesson.description.slice(0, 200) + '...'
       }
+    },
+    languages () {
+      return this.lesson.adviser_user.languages.map(({ name }) => name).join(' / ')
     }
   },
 }

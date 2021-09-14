@@ -18,6 +18,8 @@ class Lesson extends Model
 
     protected $guarded = ['id'];
 
+    protected $appends = ['eye_catch_image'];
+
     // ============ Relations ============
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
