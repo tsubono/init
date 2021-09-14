@@ -19,9 +19,9 @@ class LessonController extends Controller
     /**
      * LessonController constructor.
      * @param  LessonRepositoryInterface  $lessonRepository
-     * @param  \App\Repositories\MstCategory\MstCategoryRepositoryInterface  $mstCategoryRepository
-     * @param  \App\Repositories\MstLanguage\MstLanguageRepositoryInterface  $mstLanguageRepository
-     * @param  \App\Repositories\MstCountry\MstCountryRepositoryInterface  $mstCountryRepository
+     * @param  MstCategoryRepositoryInterface  $mstCategoryRepository
+     * @param  MstLanguageRepositoryInterface  $mstLanguageRepository
+     * @param  MstCountryRepositoryInterface  $mstCountryRepository
      */
     public function __construct(
         LessonRepositoryInterface $lessonRepository,
