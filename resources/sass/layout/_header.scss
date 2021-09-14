@@ -15,7 +15,7 @@ header {
     width: 98%;
   }
   .navbar {
-    padding: 20px 60px;
+    padding: 14px 60px;
     display: flex;
     align-items: center;
     @include breakpoint-lg {
@@ -24,7 +24,7 @@ header {
     @include breakpoint-md {
       padding: 10px 20px;
     }
-    #Navber {
+    #Navber, #Navber2 {
       justify-content: flex-end;
       ul {
         display: flex;
@@ -85,7 +85,7 @@ header {
                 &::after {
                   content: "";
                   position: absolute;
-                  width: 14px;
+                  width: 25px;
                   height: 2px;
                   bottom: -10px;
                   left: 0;
@@ -94,11 +94,7 @@ header {
                   background: #fff;
                   border-radius: 100px;
                   @include breakpoint-md {
-                    bottom: 0;
-                    top: 0;
-                    right: inherit;
-                    left: -16px;
-                    width: 8px;
+                    top: 32px;
                   }
                 }
               }
@@ -123,10 +119,25 @@ header {
     &.navbar-light {
       .navbar-toggler {
         border: none;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+      .mypage-toggler {
+        margin-left: auto;
       }
       .navbar-toggler-icon {
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+
+        &.mypage-icon {
+          background-image: url(/img/setting.svg) !important;
+        }
       }
+    }
+
+    &.sub-menu {
+      padding: 0 60px 20px;
     }
   }
 }

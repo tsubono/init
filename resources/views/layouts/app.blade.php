@@ -21,49 +21,9 @@
     <title>@yield('title', '') | INIT</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-md navbar-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/"><img src="{{ asset('img/brand-white.svg') }}" alt="INIT"></a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーション切替">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="Navber">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="me-5">
-                            <a tabindex="0" data-bs-toggle="notification-popover" data-bs-trigger="focus" class="p-notification-icon p-notification-icon--has-items">
-                                <img src="/img/notification.svg" alt="お知らせ">
-                            </a>
-                        </li>
-                        <li class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page"><a href="{{ route('top') }}">ホーム</a></li>
-                        <li class="nav-link {{ request()->is('about') ? 'active' : '' }}"><a href="{{ route('about') }}">はじめての方</a></li>
-                        <li class="nav-link {{ request()->is('lessons', 'lessons/*') ? 'active' : '' }}"><a href="{{ route('lessons.index') }}">レッスン検索</a></li>
-                        <li class="nav-link {{ request()->is('advisers', 'advisers/*') ? 'active' : '' }}"><a href="{{ route('advisers.index') }}">アドバイザー検索</a></li>
-                        @if (auth()->guard('mate')->check())
-                            <li class="nav-link nav-link__login">
-                                <a onclick="document.getElementById('logoutForm').submit()">ログアウト</a>
-                                <form action="{{ route('mate.logout') }}" id="logoutForm" method="post">@csrf</form>
-                            </li>
-                        @elseif (auth()->guard('adviser')->check())
-                            <li class="nav-link nav-link__login">
-                                <a onclick="document.getElementById('logoutForm').submit()">ログアウト</a>
-                                <form action="{{ route('adviser.logout') }}" id="logoutForm" method="post">@csrf</form>
-                            </li>
-                        @elseif (auth()->guard('admin')->check())
-                            <li class="nav-link nav-link__login">
-                                <a onclick="document.getElementById('logoutForm').submit()">ログアウト</a>
-                                <form action="{{ route('admin.logout') }}" id="logoutForm" method="post">@csrf</form>
-                            </li>
-                        @else
-                            <li class="nav-link nav-link__login {{ request()->is('mate/login', 'adviser/login') ? 'active' : '' }}"><a href="{{ route('mate.login') }}">ログイン</a></li>
-                        @endif
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-    </header>
+    @include('components.header')
 
-    @include('components.head')
+    @include('components.page-head')
 
     <main id="app">
         @yield('content')
@@ -109,16 +69,19 @@
     <script src="//cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
     <script type="text/javascript">
-        var popover = new bootstrap.Popover(document.querySelector('[data-bs-toggle="notification-popover"]'), {
-            template: `
+      const notificationLinks = document.querySelectorAll('[data-bs-toggle="notification-popover"]');
+      for (let i = 0; i < notificationLinks.length; i++) {
+        let popover = new bootstrap.Popover(notificationLinks[i], {
+          template: `
             <div class="popover p-notification-popover" role="tooltip">
                 <div class="popover-body p-0"></div>
             </div>`,
-            html: true,
-            content: document.querySelector('#notification-content').content.firstElementChild,
-            offset: [165, 10],
-            placement: 'bottom',
+          html: true,
+          content: document.querySelector('#notification-content').content.firstElementChild,
+          offset: [165, 10],
+          placement: 'bottom',
         });
+      }
     </script>
 
     @yield('js')

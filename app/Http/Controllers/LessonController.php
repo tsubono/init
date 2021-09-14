@@ -42,6 +42,9 @@ class LessonController extends Controller
      */
     public function show(Lesson $lesson)
     {
+        if ($lesson->is_stop) {
+            abort(404);
+        }
         return view('lessons.show', compact('lesson'));
     }
 }

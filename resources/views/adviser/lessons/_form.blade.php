@@ -187,8 +187,8 @@
     </div>
     <div class="col-6">
         <div class="form-check">
-            <input type="hidden" name="is_stop" value="0" />
             @if (auth()->guard('adviser')->user()->can_open_lesson)
+                <input type="hidden" name="is_stop" value="0" />
                 <input type="checkbox"
                        class="form-check-input"
                        id="form-control-status"
@@ -205,6 +205,7 @@
                        checked
                        disabled
                 />
+                <input type="hidden" name="is_stop" value="1" />
             @endif
             <label class="form-check-label" for="form-control-status">
                 受講停止にする

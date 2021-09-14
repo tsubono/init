@@ -103,7 +103,7 @@ Route::prefix('admin')->as('admin.')->namespace('App\Http\Controllers\Admin')->g
         Route::get('/coins', 'CoinController@index')->name('coins.index');
         Route::get('/coins/{coin}', 'CoinController@show')->name('coins.show');
         Route::post('/coins/export-csv', 'CoinController@exportCsv')->name('coins.export-csv');
-        // 取引管理
+        // 受講管理
         Route::get('/attendances', 'AttendanceController@index')->name('attendances.index');
         Route::get('/attendances/{attendance}', 'AttendanceController@show')->name('attendances.show');
         // 振り込み申請管理
