@@ -11,37 +11,37 @@
                         <div class="col-md-6 mb-3 mb-md-4">
                             <h3 class="p-heading3">レッスン名</h3>
                             <input type="text" class="form-control" placeholder="記入してください"
-                                   name="search[lesson_name]"
-                                   value="{{ isset($search['lesson_name']) ? $search['lesson_name'] : '' }}"
+                                   name="condition[lesson_name]"
+                                   value="{{ isset($condition['lesson_name']) ? $condition['lesson_name'] : '' }}"
                             />
                         </div>
                         <div class="col-md-6 mb-3 mb-md-4">
                             <h3 class="p-heading3">ユーザー名</h3>
                             <input type="text" class="form-control" placeholder="記入してください"
-                                   name="search[user_name]"
-                                   value="{{ isset($search['user_name']) ? $search['user_name'] : '' }}"
+                                   name="condition[user_name]"
+                                   value="{{ isset($condition['user_name']) ? $condition['user_name'] : '' }}"
                             />
                         </div>
                         <div class="col-md-6 mb-md-4">
                             <h3 class="p-heading3">ステータス</h3>
-                            <select class="form-select" name="search[status]">
-                                <option selected>指定しない</option>
-                                <option value="1" {{ (isset($search['status']) ? $search['status'] : '') == 1 ? 'selected' : '' }}>
+                            <select class="form-select" name="condition[status]">
+                                <option value="">指定しない</option>
+                                <option value="1" {{ (isset($condition['status']) ? $condition['status'] : '') == 1 ? 'selected' : '' }}>
                                     受講申請中
                                 </option>
-                                <option value="2" {{ (isset($search['status']) ? $search['status'] : '') == 2 ? 'selected' : '' }}>
+                                <option value="2" {{ (isset($condition['status']) ? $condition['status'] : '') == 2 ? 'selected' : '' }}>
                                     受講中
                                 </option>
-                                <option value="3" {{ (isset($search['status']) ? $search['status'] : '') == 3 ? 'selected' : '' }}>
+                                <option value="3" {{ (isset($condition['status']) ? $condition['status'] : '') == 3 ? 'selected' : '' }}>
                                     受講否認
                                 </option>
-                                <option value="4" {{ (isset($search['status']) ? $search['status'] : '') == 4 ? 'selected' : '' }}>
+                                <option value="4" {{ (isset($condition['status']) ? $condition['status'] : '') == 4 ? 'selected' : '' }}>
                                     キャンセル
                                 </option>
-                                <option value="5" {{ (isset($search['status']) ? $search['status'] : '') == 5 ? 'selected' : '' }}>
+                                <option value="5" {{ (isset($condition['status']) ? $condition['status'] : '') == 5 ? 'selected' : '' }}>
                                     通報
                                 </option>
-                                <option value="6" {{ (isset($search['status']) ? $search['status'] : '') == 6 ? 'selected' : '' }}>
+                                <option value="6" {{ (isset($condition['status']) ? $condition['status'] : '') == 6 ? 'selected' : '' }}>
                                     受講完了
                                 </option>
                             </select>
@@ -50,19 +50,20 @@
                             <h3 class="p-heading3">受講日</h3>
                             <div class="d-flex align-items-center">
                                 <input type="date" class="form-control" placeholder="記入してください"
-                                       name="search[date_start]"
-                                       value="{{ isset($search['date_start']) ? $search['date_start'] : '' }}"
+                                       name="condition[date_start]"
+                                       value="{{ isset($condition['date_start']) ? $condition['date_start'] : '' }}"
                                 />
                                 <span class="mx-2">〜</span>
                                 <input type="date" class="form-control" placeholder="記入してください"
-                                       name="search[date_end]"
-                                       value="{{ isset($search['date_end']) ? $search['date_end'] : '' }}"
+                                       name="condition[date_end]"
+                                       value="{{ isset($condition['date_end']) ? $condition['date_end'] : '' }}"
                                 />
                             </div>
                         </div>
                     </div><!-- /.row -->
                 </div><!-- /.collapse -->
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end align-items-center">
+                    <a class="primary-link mx-5" href="{{ route('attendances.index') }}">リセット</a>
                     <button class="p-btn p-btn__black w-25">検索</button>
                 </div>
             </form>

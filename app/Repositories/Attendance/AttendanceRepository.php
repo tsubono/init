@@ -4,6 +4,7 @@ namespace App\Repositories\Attendance;
 
 use App\Models\Attendance;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -33,31 +34,71 @@ class AttendanceRepository implements AttendanceRepositoryInterface
     }
 
     /**
-     * @param int $adviserUserId
+     * @param array $condition
      * @param int $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getByAdviserUserIdPaginate(int $adviserUserId, int $perCount = 10): LengthAwarePaginator
+    public function getByConditionPaginate(array $condition, int $perCount = 10): LengthAwarePaginator
     {
-        return $this->attendance
-            ->query()
-            ->where('adviser_user_id', $adviserUserId)
+        $query = $this->getQueryWithCondition($condition);
+
+        return $query
             ->orderBy('created_at', 'desc')
             ->paginate($perCount);
     }
 
     /**
-     * @param int $mateUserId
-     * @param int $perCount
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @param array $condition
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function getByMateUserIdPaginate(int $mateUserId, int $perCount = 10): LengthAwarePaginator
+    private function getQueryWithCondition(array $condition): Builder
     {
-        return $this->attendance
-            ->query()
-            ->where('mate_user_id', $mateUserId)
-            ->orderBy('created_at', 'desc')
-            ->paginate($perCount);
+        $query = $this->attendance->query();
+
+        if (!empty($condition['adviser_user_id'])) {
+            $query->where('adviser_user_id', $condition['adviser_user_id']);
+        }
+        if (!empty($condition['lesson_name'])) {
+            $query->whereHas('lesson', function ($query) use ($condition) {
+                $query->where('lessons.name', 'LIKE', "%{$condition['lesson_name']}%");
+            });
+        }
+        if (!empty($condition['user_name'])) {
+            if (auth()->guard('adviser')->check()) {
+                $query->whereHas('mateUser', function ($query) use ($condition) {
+                    $query->where(function ($query) use ($condition) {
+                        $query->where('mate_users.family_name', 'LIKE', "%{$condition['user_name']}%")
+                            ->orWhere('mate_users.middle_name', 'LIKE', "%{$condition['user_name']}%")
+                            ->orWhere('mate_users.first_name', 'LIKE', "%{$condition['user_name']}%")
+                            ->orWhere('mate_users.family_name_kana', 'LIKE', "%{$condition['user_name']}%")
+                            ->orWhere('mate_users.middle_name_kana', 'LIKE', "%{$condition['user_name']}%")
+                            ->orWhere('mate_users.first_name_kana', 'LIKE', "%{$condition['user_name']}%");
+                    });
+                });
+            } else {
+                $query->whereHas('adviserUser', function ($query) use ($condition) {
+                    $query->where(function ($query) use ($condition) {
+                        $query->where('adviser_users.family_name', 'LIKE', "%{$condition['user_name']}%")
+                            ->orWhere('adviser_users.middle_name', 'LIKE', "%{$condition['user_name']}%")
+                            ->orWhere('adviser_users.first_name', 'LIKE', "%{$condition['user_name']}%")
+                            ->orWhere('adviser_users.family_name_kana', 'LIKE', "%{$condition['user_name']}%")
+                            ->orWhere('adviser_users.middle_name_kana', 'LIKE', "%{$condition['user_name']}%")
+                            ->orWhere('adviser_users.first_name_kana', 'LIKE', "%{$condition['user_name']}%");
+                    });
+                });
+            }
+        }
+        if (!empty($condition['status'])) {
+            $query->where('status', $condition['status']);
+        }
+        if (!empty($condition['date_start'])) {
+            $query->whereDate('datetime', '>=', $condition['date_start']);
+        }
+        if (!empty($condition['date_end'])) {
+            $query->whereDate('datetime', '<=', $condition['date_end']);
+        }
+
+        return $query;
     }
 
     /**

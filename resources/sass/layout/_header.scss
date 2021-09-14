@@ -15,7 +15,7 @@ header {
     width: 98%;
   }
   .navbar {
-    padding: 14px 60px;
+    padding: 14px 60px 5px;
     display: flex;
     align-items: center;
     @include breakpoint-lg {
@@ -137,7 +137,7 @@ header {
     }
 
     &.sub-menu {
-      padding: 0 60px 20px;
+      padding: 0 60px 14px;
     }
   }
 }

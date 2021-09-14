@@ -63,17 +63,26 @@ class AttendanceController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $condition = $request->get('condition', []);
         if (auth()->guard('mate')->check()) {
             $userType = 'mate';
-            $attendances = $this->attendanceRepository->getByMateUserIdPaginate(auth()->guard('mate')->user()->id);
+            $attendances = $this->attendanceRepository->getByConditionPaginate(
+                $condition + [
+                    'mate_user_id' => auth()->guard('mate')->user()->id,
+                ]
+            );
         } else {
             $userType = 'adviser';
-            $attendances = $this->attendanceRepository->getByAdviserUserIdPaginate(auth()->guard('adviser')->user()->id);
+            $attendances = $this->attendanceRepository->getByConditionPaginate(
+                $condition + [
+                    'adviser_user_id' => auth()->guard('adviser')->user()->id,
+                ]
+            );
         }
 
-        return view('attendances.index', compact('attendances', 'userType'));
+        return view('attendances.index', compact('attendances', 'userType', 'condition'));
     }
 
     /**
