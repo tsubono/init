@@ -179,7 +179,7 @@
                 </div>
             @endfor
         </div>
-        <p class="small p-error-text mx-3">※ 画像・種別・URL全てが入力されていないと登録されません</p>
+        <p class="small p-error-text mx-3">※ 画像・種別・URL全てが入力されていないと登録されませんのでご注意ください</p>
     </div>
 
     <div class="col-12">
@@ -188,16 +188,30 @@
     <div class="col-6">
         <div class="form-check">
             <input type="hidden" name="is_stop" value="0" />
-            <input type="checkbox"
-                   class="form-check-input"
-                   id="form-control-status"
-                   name="is_stop"
-                   value="1"
-                   {{ old('is_stop', $lesson->is_stop) == 1 ? 'checked' : '' }}
-            />
+            @if (auth()->guard('adviser')->user()->can_open_lesson)
+                <input type="checkbox"
+                       class="form-check-input"
+                       id="form-control-status"
+                       name="is_stop"
+                       value="1"
+                       {{ old('is_stop', $lesson->is_stop) == 1 ? 'checked' : '' }}
+                />
+            @else
+                <input type="checkbox"
+                       class="form-check-input"
+                       id="form-control-status"
+                       name="is_stop"
+                       value="1"
+                       checked
+                       disabled
+                />
+            @endif
             <label class="form-check-label" for="form-control-status">
                 受講停止にする
             </label>
         </div>
     </div>
+    @if (!auth()->guard('adviser')->user()->can_open_lesson)
+        <p class="p-error-text font-weight-bold"><b>※ レッスンを公開するためには<a class="primary-link" href="{{ route('adviser.profile.edit') }}">プロフィール更新画面</a>で必須項目の登録が必要です</b></p>
+    @endif
 </div><!-- /.row -->
