@@ -62,6 +62,7 @@ Route::prefix('adviser')->as('adviser.')->namespace('App\Http\Controllers\Advise
         Route::post('/profile/password', 'ProfileController@updatePassword')->name('profile.update.password');
         Route::get('/profile/personal', 'ProfileController@editPersonal')->name('profile.edit.personal');
         Route::post('/profile/personal', 'ProfileController@updatePersonal')->name('profile.update.personal');
+        Route::post('/profile/withdrawal', 'ProfileController@withdrawal')->name('profile.withdrawal');
         // レッスン管理
         Route::resource('/lessons', 'LessonController')->except(['show']);
         // 売上管理
@@ -87,6 +88,7 @@ Route::prefix('mate')->as('mate.')->namespace('App\Http\Controllers\Mate')->grou
         Route::post('/profile/password', 'ProfileController@updatePassword')->name('profile.update.password');
         Route::get('/profile/notice', 'ProfileController@editNotice')->name('profile.edit.notice');
         Route::post('/profile/notice', 'ProfileController@updateNotice')->name('profile.update.notice');
+        Route::post('/profile/withdrawal', 'ProfileController@withdrawal')->name('profile.withdrawal');
         // コイン管理
         Route::get('/coins', 'CoinController@index')->name('coins.index');
         Route::get('/coins/buy', 'CoinController@buy')->name('coins.buy');
@@ -142,3 +144,4 @@ Route::get('/cancel-policy-adviser', function () { return view('cancel-policy-ad
 Route::get('/cancel-policy-mate', function () { return view('cancel-policy-mate'); })->name('cancel-policy-mate');
 Route::get('/mate-terms', function () { return view('mate-terms'); })->name('mate-terms');
 Route::get('/adviser-terms', function () { return view('adviser-terms'); })->name('adviser-terms');
+Route::get('/withdrawal', function () { return view('withdrawal'); })->name('withdrawal');

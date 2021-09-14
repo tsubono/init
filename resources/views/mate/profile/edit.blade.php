@@ -286,6 +286,32 @@
                     </div><!-- /.tab-pane -->
                 </div>
             </form>
+            <div class="text-end mt-3">
+                <button type="button" class="p-btn--rect btn-default small py-1 px-3" data-bs-toggle="modal" data-bs-target="#withdrawalModal">
+                    退会する
+                </button>
+            </div>
+            <!-- 退会確認モーダル -->
+            <div class="modal p-modal p-setting fade" id="withdrawalModal" tabindex="-1" aria-labelledby="withdrawalModal">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        <div class="modal-body">
+                            <h2 class="p-heading2 mt-0 text-center">退会確認</h2>
+                            <p class="text-center">
+                                INITを退会されますと登録されたデータは全て削除されます。<br>よろしいですか？
+                            </p>
+                            <div class="text-center mt-2">
+                                <form action="{{ route('mate.profile.withdrawal') }}" method="post">
+                                    @csrf
+                                    <button class="p-btn--rect btn-default py-1 px-3">退会する</button>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-body -->
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <!-- /退会確認モーダル -->
         </div>
     </section>
 @endsection

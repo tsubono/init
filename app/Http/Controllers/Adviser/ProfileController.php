@@ -7,11 +7,14 @@ use App\Http\Requests\AdviserUserBasicRequest;
 use App\Http\Requests\AdviserUserPasswordRequest;
 use App\Http\Requests\AdviserUserPersonalRequest;
 use App\Http\Requests\AdviserUserTeachRequest;
+use App\Mail\WithdrawalMail;
 use App\Repositories\AdviserUser\AdviserUserRepositoryInterface;
+use App\Repositories\Lesson\LessonRepositoryInterface;
 use App\Repositories\MstCountry\MstCountryRepositoryInterface;
 use App\Repositories\MstLanguage\MstLanguageRepositoryInterface;
 use App\Repositories\MstRoom\MstRoomRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class ProfileController extends Controller
 {
@@ -19,6 +22,7 @@ class ProfileController extends Controller
     private MstCountryRepositoryInterface $mstCountryRepository;
     private MstLanguageRepositoryInterface $mstLanguageRepository;
     private MstRoomRepositoryInterface $mstRoomRepository;
+    private LessonRepositoryInterface $lessonRepository;
 
     /**
      * ProfileController constructor.
@@ -26,17 +30,20 @@ class ProfileController extends Controller
      * @param MstCountryRepositoryInterface $mstCountryRepository
      * @param MstLanguageRepositoryInterface $mstLanguageRepository
      * @param MstRoomRepositoryInterface $mstRoomRepository
+     * @param LessonRepositoryInterface $lessonRepository
      */
     public function __construct(
         AdviserUserRepositoryInterface $adviserUserRepository,
         MstCountryRepositoryInterface $mstCountryRepository,
         MstLanguageRepositoryInterface $mstLanguageRepository,
-        MstRoomRepositoryInterface $mstRoomRepository
+        MstRoomRepositoryInterface $mstRoomRepository,
+        LessonRepositoryInterface $lessonRepository
     ) {
         $this->adviserUserRepository = $adviserUserRepository;
         $this->mstCountryRepository = $mstCountryRepository;
         $this->mstLanguageRepository = $mstLanguageRepository;
         $this->mstRoomRepository = $mstRoomRepository;
+        $this->lessonRepository = $lessonRepository;
     }
 
     /**
@@ -156,5 +163,26 @@ class ProfileController extends Controller
         );
 
         return redirect(route('adviser.profile.edit.personal'))->with('success_message', 'プロフィールを更新しました');
+    }
+
+    /**
+     * アドバイザーユーザー退会
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function withdrawal()
+    {
+        $user = auth()->guard('adviser')->user();
+        // DBからユーザー削除
+        $this->adviserUserRepository->destroy($user->id);
+        // 紐づくレッスンたちを非公開にする
+        $this->lessonRepository->stopByAdviserUserId($user->id);
+
+        // アドバイザーユーザーへ退会完了通知
+        Mail::to($user->email)->send(
+            new WithdrawalMail($user)
+        );
+
+        return redirect(route('withdrawal'));
     }
 }

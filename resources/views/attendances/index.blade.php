@@ -76,24 +76,33 @@
                     @forelse ($attendances as $index => $attendance)
                         <div class="p-card3 p-attendance">
                             <div class="p-card3__advisor">
-                                <div class="p-card3__advisor_img">
-                                    <img src="{{ $attendance->adviserUser->avatar_image }}" alt="アドバイザー画像">
-                                </div>
-                                <div class="p-card3__advisor_text">
-                                    @if ($userType === 'mate')
+                                @if ($userType === 'mate')
+                                    <div class="p-card3__advisor_img">
+                                        <img src="{{ $attendance->adviserUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="アドバイザー画像">
+                                    </div>
+                                    <div class="p-card3__advisor_text">
                                         <p>講師</p>
                                         <h4>
-                                            <a href="{{ route('advisers.show', ['adviserUser' => $attendance->adviserUser]) }}">
-                                                {{ $attendance->adviserUser->full_name }}
-                                            </a>
+                                            @if ($attendance->adviserUser)
+                                                <a href="{{ route('advisers.show', ['adviserUser' => $attendance->adviserUser]) }}">
+                                                    {{ $attendance->adviserUser->full_name ?? '退会ユーザー' }}
+                                                </a>
+                                            @else
+                                                退会ユーザー
+                                            @endif
                                         </h4>
-                                    @else
+                                    </div>
+                                @else
+                                    <div class="p-card3__advisor_img">
+                                        <img src="{{ $attendance->mateUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="アドバイザー画像">
+                                    </div>
+                                    <div class="p-card3__advisor_text">
                                         <p>受講者</p>
                                         <h4>
-                                            {{ $attendance->mateUser->full_name }}
+                                            {{ $attendance->mateUser->full_name ?? '退会ユーザー' }}
                                         </h4>
-                                    @endif
-                                </div>
+                                    </div>
+                                @endif
                             </div>
                             <div class="p-card3__detail">
                                 <div class="mb-5">
@@ -154,7 +163,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
                                         <div class="modal-body">
                                             <h2 class="p-heading2 mt-0 text-center">承認確認</h2>
-                                            <p class="text-center">{{ $attendance->mateUser->full_name }}さんからの受講申請を承認します。<br>よろしいですか？</p>
+                                            <p class="text-center">{{ $attendance->mateUser->full_name ?? '退会ユーザー' }}さんからの受講申請を承認します。<br>よろしいですか？</p>
                                             <form action="{{ route('attendances.approval', compact('attendance')) }}" method="post">
                                                 @csrf
                                                 <button class="p-btn p-btn__defalut">承認する</button>
@@ -171,7 +180,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
                                         <div class="modal-body">
                                             <h2 class="p-heading2 mt-0 text-center">否認確認</h2>
-                                            <p class="text-center">{{ $attendance->mateUser->full_name }}さんからの受講申請を否認します。</p>
+                                            <p class="text-center">{{ $attendance->mateUser->full_name ?? '退会ユーザー' }}さんからの受講申請を否認します。</p>
                                             <form action="{{ route('attendances.reject', compact('attendance')) }}" method="post">
                                                 @csrf
                                                 <textarea rows="5" class="form-control mt-2" name="reject_text" placeholder="否認メッセージを必ず入力してください" required></textarea>
@@ -192,7 +201,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
                                             <div class="modal-body">
                                                 <h2 class="p-heading2 mt-0 text-center">受講完了確認</h2>
-                                                <p class="text-center">{{ $attendance->mateUser->full_name }}さんの受講を完了します。<br>よろしいですか？</p>
+                                                <p class="text-center">{{ $attendance->mateUser->full_name ?? '退会ユーザー' }}さんの受講を完了します。<br>よろしいですか？</p>
                                                 <form action="{{ route('attendances.close', compact('attendance')) }}" method="post">
                                                     @csrf
                                                     <button class="p-btn p-btn__defalut">完了する</button>
@@ -254,14 +263,18 @@
                                         @if (auth()->guard('mate')->check())
                                             <div class="mb-3">
                                                 <h3 class="p-heading3">アドバイザー</h3>
-                                                <a href="{{ route('advisers.show', ['adviserUser' => $attendance->adviserUser]) }}">
-                                                    <p>{{ $attendance->adviserUser->full_name }}</p>
-                                                </a>
+                                                @if ($attendance->adviserUser)
+                                                    <a href="{{ route('advisers.show', ['adviserUser' => $attendance->adviserUser]) }}">
+                                                        <p>{{ $attendance->adviserUser->full_name ?? '退会ユーザー' }}</p>
+                                                    </a>
+                                                @else
+                                                    <p>退会ユーザー</p>
+                                                @endif
                                             </div>
                                         @else
                                             <div class="mb-3">
                                                 <h3 class="p-heading3">メイト</h3>
-                                                <p>{{ $attendance->mateUser->full_name }}</p>
+                                                <p>{{ $attendance->mateUser->full_name ?? '退会ユーザー' }}</p>
                                             </div>
                                         @endif
                                         <div class="mb-3">
@@ -279,10 +292,10 @@
                                             <p>{{ $attendance->status_txt }}</p>
 
                                             @if ($attendance->status == \App\Models\Attendance::STATUS_CANCEL)
-                                                <p>キャンセルしたユーザー: {{ !is_null($attendance->cancel_cause_mate_user_id) ? $attendance->mateUser->full_name : $attendance->adviserUser->full_name }}</p>
+                                                <p>キャンセルしたユーザー: {{ !is_null($attendance->cancel_cause_mate_user_id) ? $attendance->mateUser->full_name ?? '退会ユーザー' : $attendance->adviserUser->full_name ?? '退会ユーザー' }}</p>
                                             @endif
                                             @if ($attendance->status == \App\Models\Attendance::STATUS_REPORT)
-                                                <p>通報されたユーザー: {{ !is_null($attendance->cancel_cause_mate_user_id) ? $attendance->mateUser->full_name : $attendance->adviserUser->full_name }}</p>
+                                                <p>通報されたユーザー: {{ !is_null($attendance->cancel_cause_mate_user_id) ? $attendance->mateUser->full_name ?? '退会ユーザー' : $attendance->adviserUser->full_name ?? '退会ユーザー' }}</p>
                                             @endif
                                         </div>
                                     </div><!-- /.modal-body -->

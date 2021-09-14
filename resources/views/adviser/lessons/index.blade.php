@@ -62,7 +62,7 @@
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
-                    <!-- /受講完了モーダル -->
+                    <!-- /削除確認モーダル -->
                 @empty
 
                 @endforelse

@@ -154,4 +154,15 @@ class LessonRepository implements LessonRepositoryInterface
             throw new \Exception($e);
         }
     }
+
+    /**
+     * @param int $adviserUserId
+     */
+    public function stopByAdviserUserId(int $adviserUserId): void
+    {
+        $this->lesson
+            ->query()
+            ->where('adviser_user_id', $adviserUserId)
+            ->update(['is_stop' => 1]);
+    }
 }

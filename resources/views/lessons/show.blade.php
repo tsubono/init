@@ -25,12 +25,12 @@
                     <div class="row">
                         <div class="col-md-12 mb-40px">
                             <h2 class="fs-2 fw-bold mb-4">{{ $lesson->name }}</h2>
-                            <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->title }}" class="w-100 img-fluid">
+                            <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->title }}" class="w-100 img-fluid eye-catch-img">
                             <div class="d-flex flex-wrap mt-2">
                                 @foreach ($lesson->images as $index => $image)
                                     @if (!$loop->first)
-                                        <a data-bs-toggle="modal" data-bs-target="#imageModal{{ $index }}">
-                                            <img src="{{ $image->image_path }}" alt="{{ $lesson->title }}" class="w-25 img-fluid">
+                                        <a data-bs-toggle="modal" data-bs-target="#imageModal{{ $index }}" class="w-25 mx-1">
+                                            <img src="{{ $image->image_path }}" alt="{{ $lesson->title }}" class="img-fluid">
                                         </a>
                                         <div class="modal fade p-modal" id="imageModal{{ $index }}" tabindex="-1" aria-labelledby="imageModal{{ $index }}Label">
                                             <div class="modal-dialog modal-dialog-centered">

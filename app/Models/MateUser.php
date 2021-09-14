@@ -15,6 +15,9 @@ use Illuminate\Notifications\Notifiable;
 class MateUser extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, SoftDeletes;
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
+
+    protected $softCascade = ['mateUserCoins', 'languages', 'categories'];
 
     protected $guarded = ['id'];
 

@@ -18,8 +18,8 @@
                 <div class="p-message__message-box">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <div class="d-flex justify-content-between align-items-center">
-                            <img src="{{ $message->user->avatar_image }}" class="p-message__avatar" alt="{{ $message->user->full_name }}のプロフィール画像">
-                            <span class="fw-bold ms-3">{{ $message->user->full_name }}</span>
+                            <img src="{{ $message->user->avatar_image ?? asset('img/default-avatar.png') }}" class="p-message__avatar" alt="{{ $message->user ? $message->user->full_name : '退会ユーザー' }}のプロフィール画像">
+                            <span class="fw-bold ms-3">{{ $message->user->full_name ?? '退会ユーザー' }}</span>
                         </div>
                         <time>{{ $message->created_at->format('Y/m/d H:i') }}</time>
                     </div>
@@ -132,7 +132,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
                         <div class="modal-body">
                             <h2 class="p-heading2 mt-0 text-center">受講完了確認</h2>
-                            <p class="text-center">{{ $attendance->mateUser->full_name }}さんの受講を完了します。<br>よろしいですか？</p>
+                            <p class="text-center">{{ $attendance->mateUser->full_name ?? '' }}さんの受講を完了します。<br>よろしいですか？</p>
                             <form action="{{ route('attendances.close', compact('attendance')) }}" method="post">
                                 @csrf
                                 <button class="p-btn p-btn__defalut">完了する</button>

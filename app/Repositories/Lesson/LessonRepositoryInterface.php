@@ -10,5 +10,6 @@ interface LessonRepositoryInterface
     public function getByAdviserIdPaginate(int $adviserUserId, int $perCount = 10): LengthAwarePaginator;
     public function store(array $data): void;
     public function update(int $id, array $data): void;
+    public function stopByAdviserUserId(int $adviserUserId): void;
     public function destroy(int $id): void;
 }

@@ -78,4 +78,25 @@ class MateUserRepository implements MateUserRepositoryInterface
             ->orderBy('created_at', 'desc')
             ->paginate($perCount);
     }
+
+    /**
+     * @param int $id
+     * @return void
+     * @throws \Exception
+     */
+    public function destroy(int $id): void
+    {
+        DB::beginTransaction();
+        try {
+            $mateUser = $this->mateUser->findOrFail($id);
+            $mateUser->delete();
+
+            DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new \Exception($e);
+        }
+    }
 }

@@ -7,11 +7,13 @@ use App\Http\Requests\MateUserBasicRequest;
 use App\Http\Requests\MateUserLearnRequest;
 use App\Http\Requests\MateUserNoticeRequest;
 use App\Http\Requests\MateUserPasswordRequest;
+use App\Mail\WithdrawalMail;
 use App\Repositories\MateUser\MateUserRepositoryInterface;
 use App\Repositories\MstCountry\MstCountryRepositoryInterface;
 use App\Repositories\MstLanguage\MstLanguageRepositoryInterface;
 use App\Repositories\MstRoom\MstRoomRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class ProfileController extends Controller
 {
@@ -154,5 +156,23 @@ class ProfileController extends Controller
         $this->mateUserRepository->update(auth()->guard('mate')->user()->id, $request->all());
 
         return redirect(route('mate.profile.edit.notice'))->with('success_message', 'プロフィールを更新しました');
+    }
+
+    /**
+     * メイトユーザー退会
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function withdrawal()
+    {
+        $user = auth()->guard('mate')->user();
+        // DBからユーザー削除
+        $this->mateUserRepository->destroy($user->id);
+        // メイトユーザーへ退会完了通知
+        Mail::to($user->email)->send(
+            new WithdrawalMail($user)
+        );
+
+        return redirect(route('withdrawal'));
     }
 }

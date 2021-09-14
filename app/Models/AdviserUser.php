@@ -17,6 +17,15 @@ use Illuminate\Support\Collection;
 class AdviserUser extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, SoftDeletes;
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
+
+    protected $softCascade = [
+        'adviserUserImages',
+        'adviserUserPersonalInfos',
+        'adviserUserMovies',
+        'languages',
+        'categories'
+    ];
 
     protected $guarded = ['id'];
 

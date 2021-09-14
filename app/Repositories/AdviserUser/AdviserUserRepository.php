@@ -141,4 +141,25 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
             ->orderBy('created_at', 'desc')
             ->paginate($perCount);
     }
+
+    /**
+     * @param int $id
+     * @return void
+     * @throws \Exception
+     */
+    public function destroy(int $id): void
+    {
+        DB::beginTransaction();
+        try {
+            $adviserUser = $this->adviserUser->findOrFail($id);
+            $adviserUser->delete();
+
+            DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new \Exception($e);
+        }
+    }
 }
