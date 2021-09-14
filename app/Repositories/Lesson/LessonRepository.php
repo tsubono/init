@@ -48,6 +48,17 @@ class LessonRepository implements LessonRepositoryInterface
             ->paginate($perCount);
     }
 
+    /**
+     * @param  int  $perCount
+     * @param  string|null  $category
+     * @param  string|null  $language
+     * @param  string|null  $room
+     * @param  string|null  $country
+     * @param  string|null  $gender
+     * @param  int|null  $coinMin
+     * @param  int|null  $coinMax
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
     public function getByConditionPaginate(
         int $perCount,
         ?string $category,
