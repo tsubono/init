@@ -288,6 +288,16 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getOpenLessonsAttribute()
+    {
+        return $this->lessons()
+            ->where('is_stop', false)
+            ->get();
+    }
+
+    /**
      * @return false
      */
     public function getCanOpenLessonAttribute(): bool
@@ -311,9 +321,11 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
         }
 
         return $canOpenLesson;
-
     }
 
+    /**
+     * @return string[]
+     */
     private function getRequiredColumns()
     {
         return [

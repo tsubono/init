@@ -52,7 +52,7 @@
                                                             </div>
                                                         @endforeach
                                                     </div><!-- /. row -->
-                                                    <button type="button" class="p-btn p-btn__defalut" data-bs-dismiss="modal">保存する</button>
+                                                    <button type="button" class="p-btn p-btn__defalut" data-bs-dismiss="modal">閉じる</button>
                                                 </div><!-- /.modal-body -->
                                             </div><!-- /.modal-content -->
                                         </div><!-- /.modal-dialog -->
@@ -102,7 +102,7 @@
                                                         </div><!-- /.row  -->
 
                                                     </div><!-- /. row -->
-                                                    <button type="button" class="p-btn p-btn__defalut" data-bs-dismiss="modal">保存する</button>
+                                                    <button type="button" class="p-btn p-btn__defalut" data-bs-dismiss="modal">閉じる</button>
                                                 </div><!-- /.modal-body -->
                                             </div><!-- /.modal-content -->
                                         </div><!-- /.modal-dialog -->

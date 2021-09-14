@@ -91,7 +91,7 @@
                     レッスン一覧
                 </h2>
                 <div class="p-profile__lesson-list">
-                    @foreach ($adviserUser->lessons as $lesson)
+                    @forelse ($adviserUser->open_lessons as $lesson)
                         <div class="p-card p-card--lesson">
                             <a href="{{ route('lessons.show', compact('lesson')) }}" class="h-100">
                                 <div class="p-card__img">
@@ -116,7 +116,11 @@
                                 </div>
                             </a>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="text-center w-100">
+                            <p>まだレッスンを公開していません</p>
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </div>

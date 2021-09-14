@@ -102,6 +102,12 @@ class LessonRepository implements LessonRepositoryInterface
                     $lesson->images()->updateOrCreate([
                         'sort' => $sort,
                     ], [ 'image_path' => $image ]);
+                } else {
+                    $image = $lesson->images()
+                        ->where('sort', $sort)->first();
+                    if (!empty($image)) {
+                        $image->delete();
+                    }
                 }
             }
             // カテゴリ
@@ -109,7 +115,13 @@ class LessonRepository implements LessonRepositoryInterface
             // 動画
             foreach ($data['movies'] ?? [] as $sort => $movie) {
                 if (!is_null($movie['eye_catch_path']) && !is_null($movie['type']) && !is_null($movie['movie_path'])) {
-                    $lesson->movies()->updateOrCreate([ 'sort' => $sort ], $movie);
+                    $lesson->movies()->updateOrCreate(['sort' => $sort], $movie);
+                } else {
+                    $movie = $lesson->movies()
+                        ->where('sort', $sort)->first();
+                    if (!empty($movie)) {
+                        $movie->delete();
+                    }
                 }
             }
 
