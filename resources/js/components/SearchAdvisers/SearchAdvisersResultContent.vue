@@ -1,11 +1,12 @@
 <template>
+    <!-- パネル部分 -->
     <div class="p-search__content">
-        <div v-if="isEmpty">該当のレッスンは見つかりませんでした。</div>
+        <div v-if="isEmpty">該当のアドバイザーは見つかりませんでした。</div>
         <template v-else>
-            <SearchLesson
-                v-for="lesson in lessons"
-                :key="lesson.id"
-                :lesson="lesson"
+            <SearchAdviser
+                v-for="adviser in advisers"
+                :key="adviser.id"
+                :adviser="adviser"
             />
             <div
                 v-if="hasMore"
@@ -24,12 +25,12 @@
 </template>
 
 <script>
-import SearchLesson from './SearchLesson'
+import SearchAdviser from './SearchAdviser'
 
 export default {
-    name: 'SearchLessonsResultContent',
+    name: 'SearchAdvisersResultContent',
 
-    components: {SearchLesson},
+    components: {SearchAdviser},
 
     props: {
         total: {
@@ -37,7 +38,7 @@ export default {
             required: true,
         },
 
-        lessons: {
+        advisers: {
             type: Array,
             required: true,
         },
@@ -45,18 +46,18 @@ export default {
 
     computed: {
         isEmpty () {
-            return this.lessons.length === 0
+            return this.advisers.length === 0
         },
 
         hasMore () {
-            return this.lessons.length < this.total
+            return this.advisers.length < this.total
         },
-    },
 
-    methods: {
-        onClickLoadMoreButton () {
-            this.$emit('load')
-        }
+        methods: {
+            onClickLoadMoreButton () {
+                this.$emit('load')
+            }
+        },
     },
 }
 </script>

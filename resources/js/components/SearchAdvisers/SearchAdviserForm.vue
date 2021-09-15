@@ -12,16 +12,9 @@
                         v-model="formData.category"
                         @change="search"
                     >
-                        <option value="">すべてのカテゴリ</option>
-                        <option
-                            v-for="category in categories"
-                            :key="category.id"
-                            :value="category.name"
-                        >
-                            {{ category.name }}
-                        </option>
+                        <option selected>すべてのカテゴリ</option>
                     </select>
-                    のレッスン。
+                    の講師。
                 </h2>
                 <a
                     class="p-btn p-btn__outline d-md-none"
@@ -56,12 +49,12 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3 mb-md-4">
-                            <h3 class="p-heading3">ルーム名</h3>
+                            <h3 class="p-heading3">アドバイザー名</h3>
                             <input
                                 type="text"
                                 class="form-control"
                                 placeholder="記入してください"
-                                v-model="formData.room"
+                                v-model="formData.name"
                                 @change="search"
                             >
                         </div>
@@ -84,6 +77,33 @@
                                 </option>
                             </select>
                         </div>
+                        <div class="col-lg-3 col-6 mb-md-4">
+                            <h3 class="p-heading3">
+                                <span class="d-none d-md-inline">アドバイザーの</span>居住国
+                            </h3>
+                            <select
+                                class="form-select"
+                                v-model="formData.residenceCountry"
+                                @change="search"
+                            >
+                                <option value="">指定しない</option>
+                                <option
+                                    v-for="country in countries"
+                                    :key="country.id"
+                                    :value="country.name"
+                                >
+                                    {{ country.name }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <h3 class="p-heading3">
+                                <span class="d-none d-md-inline">アドバイザーの</span>年齢
+                            </h3>
+                            <select class="form-select">
+                                <option selected>すべて</option>
+                            </select>
+                        </div>
                         <div class="col-lg-3 col-6">
                             <h3 class="p-heading3">
                                 <span class="d-none d-md-inline">アドバイザーの</span>性別
@@ -98,28 +118,9 @@
                                 <option value="女性">女性</option>
                             </select>
                         </div>
-                        <div class="col-lg-6">
-                            <h3 class="p-heading3">必要コイン</h3>
-                            <div class="d-flex align-items-center">
-                                <input
-                                    type="number"
-                                    class="form-control"
-                                    placeholder="最低コイン"
-                                    v-model="formData.coinMin"
-                                    @change="search"
-                                >
-                                <span class="mx-2">〜</span>
-                                <input
-                                    type="number"
-                                    class="form-control"
-                                    placeholder="上限コイン"
-                                    v-model="formData.coinMax"
-                                    @change="search"
-                                >
-                            </div>
-                        </div>
                     </div><!-- /.row -->
                 </div><!-- /.collapse -->
+
             </form>
         </div>
     </section>
@@ -127,7 +128,7 @@
 
 <script>
 export default {
-    name: 'SearchLessonsForm',
+    name: 'SearchAdviserForm',
 
     props: {
         searchParams: {
@@ -155,11 +156,10 @@ export default {
         formData: {
             category: '',
             language: '',
-            room: '',
+            name: '',
             country: '',
+            residenceCountry: '',
             gender: '',
-            coinMin: '',
-            coinMax: '',
         },
     }),
 

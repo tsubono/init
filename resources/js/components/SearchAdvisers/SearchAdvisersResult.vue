@@ -1,14 +1,14 @@
 <template>
     <section class="p-searchresult l-content-block">
         <div class="container">
-            <SearchLessonsResultInfo
+            <SearchAdvisersResultInfo
                 :total="total"
                 :order="order"
                 @order="handleOrder"
             />
-            <SearchLessonsResultContent
+            <SearchAdvisersResultContent
                 :total="total"
-                :lessons="lessons"
+                :advisers="advisers"
                 @load="handleLoad"
             />
         </div>
@@ -16,16 +16,16 @@
 </template>
 
 <script>
-import SearchLessonsResultInfo from './SearchLessonsResultInfo'
-import SearchLessonsResultContent from './SearchLessonsResultContent'
+import SearchAdvisersResultInfo from './SearchAdvisersResultInfo'
+import SearchAdvisersResultContent from './SearchAdvisersResultContent'
 
 export default {
-    name: 'SearchLessonsResult',
+    name: 'SearchAdvisersResult',
 
-    components: {SearchLessonsResultInfo, SearchLessonsResultContent},
+    components: {SearchAdvisersResultContent, SearchAdvisersResultInfo},
 
     props: {
-        lessons: {
+        advisers: {
             type: Array,
             required: true,
         },

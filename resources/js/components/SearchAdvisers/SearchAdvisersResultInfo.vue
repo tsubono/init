@@ -13,6 +13,7 @@
                     :class="activeClass('new')"
                     type="button"
                     aria-controls="new"
+                    aria-selected="true"
                     :aria-selected="isActive('new')"
                     @click="setOrder('new')"
                 >
@@ -34,33 +35,10 @@
             <li role="presentation">
                 <button
                     class="p-sort__parts"
-                    :class="activeClass('coin-little')"
-                    type="button"
-                    aria-controls="coin-little"
-                    :aria-selected="isActive('coin-little')"
-                    @click="setOrder('coin-little')"
-                >
-                    必要コイン少ない順
-                </button>
-            </li>
-            <li role="presentation">
-                <button
-                    class="p-sort__parts"
-                    :class="activeClass('coin-many')"
-                    type="button"
-                    aria-controls="coin-many"
-                    :aria-selected="isActive('coin-many')"
-                    @click="setOrder('coin-many')"
-                >
-                    必要コイン多い順
-                </button>
-            </li>
-            <li role="presentation">
-                <button
-                    class="p-sort__parts"
                     :class="activeClass('evaluation')"
                     type="button"
                     aria-controls="evaluation"
+                    aria-selected="false"
                     :aria-selected="isActive('evaluation')"
                     @click="setOrder('evaluation')"
                 >
@@ -73,7 +51,7 @@
 
 <script>
 export default {
-    name: 'SearchLessonsResultInfo',
+    name: 'SearchAdvisersResultInfo',
 
     props: {
         total: {
@@ -105,6 +83,6 @@ export default {
 
 <style scoped>
 .num:after {
-    content: "件"
+    content: "人"
 }
 </style>

@@ -1,34 +1,26 @@
 <template>
     <div>
-        <SearchLessonsForm
+        <SearchAdviserForm
             :search-params="searchParams"
             :categories="categories"
             :languages="languages"
             :countries="countries"
             @search="handleSearch"
         />
-        <SearchLessonsResult
-            :lessons="_lessons"
-            :total="_total"
-            :order="order"
-            @order="handleOrder"
-            @load="handleLoad"
-        />
     </div>
 </template>
 
 <script>
-import SearchLessonsForm from './SearchLessonsForm'
-import SearchLessonsResult from './SearchLessonsResult'
+import SearchAdviserForm from './SearchAdviserForm'
 import { kebabCase } from 'lodash/string'
 
 export default {
-    name: 'SearchLessons',
+    name: 'SearchAdvisers',
 
-    components: {SearchLessonsResult, SearchLessonsForm},
+    components: {SearchAdviserForm},
 
     props: {
-        lessons: {
+        advisers: {
             type: Array,
             required: true,
         },
@@ -58,20 +50,19 @@ export default {
         searchParams: {
             category: '',
             language: '',
-            room: '',
+            name: '',
             country: '',
+            residenceCountry: '',
             gender: '',
-            coinMin: '',
-            coinMax: '',
         },
         order: '',
         page: 1,
-        _lessons: [],
+        _advisers: [],
         _total: 0,
     }),
 
     created () {
-        this._lessons = this.lessons
+        this._advisers = this.advisers
         this._total = this.total
 
         const params = new URLSearchParams(location.search)
@@ -106,13 +97,13 @@ export default {
             }
 
             try {
-                response = await axios.get('/api/lessons/search', {params: {...params, page}})
+                response = await axios.get('/api/advisers/search', {params: {...params, page}})
             } catch (e) {
                 console.error(e)
                 return
             }
 
-            this._lessons = this.page !== page ? [...this._lessons, ...response.data.lessons] : response.data.lessons
+            this._advisers = this.page !== page ? [...this._advisers, ...response.data.advisers] : response.data.advisers
             this._total = response.data.total
             this.$forceUpdate()
             this.setUrl(params)
