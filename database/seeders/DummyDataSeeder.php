@@ -27,7 +27,7 @@ class DummyDataSeeder extends Seeder
      */
     public function run()
     {
-        AdviserUser::factory(3)
+        AdviserUser::factory(15)
             ->has(
                 Lesson::factory()
                     ->has(LessonMovie::factory([
