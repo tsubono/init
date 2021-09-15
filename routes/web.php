@@ -133,7 +133,8 @@ Route::prefix('admin')->as('admin.')->namespace('App\Http\Controllers\Admin')->g
         Route::post('/coins/export-csv', 'CoinController@exportCsv')->name('coins.export-csv');
         // 受講管理
         Route::get('/attendances', 'AttendanceController@index')->name('attendances.index');
-        Route::get('/attendances/{attendance}', 'AttendanceController@show')->name('attendances.show');
+        // 詳細は共通のページを使用する
+        // Route::get('/attendances/{attendance}', 'AttendanceController@show')->name('attendances.show');
         // 振り込み申請管理
         Route::get('/transfer-requests', 'TransferRequestController@index')->name('transfer-requests.index');
         Route::post('/transfer-requests/{transferRequest}/update-status', 'TransferRequestController@updateStatus')->name('transfer-requests.update-status');

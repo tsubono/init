@@ -6,6 +6,9 @@
     <section class="p-searchblock bg-light l-content-block">
         <div class="container">
             <form action="" class="p-form">
+                <a class="p-btn p-btn__outline d-md-none" data-bs-toggle="collapse" href="#collapseDetail" role="button" aria-expanded="false" aria-controls="collapseDetail">
+                    検索
+                </a>
                 <div class="collapse" id="collapseDetail">
                     <div class="row">
                         <div class="col-md-6 mb-3 mb-md-4">
@@ -37,11 +40,11 @@
                             </div>
                         </div>
                     </div><!-- /.row -->
+                    <div class="d-flex justify-content-end align-items-center p-searchblock__controls">
+                        <a class="primary-link mx-5" href="{{ route('admin.infos.index') }}">リセット</a>
+                        <button class="p-btn p-btn__black d-inline-block mt-2 py-2 px-5">検索</button>
+                    </div>
                 </div><!-- /.collapse -->
-                <div class="d-flex justify-content-end align-items-center">
-                    <a class="primary-link mx-5" href="{{ route('attendances.index') }}">リセット</a>
-                    <button class="p-btn p-btn__black w-25">検索</button>
-                </div>
             </form>
         </div>
     </section>
