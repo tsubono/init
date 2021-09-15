@@ -30,6 +30,7 @@ class CreateAttendanceSalesTable extends Migration
 
             $table->foreign('adviser_user_id')->references('id')->on('adviser_users');
             $table->foreign('attendance_id')->references('id')->on('attendances');
+            $table->foreign('transfer_request_id')->references('id')->on('transfer_requests');
         });
     }
 
