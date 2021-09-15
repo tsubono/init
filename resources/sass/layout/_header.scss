@@ -14,8 +14,57 @@ header {
     top: 1%;
     width: 98%;
   }
+  .login-link {
+    margin-right: 0;
+    position: relative;
+    padding-left: 30px;
+    font-weight: bold;
+    @include breakpoint-md {
+      padding-left: 0;
+    }
+    &::before {
+      position: absolute;
+      content: "";
+      background: #fff;
+      width: 2px;
+      height: 15px;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      @include breakpoint-md {
+        display: none;
+      }
+    }
+    > a {
+      color: $color-extra;
+      position: relative;
+      padding-left: 30px;
+      display: block;
+      &::before {
+        content: "";
+        position: absolute;
+        background: url(/img/nav-icon-login.svg) no-repeat 0 0 /
+                    contain;
+        width: 20px;
+        height: 20px;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+    }
+    .dropdown-menu {
+      a {
+        color: $color-sub-dk;
+      }
+    }
+  }
   .navbar {
-    padding: 14px 60px 5px;
+    padding: 14px 60px;
+    &.has-sub-menu {
+      padding: 14px 60px 5px;
+    }
     display: flex;
     align-items: center;
     @include breakpoint-lg {
