@@ -9,6 +9,7 @@
         <SearchLessonsResult
             :lessons="_lessons"
             :total="_total"
+            :order="order"
         />
     </div>
 </template>
@@ -52,11 +53,15 @@ export default {
     data: () => ({
         _lessons: [],
         _total: 0,
+        order: '',
     }),
 
     created () {
         this._lessons = this.lessons
         this._total = this.total
+
+        const params = new URLSearchParams(location.search)
+        this.order = params.get('order') || 'new'
     },
 
     methods: {

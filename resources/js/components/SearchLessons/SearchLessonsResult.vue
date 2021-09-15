@@ -1,7 +1,10 @@
 <template>
   <section class="p-searchresult l-content-block">
     <div class="container">
-      <SearchLessonsResultInfo :total="total"/>
+      <SearchLessonsResultInfo
+          :total="total"
+          :order="order"
+      />
       <SearchLessonsResultContent :lessons="lessons"/>
     </div><!-- /.container -->
   </section>
@@ -24,6 +27,11 @@ export default {
 
     total: {
       type: Number,
+      required: true,
+    },
+
+    order: {
+      type: String,
       required: true,
     },
   },

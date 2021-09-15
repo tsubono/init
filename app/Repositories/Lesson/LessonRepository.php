@@ -109,18 +109,18 @@ class LessonRepository implements LessonRepositoryInterface
         }
 
         switch ($orderBy) {
-            case 'popularity':
+            case 'fav':
                 $query
                     ->withCount('attendances')
                     ->orderBy('attendances_count', 'desc');
                 break;
-            case 'coin:asc':
+            case 'coin-little':
                 $query->orderBy('coin_amount');
                 break;
-            case 'coin:desc':
+            case 'coin-many':
                 $query->orderBy('coin_amount', 'desc');
                 break;
-            case 'rate':
+            case 'evaluation':
                 $query
                     ->withAvg('reviews', 'rate')
                     ->orderBy('reviews_avg_rate', 'desc');
