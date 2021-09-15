@@ -112,7 +112,7 @@ export default {
 
   computed: {
     lessonUrl () {
-      return location.origin + '/lessons/' + this.lesson.izd
+      return location.origin + '/lessons/' + this.lesson.id
     },
     description () {
       if (this.lesson.description.length <= 200) {
