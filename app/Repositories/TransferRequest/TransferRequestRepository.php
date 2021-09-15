@@ -26,7 +26,7 @@ class TransferRequestRepository implements TransferRequestRepositoryInterface
      */
     public function getPaginate(int $perCount = 15): LengthAwarePaginator
     {
-        return $this->adviserUser
+        return $this->transferRequest
             ->query()
             ->orderBy('created_at', 'desc')
             ->paginate($perCount);

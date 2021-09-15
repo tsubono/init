@@ -136,7 +136,7 @@ Route::prefix('admin')->as('admin.')->namespace('App\Http\Controllers\Admin')->g
         Route::get('/attendances/{attendance}', 'AttendanceController@show')->name('attendances.show');
         // 振り込み申請管理
         Route::get('/transfer-requests', 'TransferRequestController@index')->name('transfer-requests.index');
-        Route::post('/transfer-requests/{attendance}/update-status', 'TransferRequestController@updateStatus')->name('transfer-requests.update-status');
+        Route::post('/transfer-requests/{transferRequest}/update-status', 'TransferRequestController@updateStatus')->name('transfer-requests.update-status');
         // お知らせ管理
         Route::resource('/infos', 'InfoController')->except(['show']);
         // お知らせ配信管理

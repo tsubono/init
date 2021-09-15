@@ -52,4 +52,12 @@ class AttendanceSale extends Model
     {
         return $this->belongsTo(AdviserUser::class);
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function transferRequest(): BelongsTo
+    {
+        return $this->belongsTo(TransferRequest::class);
+    }
 }

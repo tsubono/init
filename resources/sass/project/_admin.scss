@@ -5,8 +5,27 @@
       text-align: center;
 
       &__date {
-        flex-basis: 20%;
+        flex-basis: 10%;
         font-size: 18px;
+      }
+
+      &__name {
+        flex-basis: 25%;
+        font-size: 18px;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &__amount {
+        flex-basis: 20%;
+        font-size: 25px;
+        font-weight: bold;
+
+        &.minus {
+          color: $color-danger;
+        }
       }
 
       &__title {
@@ -28,5 +47,10 @@
         }
       }
     }
+  }
+
+  .text-large {
+    font-weight: bold;
+    font-size: 21px;
   }
 }
