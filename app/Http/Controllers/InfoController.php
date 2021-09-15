@@ -2,37 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Information;
+use App\Repositories\Information\InformationRepositoryInterface;
 use Illuminate\Http\Request;
 
 class InfoController extends Controller
 {
+    private InformationRepositoryInterface $informationRepository;
+
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * InfoController constructor.
+     * @param InformationRepositoryInterface $informationRepository
      */
-    public function __construct()
+    public function __construct(InformationRepositoryInterface $informationRepository)
     {
-        //
+        $this->informationRepository = $informationRepository;
     }
 
     /**
      * お知らせ一覧
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
-        return view('infos.index');
+        $informations = $this->informationRepository->getPaginate();
+
+        return view('infos.index', compact('informations'));
     }
 
     /**
      * お知らせ詳細
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Information $information
+     * @return \Illuminate\Contracts\View\View
      */
-    public function show()
+    public function show(Information $information)
     {
-        return view('infos.show');
+        return view('infos.show', compact('information'));
     }
 }

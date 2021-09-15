@@ -23,8 +23,6 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::get('/advisers/{adviserUser}', 'AdviserController@show')->name('advisers.show');
     Route::get('/contact', 'ContactController@index')->name('contact.index');
     Route::post('/contact/send', 'ContactController@send')->name('contact.send');
-    Route::get('/infos', 'InfoController@index')->name('infos.index');
-    Route::get('/infos/{info}', 'InfoController@show')->name('infos.show');
 });
 
 /**
@@ -34,15 +32,19 @@ Route::middleware(['auth.common'])->namespace('App\Http\Controllers')->group(fun
     Route::get('/attendances', 'AttendanceController@index')->name('attendances.index');
     Route::get('/attendances/{attendance}', 'AttendanceController@show')->name('attendances.show');
     Route::post('/attendances/request/{lesson}', 'AttendanceController@request')->name('attendances.request');
+    Route::post('/attendances/{attendance}/cancel-request', 'AttendanceController@cancelRequest')->name('attendances.cancel-request');
     Route::post('/attendances/{attendance}/approval', 'AttendanceController@approval')->name('attendances.approval');
     Route::post('/attendances/{attendance}/reject', 'AttendanceController@reject')->name('attendances.reject');
     Route::get('/attendances/{attendance}/messages', 'AttendanceController@messages')->name('attendances.messages');
     Route::post('/attendances/{attendance}/send-message', 'AttendanceController@sendMessage')->name('attendances.send-message');
     Route::get('/attendances/{attendance}/download/{attendanceMessage}/{fileIndex}', 'AttendanceController@downloadMessageFile')->name('attendances.download');
+    Route::get('/attendances/{attendance}/review', 'AttendanceController@reviewForm')->name('attendances.review-form');
     Route::post('/attendances/{attendance}/review', 'AttendanceController@review')->name('attendances.review');
     Route::post('/attendances/{attendance}/cancel', 'AttendanceController@cancel')->name('attendances.cancel');
     Route::post('/attendances/{attendance}/report', 'AttendanceController@report')->name('attendances.report');
     Route::post('/attendances/{attendance}/close', 'AttendanceController@close')->name('attendances.close');
+    Route::get('/infos', 'InfoController@index')->name('infos.index');
+    Route::get('/infos/{information}', 'InfoController@show')->name('infos.show');
 });
 
 /**

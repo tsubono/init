@@ -179,5 +179,6 @@ return [
         'paypal_email' => 'Paypalメールアドレス',
         'account_image_1' => '口座画像（表紙）',
         'account_image_2' => '口座画像（見開きページ）',
+        'rate' => '評点',
     ],
 ];

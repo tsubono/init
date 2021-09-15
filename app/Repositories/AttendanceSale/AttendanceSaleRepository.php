@@ -85,6 +85,7 @@ class AttendanceSaleRepository implements AttendanceSaleRepositoryInterface
         return $this->attendanceSale
             ->query()
             ->where('adviser_user_id', $adviserUserId)
+            ->where('status', '<>',  AttendanceSale::STATUS_PENDING) // 確定している売り上げのみ
             ->orderBy('created_at', 'desc')
             ->paginate($perCount);
     }
@@ -139,8 +140,22 @@ class AttendanceSaleRepository implements AttendanceSaleRepositoryInterface
     public function findByAttendanceId(int $attendanceId): AttendanceSale
     {
         return $this->attendanceSale
-            ->query()
             ->where('attendance_id', $attendanceId)
             ->first();
+    }
+
+    /**
+     * @param int $adviserUserId
+     * @param int $transferRequestId
+     */
+    public function updateStatusToRequest(int $adviserUserId, int $transferRequestId): void
+    {
+        $this->attendanceSale
+            ->where('adviser_user_id', $adviserUserId)
+            ->where('status', AttendanceSale::STATUS_CONFIRMED)
+            ->update([
+               'status' =>  AttendanceSale::STATUS_REQUEST,
+               'transfer_request_id' =>  $transferRequestId,
+            ]);
     }
 }

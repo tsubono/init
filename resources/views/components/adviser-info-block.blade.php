@@ -7,15 +7,19 @@
 <div class="row text-center">
     <div class="col-6 mb-3">
         <h4 class="p-heading3">出身国</h4>
-        <div class="p-lang">{{ $adviserUser->fromCountry->name }}</div>
+        <div>{{ $adviserUser->fromCountry->name }}</div>
     </div>
     <div class="col-6 mb-3">
         <h4 class="p-heading3">居住国</h4>
-        <div class="p-lang">{{ $adviserUser->residenceCountry->name }}</div>
+        <div>{{ $adviserUser->residenceCountry->name }}</div>
     </div>
     <div class="col-6 mb-3">
         <h4 class="p-heading3">性別</h4>
-        <div class="p-label__age {{ $adviserUser->gender === '男性' ? 'men' : 'woman' }}">{{ $adviserUser->gender }}</div>
+        @if (!empty($adviserUser->gender))
+            <div class="p-label__age {{ $adviserUser->gender === '男性' ? 'men' : 'woman' }}">{{ $adviserUser->gender }}</div>
+        @else
+            未登録
+        @endif
     </div>
     <div class="col-6 mb-3">
         <h4 class="p-heading3">年齢</h4>

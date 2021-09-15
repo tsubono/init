@@ -21,7 +21,7 @@ class CreateTransferRequestsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');
+            $table->foreign('adviser_user_id')->references('id')->on('adviser_users');
         });
     }
 

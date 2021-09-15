@@ -2,11 +2,17 @@
   &--lesson {
     flex: 1;
     max-width: 350px;
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
+
+    .p-card__info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
   }
-  a, &.block {
+  a, &.block, &--lesson {
     background: #fff;
-    display: block;
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
     &:hover {
       color: $color-catch;
@@ -49,12 +55,17 @@
     ul {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
     }
     li {
       @include gradient-lt;
       font-weight: bold;
       padding: 1px 8px;
       margin: 0 5px 10px;
+      white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
   &__btn {
@@ -459,25 +470,6 @@
       position: absolute;
       top: 15px;
       right: 30px;
-    }
-
-    .p-card3__status_label {
-      width: 150px;
-      padding: 10px;
-      text-align: center;
-
-      &.primary {
-        @include gradient-lt;
-        font-weight: bold;
-
-        &.accent {
-          color: $color-danger;
-        }
-      }
-
-      &.default {
-        background: #f5f5f5;
-      }
     }
   }
 }
