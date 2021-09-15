@@ -24,7 +24,7 @@ class LessonRepository implements LessonRepositoryInterface
      * @param int $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginate(int $perCount = 10): LengthAwarePaginator
+    public function getPaginate(int $perCount = 15): LengthAwarePaginator
     {
         return $this->lesson
             ->query()
@@ -37,7 +37,7 @@ class LessonRepository implements LessonRepositoryInterface
      * @param int $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getByAdviserIdPaginate(int $adviserUserId, int $perCount = 10): LengthAwarePaginator
+    public function getByAdviserIdPaginate(int $adviserUserId, int $perCount = 15): LengthAwarePaginator
     {
         return $this->lesson
             ->query()

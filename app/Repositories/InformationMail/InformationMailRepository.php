@@ -24,7 +24,7 @@ class InformationMailRepository implements InformationMailRepositoryInterface
      * @param int $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginate(int $perCount = 10): LengthAwarePaginator
+    public function getPaginate(int $perCount = 15): LengthAwarePaginator
     {
         return $this->informationMail
             ->query()

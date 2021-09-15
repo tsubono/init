@@ -134,7 +134,7 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
      * @param int $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginate(int $perCount = 30): LengthAwarePaginator
+    public function getPaginate(int $perCount = 15): LengthAwarePaginator
     {
         return $this->adviserUser
             ->query()

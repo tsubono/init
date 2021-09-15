@@ -25,7 +25,7 @@ class AttendanceRepository implements AttendanceRepositoryInterface
      * @param int $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginate(int $perCount = 10): LengthAwarePaginator
+    public function getPaginate(int $perCount = 15): LengthAwarePaginator
     {
         return $this->attendance
             ->query()
@@ -38,7 +38,7 @@ class AttendanceRepository implements AttendanceRepositoryInterface
      * @param int $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getByConditionPaginate(array $condition, int $perCount = 10): LengthAwarePaginator
+    public function getByConditionPaginate(array $condition, int $perCount = 15): LengthAwarePaginator
     {
         $query = $this->getQueryWithCondition($condition);
 

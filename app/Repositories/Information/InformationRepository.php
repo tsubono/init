@@ -24,7 +24,7 @@ class InformationRepository implements InformationRepositoryInterface
      * @param int $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginate(int $perCount = 10): LengthAwarePaginator
+    public function getPaginate(int $perCount = 15): LengthAwarePaginator
     {
         return $this->information
             ->query()
@@ -37,7 +37,7 @@ class InformationRepository implements InformationRepositoryInterface
      * @param int $perCount
      * @return LengthAwarePaginator
      */
-    public function getByConditionPaginate(array $condition, int $perCount = 10): LengthAwarePaginator
+    public function getByConditionPaginate(array $condition, int $perCount = 15): LengthAwarePaginator
     {
         $query = $this->information->query();
 
