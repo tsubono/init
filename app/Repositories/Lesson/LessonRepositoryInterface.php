@@ -21,5 +21,6 @@ interface LessonRepositoryInterface
     ): LengthAwarePaginator;
     public function store(array $data): void;
     public function update(int $id, array $data): void;
+    public function stopByAdviserUserId(int $adviserUserId): void;
     public function destroy(int $id): void;
 }

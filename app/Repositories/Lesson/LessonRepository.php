@@ -187,7 +187,13 @@ class LessonRepository implements LessonRepositoryInterface
                 if (!is_null($image)) {
                     $lesson->images()->updateOrCreate([
                         'sort' => $sort,
-                    ], ['image_path' => $image]);
+                    ], [ 'image_path' => $image ]);
+                } else {
+                    $image = $lesson->images()
+                        ->where('sort', $sort)->first();
+                    if (!empty($image)) {
+                        $image->delete();
+                    }
                 }
             }
             // カテゴリ
@@ -196,6 +202,12 @@ class LessonRepository implements LessonRepositoryInterface
             foreach ($data['movies'] ?? [] as $sort => $movie) {
                 if (!is_null($movie['eye_catch_path']) && !is_null($movie['type']) && !is_null($movie['movie_path'])) {
                     $lesson->movies()->updateOrCreate(['sort' => $sort], $movie);
+                } else {
+                    $movie = $lesson->movies()
+                        ->where('sort', $sort)->first();
+                    if (!empty($movie)) {
+                        $movie->delete();
+                    }
                 }
             }
 
@@ -227,5 +239,16 @@ class LessonRepository implements LessonRepositoryInterface
             Log::error($e->getMessage());
             throw new \Exception($e);
         }
+    }
+
+    /**
+     * @param int $adviserUserId
+     */
+    public function stopByAdviserUserId(int $adviserUserId): void
+    {
+        $this->lesson
+            ->query()
+            ->where('adviser_user_id', $adviserUserId)
+            ->update(['is_stop' => 1]);
     }
 }

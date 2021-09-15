@@ -34,11 +34,13 @@ Route::middleware(['auth.common'])->namespace('App\Http\Controllers')->group(fun
     Route::get('/attendances', 'AttendanceController@index')->name('attendances.index');
     Route::get('/attendances/{attendance}', 'AttendanceController@show')->name('attendances.show');
     Route::post('/attendances/request/{lesson}', 'AttendanceController@request')->name('attendances.request');
+    Route::post('/attendances/{attendance}/cancel-request', 'AttendanceController@cancelRequest')->name('attendances.cancel-request');
     Route::post('/attendances/{attendance}/approval', 'AttendanceController@approval')->name('attendances.approval');
     Route::post('/attendances/{attendance}/reject', 'AttendanceController@reject')->name('attendances.reject');
     Route::get('/attendances/{attendance}/messages', 'AttendanceController@messages')->name('attendances.messages');
     Route::post('/attendances/{attendance}/send-message', 'AttendanceController@sendMessage')->name('attendances.send-message');
     Route::get('/attendances/{attendance}/download/{attendanceMessage}/{fileIndex}', 'AttendanceController@downloadMessageFile')->name('attendances.download');
+    Route::get('/attendances/{attendance}/review', 'AttendanceController@reviewForm')->name('attendances.review-form');
     Route::post('/attendances/{attendance}/review', 'AttendanceController@review')->name('attendances.review');
     Route::post('/attendances/{attendance}/cancel', 'AttendanceController@cancel')->name('attendances.cancel');
     Route::post('/attendances/{attendance}/report', 'AttendanceController@report')->name('attendances.report');
@@ -54,8 +56,15 @@ Route::prefix('adviser')->as('adviser.')->namespace('App\Http\Controllers\Advise
 
     Route::middleware(['auth.adviser', 'verified.adviser'])->group(function () {
         // プロフィール
-        Route::get('/profile', 'ProfileController@edit')->name('profile.edit');
-        Route::post('/profile', 'ProfileController@update')->name('profile.update');
+        Route::get('/profile/basic', 'ProfileController@editBasic')->name('profile.edit');
+        Route::post('/profile/basic', 'ProfileController@updateBasic')->name('profile.update');
+        Route::get('/profile/teach', 'ProfileController@editTeach')->name('profile.edit.teach');
+        Route::post('/profile/teach', 'ProfileController@updateTeach')->name('profile.update.teach');
+        Route::get('/profile/password', 'ProfileController@editPassword')->name('profile.edit.password');
+        Route::post('/profile/password', 'ProfileController@updatePassword')->name('profile.update.password');
+        Route::get('/profile/personal', 'ProfileController@editPersonal')->name('profile.edit.personal');
+        Route::post('/profile/personal', 'ProfileController@updatePersonal')->name('profile.update.personal');
+        Route::post('/profile/withdrawal', 'ProfileController@withdrawal')->name('profile.withdrawal');
         // レッスン管理
         Route::resource('/lessons', 'LessonController')->except(['show']);
         // 売上管理
@@ -73,8 +82,15 @@ Route::prefix('mate')->as('mate.')->namespace('App\Http\Controllers\Mate')->grou
 
     Route::middleware(['auth.mate', 'verified.mate'])->group(function () {
         // プロフィール
-        Route::get('/profile', 'ProfileController@edit')->name('profile.edit');
-        Route::post('/profile', 'ProfileController@update')->name('profile.update');
+        Route::get('/profile/basic', 'ProfileController@editBasic')->name('profile.edit');
+        Route::post('/profile/basic', 'ProfileController@updateBasic')->name('profile.update');
+        Route::get('/profile/learn', 'ProfileController@editLearn')->name('profile.edit.learn');
+        Route::post('/profile/learn', 'ProfileController@updateLearn')->name('profile.update.learn');
+        Route::get('/profile/password', 'ProfileController@editPassword')->name('profile.edit.password');
+        Route::post('/profile/password', 'ProfileController@updatePassword')->name('profile.update.password');
+        Route::get('/profile/notice', 'ProfileController@editNotice')->name('profile.edit.notice');
+        Route::post('/profile/notice', 'ProfileController@updateNotice')->name('profile.update.notice');
+        Route::post('/profile/withdrawal', 'ProfileController@withdrawal')->name('profile.withdrawal');
         // コイン管理
         Route::get('/coins', 'CoinController@index')->name('coins.index');
         Route::get('/coins/buy', 'CoinController@buy')->name('coins.buy');
@@ -130,3 +146,4 @@ Route::get('/cancel-policy-adviser', function () { return view('cancel-policy-ad
 Route::get('/cancel-policy-mate', function () { return view('cancel-policy-mate'); })->name('cancel-policy-mate');
 Route::get('/mate-terms', function () { return view('mate-terms'); })->name('mate-terms');
 Route::get('/adviser-terms', function () { return view('adviser-terms'); })->name('adviser-terms');
+Route::get('/withdrawal', function () { return view('withdrawal'); })->name('withdrawal');

@@ -6,7 +6,7 @@
     <section class="l-content-block p-profile">
         <div class="container">
             <div class="p-profile__edit">
-                @if (auth()->guard('adviser')->check() && auth()->guard('adviser')->user->id === $adviserUser->id)
+                @if (auth()->guard('adviser')->check() && auth()->guard('adviser')->user()->id === $adviserUser->id)
                 <a href="{{ route('adviser.profile.edit') }}" class="p-btn p-btn--edit p-btn__outline">プロフィールを編集</a>
                 @endif
             </div>
@@ -59,12 +59,26 @@
                                 <p>{!! nl2br(e($adviserUser->passion_text)) !!}</p>
                             </div>
                         </div>
-                        <div class="col-md-12 mt-4">
+                        <div class="col-md-12 mt-5">
                             <div class="row">
-                                @foreach ($adviserUser->adviserUserImages as $image)
+                                @foreach ($adviserUser->adviserUserImages as $index => $image)
                                     <div class="col-4">
-                                        <img class="img-fluid" src="{{ $image->image_path }}" alt="">
+                                        <a data-bs-toggle="modal" data-bs-target="#imageModal{{ $index }}">
+                                            <img class="img-fluid" src="{{ $image->image_path }}" alt="{{ $adviserUser->full_name }}">
+                                        </a>
                                     </div>
+                                    <div class="modal fade p-modal" id="imageModal{{ $index }}" tabindex="-1" aria-labelledby="imageModal{{ $index }}Label">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                                                <div class="modal-body">
+                                                    <div class="iframe-wrapper">
+                                                        <img src="{{ $image->image_path }}" alt="{{ $adviserUser->full_name }}" class="w-100">
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
                                 @endforeach
                             </div>
                         </div>
@@ -77,7 +91,7 @@
                     レッスン一覧
                 </h2>
                 <div class="p-profile__lesson-list">
-                    @foreach ($adviserUser->lessons as $lesson)
+                    @forelse ($adviserUser->open_lessons as $lesson)
                         <div class="p-card p-card--lesson">
                             <a href="{{ route('lessons.show', compact('lesson')) }}" class="h-100">
                                 <div class="p-card__img">
@@ -102,7 +116,11 @@
                                 </div>
                             </a>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="text-center w-100">
+                            <p>まだレッスンを公開していません</p>
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </div>

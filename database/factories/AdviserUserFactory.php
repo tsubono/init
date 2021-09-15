@@ -60,7 +60,6 @@ class AdviserUserFactory extends Factory
             'paypal_email' => $this->faker->email,
             'account_image_1' => asset('img/form-img-picture.svg'),
             'account_image_2' => asset('img/form-img-picture.svg'),
-            'can_open_lesson' => true,
             'last_login_at' => now(),
         ];
     }

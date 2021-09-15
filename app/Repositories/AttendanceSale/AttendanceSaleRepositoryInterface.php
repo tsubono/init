@@ -13,5 +13,6 @@ interface AttendanceSaleRepositoryInterface
     public function getByAdviserUserIdPaginate(int $adviserUserId, int $perCount = 30): LengthAwarePaginator;
     public function updatePriceByReport(int $attendance_id, array $data): void;
     public function updatePriceByCancel(int $attendanceId, array $data): void;
+    public function updateStatusToRequest(int $adviserUserId, int $transferRequestId): void;
     public function findByAttendanceId(int $attendanceId): AttendanceSale;
 }

@@ -11,7 +11,7 @@
             <div class="row row-cols-3 mt-5">
                 @forelse ($lessons as $index => $lesson)
                     <div class="col text-center mb-4">
-                        <div class="p-card p-card--lesson h-100 block">
+                        <div class="p-card p-card--lesson h-100">
                             <div class="p-card__img">
                                 <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->name }}">
                             </div>
@@ -33,7 +33,7 @@
                                         {{ number_format($lesson->coin_amount) }}コイン
                                     </span>
                                 </div>
-                                <div class="d-flex mt-4">
+                                <div class="d-flex mt-auto">
                                     <button type="button" class="p-btn p-btn--rect btn-success fw-normal px-3 py-1 ms-auto" onclick="location.href='{{ route('adviser.lessons.edit', compact('lesson')) }}'">
                                         編集
                                     </button>
@@ -62,40 +62,38 @@
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
-                    <!-- /受講完了モーダル -->
+                    <!-- /削除確認モーダル -->
                 @empty
 
                 @endforelse
                 <div class="col text-center mb-4">
                     <div class="p-card p-card--lesson h-100">
-                        <a href="#" class="h-100">
-                            <div class="p-card__img">
-                                <img src="{{ asset('img/lesson-img02.png') }}" alt="">
+                        <div class="p-card__img">
+                            <img src="{{ asset('img/lesson-img02.png') }}" alt="">
+                        </div>
+                        <div class="p-card__info text-start">
+                            <div class="p-card__name">まずは30分! 初めてのヴァイオリンレッスン</div>
+                            <div class="text-black-50 mt-2">お得な4回パックのコースです。大人の方もお子様もご受講頂けます！</div>
+                            <div class="p-card__category mt-3">
+                                <ul class="justify-content-start">
+                                    <li>#語学</li>
+                                </ul>
                             </div>
-                            <div class="p-card__info text-start">
-                                <div class="p-card__name">まずは30分! 初めてのヴァイオリンレッスン</div>
-                                <div class="text-black-50 mt-2">お得な4回パックのコースです。大人の方もお子様もご受講頂けます！</div>
-                                <div class="p-card__category mt-3">
-                                    <ul class="justify-content-start">
-                                        <li>#語学</li>
-                                    </ul>
-                                </div>
-                                <div class="d-flex">
-                                  <span>
-                                    <img src="{{ asset('img/icon-time.svg') }}" alt="Time" class="me-1">
-                                    60分
-                                  </span>
-                                  <span class="ms-3">
-                                    <img src="{{ asset('img/icon-point.svg') }}" alt="Point" class="me-1">
-                                    1,200ポイント
-                                  </span>
-                                </div>
-                                <div class="d-flex mt-4">
-                                    <button type="button" class="p-btn p-btn--rect btn-success fw-normal px-3 py-1 ms-auto">編集</button>
-                                    <button type="button" class="p-btn p-btn--rect btn-danger fw-normal px-3 py-1 ms-2">削除</button>
-                                </div>
+                            <div class="d-flex">
+                              <span>
+                                <img src="{{ asset('img/icon-time.svg') }}" alt="Time" class="me-1">
+                                60分
+                              </span>
+                              <span class="ms-3">
+                                <img src="{{ asset('img/icon-point.svg') }}" alt="Point" class="me-1">
+                                1,200ポイント
+                              </span>
                             </div>
-                        </a>
+                            <div class="d-flex mt-auto">
+                                <button type="button" class="p-btn p-btn--rect btn-success fw-normal px-3 py-1 ms-auto">編集</button>
+                                <button type="button" class="p-btn p-btn--rect btn-danger fw-normal px-3 py-1 ms-2">削除</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

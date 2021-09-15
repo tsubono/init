@@ -28,12 +28,12 @@ class CreateAttendancesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');
-            $table->foreign('mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');
-            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('CASCADE');
-            $table->foreign('mate_user_coin_id')->references('id')->on('mate_user_coins')->onDelete('CASCADE');
-            $table->foreign('cancel_cause_mate_user_id')->references('id')->on('mate_users')->onDelete('CASCADE');
-            $table->foreign('cancel_cause_adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');
+            $table->foreign('adviser_user_id')->references('id')->on('adviser_users');
+            $table->foreign('mate_user_id')->references('id')->on('mate_users');
+            $table->foreign('lesson_id')->references('id')->on('lessons');
+            $table->foreign('mate_user_coin_id')->references('id')->on('mate_user_coins');
+            $table->foreign('cancel_cause_mate_user_id')->references('id')->on('mate_users');
+            $table->foreign('cancel_cause_adviser_user_id')->references('id')->on('adviser_users');
         });
     }
 

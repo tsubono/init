@@ -1,22 +1,24 @@
 @extends('layouts.app')
 
-@section('title', __('Verify Your Email Address'))
+@section('title', 'メールアドレス確認')
 
 @section('content')
     <section class="l-content-block p-setting">
         <div class="container">
             @if (session('resent'))
                 <div class="alert alert-success" role="alert">
-                    {{ __('A fresh verification link has been sent to your email address.') }}
+                    認証メールを再送信しました
                 </div>
             @endif
-            {{ __('Before proceeding, please check your email for a verification link.') }}
-            {{ __('If you did not receive the email') }},
+            <div class="text-center">
+                <p>ご登録のメールアドレスに認証メールを送信しました。</p>
+                <p>届いたメールをご確認の上、記載のリンクから登録を完了させてください。</p>
+                <p>メールが届いていない場合は、下記をクリックしてください。</p></div>
             <form class="d-inline" method="POST" action="{{ route('mate.verification.resend') }}">
                 @csrf
                 <div class="my-80px">
                     <button type="submit"
-                            class="p-btn p-btn__defalut">{{ __('click here to request another') }}</button>
+                            class="p-btn p-btn__defalut">認証メールを再送する</button>
                 </div>
             </form>
         </div>

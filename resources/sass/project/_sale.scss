@@ -1,0 +1,25 @@
+.p-sale {
+  .price-remain {
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .price-total {
+    font-size: 22px;
+  }
+
+  .p-card3 {
+    justify-content: start;
+    padding: 25px 40px;
+
+    &__price {
+      flex-basis: 30%;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    &__link {
+      margin-left: auto;
+    }
+  }
+}

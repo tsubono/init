@@ -40,8 +40,7 @@ class MateUserRepository implements MateUserRepositoryInterface
         try {
             $mateUser = $this->mateUser->findOrFail($id);
             $mateUser->update($data);
-
-            // TODO: リレーションの更新
+            $this->updateRelation($mateUser, $data);
 
             DB::commit();
 
@@ -49,6 +48,22 @@ class MateUserRepository implements MateUserRepositoryInterface
             DB::rollback();
             Log::error($e->getMessage());
             throw new \Exception($e);
+        }
+    }
+
+    /**
+     * @param MateUser $mateUser
+     * @param array $data
+     */
+    private function updateRelation(MateUser $mateUser, array $data)
+    {
+        // カテゴリ
+        if (isset($data['mst_category_ids'])) {
+            $mateUser->categories()->sync($data['mst_category_ids'] ?? []);
+        }
+        // 言語
+        if (isset($data['mst_language_ids'])) {
+            $mateUser->languages()->sync($data['mst_language_ids'] ?? []);
         }
     }
 
@@ -62,5 +77,26 @@ class MateUserRepository implements MateUserRepositoryInterface
             ->query()
             ->orderBy('created_at', 'desc')
             ->paginate($perCount);
+    }
+
+    /**
+     * @param int $id
+     * @return void
+     * @throws \Exception
+     */
+    public function destroy(int $id): void
+    {
+        DB::beginTransaction();
+        try {
+            $mateUser = $this->mateUser->findOrFail($id);
+            $mateUser->delete();
+
+            DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new \Exception($e);
+        }
     }
 }

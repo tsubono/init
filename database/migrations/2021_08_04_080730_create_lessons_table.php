@@ -25,8 +25,8 @@ class CreateLessonsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');
-            $table->foreign('mst_language_id')->references('id')->on('mst_languages')->onDelete('CASCADE');
+            $table->foreign('adviser_user_id')->references('id')->on('adviser_users');
+            $table->foreign('mst_language_id')->references('id')->on('mst_languages');
         });
     }
 

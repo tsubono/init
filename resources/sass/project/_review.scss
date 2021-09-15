@@ -1,0 +1,69 @@
+.p-review {
+  .rate-form {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+
+    input[type='radio'] {
+      display: none;
+    }
+
+    label {
+      position: relative;
+      padding: 0 5px;
+      color: #ccc;
+      cursor: pointer;
+      font-size: 35px;
+
+      &:hover {
+        color: #ffcc00;
+      }
+
+      &:hover~label {
+        color: #ffcc00;
+      }
+    }
+
+    input[type='radio']:checked~label {
+      color: #ffcc00;
+    }
+  }
+
+  &__list {
+    .p-review-box {
+      border: 1px solid #E6E6E6;
+      padding: 30px;
+
+      &__rate {
+        display: flex;
+        margin-bottom: 20px;
+
+        label {
+          position: relative;
+          color: #ccc;
+          font-size: 30px;
+
+          &.active {
+            color: #ffcc00;
+          }
+        }
+      }
+
+      &__avatar {
+        object-fit: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+
+      &__content {
+        padding-left: 50px;
+
+        .content-text {
+          line-height: 2;
+          white-space: pre-line;
+        }
+      }
+    }
+  }
+}
