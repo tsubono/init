@@ -6,7 +6,11 @@
                 :order="order"
                 @order="handleOrder"
             />
-            <SearchLessonsResultContent :lessons="lessons"/>
+            <SearchLessonsResultContent
+                :total="total"
+                :lessons="lessons"
+                @load="handleLoad"
+            />
         </div><!-- /.container -->
     </section>
 </template>
@@ -40,6 +44,10 @@ export default {
     methods: {
         handleOrder (order) {
             this.$emit('order', order)
+        },
+
+        handleLoad () {
+            this.$emit('load')
         }
     },
 }

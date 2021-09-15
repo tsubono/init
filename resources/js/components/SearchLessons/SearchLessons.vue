@@ -12,6 +12,7 @@
             :total="_total"
             :order="order"
             @order="handleOrder"
+            @load="handleLoad"
         />
     </div>
 </template>
@@ -64,6 +65,7 @@ export default {
             coinMax: '',
         },
         order: '',
+        page: 1,
         _lessons: [],
         _total: 0,
     }),
@@ -90,12 +92,12 @@ export default {
         searchParamsFiltered () {
             return Object.entries(this.searchParams)
                 .filter(([_, value]) => value)
-                .reduce((sub, [key, value]) => ({ ...sub, [kebabCase(key)]: value }), {})
+                .reduce((sub, [key, value]) => ({...sub, [kebabCase(key)]: value}), {})
         }
     },
 
     methods: {
-        async fetch () {
+        async fetch (page = this.page) {
             let response
 
             const params = {
@@ -104,26 +106,32 @@ export default {
             }
 
             try {
-                response = await axios.get('/api/lessons/search', { params })
+                response = await axios.get('/api/lessons/search', {params: {...params, page}})
             } catch (e) {
                 console.error(e)
                 return
             }
 
-            await (this._lessons = response.data.lessons)
-            await (this._total = response.data.total)
+            this._lessons = this.page !== page ? [...this._lessons, ...response.data.lessons] : response.data.lessons
+            this._total = response.data.total
             this.$forceUpdate()
             this.setUrl(params)
         },
 
         async handleSearch (searchParams) {
+            this.page = 1
             this.searchParams = searchParams
             await this.fetch()
         },
 
         async handleOrder (order) {
+            this.page = 1
             this.order = order
             await this.fetch()
+        },
+
+        async handleLoad () {
+            await this.fetch(this.page + 1)
         },
 
         setUrl (params) {
