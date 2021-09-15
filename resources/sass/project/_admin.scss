@@ -2,6 +2,7 @@
   .p-admin-list__infos {
     .p-card3 {
       justify-content: start;
+      text-align: center;
 
       &__date {
         flex-basis: 20%;
@@ -10,7 +11,7 @@
 
       &__title {
         flex-basis: 50%;
-        font-size: 20px;
+        font-size: 18px;
         white-space: nowrap;
         max-width: 100%;
         overflow: hidden;
@@ -21,6 +22,10 @@
         display: flex;
         flex-wrap: wrap;
         margin-left: auto;
+
+        @include breakpoint-md {
+          margin-top: 15px;
+        }
       }
     }
   }

@@ -33,6 +33,31 @@ class InformationRepository implements InformationRepositoryInterface
     }
 
     /**
+     * @param array $condition
+     * @param int $perCount
+     * @return LengthAwarePaginator
+     */
+    public function getByConditionPaginate(array $condition, int $perCount = 10): LengthAwarePaginator
+    {
+        $query = $this->information->query();
+
+        if (!empty($condition['title'])) {
+            $query->where('title', 'LIKE', "%{$condition['title']}%");
+        }
+        if (!empty($condition['content'])) {
+            $query->where('content', 'LIKE', "%{$condition['content']}%");
+        }
+        if (!empty($condition['date_start'])) {
+            $query->whereDate('date', '>=', $condition['date_start']);
+        }
+        if (!empty($condition['date_end'])) {
+            $query->whereDate('date', '<=', $condition['date_end']);
+        }
+
+        return $query->orderBy('date', 'desc')->paginate($perCount);
+    }
+
+    /**
      * @param array $data
      * @return Information
      */
