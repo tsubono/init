@@ -1,23 +1,31 @@
 <template>
     <div>
-        <SearchAdviserForm
+        <SearchAdvisersForm
             :search-params="searchParams"
             :categories="categories"
             :languages="languages"
             :countries="countries"
             @search="handleSearch"
         />
+        <SearchAdvisersResult
+            :advisers="_advisers"
+            :total="_total"
+            :order="order"
+            @order="handleOrder"
+            @load="handleLoad"
+        />
     </div>
 </template>
 
 <script>
-import SearchAdviserForm from './SearchAdviserForm'
+import SearchAdvisersForm from './SearchAdvisersForm'
 import { kebabCase } from 'lodash/string'
+import SearchAdvisersResult from './SearchAdvisersResult'
 
 export default {
     name: 'SearchAdvisers',
 
-    components: {SearchAdviserForm},
+    components: {SearchAdvisersResult, SearchAdvisersForm},
 
     props: {
         advisers: {

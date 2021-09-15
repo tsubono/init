@@ -12,7 +12,14 @@
                         v-model="formData.category"
                         @change="search"
                     >
-                        <option selected>すべてのカテゴリ</option>
+                        <option value="">すべてのカテゴリ</option>
+                        <option
+                            v-for="category in categories"
+                            :key="category.id"
+                            :value="category.name"
+                        >
+                            {{ category.name }}
+                        </option>
                     </select>
                     の講師。
                 </h2>
@@ -128,7 +135,7 @@
 
 <script>
 export default {
-    name: 'SearchAdviserForm',
+    name: 'SearchAdvisersForm',
 
     props: {
         searchParams: {

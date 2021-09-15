@@ -3,11 +3,11 @@
 @section('title', 'アドバイザーを探す')
 
 @section('content')
-    <SearchAdvisers
+    <search-advisers
         :categories="{{ $categories }}"
         :languages="{{ $languages }}"
         :countries="{{ $countries }}"
         :advisers="{{ $advisers }}"
         :total="{{ $total }}"
-    ></SearchAdvisers>
+    ></search-advisers>
 @endsection

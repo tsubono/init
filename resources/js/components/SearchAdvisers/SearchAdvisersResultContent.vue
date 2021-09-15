@@ -52,12 +52,12 @@ export default {
         hasMore () {
             return this.advisers.length < this.total
         },
+    },
 
-        methods: {
-            onClickLoadMoreButton () {
-                this.$emit('load')
-            }
-        },
+    methods: {
+        onClickLoadMoreButton () {
+            this.$emit('load')
+        }
     },
 }
 </script>

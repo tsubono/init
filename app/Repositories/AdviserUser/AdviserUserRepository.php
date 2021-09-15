@@ -156,7 +156,10 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
     ): LengthAwarePaginator {
         $query = $this->adviserUser
             ->query()
-            ->with('categories');
+            ->with('categories')
+            ->with('languages')
+            ->with('fromCountry')
+            ->with('residenceCountry');
 
         if ($category) {
             $query->whereHas('categories', function (Builder $query) use ($category) {
