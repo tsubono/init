@@ -59,6 +59,7 @@
     @if (auth()->guard('adviser')->check() || auth()->guard('mate')->check())
         <!-- お知らせポップアップ -->
         @include('components.info-nortification-popup')
+        @include('components.attendance-nortification-popup')
     @endif
 </body>
 </html>

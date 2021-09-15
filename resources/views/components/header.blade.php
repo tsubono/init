@@ -5,13 +5,21 @@
             <a class="navbar-brand" href="/"><img src="{{ asset('img/brand-white.svg') }}" alt="INIT"></a>
             <!-- タブレット・スマホ用ヘッダーボタン -->
             <div class="d-flex align-items-center">
-                <div class="d-lg-none mx-2">
                     @if (auth()->guard('mate')->check())
-                        @include('components.info-notification-icon', ['user' => auth()->guard('mate')->user()])
+                        <div class="d-lg-none mx-2">
+                            @include('components.info-notification-icon', ['user' => auth()->guard('mate')->user()])
+                        </div>
+                        <div class="d-lg-none mx-2">
+                            @include('components.attendance-notification-icon', ['user' => auth()->guard('mate')->user()])
+                        </div>
                     @elseif (auth()->guard('adviser')->check())
-                        @include('components.info-notification-icon', ['user' => auth()->guard('adviser')->user()])
+                        <div class="d-lg-none mx-2">
+                            @include('components.info-notification-icon', ['user' => auth()->guard('adviser')->user()])
+                        </div>
+                        <div class="d-lg-none mx-2">
+                            @include('components.attendance-notification-icon', ['user' => auth()->guard('adviser')->user()])
+                        </div>
                     @endif
-                </div>
                 @if ($hasSubMenu)
                     <button type="button" class="navbar-toggler mypage-toggler" data-bs-toggle="collapse" data-bs-target="#Navber2" aria-controls="Navber2" aria-expanded="false" aria-label="ナビゲーション切替">
                         <span class="navbar-toggler-icon mypage-icon"></span>
@@ -81,12 +89,18 @@
                         <li class="mx-3 d-none d-lg-block">
                             @include('components.info-notification-icon', ['user' => auth()->guard('mate')->user()])
                         </li>
+                        <li class="mx-3 d-none d-lg-block">
+                            @include('components.attendance-notification-icon', ['user' => auth()->guard('mate')->user()])
+                        </li>
                         <li class="nav-link {{ request()->is('mate/profile/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('mate.profile.edit') }}">プロフィール</a></li>
                         <li class="nav-link {{ request()->is('attendances', 'attendances/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('attendances.index') }}">受講一覧</a></li>
                         <li class="nav-link {{ request()->is('mate/coins', 'mate/coins/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('mate.coins.index') }}">コイン管理</a></li>
                     @elseif (auth()->guard('adviser')->check())
                         <li class="mx-3 d-none d-lg-block">
                             @include('components.info-notification-icon', ['user' => auth()->guard('adviser')->user()])
+                        </li>
+                        <li class="mx-3 d-none d-lg-block">
+                            @include('components.attendance-notification-icon', ['user' => auth()->guard('adviser')->user()])
                         </li>
                         <li class="nav-link {{ request()->is('adviser/profile/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('adviser.profile.edit') }}">プロフィール</a></li>
                         <li class="nav-link {{ request()->is('attendances', 'attendances/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('attendances.index') }}">受講一覧</a></li>

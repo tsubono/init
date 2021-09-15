@@ -2,26 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Information;
-use App\Repositories\Information\InformationRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
 
-class InfoController extends Controller
+class AttendanceNotificationController extends Controller
 {
-    private InformationRepositoryInterface $informationRepository;
-
     /**
-     * InfoController constructor.
-     * @param InformationRepositoryInterface $informationRepository
-     */
-    public function __construct(InformationRepositoryInterface $informationRepository)
-    {
-        $this->informationRepository = $informationRepository;
-    }
-
-    /**
-     * お知らせ一覧
+     * 通知一覧
      *
      * @return \Illuminate\Contracts\View\View
      */
@@ -31,22 +18,10 @@ class InfoController extends Controller
         $user = auth()->guard('adviser')->check() ? auth()->guard('adviser')->user() : auth()->guard('mate')->user();
         $page =  $request->get('page', 1);
 
-        // 押下時に既読処理をしたいため、informationsテーブルではなくnotificationsテーブルから取得する
-        $infoNotifications = $user->infoNotifications()
+        $attendanceNotifications = $user->attendanceNotifications()
             ->paginate(20, ['*'], 'page', $page);
 
-        return view('infos.index', compact('infoNotifications'));
-    }
-
-    /**
-     * お知らせ詳細
-     *
-     * @param Information $information
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function show(Information $information)
-    {
-        return view('infos.show', compact('information'));
+        return view('attendance-notifications.index', compact('attendanceNotifications'));
     }
 
     /**
@@ -73,8 +48,8 @@ class InfoController extends Controller
         // ログインユーザー取得
         $user = auth()->guard('adviser')->check() ? auth()->guard('adviser')->user() : auth()->guard('mate')->user();
 
-        $user->unreadInfoNotifications()->get()->markAsRead();
+        $user->unreadAttendanceNotifications()->get()->markAsRead();
 
-        return redirect(route('infos.index'));
+        return redirect(route('attendance-notifications.index'));
     }
 }

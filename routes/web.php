@@ -16,11 +16,15 @@ use Illuminate\Support\Facades\Route;
  * フロント
  */
 Route::namespace('App\Http\Controllers')->group(function () {
+    // TOP
     Route::get('/', 'TopController@index')->name('top');
+    // レッスン検索・詳細
     Route::get('/lessons', 'LessonController@index')->name('lessons.index');
     Route::get('/lessons/{lesson}', 'LessonController@show')->name('lessons.show');
+    // アドバイザー検索・詳細
     Route::get('/advisers', 'AdviserController@index')->name('advisers.index');
     Route::get('/advisers/{adviserUser}', 'AdviserController@show')->name('advisers.show');
+    // お問い合わせフォーム・送信
     Route::get('/contact', 'ContactController@index')->name('contact.index');
     Route::post('/contact/send', 'ContactController@send')->name('contact.send');
 });
@@ -29,6 +33,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
  * Auth 共通
  */
 Route::middleware(['auth.common'])->namespace('App\Http\Controllers')->group(function () {
+    // 受講関連
     Route::get('/attendances', 'AttendanceController@index')->name('attendances.index');
     Route::get('/attendances/{attendance}', 'AttendanceController@show')->name('attendances.show');
     Route::post('/attendances/request/{lesson}', 'AttendanceController@request')->name('attendances.request');
@@ -43,10 +48,15 @@ Route::middleware(['auth.common'])->namespace('App\Http\Controllers')->group(fun
     Route::post('/attendances/{attendance}/cancel', 'AttendanceController@cancel')->name('attendances.cancel');
     Route::post('/attendances/{attendance}/report', 'AttendanceController@report')->name('attendances.report');
     Route::post('/attendances/{attendance}/close', 'AttendanceController@close')->name('attendances.close');
+    // 受講関連通知
+    Route::get('/attendance-notifications', 'AttendanceNotificationController@index')->name('attendance-notifications.index');
+    Route::post('/attendance-notifications/{notification}/read', 'AttendanceNotificationController@readNotification')->name('attendance-notifications.read');
+    Route::post('/attendance-notifications/read-all', 'AttendanceNotificationController@readAllNotification')->name('attendance-notifications.read-all');
+    // 運営からのお知らせ
     Route::get('/infos', 'InfoController@index')->name('infos.index');
     Route::get('/infos/{information}', 'InfoController@show')->name('infos.show');
-    Route::post('/infos/notifications/{notification}/read', 'InfoController@readInfoNotification')->name('info.notifications.read');
-    Route::post('/infos/notifications/read-all', 'InfoController@readAllInfoNotification')->name('info.notifications.read-all');
+    Route::post('/infos/notifications/{notification}/read', 'InfoController@readNotification')->name('info.notifications.read');
+    Route::post('/infos/notifications/read-all', 'InfoController@readAllNotification')->name('info.notifications.read-all');
 });
 
 /**

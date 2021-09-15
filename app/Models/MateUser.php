@@ -172,4 +172,40 @@ class MateUser extends Authenticatable implements MustVerifyEmail
     {
         return $this->unreadInfoNotifications()->count() !== 0;
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function attendanceNotifications()
+    {
+        return $this->notifications()
+            ->where('data->is_attendance', true);
+    }
+
+    /**
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function unreadAttendanceNotifications()
+    {
+        return $this->unreadNotifications()
+            ->where('data->is_attendance', true);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getAttendanceNotificationsForPopupAttribute()
+    {
+        return $this->attendanceNotifications()
+            ->take(5)
+            ->get();
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsUnreadAttendanceNotificationAttribute(): bool
+    {
+        return $this->unreadAttendanceNotifications()->count() !== 0;
+    }
 }
