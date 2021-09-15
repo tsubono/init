@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
-use App\Mail\AttendanceReportMail;
 use App\Mail\ContactMail;
 use App\Repositories\Contact\ContactRepositoryInterface;
 use Illuminate\Support\Facades\DB;

@@ -34,17 +34,18 @@ class InformationRepository implements InformationRepositoryInterface
 
     /**
      * @param array $data
-     * @return void
+     * @return Information
      */
-    public function store(array $data): void
+    public function store(array $data): Information
     {
         DB::beginTransaction();
 
         try {
-            $this->information->create($data);
+            $information = $this->information->create($data);
 
             DB::commit();
 
+            return $information;
         } catch (\Exception $e) {
             DB::rollback();
             Log::error($e->getMessage());
@@ -55,8 +56,9 @@ class InformationRepository implements InformationRepositoryInterface
     /**
      * @param int $id
      * @param array $data
+     * @return Information
      */
-    public function update(int $id, array $data): void
+    public function update(int $id, array $data): Information
     {
         DB::beginTransaction();
 
@@ -66,6 +68,7 @@ class InformationRepository implements InformationRepositoryInterface
 
             DB::commit();
 
+            return $information;
         } catch (\Exception $e) {
             DB::rollback();
             Log::error($e->getMessage());

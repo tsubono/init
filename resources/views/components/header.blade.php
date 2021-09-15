@@ -55,20 +55,14 @@
                 <ul class="navbar-nav">
                     @if (auth()->guard('mate')->check())
                         <li class="mx-3 d-none d-lg-block">
-                            <!-- TODO -->
-                            <a tabindex="0" data-bs-toggle="notification-popover" data-bs-trigger="focus" class="p-notification-icon p-notification-icon--has-items">
-                                <img src="{{ asset('img/notification.svg') }}" alt="お知らせ">
-                            </a>
+                            @include('components.info-notification-icon', ['user' => auth()->guard('mate')->user()])
                         </li>
                         <li class="nav-link {{ request()->is('mate/profile/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('mate.profile.edit') }}">プロフィール</a></li>
                         <li class="nav-link {{ request()->is('attendances', 'attendances/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('attendances.index') }}">受講一覧</a></li>
                         <li class="nav-link {{ request()->is('mate/coins', 'mate/coins/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('mate.coins.index') }}">コイン管理</a></li>
                     @elseif (auth()->guard('adviser')->check())
                         <li class="mx-3 d-none d-lg-block">
-                            <!-- TODO -->
-                            <a tabindex="0" data-bs-toggle="notification-popover" data-bs-trigger="focus" class="p-notification-icon p-notification-icon--has-items">
-                                <img src="{{ asset('img/notification.svg') }}" alt="お知らせ">
-                            </a>
+                            @include('components.info-notification-icon', ['user' => auth()->guard('adviser')->user()])
                         </li>
                         <li class="nav-link {{ request()->is('adviser/profile/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('adviser.profile.edit') }}">プロフィール</a></li>
                         <li class="nav-link {{ request()->is('attendances', 'attendances/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('attendances.index') }}">受講一覧</a></li>
@@ -82,7 +76,7 @@
                         <li class="nav-link {{ request()->is('admin/attendances', 'admin/attendances/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.attendances.index') }}">受講管理</a></li>
                         <li class="nav-link {{ request()->is('admin/transfer-requests', 'admin/transfer-requests/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.transfer-requests.index') }}">振り込み申請管理</a></li>
                         <li class="nav-link {{ request()->is('admin/infos', 'admin/infos/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.infos.index') }}">お知らせ管理</a></li>
-                        <li class="nav-link {{ request()->is('admin/info-mails', 'admin/info-mails/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.info-mails.index') }}">お知らせ管理</a></li>
+                        <li class="nav-link {{ request()->is('admin/info-mails', 'admin/info-mails/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.info-mails.index') }}">お知らせ配信管理</a></li>
                         <li class="nav-link {{ request()->is('admin/setting') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.setting.index') }}">サイト設定</a></li>
                     @endif
                 </ul>

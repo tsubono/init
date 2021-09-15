@@ -45,6 +45,8 @@ Route::middleware(['auth.common'])->namespace('App\Http\Controllers')->group(fun
     Route::post('/attendances/{attendance}/close', 'AttendanceController@close')->name('attendances.close');
     Route::get('/infos', 'InfoController@index')->name('infos.index');
     Route::get('/infos/{information}', 'InfoController@show')->name('infos.show');
+    Route::post('/infos/notifications/{notification}/read', 'InfoController@readInfoNotification')->name('info.notifications.read');
+    Route::post('/infos/notifications/read-all', 'InfoController@readAllInfoNotification')->name('info.notifications.read-all');
 });
 
 /**
