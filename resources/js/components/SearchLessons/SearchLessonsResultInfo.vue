@@ -1,7 +1,7 @@
 <template>
     <div class="p-searchresult__info">
         <!-- TODO: 件数を実データに置き換え -->
-        <div class="p-searchresult__num">検索結果 <span class="num">1,000</span></div>
+        <div class="p-searchresult__num">検索結果 <span class="num">{{ total.toLocaleString() }}</span></div>
         <div class="p-searchresult__tab">
             <!-- TODO: ソート -->
             <ul id="p-searchresult__sort" class="nav p-sort" role="tablist">
@@ -27,10 +27,19 @@
 
 <script>
 export default {
-    name: 'SearchLessonsResultInfo'
+    name: 'SearchLessonsResultInfo',
+
+    props: {
+        total: {
+            type: Number,
+            required: true,
+        },
+    },
 }
 </script>
 
 <style scoped>
-
+.num:after {
+    content: "件"
+}
 </style>

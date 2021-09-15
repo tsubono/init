@@ -26,7 +26,7 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
-        $lessons = $this->lessonRepository->getByConditionPaginate(
+        $lessonsPagination = $this->lessonRepository->getByConditionPaginate(
             10,
             $request->get('category'),
             $request->get('language'),
@@ -37,6 +37,11 @@ class SearchController extends Controller
             $request->get('coin-max')
         );
 
-        return response()->json($lessons->items());
+        $responseData = [
+            'lessons' => $lessonsPagination->items(),
+            'total' => $lessonsPagination->total(),
+        ];
+
+        return response()->json($responseData);
     }
 }

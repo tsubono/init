@@ -6,7 +6,10 @@
             :countries="countries"
             @search="handleSearch"
         />
-        <SearchLessonsResult :lessons="_lessons" />
+        <SearchLessonsResult
+            :lessons="_lessons"
+            :total="_total"
+        />
     </div>
 </template>
 
@@ -22,6 +25,11 @@ export default {
     props: {
         lessons: {
             type: Array,
+            required: true,
+        },
+
+        total: {
+            type: Number,
             required: true,
         },
 
@@ -43,10 +51,12 @@ export default {
 
     data: () => ({
         _lessons: [],
+        _total: 0,
     }),
 
     created () {
         this._lessons = this.lessons
+        this._total = this.total
     },
 
     methods: {
@@ -60,7 +70,8 @@ export default {
                 return
             }
 
-            this._lessons = response.data
+            this._lessons = response.data.lessons
+            this._total = response.data.total
             this.$forceUpdate()
             this.setUrl(params)
         },

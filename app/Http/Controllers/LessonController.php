@@ -47,7 +47,7 @@ class LessonController extends Controller
         $languages = $this->mstLanguageRepository->all();
         $countries = $this->mstCountryRepository->all();
 
-        $lessons = $this->lessonRepository->getByConditionPaginate(
+        $lessonsPagination = $this->lessonRepository->getByConditionPaginate(
             10,
             $request->get('category'),
             $request->get('language'),
@@ -58,7 +58,10 @@ class LessonController extends Controller
             $request->get('coin-max')
         );
 
-        return view('lessons.index', compact('categories', 'languages', 'countries', 'lessons'));
+        $lessons = collect($lessonsPagination->items());
+        $total = $lessonsPagination->total();
+
+        return view('lessons.index', compact('categories', 'languages', 'countries', 'lessons', 'total'));
     }
 
     /**
