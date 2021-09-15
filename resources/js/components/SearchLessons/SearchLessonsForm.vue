@@ -114,12 +114,15 @@
 </template>
 
 <script>
-import { kebabCase } from 'lodash/string'
-
 export default {
     name: 'SearchLessonsForm',
 
     props: {
+        searchParams: {
+            type: Object,
+            required: true,
+        },
+
         categories: {
             type: Array,
             required: true,
@@ -148,31 +151,18 @@ export default {
         },
     }),
 
-    created () {
-        const params = new URLSearchParams(location.search)
-
-        Object
-            .keys(this.formData)
-            .forEach(key => {
-                const value = params.get(kebabCase(key))
-                if (value) {
-                    this.$set(this.formData, key, value)
-                }
-            })
-    },
-
-    computed: {
-        searchParams () {
-            return Object
-                .entries(this.formData)
-                .filter(([_, value]) => value)
-                .reduce((sub, [key, value]) => ({ ...sub, [kebabCase(key)]: value }), {})
+    watch: {
+        searchParams: {
+            handler () {
+                this.formData = this.searchParams
+            },
+            immediate: true
         },
     },
 
     methods: {
         search () {
-            this.$emit('search', this.searchParams)
+            this.$emit('search', this.formData)
         },
     },
 }

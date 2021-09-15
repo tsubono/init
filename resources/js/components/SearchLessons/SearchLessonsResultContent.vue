@@ -1,29 +1,13 @@
 <template>
     <div class="p-search__content tab-content">
-        <div id="new" class="tab-pane active" role="tabpanel" aria-labelledby="new-tab">
-            <div v-if="isEmpty">該当のレッスンは見つかりませんでした。</div>
-            <template v-else>
-                <SearchLesson
-                    v-for="lesson in lessons"
-                    :key="lesson.id"
-                    :lesson="lesson"
-                />
-            </template>
-        </div><!--/.tab-pane -->
-
-        <!-- TODO: ソート -->
-        <div id="fav" class="tab-pane" role="tabpanel" aria-labelledby="fav-tab">
-            <p>人気順</p>
-        </div>
-        <div id="coin-little" class="tab-pane" role="tabpanel" aria-labelledby="coin-little-tab">
-            <p>必要コイン少ない順</p>
-        </div>
-        <div id="coin-many" class="tab-pane" role="tabpanel" aria-labelledby="coin-many-tab">
-            <p>必要コイン多い順</p>
-        </div>
-        <div id="evaluation" class="tab-pane" role="tabpanel" aria-labelledby="evaluation-tab">
-            <p>評価が高い順</p>
-        </div>
+      <div v-if="isEmpty">該当のレッスンは見つかりませんでした。</div>
+      <template v-else>
+        <SearchLesson
+            v-for="lesson in lessons"
+            :key="lesson.id"
+            :lesson="lesson"
+        />
+      </template>
     </div><!-- /.p-search__content -->
 </template>
 

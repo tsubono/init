@@ -2,19 +2,16 @@
     <div class="p-searchresult__info">
         <div class="p-searchresult__num">検索結果 <span class="num">{{ total.toLocaleString() }}</span></div>
         <div class="p-searchresult__tab">
-            <!-- TODO: ソート -->
             <ul id="p-searchresult__sort" class="nav p-sort" role="tablist">
                 <li role="presentation">
                     <button
                         id="new-tab"
                         class="p-sort__parts"
                         :class="activeClass('new')"
-                        data-bs-toggle="tab"
-                        data-bs-target="#new"
                         type="button"
-                        role="tab"
                         aria-controls="new"
-                        aria-selected="true"
+                        :aria-selected="isActive('new')"
+                        @click="setOrder('new')"
                     >
                         新着順
                     </button>
@@ -24,12 +21,10 @@
                         id="fav-tab"
                         class="p-sort__parts"
                         :class="activeClass('fav')"
-                        data-bs-toggle="tab"
-                        data-bs-target="#fav"
                         type="button"
-                        role="tab"
                         aria-controls="fav"
-                        aria-selected="false"
+                        :aria-selected="isActive('fav')"
+                        @click="setOrder('fav')"
                     >
                         人気順
                     </button>
@@ -39,12 +34,10 @@
                         id="coin-little-tab"
                         class="p-sort__parts"
                         :class="activeClass('coin-little')"
-                        data-bs-toggle="tab"
-                        data-bs-target="#coin-little"
                         type="button"
-                        role="tab"
                         aria-controls="coin-little"
-                        aria-selected="false"
+                        :aria-selected="isActive('coin-little')"
+                        @click="setOrder('coin-little')"
                     >
                         必要コイン少ない順
                     </button>
@@ -54,12 +47,10 @@
                         id="coin-many-tab"
                         class="p-sort__parts"
                         :class="activeClass('coin-many')"
-                        data-bs-toggle="tab"
-                        data-bs-target="#coin-many"
                         type="button"
-                        role="tab"
                         aria-controls="coin-many"
-                        aria-selected="false"
+                        :aria-selected="isActive('coin-many')"
+                        @click="setOrder('coin-many')"
                     >
                         必要コイン多い順
                     </button>
@@ -69,12 +60,10 @@
                         id="evaluation-tab"
                         class="p-sort__parts"
                         :class="activeClass('evaluation')"
-                        data-bs-toggle="tab"
-                        data-bs-target="#evaluation"
                         type="button"
-                        role="tab"
                         aria-controls="evaluation"
-                        aria-selected="false"
+                        :aria-selected="isActive('evaluation')"
+                        @click="setOrder('evaluation')"
                     >
                         評価が高い順
                     </button>
@@ -101,9 +90,17 @@ export default {
     },
 
     methods: {
+        isActive (order) {
+            return this.order === order
+        },
+
         activeClass (order) {
-            return { active: this.order === order }
-        }
+            return { active: this.isActive(order) }
+        },
+
+        setOrder (order) {
+            this.$emit('order', order)
+        },
     },
 }
 </script>
