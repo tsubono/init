@@ -23,8 +23,6 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::get('/advisers/{adviserUser}', 'AdviserController@show')->name('advisers.show');
     Route::get('/contact', 'ContactController@index')->name('contact.index');
     Route::post('/contact/send', 'ContactController@send')->name('contact.send');
-    Route::get('/infos', 'InfoController@index')->name('infos.index');
-    Route::get('/infos/{info}', 'InfoController@show')->name('infos.show');
 });
 
 /**
@@ -45,6 +43,10 @@ Route::middleware(['auth.common'])->namespace('App\Http\Controllers')->group(fun
     Route::post('/attendances/{attendance}/cancel', 'AttendanceController@cancel')->name('attendances.cancel');
     Route::post('/attendances/{attendance}/report', 'AttendanceController@report')->name('attendances.report');
     Route::post('/attendances/{attendance}/close', 'AttendanceController@close')->name('attendances.close');
+    Route::get('/infos', 'InfoController@index')->name('infos.index');
+    Route::get('/infos/{information}', 'InfoController@show')->name('infos.show');
+    Route::post('/infos/notifications/{notification}/read', 'InfoController@readInfoNotification')->name('info.notifications.read');
+    Route::post('/infos/notifications/read-all', 'InfoController@readAllInfoNotification')->name('info.notifications.read-all');
 });
 
 /**

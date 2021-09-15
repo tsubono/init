@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  *
  * status
- * 0: 受講申請キャンセル
+ * -1: 受講申請キャンセル
  * 1: 受講申請 (承認待ち)
  * 2: 受講承認 (受講確定)
  * 3: 受講否認
@@ -26,7 +26,7 @@ class Attendance extends Model
 {
     use HasFactory, SoftDeletes;
 
-    const STATUS_REQUEST_CANCEL = 0;
+    const STATUS_REQUEST_CANCEL = -1;
     const STATUS_REQUEST = 1;
     const STATUS_APPROVAL = 2;
     const STATUS_REJECT = 3;

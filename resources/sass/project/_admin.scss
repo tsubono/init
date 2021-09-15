@@ -1,0 +1,27 @@
+.p-admin-list {
+  .p-admin-list__infos {
+    .p-card3 {
+      justify-content: start;
+
+      &__date {
+        flex-basis: 20%;
+        font-size: 18px;
+      }
+
+      &__title {
+        flex-basis: 50%;
+        font-size: 20px;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &__controls {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: auto;
+      }
+    }
+  }
+}

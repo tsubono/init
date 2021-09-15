@@ -367,4 +367,42 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
           'password',
         ];
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function infoNotifications()
+    {
+        return $this->notifications()
+            ->where('data->is_information', true)
+            ->where('data->date', '<=', now());
+    }
+
+    /**
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function unreadInfoNotifications()
+    {
+        return $this->unreadNotifications()
+            ->where('data->is_information', true)
+            ->where('data->date', '<=', now());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getInfoNotificationsForPopupAttribute()
+    {
+        return $this->infoNotifications()
+            ->take(5)
+            ->get();
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsUnreadInfoNotificationAttribute(): bool
+    {
+        return $this->unreadInfoNotifications()->count() !== 0;
+    }
 }

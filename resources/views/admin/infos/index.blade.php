@@ -1,7 +1,62 @@
 @extends('layouts.app')
 
-@section('title', '（運営）お知らせ配信一覧')
+@section('title', 'お知らせ一覧')
 
 @section('content')
-    <!-- TODO -->
+    <section class="p-admin-list l-content-block">
+        <div class="container">
+            <div class="text-end">
+                <a href="{{ route('admin.infos.create') }}" class="p-btn p-btn__defalut d-inline-block px-80px">
+                    お知らせ作成
+                </a>
+            </div>
+            <div class="p-admin-list__infos tab-content pt-25px">
+                <div>
+                    @forelse ($infos as $index => $info)
+                        <div class="p-card3">
+                            <div class="p-card3__date">
+                                <p class="small">日付</p>
+                                {{ $info->date->format('Y/m/d') }}
+                            </div>
+                            <div class="p-card3__title">
+                                {{ $info->title }}
+                            </div>
+                            <div class="p-card3__controls">
+                                <a href="{{ route('admin.infos.edit', compact('info')) }}" class="p-btn p-btn--rect btn-success px-3 py-1 m-1">
+                                    編集
+                                </a>
+                                <button type="button" class="p-btn p-btn--rect btn-danger px-3 py-1 m-1" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $index }}">
+                                    削除
+                                </button>
+                            </div>
+                        </div><!-- /.p-card3 -->
+                        <!-- 削除確認モーダル -->
+                        <div class="modal p-modal p-setting fade" id="deleteModal{{ $index }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $index }}">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                                    <div class="modal-body">
+                                        <h2 class="p-heading2 mt-0 text-center">削除確認</h2>
+                                        <p class="text-center">「{{ $info->title }}」を削除します。<br>よろしいですか？</p>
+                                        <form action="{{ route('admin.infos.destroy', compact('info')) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="p-btn p-btn__defalut">削除する</button>
+                                        </form>
+                                    </div><!-- /.modal-body -->
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                        <!-- /削除確認モーダル -->
+                    @empty
+                        <div class="text-center">お知らせは登録されていません。</div>
+                    @endforelse
+                </div><!--/.tab-pane -->
+            </div><!-- /.p-search__content -->
+
+            <div class="text-center">
+                {{ $infos->links('vendor.pagination.custom') }}
+            </div>
+        </div><!-- /.container -->
+    </section>
 @endsection

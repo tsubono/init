@@ -9,6 +9,7 @@ use App\Models\AdviserUserPersonalInfo;
 use App\Models\Attendance;
 use App\Models\AttendanceReview;
 use App\Models\AttendanceSale;
+use App\Models\Information;
 use App\Models\Lesson;
 use App\Models\LessonImage;
 use App\Models\LessonMovie;
@@ -135,6 +136,12 @@ class DummyDataSeeder extends Seeder
                     'mate_user_id' => $attendance->mateUser->id,
                 ])->count(1)->create();
             });
+
+        foreach (config('const.info_categories') as $category) {
+            Information::factory([
+                'category' => $category,
+            ])->count(3)->create();
+        }
     }
 
     /**

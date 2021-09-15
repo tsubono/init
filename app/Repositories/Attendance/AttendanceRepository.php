@@ -58,6 +58,9 @@ class AttendanceRepository implements AttendanceRepositoryInterface
         if (!empty($condition['adviser_user_id'])) {
             $query->where('adviser_user_id', $condition['adviser_user_id']);
         }
+        if (!empty($condition['mate_user_id'])) {
+            $query->where('mate_user_id', $condition['mate_user_id']);
+        }
         if (!empty($condition['lesson_name'])) {
             $query->whereHas('lesson', function ($query) use ($condition) {
                 $query->where('lessons.name', 'LIKE', "%{$condition['lesson_name']}%");

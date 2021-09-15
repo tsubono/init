@@ -82,6 +82,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\TransferRequest\TransferRequestRepositoryInterface::class,
             \App\Repositories\TransferRequest\TransferRequestRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\Information\InformationRepositoryInterface::class,
+            \App\Repositories\Information\InformationRepository::class
+        );
     }
 
     /**

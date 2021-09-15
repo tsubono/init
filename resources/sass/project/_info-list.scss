@@ -3,6 +3,21 @@
     & > li {
       @include gradient-lt;
       padding: 20px;
+      position: relative;
+
+      &.unread {
+        &::before {
+          content: '';
+          position: absolute;
+          left: -2px;
+          top: -2px;
+          display: block;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: #e03941;
+        }
+      }
     }
 
     & > li + li {
