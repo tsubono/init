@@ -94,6 +94,12 @@ class LessonRepository implements LessonRepositoryInterface
             });
         }
 
+        if ($country) {
+            $query->whereHas('adviserUser.fromCountry', function (Builder $query) use ($country) {
+                $query->where('name', $country);
+            });
+        }
+
         if ($gender) {
             $query->whereHas('adviserUser', function (Builder $query) use ($gender) {
                 $query->where('gender', $gender);
