@@ -106,7 +106,7 @@ export default {
             }
 
             try {
-                response = await axios.get('/api/lessons/search', {params: {...params, page}})
+                response = await axios.get('/api/search/lessons', {params: {...params, page}})
             } catch (e) {
                 console.error(e)
                 return

@@ -21,5 +21,6 @@ Route::namespace('App\Http\Controllers\Api')->group(function () {
     Route::get('/proxy/vimeo-thumbnail/{videoId}', 'Proxy\VimeoThumbnailController@get');
     Route::get('/proxy/tiktok-thumbnail', 'Proxy\TikTokThumbnailController@get');
 
-    Route::get('/lessons/search', 'Lessons\SearchController@index');
+    Route::get('/search/lessons', 'Search\LessonsSearchController@index');
+    Route::get('/search/advisers', 'Search\AdvisersSearchController@index');
 });

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api\Lessons;
+namespace App\Http\Controllers\Api\Search;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Lesson\LessonRepositoryInterface;
 use Illuminate\Http\Request;
 
-class SearchController extends Controller
+class LessonsSearchController extends Controller
 {
     private LessonRepositoryInterface $lessonRepository;
 
