@@ -26,6 +26,9 @@
                             <h3 class="p-heading3">ステータス</h3>
                             <select class="form-select" name="condition[status]">
                                 <option value="">指定しない</option>
+                                <option value="-1" {{ (isset($condition['status']) ? $condition['status'] : '') == -1 ? 'selected' : '' }}>
+                                    受講申請キャンセル
+                                </option>
                                 <option value="1" {{ (isset($condition['status']) ? $condition['status'] : '') == 1 ? 'selected' : '' }}>
                                     受講申請中
                                 </option>
@@ -116,7 +119,7 @@
                                     <p>受講日時</p>
                                     <h3>{{ $attendance->datetime_txt }}</h3>
                                 </div>
-                                <a href="{{ route('attendances.show', compact('attendance')) }}" class="primary-link">
+                                <a href="{{ route('attendances.show', compact('attendance')) }}" class="p-btn p-btn__defalut d-inline-block mt-2">
                                     受講詳細へ
                                 </a>
                             </div><!--/.p-card3__detail -->
@@ -139,7 +142,7 @@
                                 @endif
                                 @if ($attendance->status_txt === '受講中' || $attendance->status_txt === '受講完了' ||
                                      $attendance->status_txt === 'キャンセル' || $attendance->status_txt === '通報')
-                                        <a class="p-btn--rect btn-default" href="{{ route('attendances.messages', compact('attendance')) }}">メッセージ</a>
+                                        <a class="p-btn--rect py-2 px-3 p-btn__defalut" href="{{ route('attendances.messages', compact('attendance')) }}">メッセージ</a>
                                 @endif
                                 @if ($attendance->status_txt === '受講中')
                                     @if (auth()->guard('adviser')->check())
@@ -292,7 +295,15 @@
                     @endforelse
                 </div><!--/.tab-pane -->
             </div><!-- /.p-search__content -->
-            <!-- TODO ページネーション -->
+            <div class="text-center">
+                {!! $attendances->appends([
+                        'condition[lesson_name]' => $condition['lesson_name'] ?? '',
+                        'condition[user_name]' => $condition['user_name'] ?? '',
+                        'condition[status]' => $condition['status'] ?? '',
+                        'condition[date_start]' => $condition['date_start'] ?? '',
+                        'condition[date_end]' => $condition['date_end'] ?? '',
+                    ])->render('vendor.pagination.custom')!!}
+            </div>
         </div><!-- /.container -->
     </section>
 @endsection

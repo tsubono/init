@@ -59,7 +59,9 @@
                     @endforelse
                 </div><!--/.tab-pane -->
             </div><!-- /.p-search__content -->
-            <!-- TODO ページネーション -->
+            <div class="text-center">
+                {{ $sales->links('vendor.pagination.custom') }}
+            </div>
         </div><!-- /.container -->
     </section>
 @endsection

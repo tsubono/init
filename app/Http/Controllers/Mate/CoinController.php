@@ -35,6 +35,7 @@ class CoinController extends Controller
     public function index()
     {
         $coins = $this->mateUserCoinRepository->getByMateUserIdPaginate(auth()->guard('mate')->user()->id);
+
         return view('mate.coins.index', compact('coins'));
     }
 

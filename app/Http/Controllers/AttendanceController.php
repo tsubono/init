@@ -65,22 +65,17 @@ class AttendanceController extends Controller
      */
     public function index(Request $request)
     {
+        $userType = auth()->guard('mate')->check() ? 'mate' : 'adviser';
+        $mateUserId = $userType === 'mate' ? auth()->guard('mate')->user()->id : null;
+        $adviserUserId = $userType === 'adviser' ? auth()->guard('adviser')->user()->id : null;
         $condition = $request->get('condition', []);
-        if (auth()->guard('mate')->check()) {
-            $userType = 'mate';
-            $attendances = $this->attendanceRepository->getByConditionPaginate(
-                $condition + [
-                    'mate_user_id' => auth()->guard('mate')->user()->id,
-                ]
-            );
-        } else {
-            $userType = 'adviser';
-            $attendances = $this->attendanceRepository->getByConditionPaginate(
-                $condition + [
-                    'adviser_user_id' => auth()->guard('adviser')->user()->id,
-                ]
-            );
-        }
+
+        $attendances = $this->attendanceRepository->getByConditionPaginate(
+            $condition + [
+                'mate_user_id' => $mateUserId,
+                'adviser_user_id' => $adviserUserId,
+            ]
+        );
 
         return view('attendances.index', compact('attendances', 'userType', 'condition'));
     }
@@ -93,6 +88,11 @@ class AttendanceController extends Controller
      */
     public function show(Attendance $attendance)
     {
+        // 関係ないユーザーは弾く
+        if (!$this->checkUser($attendance)) {
+            abort(404);
+        }
+
         return view('attendances.show', compact('attendance'));
     }
 
