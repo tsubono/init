@@ -101,7 +101,7 @@
 
 <script>
 export default {
-  name: 'SearchLessonsRoom',
+  name: 'SearchLesson',
 
   props: {
     lesson: {

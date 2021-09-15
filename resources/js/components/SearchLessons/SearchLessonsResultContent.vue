@@ -3,7 +3,7 @@
         <div id="new" class="tab-pane active" role="tabpanel" aria-labelledby="new-tab">
             <div v-if="isEmpty">該当のレッスンは見つかりませんでした。</div>
             <template v-else>
-                <SearchLessonsRoom
+                <SearchLesson
                     v-for="lesson in lessons"
                     :key="lesson.id"
                     :lesson="lesson"
@@ -28,10 +28,10 @@
 </template>
 
 <script>
-import SearchLessonsRoom from './SearchLessonsRoom'
+import SearchLesson from './SearchLesson'
 export default {
     name: 'SearchLessonsResultContent',
-    components: {SearchLessonsRoom},
+    components: {SearchLesson},
     props: {
         lessons: {
             type: Array,
