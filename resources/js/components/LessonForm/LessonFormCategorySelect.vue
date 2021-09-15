@@ -77,7 +77,7 @@ export default {
     },
 
     data: () => ({
-        selected: [1],
+        selected: [],
     }),
 
     created () {

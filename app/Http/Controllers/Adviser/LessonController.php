@@ -54,7 +54,7 @@ class LessonController extends Controller
     {
         $lesson = new Lesson();
         $mst_languages = $this->mstLanguageRepository->all();
-        $mst_rooms = $this->mstRoomRepository->getWithCategories();
+        $mst_rooms = $this->mstRoomRepository->all();
 
         return view('adviser.lessons.create',
             compact('lesson', 'mst_languages', 'mst_rooms'));

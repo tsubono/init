@@ -29,6 +29,7 @@ Vue.component('search-lessons', require('./components/SearchLessons/SearchLesson
 Vue.component('search-advisers', require('./components/SearchAdvisers/SearchAdvisers').default)
 Vue.component('lesson-form-language-select', require('./components/LessonForm/LessonFormLanguageSelect').default)
 Vue.component('lesson-form-category-select', require('./components/LessonForm/LessonFormCategorySelect').default)
+Vue.component('lesson-form-language-select-multi', require('./components/LessonForm/LessonFormLanguageSelectMulti').default)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
