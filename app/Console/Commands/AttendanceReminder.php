@@ -47,7 +47,6 @@ class AttendanceReminder extends Command
             $reminderMinute = config('const.reminder_minute');
             // リマインダー対象の日時を取得
             $remindDate = Carbon::now()->addMinutes($reminderMinute)->format('Y-m-d H:i');
-            Log::debug('リマインダー送信開始: '. $remindDate);
 
             // 受講テーブルから受講日時で検索してリマインダー実行
             Attendance::query()
@@ -55,7 +54,9 @@ class AttendanceReminder extends Command
                 ->where('datetime', $remindDate. ':00')
                 ->get()
                 ->each(function (Attendance $attendance) {
+
                     Log::debug('リマインダー送信開始。受講ID: '. $attendance->id);
+
                     // アドバイザーへリマインダーメール通知
                     Mail::to($attendance->adviserUser->email)->send(
                         new AttendanceReminderMail($attendance, 'adviser')

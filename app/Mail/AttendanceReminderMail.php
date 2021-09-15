@@ -14,7 +14,7 @@ class AttendanceReminderMail extends Mailable
     protected $userType;
 
     /**
-     * AttendanceRequestMail constructor.
+     * AttendanceReminderMail constructor.
      * @param $attendance
      * @param $userType
      */
