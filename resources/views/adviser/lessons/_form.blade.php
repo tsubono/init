@@ -59,12 +59,10 @@
 
     <div class="col-12">
         <h3 class="p-heading2">言語<span class="badge bg-danger ms-2">必須</span></h3>
-        <!-- 切り替えボタンの設定 -->
         <lesson-form-language-select
             :languages="{{ $mst_languages }}"
             :value="{{ old('mst_language_id', $lesson->mst_language_id or "null") }}"
         ></lesson-form-language-select>
-
         @error('mst_language_id')
         <div class="p-error-text" role="alert">
             <strong>{{ $message }}</strong>
@@ -74,53 +72,15 @@
 
     <div class="col-12">
         <h3 class="p-heading2">カテゴリ<span class="badge bg-danger ms-2">必須</span></h3>
-        <!-- 切り替えボタンの設定 -->
-        <button type="button" class="p-btn p-btn__black" data-bs-toggle="modal" data-bs-target="#form-categorymodal">
-            選択してください
-        </button>
+        <lesson-form-category-select
+            :rooms="{{ $mst_rooms }}"
+            :value="{{ json_encode(old('mst_category_ids', $lesson ? $lesson->category_ids : [])) }}"
+        ></lesson-form-category-select>
         @error('mst_category_ids')
         <div class="p-error-text" role="alert">
             <strong>{{ $message }}</strong>
         </div>
         @enderror
-
-        <!-- モーダルの設定 -->
-        <div class="modal p-modal fade" id="form-categorymodal" tabindex="-1" aria-labelledby="form-categorymodalLabel">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
-                    <div class="modal-body">
-                        <h2 class="p-heading2 mt-0">カテゴリ</h2>
-                        <div class="row">
-                            @foreach ($mst_rooms as $index => $mst_room)
-                                <div class="col-12 mb-3"><h3><strong>{{ $mst_room->name }}</strong></h3></div>
-                                @foreach ($mst_room->categories as $index2 => $category)
-                                    <div class="col-6 col-md-3">
-                                        <div class="form-check p-card">
-                                            <input type="checkbox"
-                                                   class="form-check-input"
-                                                   name="mst_category_ids[]"
-                                                   id="form-check__cate{{ $index }}{{ $index2 }}"
-                                                   value="{{ $category->id }}"
-                                                {{ in_array($category->id, old('mst_category_ids', $lesson->category_ids)) ? 'checked' : '' }}
-                                            />
-                                            <label class="form-check-label"
-                                                   for="form-check__cate{{ $index }}{{ $index2 }}">
-                                                <div class="p-card2__icon"><img src="{{ $category->icon_path }}"
-                                                                                alt="{{ $category->name }}"></div>
-                                                {{ $category->name }}
-                                            </label>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endforeach
-                        </div><!-- /. row -->
-                        <button type="button" class="p-btn p-btn__defalut" data-bs-dismiss="modal">閉じる</button>
-                    </div><!-- /.modal-body -->
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-    </div><!-- /.col-12 -->
 
     <div class="col-12">
         <h3 class="p-heading2">必要コイン<span class="badge bg-danger ms-2">必須</span></h3>

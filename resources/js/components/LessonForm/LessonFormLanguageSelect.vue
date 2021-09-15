@@ -26,7 +26,7 @@
                                         name="mst_language_id"
                                         :id="`form-check__language${index}`"
                                         :value="language.id"
-                                        v-model="_value"
+                                        v-model="selected"
 
                                     />
                                     <label
@@ -62,22 +62,16 @@ export default {
     },
 
     data: () => ({
-        _value: null,
+        selected: null,
     }),
 
     created () {
-        this._value = this.value
+        this.selected = this.value
     },
 
     computed: {
         languageSelected () {
-            return this.languages.find(({id}) => id === this._value)?.name
-        },
-    },
-
-    methods: {
-        isChecked (id) {
-            return this._value === id
+            return this.languages.find(({id}) => id === this.selected)?.name
         },
     },
 }

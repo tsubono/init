@@ -28,6 +28,7 @@ Vue.component('file-upload-not-preview', require('./components/FileUploadNoPrevi
 Vue.component('search-lessons', require('./components/SearchLessons/SearchLessons.vue').default);
 Vue.component('search-advisers', require('./components/SearchAdvisers/SearchAdvisers').default)
 Vue.component('lesson-form-language-select', require('./components/LessonForm/LessonFormLanguageSelect').default)
+Vue.component('lesson-form-category-select', require('./components/LessonForm/LessonFormCategorySelect').default)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
