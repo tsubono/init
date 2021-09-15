@@ -49,6 +49,7 @@ class LessonController extends Controller
 
         $lessonsPagination = $this->lessonRepository->getByConditionPaginate(
             10,
+            $request->get('order'),
             $request->get('category'),
             $request->get('language'),
             $request->get('room'),

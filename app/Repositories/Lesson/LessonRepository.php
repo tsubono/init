@@ -61,13 +61,14 @@ class LessonRepository implements LessonRepositoryInterface
      */
     public function getByConditionPaginate(
         int $perCount,
-        ?string $category,
-        ?string $language,
-        ?string $room,
-        ?string $country,
-        ?string $gender,
-        ?int $coinMin,
-        ?int $coinMax
+        ?string $orderBy = null,
+        ?string $category = null,
+        ?string $language = null,
+        ?string $room = null,
+        ?string $country = null,
+        ?string $gender = null,
+        ?int $coinMin = null,
+        ?int $coinMax = null
     ): LengthAwarePaginator {
         $query = $this->lesson
             ->query()
@@ -107,9 +108,28 @@ class LessonRepository implements LessonRepositoryInterface
             $query->where('coin_amount', '<=', $coinMax);
         }
 
-        return $query
-            ->orderBy('created_at', 'desc')
-            ->paginate($perCount);
+        switch ($orderBy) {
+            case 'popularity':
+                $query
+                    ->withCount('attendances')
+                    ->orderBy('attendances_count', 'desc');
+                break;
+            case 'coin:asc':
+                $query->orderBy('coin_amount');
+                break;
+            case 'coin:desc':
+                $query->orderBy('coin_amount', 'desc');
+                break;
+            case 'rate':
+                $query
+                    ->withAvg('reviews', 'rate')
+                    ->orderBy('reviews_avg_rate', 'desc');
+                break;
+            default:
+                $query->orderBy('created_at', 'desc');
+        }
+
+        return $query->paginate($perCount);
     }
 
     /**

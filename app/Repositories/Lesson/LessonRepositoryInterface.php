@@ -10,6 +10,7 @@ interface LessonRepositoryInterface
     public function getByAdviserIdPaginate(int $adviserUserId, int $perCount = 10): LengthAwarePaginator;
     public function getByConditionPaginate(
         int $perCount,
+        ?string $orderBy,
         ?string $category,
         ?string $language,
         ?string $room,
