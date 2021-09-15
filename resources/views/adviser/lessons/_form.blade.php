@@ -59,10 +59,10 @@
 
     <div class="col-12">
         <h3 class="p-heading2">言語<span class="badge bg-danger ms-2">必須</span></h3>
-        <lesson-form-language-select
+        <language-select
             :languages="{{ $mst_languages }}"
             :value="{{ old('mst_language_id', $lesson->mst_language_id or "null") }}"
-        ></lesson-form-language-select>
+        ></language-select>
         @error('mst_language_id')
         <div class="p-error-text" role="alert">
             <strong>{{ $message }}</strong>
@@ -72,10 +72,10 @@
 
     <div class="col-12">
         <h3 class="p-heading2">カテゴリ<span class="badge bg-danger ms-2">必須</span></h3>
-        <lesson-form-category-select
+        <category-select
             :rooms="{{ $mst_rooms }}"
             :value="{{ json_encode(old('mst_category_ids', $lesson ? $lesson->category_ids : [])) }}"
-        ></lesson-form-category-select>
+        ></category-select>
         @error('mst_category_ids')
         <div class="p-error-text" role="alert">
             <strong>{{ $message }}</strong>

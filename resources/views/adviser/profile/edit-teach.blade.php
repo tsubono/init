@@ -17,10 +17,10 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h3 class="p-heading2">教えられる言語<span class="badge bg-danger ms-2">必須</span></h3>
-                                    <lesson-form-language-select-multi
+                                    <language-select-multi
                                         :languages="{{ $mst_languages }}"
                                         :value="{{ json_encode(old('mst_language_ids', $user ? $user->language_ids : [])) }}"
-                                    ></lesson-form-language-select-multi>
+                                    ></language-select-multi>
                                     @error('mst_language_ids')
                                         <div class="p-error-text" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -29,10 +29,10 @@
                                 </div><!-- /.col-12 -->
                                 <div class="col-12">
                                     <h3 class="p-heading2">教えられるカテゴリ<span class="badge bg-danger ms-2">必須</span></h3>
-                                    <lesson-form-category-select
+                                    <category-select
                                         :rooms="{{ $mst_rooms }}"
                                         :value="{{ json_encode(old('mst_category_ids', $user ? $user->category_ids : [])) }}"
-                                    ></lesson-form-category-select>
+                                    ></category-select>
                                     @error('mst_category_ids')
                                         <div class="p-error-text" role="alert">
                                             <strong>{{ $message }}</strong>
