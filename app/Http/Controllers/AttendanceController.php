@@ -128,7 +128,7 @@ class AttendanceController extends Controller
                     'lesson_id' => $lesson->id,
                     'mate_user_coin_id' => $mateUserCoin->id,
                     'status' => Attendance::STATUS_REQUEST,
-                    'datetime' => "{$request->date} {$request->time}"
+                    'datetime' => "{$request->date} {$request->time}:00"
                 ]
             );
 
