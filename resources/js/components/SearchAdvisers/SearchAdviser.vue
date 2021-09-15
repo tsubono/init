@@ -1,12 +1,12 @@
 <template>
     <div class="p-card3">
         <div class="p-card3__img">
-            <a href="#">
+            <a :href="adviserUrl">
                 <img :src="adviser.avatar_image" :alt="adviser.full_name">
             </a>
         </div>
         <div class="p-card3__detail">
-            <a href="#">
+            <a :href="adviserUrl">
                 <h3>{{ adviser.full_name }}</h3>
                 <p>{{ prText }}</p>
                 <div class="row">
@@ -106,6 +106,9 @@ export default {
     }),
 
     computed: {
+        adviserUrl () {
+            return location.origin + '/advisers/' + this.adviser.id
+        },
         prText () {
             if (this.adviser.pr_text.length <= 200) {
                 return this.adviser.pr_text
