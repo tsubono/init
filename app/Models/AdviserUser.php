@@ -81,6 +81,14 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(AttendanceReview::class);
+    }
+
+    /**
      * @return BelongsToMany
      */
     public function languages(): BelongsToMany
