@@ -11,7 +11,7 @@ class AttendanceReminderMail extends Mailable
     use Queueable, SerializesModels;
 
     protected $attendance;
-    protected string $userType;
+    protected $userType;
 
     /**
      * AttendanceRequestMail constructor.

@@ -25,7 +25,7 @@
                         <span class="navbar-toggler-icon mypage-icon"></span>
                     </button>
                 @endif
-                @if (!auth()->guard('mate')->check() && !auth()->guard('adviser')->check())
+                @if (!$hasSubMenu)
                     <div class="login-link dropdown">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             ログイン
@@ -68,7 +68,7 @@
             </div><!-- /.navbar-collapse -->
             <!-- /メニュー一覧 -->
         </div><!-- /.container-fluid -->
-        @if (!auth()->guard('mate')->check() && !auth()->guard('adviser')->check())
+        @if (!$hasSubMenu)
             <div class="login-link dropdown d-none d-lg-block">
                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                     ログイン
@@ -107,7 +107,7 @@
                         <li class="nav-link {{ request()->is('adviser/lessons', 'adviser/lessons/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('adviser.lessons.index') }}">レッスン管理</a></li>
                         <li class="nav-link {{ request()->is('adviser/sales', 'adviser/sales/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('adviser.sales.index') }}">売上管理</a></li>
                     @elseif (auth()->guard('admin')->check())
-                    <!-- TODO -->
+                        <!-- TODO -->
                         <li class="nav-link {{ request()->is('admin/advisers/*', 'admin/advisers/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.advisers.index') }}">アドバイザー管理</a></li>
                         <li class="nav-link {{ request()->is('admin/mates', 'admin/mates/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.mates.index') }}">メイト管理</a></li>
                         <li class="nav-link {{ request()->is('admin/coins', 'admin/coins/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.coins.index') }}">コイン管理</a></li>
