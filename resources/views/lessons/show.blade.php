@@ -5,6 +5,11 @@
 @section('content')
     <section class="l-content-block p-lesson-show">
         <div class="container">
+            @if (auth()->guard('adviser')->check() && auth()->guard('adviser')->user()->id === $lesson->adviser_user_id)
+                <div class="p-lesson-show__edit-btn">
+                    <a href="{{ route('adviser.lessons.edit', compact('lesson')) }}" class="p-btn p-btn--edit p-btn__outline">レッスンを編集</a>
+                </div>
+            @endif
             <div class="d-flex align-items-baseline mb-40px">
                 <ul class="p-lesson-show__categories">
                     @foreach ($lesson->categories as $category)
@@ -16,9 +21,6 @@
                         </li>
                     @endforeach
                 </ul>
-                @if (auth()->guard('adviser')->check() && auth()->guard('adviser')->user()->id === $lesson->adviser_user_id)
-                    <a href="{{ route('adviser.lessons.edit', compact('lesson')) }}" class="p-btn p-btn--edit p-btn__outline">レッスンを編集</a>
-                @endif
             </div>
             <div class="row">
                 <div class="col-lg-9 col-md-8">
@@ -121,7 +123,7 @@
                     @include('components.adviser-info-block', ['adviserUser' => $lesson->adviserUser])
 
                     <div class="text-center mt-5">
-                        <a href="{{ route('advisers.show', ['adviserUser' => $lesson->adviserUser]) }}" class="p-btn p-btn__defalut d-inline-block px-90px">プロフィール</a>
+                        <a href="{{ route('advisers.show', ['adviserUser' => $lesson->adviserUser]) }}" class="p-btn p-btn__defalut d-inline-block px-90px mb-3">プロフィール</a>
                     </div>
                 </div>
             </div>

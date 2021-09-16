@@ -135,7 +135,7 @@ class LessonRepository implements LessonRepositoryInterface
                 $query->orderBy('created_at', 'desc');
         }
 
-        return $query->paginate($perCount);
+        return $query->where('is_stop', 0)->paginate($perCount);
     }
 
     /**

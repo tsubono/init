@@ -16,7 +16,7 @@
                 <p>メールが届いていない場合は、下記をクリックしてください。</p></div>
             <form class="d-inline" method="POST" action="{{ route('mate.verification.resend') }}">
                 @csrf
-                <div class="my-80px">
+                <div class="my-4">
                     <button type="submit"
                             class="p-btn p-btn__defalut">認証メールを再送する</button>
                 </div>

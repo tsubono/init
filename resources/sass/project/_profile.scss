@@ -60,6 +60,10 @@
   }
   &__lesson-block {
     margin: 160px 0 100px;
+
+    @include breakpoint-md {
+      margin: 70px 0 100px;
+    }
   }
   &__lesson-list {
     margin-top: 40px;

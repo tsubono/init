@@ -1,6 +1,10 @@
 .p-form {
   &__label {
     margin-bottom: 10px;
+
+    @include breakpoint-md {
+      padding: 10px 0 0;
+    }
   }
   &__pass {
     max-width: 400px;
@@ -105,10 +109,17 @@
         padding: 20px;
         vertical-align: middle;
         text-align: center;
+        @include breakpoint-md {
+          padding: 10px;
+        }
       }
       td {
         padding: 10px 20px;
         vertical-align: middle;
+
+        @include breakpoint-md {
+          padding: 10px 6px;
+        }
       }
     }
     &__column {

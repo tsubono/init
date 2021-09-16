@@ -6,6 +6,12 @@
     & > * + * {
       margin-left: 8px;
     }
+    .p-category {
+      @include breakpoint-md {
+        padding: 8px;
+        margin: 5px auto;
+      }
+    }
   }
   &__avatar {
     border-radius: 400px;
@@ -34,5 +40,16 @@
   .eye-catch-img {
     max-height: 500px;
     object-fit: cover;
+  }
+
+  &__edit-btn {
+    display: flex;
+    margin-left: auto;
+    width: 300px;
+
+    @include breakpoint-md {
+      margin: auto;
+      margin-bottom: 20px;
+    }
   }
 }

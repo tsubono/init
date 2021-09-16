@@ -10,7 +10,7 @@
                     <img src="{{ asset('img/mood-bad.svg') }}" alt="エラー">
                 </div>
                 <div>
-                    <div class="fs-5 fw-bold">準備中です</div>
+                    <div class="fs-5 fw-bold">ただいま準備中です</div>
                 </div>
             </div>
             <div class="mt-5 w-75 mx-auto">

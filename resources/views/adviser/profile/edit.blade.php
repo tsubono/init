@@ -319,7 +319,7 @@
                                     @enderror
                                 </div>
                             </div><!-- /.row -->
-                            <button type="submit" class="p-btn p-btn__defalut">保存する</button>
+                            <button type="submit" class="p-btn p-btn__defalut mb-2">保存する</button>
                         </div>
                     </div><!-- /.tab-pane -->
                 </div>

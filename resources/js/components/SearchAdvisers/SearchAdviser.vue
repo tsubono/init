@@ -16,11 +16,11 @@
                             住居国
                         </h4>
                         <div class="p-card3__country">
-                            <div class="p-lang p-lang__france">
+                            <div>
                                 {{ adviser.from_country.name }}
                             </div>
                             <span class="d-none d-lg-inline">/</span>
-                            <div class="p-lang p-lang__america">
+                            <div>
                                 {{ adviser.residence_country.name }}
                             </div>
                         </div>

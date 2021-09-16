@@ -68,7 +68,7 @@
                     </div>
                 </div><!-- /.row -->
 
-                <div class="my-80px">
+                <div class="my-4">
                     <button type="submit" class="p-btn p-btn__defalut">送信する</button>
                 </div>
             </form>

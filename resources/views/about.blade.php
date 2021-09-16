@@ -138,7 +138,7 @@
                         <div class="p-aboutlist__text">
                             <h3>Skypeの登録</h3>
                             <p>Initのレッスンでは、Skypeを使用します。<br>
-                                <a href="#" target="_blank" class="primary-link">Skypeのダウンロード・登録方法はこちら</a></p>
+                                <a href="https://support.skype.com/ja/faq/FA11098/skype-noshi-ishi-mefang-wojiao-etekudasai" target="_blank" class="primary-link">Skypeのダウンロード・登録方法はこちら</a></p>
                         </div>
                     </li>
                     <li class="p-aboutlist__box num02">
@@ -151,7 +151,7 @@
                         <div class="p-aboutlist__text">
                             <h3>会員登録（無料）</h3>
                             <p>Initのサービスをご利用いただくには、無料の会員登録が必要です。<br>初期費用や月額費は一切かかりませんので、ご安心ください。</p>
-                            <a href="#" class="p-btn p-btn__defalut">新規登録する</a>
+                            <a href="{{ route('mate.register') }}" class="p-btn p-btn__defalut">新規登録する</a>
                         </div>
                     </li>
                     <li class="p-aboutlist__box num03">
