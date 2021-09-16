@@ -100,10 +100,10 @@ export default {
             return location.origin + '/lessons/' + this.lesson.id
         },
         description () {
-            if (this.lesson.description.length <= 200) {
+            if (this.lesson.description.length < 100) {
                 return this.lesson.description
             } else {
-                return this.lesson.description.slice(0, 200) + '...'
+                return this.lesson.description.slice(0, 100) + '...'
             }
         },
         languages () {
