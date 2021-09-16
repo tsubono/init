@@ -92,6 +92,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\InformationMail\InformationMailRepositoryInterface::class,
             \App\Repositories\InformationMail\InformationMailRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\Setting\SettingRepositoryInterface::class,
+            \App\Repositories\Setting\SettingRepository::class
+        );
     }
 
     /**

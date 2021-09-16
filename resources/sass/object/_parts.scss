@@ -261,3 +261,35 @@
     }
   }
 }
+
+.p-box-with-icon {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px 60px;
+  align-items: center;
+  justify-content: center;
+
+  @include breakpoint-md {
+    padding: 20px 30px;
+  }
+
+  &__icon {
+    background-color: #C5CFFC;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 3em;
+
+    @include breakpoint-md {
+      margin-right: 0;
+      margin-bottom: 2em;
+    }
+
+    & > img {
+      width: 70px;
+    }
+  }
+}
