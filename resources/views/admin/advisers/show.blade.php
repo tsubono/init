@@ -153,7 +153,7 @@
             </div>
             <div class="mb-3">
                 <h3 class="p-heading3">最終ログイン日時</h3>
-                <p>{{ $adviserUser->last_login_at->format('Y/m/d H:i') }}</p>
+                <p>{{ !empty($adviserUser->last_login_at) ? $adviserUser->last_login_at->format('Y/m/d H:i') : '' }}</p>
             </div>
 
             <div class="my-5 text-center">
