@@ -112,72 +112,32 @@
                 <div class="p-heading1__en purple">Advisor</div>
                 アドバイザー紹介
             </h2>
-            <!-- TODO 実データに置き換え -->
             <div class="p-index-advisor__list">
-                <div class="p-card">
-                    <a href="#">
-                        <div class="p-card__img">
-                            <img src="{{ asset('img/profile-img01.png') }}" alt="">
-                        </div>
-                        <div class="p-card__info">
-                            <div class="p-card__name">佐藤 花子</div>
-                            <div class="p-card__lang">
-                                <div class="p-lang p-lang__japan">日本</div>
+                @foreach ($adviserUsers as $adviserUser)
+                    <div class="p-card">
+                        <a href="{{ route('advisers.show', compact('adviserUser')) }}">
+                            <div class="p-card__img">
+                                <img src="{{ $adviserUser->avatar_image }}" alt="アドバイザー画像">
                             </div>
-                            <div class="p-card__category">
-                                <ul>
-                                    <li>#語学</li>
-                                    <li>#資格取得</li>
-                                </ul>
+                            <div class="p-card__info">
+                                <div class="p-card__name">{{ $adviserUser->full_name }}</div>
+                                <div class="p-card__lang">
+                                    <div class="p-lang">{{ $adviserUser->fromCountry->name }}</div>
+                                </div>
+                                <div class="p-card__category">
+                                    <ul>
+                                        @foreach ($adviserUser->categories as $category)
+                                            <li>#{{ $category->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="p-card__btn" onclick="location.href='{{ route('advisers.show', compact('adviserUser')) }}'">プロフィール詳細を見る</div>
                             </div>
-                            <div class="p-card__btn">プロフィール詳細を見る</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="p-card">
-                    <a href="#">
-                        <div class="p-card__img">
-                            <img src="{{ asset('img/profile-img02.png') }}" alt="">
-                        </div>
-                        <div class="p-card__info">
-                            <div class="p-card__name">佐藤 花子</div>
-                            <div class="p-card__lang">
-                                <div class="p-lang p-lang__america">アメリカ</div>
-                            </div>
-                            <div class="p-card__category">
-                                <ul>
-                                    <li>#語学</li>
-                                    <li>#資格取得</li>
-                                </ul>
-                            </div>
-                            <div class="p-card__btn">プロフィール詳細を見る</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="p-card">
-                    <a href="#">
-                        <div class="p-card__img">
-                            <img src="{{ asset('img/profile-img03.png') }}" alt="">
-                        </div>
-                        <div class="p-card__info">
-                            <div class="p-card__name">田中 太郎</div>
-                            <div class="p-card__lang">
-                                <div class="p-lang p-lang__france">フランス</div>
-                            </div>
-                            <div class="p-card__category">
-                                <ul>
-                                    <li>#語学</li>
-                                    <li>#資格取得</li>
-                                </ul>
-                            </div>
-                            <div class="p-card__btn">プロフィール詳細を見る</div>
-                        </div>
-                    </a>
-                </div>
-
+                        </a>
+                    </div>
+                @endforeach
             </div><!-- index-advisor__list -->
-            <!-- TODO: リンク置き換え -->
-            <a href="#" class="p-index-advisor__btn p-btn p-btn__defalut">アドバイザーを探す</a>
+            <a href="{{ route('advisers.index') }}" class="p-index-advisor__btn p-btn p-btn__defalut">アドバイザーを探す</a>
         </div>
     </section>
     <section class="p-index-lesson l-content-block">
@@ -186,102 +146,39 @@
                 <div class="p-heading1__en purple">Lesson</div>
                 レッスン紹介
             </h2>
-            <!-- TODO 実データに置き換え -->
             <div class="p-index-lesson__list">
-                <div class="p-lesson">
-                    <a href="#">
-                        <div class="p-lesson__title">フリートークフランス語</div>
-                        <div class="p-lesson__desc">お得な4回パックのコースです。大人の方もお子様もご受講頂けます！</div>
-                        <div class="p-lesson__info">
-                            <div class="p-lesson__category">語学</div>
-                            <div class="p-lesson__time">60分</div>
-                            <div class="p-lesson__point">1,200pt</div>
-                        </div>
-                        <div class="p-lesson__adviser">
-                            <div class="p-lesson__adviser-img"><img src="{{ asset('img/profile-img01.png') }}" alt=""></div>
-                            <div class="p-lesson__adviser-info">
-                                <div class="p-lesson__name">佐藤 花子</div>
-                                <div class="p-lesson__details">
-                                    <div class="p-lesson__details_item">出身国：<div class="p-lang p-lang__france">フランス</div>
+                @foreach ($lessons as $lesson)
+                    <div class="p-lesson">
+                        <a href="#">
+                            <div class="p-lesson__title">{{ $lesson->name }}</div>
+                            <div class="p-lesson__desc">{!! Str::limit($lesson->description, 100) !!}</div>
+                            <div class="p-lesson__info">
+                                @foreach ($lesson->categories as $index => $category)
+                                    @if ($index < 2)
+                                        <div class="p-lesson__category">{{ $category->name }}</div>
+                                    @endif
+                                @endforeach
+                                <div class="p-lesson__point">{{ number_format($lesson->coin_amount) }} Coin</div>
+                            </div>
+                            <div class="p-lesson__adviser">
+                                <div class="p-lesson__adviser-img"><img src="{{ $lesson->adviserUser->avatar_image }}" alt="アドバイザー画像"></div>
+                                <div class="p-lesson__adviser-info">
+                                    <div class="p-lesson__name">{{ $lesson->adviserUser->full_name }}</div>
+                                    <div class="p-lesson__details">
+                                        <div class="p-lesson__details_item">
+                                            出身国：<div class="p-lang p-lang__france">{{ $lesson->adviserUser->fromCountry->name }}</div>
+                                        </div>
+                                        <div class="p-lesson__details_item">年齢：{{ $lesson->adviserUser->age_txt }}</div>
                                     </div>
-                                    <div class="p-lesson__details_item">年齢：32歳</div>
                                 </div>
-                            </div>
 
-                        </div>
-                    </a>
-                    <div class="p-lesson__img"><img src="{{ asset('img/lesson-img01.png') }}" alt=""></div>
-                </div>
-                <div class="p-lesson">
-                    <a href="#">
-                        <div class="p-lesson__title">フリートークフランス語</div>
-                        <div class="p-lesson__desc">お得な4回パックのコースです。大人の方もお子様もご受講頂けます！</div>
-                        <div class="p-lesson__info">
-                            <div class="p-lesson__category">語学</div>
-                            <div class="p-lesson__time">60分</div>
-                            <div class="p-lesson__point">1,200pt</div>
-                        </div>
-                        <div class="p-lesson__adviser">
-                            <div class="p-lesson__adviser-img"><img src="{{ asset('img/profile-img01.png') }}" alt=""></div>
-                            <div class="p-lesson__adviser-info">
-                                <div class="p-lesson__name">佐藤 花子</div>
-                                <div class="p-lesson__details">
-                                    <div class="p-lesson__details_item">出身国：<div class="p-lang p-lang__france">フランス</div></div>
-                                    <div class="p-lesson__details_item">年齢：32歳</div>
-                                </div>
                             </div>
-
-                        </div>
-                    </a>
-                    <div class="p-lesson__img"><img src="{{ asset('img/lesson-img02.png') }}" alt=""></div>
-                </div>
-                <div class="p-lesson">
-                    <a href="#">
-                        <div class="p-lesson__title">フリートークフランス語</div>
-                        <div class="p-lesson__desc">お得な4回パックのコースです。大人の方もお子様もご受講頂けます！</div>
-                        <div class="p-lesson__info">
-                            <div class="p-lesson__category">語学</div>
-                            <div class="p-lesson__time">60分</div>
-                            <div class="p-lesson__point">1,200pt</div>
-                        </div>
-                        <div class="p-lesson__adviser">
-                            <div class="p-lesson__adviser-img"><img src="{{ asset('img/profile-img01.png') }}" alt=""></div>
-                            <div class="p-lesson__adviser-info">
-                                <div class="p-lesson__name">佐藤 花子</div>
-                                <div class="p-lesson__details">
-                                    出身国：<div class="p-lang p-lang__france">フランス</div>年齢：32歳
-                                </div>
-                            </div>
-
-                        </div>
-                    </a>
-                    <div class="p-lesson__img"><img src="{{ asset('img/lesson-img01.png') }}" alt=""></div>
-                </div>
-                <div class="p-lesson">
-                    <a href="#">
-                        <div class="p-lesson__title">フリートークフランス語</div>
-                        <div class="p-lesson__desc">お得な4回パックのコースです。大人の方もお子様もご受講頂けます！</div>
-                        <div class="p-lesson__info">
-                            <div class="p-lesson__category">語学</div>
-                            <div class="p-lesson__time">60分</div>
-                            <div class="p-lesson__point">1,200pt</div>
-                        </div>
-                        <div class="p-lesson__adviser">
-                            <div class="p-lesson__adviser-img"><img src="{{ asset('img/profile-img01.png') }}" alt=""></div>
-                            <div class="p-lesson__adviser-info">
-                                <div class="p-lesson__name">佐藤 花子</div>
-                                <div class="p-lesson__details">
-                                    出身国：<div class="p-lang p-lang__france">フランス</div>年齢：32歳
-                                </div>
-                            </div>
-
-                        </div>
-                    </a>
-                    <div class="p-lesson__img"><img src="{{ asset('img/lesson-img01.png') }}" alt=""></div>
-                </div>
+                        </a>
+                        <div class="p-lesson__img"><img src="{{ asset('img/lesson-img01.png') }}" alt=""></div>
+                    </div>
+                @endforeach
             </div><!-- p-index-lesson__list -->
-            <!-- TODO: リンク置き換え -->
-            <a href="#" class="p-index-lesson__btn p-btn p-btn__defalut">レッスンを探す</a>
+            <a href="{{ route('lessons.index') }}" class="p-index-lesson__btn p-btn p-btn__defalut">レッスンを探す</a>
         </div>
     </section>
 @endsection

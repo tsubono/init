@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\AdviserUser\AdviserUserRepositoryInterface;
+use App\Repositories\Lesson\LessonRepositoryInterface;
 use Illuminate\Http\Request;
 
 class TopController extends Controller
 {
+    private AdviserUserRepositoryInterface $adviserUserRepository;
+    private LessonRepositoryInterface $lessonRepository;
+
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * TopController constructor.
+     * @param AdviserUserRepositoryInterface $adviserUserRepository
+     * @param LessonRepositoryInterface $lessonRepository
      */
-    public function __construct()
-    {
-        //
+    public function __construct(
+        AdviserUserRepositoryInterface $adviserUserRepository,
+        LessonRepositoryInterface $lessonRepository
+    ) {
+        $this->adviserUserRepository = $adviserUserRepository;
+        $this->lessonRepository = $lessonRepository;
     }
 
     /**
@@ -23,6 +31,9 @@ class TopController extends Controller
      */
     public function index()
     {
-        return view('top');
+        $adviserUsers = $this->adviserUserRepository->getPaginate(3, 'updated_at');
+        $lessons = $this->lessonRepository->getPaginate(4);
+
+        return view('top', compact('adviserUsers', 'lessons'));
     }
 }

@@ -8,7 +8,7 @@ interface AdviserUserRepositoryInterface
 {
     public function find(string $id);
     public function update(int $id, array $data): void;
-    public function getPaginate(int $perCount = 15): LengthAwarePaginator;
+    public function getPaginate(int $perCount = 15, string $sortColumn = 'created_at'): LengthAwarePaginator;
     public function getByConditionPaginate(
         int $perCount,
         ?string $orderBy,

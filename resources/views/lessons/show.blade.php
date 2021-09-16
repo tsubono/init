@@ -25,12 +25,12 @@
                     <div class="row">
                         <div class="col-md-12 mb-40px">
                             <h2 class="fs-2 fw-bold mb-4">{{ $lesson->name }}</h2>
-                            <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->title }}" class="w-100 img-fluid eye-catch-img">
+                            <img src="{{ $lesson->eye_catch_image }}" alt="{{ $lesson->name }}" class="w-100 img-fluid eye-catch-img">
                             <div class="d-flex flex-wrap p-image-list mt-2 mx-3">
                                 @foreach ($lesson->images as $index => $image)
                                     @if (!$loop->first)
                                         <a data-bs-toggle="modal" data-bs-target="#imageModal{{ $index }}">
-                                            <img src="{{ $image->image_path }}" alt="{{ $lesson->title }}" class="img-fluid p-image-list__thumbnail m-1">
+                                            <img src="{{ $image->image_path }}" alt="{{ $lesson->name }}" class="img-fluid p-image-list__thumbnail m-1">
                                         </a>
                                         <div class="modal fade p-modal" id="imageModal{{ $index }}" tabindex="-1" aria-labelledby="imageModal{{ $index }}Label">
                                             <div class="modal-dialog modal-dialog-centered">
@@ -38,7 +38,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
                                                     <div class="modal-body">
                                                         <div class="iframe-wrapper">
-                                                            <img src="{{ $image->image_path }}" alt="{{ $lesson->title }}" class="w-100">
+                                                            <img src="{{ $image->image_path }}" alt="{{ $lesson->name }}" class="w-100">
                                                         </div>
                                                     </div>
                                                 </div><!-- /.modal-content -->

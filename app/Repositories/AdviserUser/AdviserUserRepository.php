@@ -133,17 +133,29 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
     }
 
     /**
-     * @param  int  $perCount
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @param int $perCount
+     * @param string $sortColumn
+     * @return LengthAwarePaginator
      */
-    public function getPaginate(int $perCount = 15): LengthAwarePaginator
+    public function getPaginate(int $perCount = 15, string $sortColumn = 'created_at'): LengthAwarePaginator
     {
         return $this->adviserUser
             ->query()
-            ->orderBy('created_at', 'desc')
+            ->orderBy($sortColumn, 'desc')
             ->paginate($perCount);
     }
 
+    /**
+     * @param int $perCount
+     * @param string|null $orderBy
+     * @param string|null $category
+     * @param string|null $language
+     * @param string|null $name
+     * @param string|null $country
+     * @param string|null $residenceCountry
+     * @param string|null $gender
+     * @return LengthAwarePaginator
+     */
     public function getByConditionPaginate(
         int $perCount,
         ?string $orderBy,
@@ -160,19 +172,16 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
             ->with('languages')
             ->with('fromCountry')
             ->with('residenceCountry');
-
         if ($category) {
             $query->whereHas('categories', function (Builder $query) use ($category) {
                 $query->where('name', $category);
             });
         }
-
         if ($language) {
             $query->whereHas('languages', function (Builder $query) use ($language) {
                 $query->where('name', $language);
             });
         }
-
         if ($name) {
             $query
                 ->where('family_name', 'like', "%$name%")
@@ -182,19 +191,16 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
                 ->orWhere('middle_name_kana', 'like', "%$name%")
                 ->orWhere('first_name_kana', 'like', "%$name%");
         }
-
         if ($country) {
             $query->whereHas('fromCountry', function (Builder $query) use ($country) {
                 $query->where('name', $country);
             });
         }
-
         if ($residenceCountry) {
             $query->whereHas('residenceCountry', function (Builder $query) use ($residenceCountry) {
                 $query->where('name', $residenceCountry);
             });
         }
-
         if ($gender) {
             $query->where('gender', $gender);
         }
