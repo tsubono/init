@@ -18,6 +18,8 @@ class Lesson extends Model
 
     protected $guarded = ['id'];
 
+    protected $appends = ['eye_catch_image'];
+
     // ============ Relations ============
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -65,6 +67,22 @@ class Lesson extends Model
     public function lessonMovies(): HasMany
     {
         return $this->hasMany(LessonMovie::class)->orderBy('sort');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function attendances(): HasMany
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(AttendanceReview::class);
     }
 
     // ============ Attributes ============

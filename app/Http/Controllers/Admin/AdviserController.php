@@ -32,7 +32,7 @@ class AdviserController extends Controller
     {
         $condition = $request->get('condition', []);
 
-        $adviserUsers = $this->adviserUserRepository->getByConditionPaginate($condition);
+        $adviserUsers = $this->adviserUserRepository->getByConditionPaginateForAdmin($condition);
 
         return view('admin.advisers.index', compact('adviserUsers', 'condition'));
     }
@@ -72,7 +72,7 @@ class AdviserController extends Controller
     public function exportCsv(Request $request, FileService $fileService)
     {
         $condition = $request->get('condition', []);
-        $adviserUsers = $this->adviserUserRepository->getByCondition($condition);
+        $adviserUsers = $this->adviserUserRepository->getByConditionForAdmin($condition);
 
         $csvData = [];
         foreach ($adviserUsers as $index => $adviserUser) {

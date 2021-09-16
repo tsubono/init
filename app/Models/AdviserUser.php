@@ -29,6 +29,11 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
 
     protected $guarded = ['id'];
 
+    protected $appends = [
+        'avatar_image',
+        'full_name',
+    ];
+
     protected $dates = ['last_login_at'];
 
     /**
@@ -78,6 +83,14 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     public function attendances(): HasMany
     {
         return $this->hasMany(Attendance::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(AttendanceReview::class);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Repositories\AdviserUser;
 
 use App\Models\AdviserUser;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -16,12 +17,13 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
 {
     private AdviserUser $adviserUser;
 
-    public function __construct(AdviserUser $adviserUser) {
+    public function __construct(AdviserUser $adviserUser)
+    {
         $this->adviserUser = $adviserUser;
     }
 
     /**
-     * @param string $id
+     * @param  string  $id
      * @return mixed
      */
     public function find(string $id)
@@ -30,8 +32,8 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
     }
 
     /**
-     * @param int $id
-     * @param array $data
+     * @param  int  $id
+     * @param  array  $data
      */
     public function update(int $id, array $data): void
     {
@@ -52,8 +54,8 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
     }
 
     /**
-     * @param AdviserUser $adviserUser
-     * @param array $data
+     * @param  AdviserUser  $adviserUser
+     * @param  array  $data
      */
     private function updateRelation(AdviserUser $adviserUser, array $data)
     {
@@ -62,7 +64,7 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
             if (!is_null($image)) {
                 $adviserUser->adviserUserImages()->updateOrCreate([
                     'sort' => $sort,
-                ], [ 'image_path' => $image ]);
+                ], ['image_path' => $image]);
             } else {
                 $adviserUserImage = $adviserUser->adviserUserImages()
                     ->where('sort', $sort)->first();
@@ -82,7 +84,7 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
         // 動画
         foreach ($data['movies'] ?? [] as $sort => $movie) {
             if (!is_null($movie['eye_catch_path']) && !is_null($movie['type']) && !is_null($movie['movie_path'])) {
-                $adviserUser->adviserUserMovies()->updateOrCreate([ 'sort' => $sort ], $movie);
+                $adviserUser->adviserUserMovies()->updateOrCreate(['sort' => $sort], $movie);
             } else {
                 $adviserUserMovie = $adviserUser->adviserUserMovies()
                     ->where('sort', $sort)->first();
@@ -131,7 +133,7 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
     }
 
     /**
-     * @param int $perCount
+     * @param  int  $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function getPaginate(int $perCount = 15): LengthAwarePaginator
@@ -142,12 +144,86 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
             ->paginate($perCount);
     }
 
+    public function getByConditionPaginate(
+        int $perCount,
+        ?string $orderBy,
+        ?string $category,
+        ?string $language,
+        ?string $name,
+        ?string $country,
+        ?string $residenceCountry,
+        ?string $gender
+    ): LengthAwarePaginator {
+        $query = $this->adviserUser
+            ->query()
+            ->with('categories')
+            ->with('languages')
+            ->with('fromCountry')
+            ->with('residenceCountry');
+
+        if ($category) {
+            $query->whereHas('categories', function (Builder $query) use ($category) {
+                $query->where('name', $category);
+            });
+        }
+
+        if ($language) {
+            $query->whereHas('languages', function (Builder $query) use ($language) {
+                $query->where('name', $language);
+            });
+        }
+
+        if ($name) {
+            $query
+                ->where('family_name', 'like', "%$name%")
+                ->orWhere('middle_name', 'like', "%$name%")
+                ->orWhere('first_name', 'like', "%$name%")
+                ->orWhere('family_name_kana', 'like', "%$name%")
+                ->orWhere('middle_name_kana', 'like', "%$name%")
+                ->orWhere('first_name_kana', 'like', "%$name%");
+        }
+
+        if ($country) {
+            $query->whereHas('fromCountry', function (Builder $query) use ($country) {
+                $query->where('name', $country);
+            });
+        }
+
+        if ($residenceCountry) {
+            $query->whereHas('residenceCountry', function (Builder $query) use ($residenceCountry) {
+                $query->where('name', $residenceCountry);
+            });
+        }
+
+        if ($gender) {
+            $query->where('gender', $gender);
+        }
+
+        switch ($orderBy) {
+            case 'fav':
+                $query
+                    ->withCount('attendances')
+                    ->orderBy('attendances_count', 'desc');
+                break;
+            case 'evaluation':
+                $query
+                    ->withAvg('reviews', 'rate')
+                    ->orderBy('reviews_avg_rate', 'desc');
+                break;
+            default:
+                $query->orderBy('created_at', 'desc');
+        }
+
+        return $query->paginate($perCount);
+    }
+
     /**
+     * @param  int  $id
      * @param array $condition
      * @param int $perCount
      * @return LengthAwarePaginator
      */
-    public function getByConditionPaginate(array $condition, int $perCount = 15): LengthAwarePaginator
+    public function getByConditionPaginateForAdmin(array $condition, int $perCount = 15): LengthAwarePaginator
     {
         $query = $this->getQueryWithCondition($condition);
 
@@ -159,7 +235,7 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
      * @param array $condition
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function getByCondition(array $condition)
+    public function getByConditionForAdmin(array $condition)
     {
         $query = $this->getQueryWithCondition($condition);
 
@@ -198,6 +274,7 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
 
     /**
      * @param int $id
+>>>>>>> develop
      * @return void
      * @throws \Exception
      */

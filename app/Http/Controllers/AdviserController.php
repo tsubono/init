@@ -4,40 +4,70 @@ namespace App\Http\Controllers;
 
 use App\Models\AdviserUser;
 use App\Repositories\AdviserUser\AdviserUserRepositoryInterface;
+use App\Repositories\MstCategory\MstCategoryRepositoryInterface;
+use App\Repositories\MstCountry\MstCountryRepositoryInterface;
+use App\Repositories\MstLanguage\MstLanguageRepositoryInterface;
 use Illuminate\Http\Request;
 
 class AdviserController extends Controller
 {
     private AdviserUserRepositoryInterface $adviserUserRepository;
+    private MstCategoryRepositoryInterface $mstCategoryRepository;
+    private MstLanguageRepositoryInterface $mstLanguageRepository;
+    private MstCountryRepositoryInterface $mstCountryRepository;
 
     /**
      * AdviserController constructor.
-     * @param AdviserUserRepositoryInterface $adviserUserRepository
+     * @param  AdviserUserRepositoryInterface  $adviserUserRepository
+     * @param  MstCategoryRepositoryInterface  $mstCategoryRepository
+     * @param  MstLanguageRepositoryInterface  $mstLanguageRepository
+     * @param  MstCountryRepositoryInterface  $mstCountryRepository
      */
     public function __construct(
-        AdviserUserRepositoryInterface $adviserUserRepository
+        AdviserUserRepositoryInterface $adviserUserRepository,
+        MstCategoryRepositoryInterface $mstCategoryRepository,
+        MstLanguageRepositoryInterface $mstLanguageRepository,
+        MstCountryRepositoryInterface $mstCountryRepository
     ) {
         $this->adviserUserRepository = $adviserUserRepository;
+        $this->mstCategoryRepository = $mstCategoryRepository;
+        $this->mstLanguageRepository = $mstLanguageRepository;
+        $this->mstCountryRepository = $mstCountryRepository;
     }
 
     /**
      * アドバイザー検索
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(Request $request)
     {
-        // TODO: 検索: Repositoryに検索用のメソッド (ex: getByCondition($searchParam) など) を作成して呼び出す
-        $advisers = $this->adviserUserRepository->getPaginate();
+        $categories = $this->mstCategoryRepository->all();
+        $languages = $this->mstLanguageRepository->all();
+        $countries = $this->mstCountryRepository->all();
 
-        return view('advisers.index', compact('advisers'));
+        $advisersPagination = $this->adviserUserRepository->getByConditionPaginate(
+            10,
+            $request->get('order'),
+            $request->get('category'),
+            $request->get('language'),
+            $request->get('name'),
+            $request->get('country'),
+            $request->get('residence-country'),
+            $request->get('gender')
+        );
+
+        $advisers = collect($advisersPagination->items());
+        $total = $advisersPagination->total();
+
+        return view('advisers.index', compact('categories', 'languages', 'countries', 'advisers', 'total'));
     }
 
     /**
      * 講師詳細
      *
-     * @param AdviserUser $adviserUser
+     * @param  AdviserUser  $adviserUser
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function show(AdviserUser $adviserUser)

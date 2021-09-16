@@ -25,6 +25,8 @@ Vue.use(VueFormulate.default)
 Vue.component('movie-list', require('./components/MoviePlayer/MovieList').default)
 Vue.component('file-upload', require('./components/FileUpload.vue').default);
 Vue.component('file-upload-not-preview', require('./components/FileUploadNoPreview.vue').default);
+Vue.component('search-lessons', require('./components/SearchLessons/SearchLessons.vue').default);
+Vue.component('search-advisers', require('./components/SearchAdvisers/SearchAdvisers').default)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

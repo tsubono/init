@@ -4,6 +4,7 @@ namespace App\Repositories\Lesson;
 
 use App\Models\Lesson;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -16,12 +17,13 @@ class LessonRepository implements LessonRepositoryInterface
 {
     private Lesson $lesson;
 
-    public function __construct(Lesson $lesson) {
+    public function __construct(Lesson $lesson)
+    {
         $this->lesson = $lesson;
     }
 
     /**
-     * @param int $perCount
+     * @param  int  $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function getPaginate(int $perCount = 15): LengthAwarePaginator
@@ -33,8 +35,8 @@ class LessonRepository implements LessonRepositoryInterface
     }
 
     /**
-     * @param int $adviserUserId
-     * @param int $perCount
+     * @param  int  $adviserUserId
+     * @param  int  $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function getByAdviserIdPaginate(int $adviserUserId, int $perCount = 15): LengthAwarePaginator
@@ -47,7 +49,97 @@ class LessonRepository implements LessonRepositoryInterface
     }
 
     /**
-     * @param array $data
+     * @param  int  $perCount
+     * @param  string|null  $category
+     * @param  string|null  $language
+     * @param  string|null  $room
+     * @param  string|null  $country
+     * @param  string|null  $gender
+     * @param  int|null  $coinMin
+     * @param  int|null  $coinMax
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getByConditionPaginate(
+        int $perCount,
+        ?string $orderBy = null,
+        ?string $category = null,
+        ?string $language = null,
+        ?string $room = null,
+        ?string $country = null,
+        ?string $gender = null,
+        ?int $coinMin = null,
+        ?int $coinMax = null
+    ): LengthAwarePaginator {
+        $query = $this->lesson
+            ->query()
+            ->with('categories')
+            ->with('adviserUser')
+            ->with('adviserUser.languages');
+
+        if ($category) {
+            $query->whereHas('categories', function (Builder $query) use ($category) {
+                $query->where('name', $category);
+            });
+        }
+
+        if ($language) {
+            $query->whereHas('adviserUser.languages', function (Builder $query) use ($language) {
+                $query->where('name', $language);
+            });
+        }
+
+        if ($room) {
+            $query->whereHas('categories.room', function (Builder $query) use ($room) {
+                $query->where('name', 'like', "%$room%");
+            });
+        }
+
+        if ($country) {
+            $query->whereHas('adviserUser.fromCountry', function (Builder $query) use ($country) {
+                $query->where('name', $country);
+            });
+        }
+
+        if ($gender) {
+            $query->whereHas('adviserUser', function (Builder $query) use ($gender) {
+                $query->where('gender', $gender);
+            });
+        }
+
+        if ($coinMin) {
+            $query->where('coin_amount', '>=', $coinMin);
+        }
+
+        if ($coinMax) {
+            $query->where('coin_amount', '<=', $coinMax);
+        }
+
+        switch ($orderBy) {
+            case 'fav':
+                $query
+                    ->withCount('attendances')
+                    ->orderBy('attendances_count', 'desc');
+                break;
+            case 'coin-little':
+                $query->orderBy('coin_amount');
+                break;
+            case 'coin-many':
+                $query->orderBy('coin_amount', 'desc');
+                break;
+            case 'evaluation':
+                $query
+                    ->withAvg('reviews', 'rate')
+                    ->orderBy('reviews_avg_rate', 'desc');
+                break;
+            default:
+                $query->orderBy('created_at', 'desc');
+        }
+
+        return $query->paginate($perCount);
+    }
+
+    /**
+     * @param  array  $data
      * @return void
      */
     public function store(array $data): void
@@ -71,7 +163,7 @@ class LessonRepository implements LessonRepositoryInterface
             // 動画
             foreach ($data['movies'] ?? [] as $sort => $movie) {
                 if (!is_null($movie['eye_catch_path']) && !is_null($movie['type']) && !is_null($movie['movie_path'])) {
-                    $lesson->movies()->create([ 'sort' => $sort ] + $movie);
+                    $lesson->movies()->create(['sort' => $sort] + $movie);
                 }
             }
 
@@ -85,8 +177,8 @@ class LessonRepository implements LessonRepositoryInterface
     }
 
     /**
-     * @param int $id
-     * @param array $data
+     * @param  int  $id
+     * @param  array  $data
      */
     public function update(int $id, array $data): void
     {
@@ -135,7 +227,7 @@ class LessonRepository implements LessonRepositoryInterface
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      * @return void
      * @throws \Exception
      */
