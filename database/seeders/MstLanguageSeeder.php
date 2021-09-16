@@ -18,13 +18,8 @@ class MstLanguageSeeder extends Seeder
         if (empty($language)) {
             DB::table('mst_languages')->insert([
                     [ 'name' => '日本語' ],
-                    [ 'name' => 'アメリカ語' ],
-                    [ 'name' => 'イギリス語' ],
-                    [ 'name' => 'フランス語' ],
-                    [ 'name' => '中国語' ],
-                    [ 'name' => 'ドイツ語' ],
-                    [ 'name' => '韓国語' ],
-                    // TODO: 正規データに置き換え
+                    [ 'name' => '英語' ],
+                    [ 'name' => 'タイ語' ],
                 ]
             );
         }
