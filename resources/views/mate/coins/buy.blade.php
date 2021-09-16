@@ -17,12 +17,12 @@
                 <div class="col-6">
                     <h3 class="p-heading3 text-center mt-5">PayPal決済</h3>
                     <!-- PayPal決済ボタン表示 -->
-                    <div id="paypal-button-container"></div>
+                    <div id="paypal-button-container" class="pe-none o-60"></div>
                 </div>
 
                 <div class="col-6">
                     <h3 class="p-heading3 text-center mt-5">PAY.JP決済</h3>
-                    <form action="{{ route('mate.coins.payment-by-payjp') }}" method="post" id="payjpForm1">
+                    <form action="{{ route('mate.coins.payment-by-payjp') }}" method="post" id="payjpForm1" class="pe-none o-60">
                         @csrf
                         <input type="hidden" name="price" class="price-input" />
                         <script
@@ -35,7 +35,7 @@
                     </form>
                     @if (!empty($cardList))
                         <p class="my-3">もしくは登録済みのカードで支払い</p>
-                        <form action="{{ route('mate.coins.payment-by-payjp') }}" method="post" id="payjpForm2">
+                        <form action="{{ route('mate.coins.payment-by-payjp') }}" method="post" id="payjpForm2" class="pe-none o-60">
                             @csrf
                             <input type="hidden" name="price" class="price-input" />
                             @foreach ($cardList as $card)

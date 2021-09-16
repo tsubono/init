@@ -122,7 +122,7 @@
                             <div class="p-card__info">
                                 <div class="p-card__name">{{ $adviserUser->full_name }}</div>
                                 <div class="p-card__lang">
-                                    <div class="p-lang">{{ $adviserUser->fromCountry->name }}</div>
+                                    <div class="p-lang">{{ $adviserUser->fromCountry->name ?? '' }}</div>
                                 </div>
                                 <div class="p-card__category">
                                     <ul>

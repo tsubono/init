@@ -53,7 +53,6 @@
         <div class="p-status__icon"><img src="{{ asset('img/status-login.svg') }}" alt=""></div>
         <div class="p-status__info">
             <div class="num">{{ $adviserUser->last_login_txt }}</div>
-            ログイン
         </div>
     </div><!-- /.p-status__box -->
 

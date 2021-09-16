@@ -79,6 +79,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $data['password'] = Hash::make($data['password']);
+        $data['last_login_at'] = now();
         return MateUser::create($data);
     }
 

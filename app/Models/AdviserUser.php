@@ -222,21 +222,21 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
         // dayが1日以上ある場合
         if ($diffDate->d >= 1) {
             $lastLoginTxt = $diffDate->d >= 3
-                ? '3日以上'
-                : $diffDate->d . '日前';
+                ? '3日以上前'
+                : $diffDate->d . '日前ログイン';
         }
 
         // dayは0日、hourが1時間以上ある場合
         if ($diffDate->d === 0 && $diffDate->h >= 1) {
-            $lastLoginTxt = $diffDate->h . '時間前';
+            $lastLoginTxt = $diffDate->h . '時間前ログイン';
         }
 
         // dayは0日、hourが0時間、minutesが1分以上ある場合
         if ($diffDate->d === 0 && $diffDate->h === 0 && $diffDate->i >= 1) {
             $minutes = ceil($diffDate->i / 10) * 10;
             $lastLoginTxt = $minutes === 60
-                ? '1時間前'
-                : $minutes . '分前';
+                ? '1時間前ログイン'
+                : $minutes . '分前ログイン';
         }
 
         return $lastLoginTxt;
