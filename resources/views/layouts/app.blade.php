@@ -37,9 +37,9 @@
                     <li><a href="{{ route('team') }}">INIT運営チームについて</a></li>
                     <li><a href="{{ route('tradelaw') }}">特商法に基づく表示</a></li>
                     <li><a href="{{ route('privacy') }}">プライバシーポリシー</a></li>
-                    <li><a href="{{ route('privacy') }}">キャンセルポリシー</a></li>
-                    <li><a href="{{ route('cancel-policy-mate') }}">受講者規約</a></li>
-                    <li><a href="{{ route('cancel-policy-adviser') }}">アドバイザー規約</a></li>
+                    <li><a href="{{ route('cancel-policy') }}">キャンセルポリシー</a></li>
+                    <li><a href="{{ route('mate-terms') }}">受講者規約</a></li>
+                    <li><a href="{{ route('adviser-terms') }}">アドバイザー規約</a></li>
                 </ul>
             </div>
             <address>Copyright &copy; 2021 INIT. All Rights Reserved.</address>

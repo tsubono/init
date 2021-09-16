@@ -155,8 +155,7 @@ Route::middleware(['check.maintenance'])->namespace('App\Http\Controllers')->gro
     Route::get('/team', function () { return view('team'); })->name('team');
     Route::get('/tradelaw', function () { return view('tradelaw'); })->name('tradelaw');
     Route::get('/privacy', function () { return view('privacy'); })->name('privacy');
-    Route::get('/cancel-policy-adviser', function () { return view('cancel-policy-adviser'); })->name('cancel-policy-adviser');
-    Route::get('/cancel-policy-mate', function () { return view('cancel-policy-mate'); })->name('cancel-policy-mate');
+    Route::get('/cancel-policy', function () { return view('cancel-policy'); })->name('cancel-policy');
     Route::get('/mate-terms', function () { return view('mate-terms'); })->name('mate-terms');
     Route::get('/adviser-terms', function () { return view('adviser-terms'); })->name('adviser-terms');
     Route::get('/withdrawal', function () { return view('withdrawal'); })->name('withdrawal');
