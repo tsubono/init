@@ -9,7 +9,7 @@
                 <div class="p-status-label {{ $attendance->status_class }}">
                     {{ $attendance->status_txt }}
                 </div>
-                <div>
+                <div class="p-attendance__header">
                     @if ($attendance->status_txt === '受講申請中')
                         @if (auth()->guard('adviser')->check())
                             <button type="button" class="p-btn--rect py-1 px-2 btn-success" data-bs-toggle="modal" data-bs-target="#approvalModal">
@@ -53,7 +53,7 @@
                                 </div><!-- /.modal-dialog -->
                             </div><!-- /.modal -->
                             <!-- /否認モーダル -->
-                        @else
+                        @elseif (auth()->guard('mate')->check())
                             <button type="button" class="p-btn--rect py-1 px-2 btn-danger" data-bs-toggle="modal" data-bs-target="#requestCancelModal">
                                 申請キャンセル
                             </button>
@@ -103,46 +103,48 @@
                             </div><!-- /.modal -->
                             <!-- /受講完了モーダル -->
                         @endif
-                        <button type="button" class="p-btn--rect py-1 px-2 btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal">
-                            キャンセル
-                        </button>
-                        <button type="button" class="p-btn--rect py-1 px-2 btn-danger" data-bs-toggle="modal" data-bs-target="#reportModal">
-                            通報する
-                        </button>
-                        <!-- キャンセルモーダル -->
-                        <div class="modal p-modal p-setting fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
-                                    <div class="modal-body">
-                                        <h2 class="p-heading2 mt-0 text-center">キャンセル確認</h2>
-                                        <p class="text-center">「{{ $attendance->lesson->name }}」の受講をキャンセルします。<br>よろしいですか？</p>
-                                        <form action="{{ route('attendances.cancel', compact('attendance')) }}" method="post">
-                                            @csrf
-                                            <button class="p-btn p-btn__defalut">キャンセルする</button>
-                                        </form>
-                                    </div><!-- /.modal-body -->
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
-                        <!-- /キャンセルモーダル -->
-                        <!-- 通報モーダル -->
-                        <div class="modal p-modal p-setting fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
-                                    <div class="modal-body">
-                                        <h2 class="p-heading2 mt-0 text-center">通報確認</h2>
-                                        <p class="text-center">「{{ $attendance->lesson->name }}」の受講を通報します。<br>よろしいですか？</p>
-                                        <form action="{{ route('attendances.report', compact('attendance')) }}" method="post">
-                                            @csrf
-                                            <button class="p-btn p-btn__defalut">通報する</button>
-                                        </form>
-                                    </div><!-- /.modal-body -->
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
-                        <!-- /通報モーダル -->
+                        @if (auth()->guard('adviser')->check() || auth()->guard('mate')->check())
+                            <button type="button" class="p-btn--rect py-1 px-2 btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal">
+                                キャンセル
+                            </button>
+                            <button type="button" class="p-btn--rect py-1 px-2 btn-danger" data-bs-toggle="modal" data-bs-target="#reportModal">
+                                通報する
+                            </button>
+                            <!-- キャンセルモーダル -->
+                            <div class="modal p-modal p-setting fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                                        <div class="modal-body">
+                                            <h2 class="p-heading2 mt-0 text-center">キャンセル確認</h2>
+                                            <p class="text-center">「{{ $attendance->lesson->name }}」の受講をキャンセルします。<br>よろしいですか？</p>
+                                            <form action="{{ route('attendances.cancel', compact('attendance')) }}" method="post">
+                                                @csrf
+                                                <button class="p-btn p-btn__defalut">キャンセルする</button>
+                                            </form>
+                                        </div><!-- /.modal-body -->
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+                            <!-- /キャンセルモーダル -->
+                            <!-- 通報モーダル -->
+                            <div class="modal p-modal p-setting fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                                        <div class="modal-body">
+                                            <h2 class="p-heading2 mt-0 text-center">通報確認</h2>
+                                            <p class="text-center">「{{ $attendance->lesson->name }}」の受講を通報します。<br>よろしいですか？</p>
+                                            <form action="{{ route('attendances.report', compact('attendance')) }}" method="post">
+                                                @csrf
+                                                <button class="p-btn p-btn__defalut">通報する</button>
+                                            </form>
+                                        </div><!-- /.modal-body -->
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+                            <!-- /通報モーダル -->
+                        @endif
                     @endif
                     @if ($attendance->can_review)
                         @if (!$attendance->done_review)
@@ -151,7 +153,7 @@
                             <a class="p-btn--rect py-1 px-2 btn-warning btn-disabled" disabled>レビュー済み</a>
                         @endif
                     @endif
-                </div><!-- /.p-card3__controls -->
+                </div><!-- /.p-attendance__header -->
             </div>
 
             <div class="mb-3">
@@ -160,27 +162,24 @@
             </div>
             <div class="mb-3">
                 <h3 class="p-heading3">レッスン名</h3>
-                <a href="{{ route('lessons.show', ['lesson' => $attendance->lesson]) }}" class="primary-link">
+                <a href="{{ route('lessons.show', ['lesson' => $attendance->lesson]) }}" class="primary-link" target="_blank">
                     <p>{{ $attendance->lesson->name }}</p>
                 </a>
             </div>
-            @if (auth()->guard('mate')->check())
-                <div class="mb-3">
-                    <h3 class="p-heading3">アドバイザー</h3>
-                    @if ($attendance->adviserUser)
-                        <a href="{{ route('advisers.show', ['adviserUser' => $attendance->adviserUser]) }}" class="primary-link">
-                            <p>{{ $attendance->adviserUser->full_name ?? '退会ユーザー' }}</p>
-                        </a>
-                    @else
-                        <p>退会ユーザー</p>
-                    @endif
-                </div>
-            @else
-                <div class="mb-3">
-                    <h3 class="p-heading3">メイト</h3>
-                    <p>{{ $attendance->mateUser->full_name ?? '退会ユーザー' }}</p>
-                </div>
-            @endif
+            <div class="mb-3">
+                <h3 class="p-heading3">アドバイザー</h3>
+                @if ($attendance->adviserUser)
+                    <a href="{{ route('advisers.show', ['adviserUser' => $attendance->adviserUser]) }}" class="primary-link" target="_blank">
+                        <p>{{ $attendance->adviserUser->full_name ?? '退会ユーザー' }}</p>
+                    </a>
+                @else
+                    <p>退会ユーザー</p>
+                @endif
+            </div>
+            <div class="mb-3">
+                <h3 class="p-heading3">メイト</h3>
+                <p>{{ $attendance->mateUser->full_name ?? '退会ユーザー' }}</p>
+            </div>
             <div class="mb-3">
                 <h3 class="p-heading3">受講申請メッセージ</h3>
                 <p>{!! nl2br(e($attendance->request_text)) !!}</p>
@@ -229,9 +228,15 @@
             @endif
 
             <div class="my-5 text-center">
-                <a href="{{ route('attendances.index') }}" class="p-btn p-btn__defalut d-inline-block px-80px">
-                    受講一覧へ戻る
-                </a>
+                @if (auth()->guard('admin')->check())
+                    <a href="{{ route('admin.attendances.index') }}" class="p-btn p-btn__defalut d-inline-block px-80px">
+                        受講一覧へ戻る
+                    </a>
+                @else
+                    <a href="{{ route('attendances.index') }}" class="p-btn p-btn__defalut d-inline-block px-80px">
+                        受講一覧へ戻る
+                    </a>
+                @endif
             </div>
         </div><!-- /.container -->
     </section>

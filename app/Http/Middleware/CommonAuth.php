@@ -16,7 +16,10 @@ class CommonAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->guard('adviser')->check() || auth()->guard('mate')->check()) {
+        if (auth()->guard('adviser')->check() ||
+            auth()->guard('mate')->check() ||
+            auth()->guard('admin')->check()
+        ) {
             return $next($request);
         }
 

@@ -198,6 +198,35 @@
                                     @enderror
                                 </div>
 
+                                <div class="col-12"><h3 class="p-heading2">住所</h3></div>
+                                <div class="col-12">
+                                    <label for="">
+                                        <div class="p-form__label">郵便番号<span class="badge bg-danger ms-2">必須</span></div>
+                                    </label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="zipcode"
+                                           onKeyUp="AjaxZip3.zip2addr(this,'','address','address');"
+                                           value="{{ old('zipcode', $user->zipcode) }}"
+                                    >
+                                    @error('zipcode')
+                                    <div class="p-error-text" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <label for="">
+                                        <div class="p-form__label">住所<span class="badge bg-danger ms-2">必須</span></div>
+                                    </label>
+                                    <input type="text" class="form-control" name="address" value="{{ old('address', $user->address) }}">
+                                    @error('address')
+                                    <div class="p-error-text" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+
                                 <div class="col-12">
                                     <h3 class="p-heading2">メールアドレス<span class="badge bg-danger ms-2">必須</span></h3>
                                     <input type="text" class="form-control" name="email" value="{{ old('email', $user->email) }}">

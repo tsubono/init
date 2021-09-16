@@ -1,7 +1,7 @@
 .l-content-block {
   padding: 60px 0;
   @include breakpoint-md {
-    padding: 40px 0;
+    padding: 20px 0;
   }
 }
 .p-bg-light {
@@ -242,4 +242,54 @@
 
 .p-text-underline {
   text-decoration: underline;
+}
+
+.p-label {
+  background: #dddcdc;
+  padding: 5px 15px;
+  border-radius: 14px;
+}
+
+.p-image-list {
+  &__thumbnail {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+
+    @include breakpoint-md {
+      width: 100%;
+    }
+  }
+}
+
+.p-box-with-icon {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px 60px;
+  align-items: center;
+  justify-content: center;
+
+  @include breakpoint-md {
+    padding: 20px 30px;
+  }
+
+  &__icon {
+    background-color: #C5CFFC;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 3em;
+
+    @include breakpoint-md {
+      margin-right: 0;
+      margin-bottom: 2em;
+    }
+
+    & > img {
+      width: 70px;
+    }
+  }
 }

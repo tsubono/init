@@ -34,6 +34,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
         'full_name',
     ];
 
+    protected $dates = ['last_login_at'];
+
     /**
      * 認証メール
      */
@@ -200,7 +202,7 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
         $attendanceCount = $this->attendances->count();
         $cancelCount = $this->attendances->where('cancel_cause_adviser_user_id', $this->id)->count();
 
-        return $cancelCount === 0 ? 0 : $cancelCount / $attendanceCount * 100;
+        return $cancelCount === 0 ? 0 : round($cancelCount / $attendanceCount * 100);
     }
 
     /**
@@ -357,6 +359,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
           'first_name_kana',
           'birthday',
           'tel',
+          'zipcode',
+          'address',
           'email',
           'skype_name',
           'skype_id',
@@ -404,5 +408,41 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     public function getIsUnreadInfoNotificationAttribute(): bool
     {
         return $this->unreadInfoNotifications()->count() !== 0;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function attendanceNotifications()
+    {
+        return $this->notifications()
+            ->where('data->is_attendance', true);
+    }
+
+    /**
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function unreadAttendanceNotifications()
+    {
+        return $this->unreadNotifications()
+            ->where('data->is_attendance', true);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getAttendanceNotificationsForPopupAttribute()
+    {
+        return $this->attendanceNotifications()
+            ->take(5)
+            ->get();
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsUnreadAttendanceNotificationAttribute(): bool
+    {
+        return $this->unreadAttendanceNotifications()->count() !== 0;
     }
 }

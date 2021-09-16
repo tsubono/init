@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-8">
                     <h3 class="p-heading2">購入コイン枚数<span class="badge bg-danger ms-2">必須</span></h3>
-                    <input type="number" name="amount" class="form-control" placeholder="コイン枚数を入力してください" />
+                    <input type="number" name="amount" class="form-control" placeholder="コイン枚数を入力してください" min="1" />
                     <p class="mt-1">※ 1コイン = 100円になります</p>
                     <p class="p-error-text" id="errorTxt"></p>
                 </div>
@@ -122,17 +122,17 @@
       const amountInput = document.querySelector('[name=amount]')
       amountInput.addEventListener('change', (event) => {
         const value = event.target.value;
+        const className = ['pe-none', 'o-60'];
+        const payContainers = document.querySelectorAll('#paypal-button-container, #payjpForm1, #payjpForm2');
 
         if (value === '' || parseInt(value) < 1) {
           document.querySelector('#errorTxt').textContent = '1コイン以上を入力してください'
-
-          // TODO: 各決済ボタンを押せなくする
+          payContainers.forEach(element => element.classList.add(...className));
         } else {
           document.querySelector('#errorTxt').textContent = ''
-          document.querySelector('#payjpForm1 [name=price]').value = value * 100
-          document.querySelector('#payjpForm2 [name=price]').value = value * 100
-
-          // TODO: 各決済ボタンを押せるようにする
+          const payjpForm = document.querySelectorAll('#payjpForm1 [name=price], #payjpForm2 [name=price]');
+          payjpForm.forEach(element => element.value = value * 100);
+          payContainers.forEach(element => element.classList.remove(...className));
         }
       })
     </script>

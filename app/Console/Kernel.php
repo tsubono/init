@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\AttendanceReminder::class,
+        Commands\SendInformationMail::class
     ];
 
     /**
@@ -25,6 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('reminder:attendance')->everyMinute();
+        $schedule->command('send:information-mail')->daily();
     }
 
     /**

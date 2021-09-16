@@ -52,6 +52,11 @@
       display: block;
     }
   }
+  &__controls {
+    @include breakpoint-md {
+      flex-direction: column;
+    }
+  }
 }
 .p-searchresult {
   &__info {

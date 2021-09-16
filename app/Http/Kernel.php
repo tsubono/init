@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'auth.mate' => \App\Http\Middleware\MateAuth::class,
         'auth.admin' => \App\Http\Middleware\AdminAuth::class,
         'auth.common' => \App\Http\Middleware\CommonAuth::class,
+        'check.maintenance' => \App\Http\Middleware\CheckForMaintenanceMode::class,
     ];
 }

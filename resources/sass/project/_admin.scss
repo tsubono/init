@@ -2,15 +2,35 @@
   .p-admin-list__infos {
     .p-card3 {
       justify-content: start;
+      text-align: center;
 
       &__date {
-        flex-basis: 20%;
+        flex-basis: 10%;
         font-size: 18px;
+      }
+
+      &__name {
+        flex-basis: 25%;
+        font-size: 18px;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &__amount {
+        flex-basis: 20%;
+        font-size: 25px;
+        font-weight: bold;
+
+        &.minus {
+          color: $color-danger;
+        }
       }
 
       &__title {
         flex-basis: 50%;
-        font-size: 20px;
+        font-size: 18px;
         white-space: nowrap;
         max-width: 100%;
         overflow: hidden;
@@ -21,7 +41,26 @@
         display: flex;
         flex-wrap: wrap;
         margin-left: auto;
+
+        @include breakpoint-md {
+          margin-top: 15px;
+        }
+      }
+
+      &__user_info {
+        flex-basis: 90%;
+        text-align: left;
+        padding: 0 20px;
+
+        .user_info-name {
+          font-size: 20px;
+        }
       }
     }
+  }
+
+  .text-large {
+    font-weight: bold;
+    font-size: 21px;
   }
 }

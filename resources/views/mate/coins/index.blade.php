@@ -25,7 +25,7 @@
                                 @endif
                             </div>
                             <div class="p-card3__amount {{ 0 < $coin->amount ? '' : 'minus' }}">
-                                {{ 0 < $coin->amount ? '+'. $coin->amount : $coin->amount }}
+                                {{ 0 < $coin->amount ? '+'. $coin->amount : $coin->amount }} Coin
                             </div>
                             <div class="p-card3__note">
                                 {{ $coin->note }}

@@ -37,16 +37,28 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="col-md-12">
-                            <h3 class="p-heading2">メッセージ</h3>
-                            <div class="p-profile__message">
-                                <p>{!! nl2br(e($adviserUser->pr_text)) !!}</p>
+                        @if (!empty($adviserUser->qualification_text))
+                            <div class="col-md-12">
+                                <h3 class="p-heading2">保有資格</h3>
+                                <div class="p-profile__message">
+                                    <p>{!! nl2br(e($adviserUser->qualification_text)) !!}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <h3 class="p-heading2">動画URL</h3>
-                            <movie-list :movies="{{ $adviserUser->adviserUserMovies }}"></movie-list>
-                        </div><!-- /.col-md-12 -->
+                        @endif
+                        @if (!empty($adviserUser->pr_text))
+                            <div class="col-md-12">
+                                <h3 class="p-heading2">自己PR</h3>
+                                <div class="p-profile__message">
+                                    <p>{!! nl2br(e($adviserUser->pr_text)) !!}</p>
+                                </div>
+                            </div>
+                        @endif
+                        @if (count($adviserUser->adviserUserMovies) !== 0)
+                            <div class="col-md-12">
+                                <h3 class="p-heading2">動画URL</h3>
+                                <movie-list :movies="{{ $adviserUser->adviserUserMovies }}"></movie-list>
+                            </div><!-- /.col-md-12 -->
+                        @endif
                         <div class="col-md-12">
                             <h3 class="p-heading2">講師をするきっかけ</h3>
                             <div class="p-profile__reason">
@@ -60,13 +72,11 @@
                             </div>
                         </div>
                         <div class="col-md-12 mt-5">
-                            <div class="row">
+                            <div class="d-flex flex-wrap p-image-list">
                                 @foreach ($adviserUser->adviserUserImages as $index => $image)
-                                    <div class="col-4">
-                                        <a data-bs-toggle="modal" data-bs-target="#imageModal{{ $index }}">
-                                            <img class="img-fluid" src="{{ $image->image_path }}" alt="{{ $adviserUser->full_name }}">
-                                        </a>
-                                    </div>
+                                    <a data-bs-toggle="modal" data-bs-target="#imageModal{{ $index }}">
+                                        <img class="img-fluid p-image-list__thumbnail m-1" src="{{ $image->image_path }}" alt="{{ $adviserUser->full_name }}">
+                                    </a>
                                     <div class="modal fade p-modal" id="imageModal{{ $index }}" tabindex="-1" aria-labelledby="imageModal{{ $index }}Label">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">

@@ -15,17 +15,40 @@
             <div class="text-center my-5 price-remain">¥ {{ number_format($remainTotalPrice) }}</div>
 
             <div class="my-5 text-center">
-                @if ($remainTotalPrice !== 0)
-                    <form action="{{ route('adviser.sales.request') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="p-btn p-btn__defalut d-inline-block px-80px">
-                            振り込み申請する
-                        </button>
-                    </form>
+                @if ($remainTotalPrice !== 0 && !empty(auth()->guard('adviser')->user()->payment_method))
+                    <button type="button" class="p-btn p-btn__defalut d-inline-block px-80px" data-bs-toggle="modal" data-bs-target="#requestModal">
+                        振り込み申請する
+                    </button>
+                    <!-- 振り込み申請モーダル -->
+                    <div class="modal p-modal p-setting fade" id="requestModal" tabindex="-1" aria-labelledby="requestModalLabel">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                                <div class="modal-body">
+                                    <h2 class="p-heading2 mt-0 text-center">振り込み申請確認</h2>
+                                    <p class="text-center">
+                                        売上金残高 ¥ {{ number_format($remainTotalPrice) }} を振り込み申請します。<br>
+                                        よろしいですか？
+                                    </p>
+                                    <form action="{{ route('adviser.sales.request') }}" method="post">
+                                        @csrf
+                                        <button class="p-btn p-btn__defalut">振り込み申請する</button>
+                                    </form>
+                                </div><!-- /.modal-body -->
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                    <!-- /振り込み申請モーダル -->
                 @else
                     <button class="p-btn p-btn__defalut d-inline-block px-80px" disabled>
                         振り込み申請する
                     </button>
+                @endif
+
+                @if (empty(auth()->guard('adviser')->user()->payment_method))
+                    <p class="p-error-text font-weight-bold mt-3">
+                        <b>※ 振り込み申請をするためには<a class="primary-link" href="{{ route('adviser.profile.edit.personal') }}">プロフィール更新画面</a>で支払い方法の登録が必要です</b>
+                    </p>
                 @endif
 
                 @if ($scheduledTransferPrice !== 0)

@@ -2,8 +2,10 @@
   .coin-amount {
     font-size: 25px;
     font-weight: bold;
+    &.minus {
+      color: $color-danger;
+    }
   }
-
   .p-card3 {
     justify-content: start;
 

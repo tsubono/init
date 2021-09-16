@@ -24,12 +24,37 @@ class InformationRepository implements InformationRepositoryInterface
      * @param int $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginate(int $perCount = 10): LengthAwarePaginator
+    public function getPaginate(int $perCount = 15): LengthAwarePaginator
     {
         return $this->information
             ->query()
             ->orderBy('date', 'desc')
             ->paginate($perCount);
+    }
+
+    /**
+     * @param array $condition
+     * @param int $perCount
+     * @return LengthAwarePaginator
+     */
+    public function getByConditionPaginate(array $condition, int $perCount = 15): LengthAwarePaginator
+    {
+        $query = $this->information->query();
+
+        if (!empty($condition['title'])) {
+            $query->where('title', 'LIKE', "%{$condition['title']}%");
+        }
+        if (!empty($condition['content'])) {
+            $query->where('content', 'LIKE', "%{$condition['content']}%");
+        }
+        if (!empty($condition['date_start'])) {
+            $query->whereDate('date', '>=', $condition['date_start']);
+        }
+        if (!empty($condition['date_end'])) {
+            $query->whereDate('date', '<=', $condition['date_end']);
+        }
+
+        return $query->orderBy('date', 'desc')->paginate($perCount);
     }
 
     /**

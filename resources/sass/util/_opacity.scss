@@ -1,0 +1,10 @@
+@use "sass:math";
+
+$value: 100;
+@while $value > 0 {
+  .o-#{$value} {
+    opacity: math.div($value, 100) !important;
+  }
+
+  $value: $value - 10;
+}
