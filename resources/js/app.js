@@ -27,6 +27,9 @@ Vue.component('file-upload', require('./components/FileUpload.vue').default);
 Vue.component('file-upload-not-preview', require('./components/FileUploadNoPreview.vue').default);
 Vue.component('search-lessons', require('./components/SearchLessons/SearchLessons.vue').default);
 Vue.component('search-advisers', require('./components/SearchAdvisers/SearchAdvisers').default)
+Vue.component('language-select', require('./components/SelectWithModal/LanguageSelect').default)
+Vue.component('category-select', require('./components/SelectWithModal/CategorySelect').default)
+Vue.component('language-select-multi', require('./components/SelectWithModal/LanguageSelectMulti').default)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

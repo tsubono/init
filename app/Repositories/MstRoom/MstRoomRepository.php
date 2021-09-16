@@ -22,6 +22,6 @@ class MstRoomRepository implements MstRoomRepositoryInterface
      */
     public function all()
     {
-        return $this->mstRoom->all();
+        return $this->mstRoom->query()->with('categories')->get();
     }
 }
