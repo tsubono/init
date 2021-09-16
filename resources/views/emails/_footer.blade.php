@@ -1,7 +1,6 @@
 <div>
     ************************************************<br>
     INIT:<br>
-    <!-- TODO: URL置き換え -->
-    <a href="https://www.init.jp" target="_blank">https://www.init.jp</a> <br>
+    <a href="https://init-online.com" target="_blank">https://init-online.com</a> <br>
     ************************************************<br>
 </div>
