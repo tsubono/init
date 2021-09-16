@@ -61,7 +61,7 @@
         <h3 class="p-heading2">言語<span class="badge bg-danger ms-2">必須</span></h3>
         <language-select
             :languages="{{ $mst_languages }}"
-            :value="{{ old('mst_language_id', $lesson ? $lesson->mst_language_id : "null") }}"
+            :value="{{ old('mst_language_id', isset($lesson->mst_language_id) ? $lesson->mst_language_id : "null") }}"
         ></language-select>
         @error('mst_language_id')
         <div class="p-error-text" role="alert">
