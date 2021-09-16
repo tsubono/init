@@ -82,6 +82,29 @@ class MateUserCoinRepository implements MateUserCoinRepositoryInterface
      */
     public function getByConditionPaginate(array $condition, int $perCount = 15): LengthAwarePaginator
     {
+        $query = $this->getQueryWithCondition($condition);
+
+        return $query->orderBy('created_at', 'desc')
+            ->paginate($perCount);
+    }
+
+    /**
+     * @param array $condition
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getByCondition(array $condition)
+    {
+        $query = $this->getQueryWithCondition($condition);
+
+        return $query->orderBy('created_at', 'desc')->get();
+    }
+
+    /**
+     * @param array $condition
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    private function getQueryWithCondition(array $condition)
+    {
         $query = $this->mateUserCoin->query();
 
         if (!empty($condition['user_name'])) {
@@ -103,8 +126,7 @@ class MateUserCoinRepository implements MateUserCoinRepositoryInterface
             $query->whereDate('created_at', '<=', $condition['date_end']);
         }
 
-        return $query->orderBy('created_at', 'desc')
-            ->paginate($perCount);
+        return $query;
     }
 
     /**

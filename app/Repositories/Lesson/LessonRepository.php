@@ -28,7 +28,7 @@ class LessonRepository implements LessonRepositoryInterface
     {
         return $this->lesson
             ->query()
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->paginate($perCount);
     }
 
@@ -42,7 +42,7 @@ class LessonRepository implements LessonRepositoryInterface
         return $this->lesson
             ->query()
             ->where('adviser_user_id', $adviserUserId)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->paginate($perCount);
     }
 

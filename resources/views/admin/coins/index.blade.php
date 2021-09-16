@@ -73,8 +73,8 @@
                                 {{ $coin->note }}
                             </div>
                             <div class="p-card3__controls">
-                                <a href="{{ route('admin.coins.show', compact('coin')) }}" class="p-btn p-btn__defalut d-inline-block mt-2 py-2 px-3">
-                                    コイン詳細へ
+                                <a href="{{ route('admin.coins.show', compact('coin')) }}" class="p-btn p-btn__defalut d-inline-block mt-2 py-2 px-4">
+                                    詳細
                                 </a>
                             </div>
                         </div><!-- /.p-card3 -->

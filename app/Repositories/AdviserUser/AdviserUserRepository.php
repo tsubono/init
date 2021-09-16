@@ -143,6 +143,60 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
     }
 
     /**
+     * @param array $condition
+     * @param int $perCount
+     * @return LengthAwarePaginator
+     */
+    public function getByConditionPaginate(array $condition, int $perCount = 15): LengthAwarePaginator
+    {
+        $query = $this->getQueryWithCondition($condition);
+
+        return $query->orderBy('created_at', 'desc')
+            ->paginate($perCount);
+    }
+
+    /**
+     * @param array $condition
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getByCondition(array $condition)
+    {
+        $query = $this->getQueryWithCondition($condition);
+
+        return $query->orderBy('created_at', 'desc')->get();
+    }
+
+    /**
+     * @param array $condition
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    private function getQueryWithCondition(array $condition)
+    {
+        $query = $this->adviserUser->query();
+
+        if (!empty($condition['user_name'])) {
+            $query->where(function ($query) use ($condition) {
+                $query->where('family_name', 'LIKE', "%{$condition['user_name']}%")
+                    ->orWhere('middle_name', 'LIKE', "%{$condition['user_name']}%")
+                    ->orWhere('first_name', 'LIKE', "%{$condition['user_name']}%")
+                    ->orWhere('family_name_kana', 'LIKE', "%{$condition['user_name']}%")
+                    ->orWhere('middle_name_kana', 'LIKE', "%{$condition['user_name']}%")
+                    ->orWhere('first_name_kana', 'LIKE', "%{$condition['user_name']}%");
+            });
+        }
+
+        if (!empty($condition['tel'])) {
+            $query->where('tel', 'LIKE', "%{$condition['tel']}%");
+        }
+
+        if (!empty($condition['email'])) {
+            $query->where('email', 'LIKE', "%{$condition['email']}%");
+        }
+
+        return $query;
+    }
+
+    /**
      * @param int $id
      * @return void
      * @throws \Exception

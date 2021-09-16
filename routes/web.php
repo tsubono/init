@@ -119,14 +119,14 @@ Route::prefix('admin')->as('admin.')->namespace('App\Http\Controllers\Admin')->g
     Route::middleware('auth.admin')->group(function () {
         // アドバイザー管理
         Route::get('/advisers', 'AdviserController@index')->name('advisers.index');
-        Route::get('/advisers/{adviser}', 'AdviserController@show')->name('advisers.show');
-        Route::post('/advisers/{adviser}', 'AdviserController@update')->name('advisers.update');
         Route::post('/advisers/export-csv', 'AdviserController@exportCsv')->name('advisers.export-csv');
+        Route::get('/advisers/{adviserUser}', 'AdviserController@show')->name('advisers.show');
+        Route::post('/advisers/{adviserUser}', 'AdviserController@update')->name('advisers.update');
         // メイト管理
         Route::get('/mates', 'MateController@index')->name('mates.index');
-        Route::get('/mates/{mate}', 'MateController@show')->name('mates.show');
-        Route::post('/mates/{mate}', 'MateController@update')->name('mates.update');
         Route::post('/mates/export-csv', 'MateController@exportCsv')->name('mates.export-csv');
+        Route::get('/mates/{mateUser}', 'MateController@show')->name('mates.show');
+        Route::post('/mates/{mateUser}', 'MateController@update')->name('mates.update');
         // コイン管理
         Route::get('/coins', 'CoinController@index')->name('coins.index');
         Route::get('/coins/{coin}', 'CoinController@show')->name('coins.show');

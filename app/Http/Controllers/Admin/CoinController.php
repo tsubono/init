@@ -61,18 +61,13 @@ class CoinController extends Controller
 
         $csvData = [];
         foreach ($coins as $index => $coin) {
-            $csvData[] = [
-                'id' => $coin->id,
-                'mate_user_id' => $coin->mate_user_id,
-                'amount' => $coin->amount,
-                'payjp_charge_id' => $coin->payjp_charge_id,
-                'paypal_transaction_id' => $coin->paypal_transaction_id,
-                'paypal_transaction_status' => $coin->paypal_transaction_status,
-                'expiration_date' => $coin->expiration_date,
-                'note' => $coin->note,
-                'created_at' => $coin->created_at->format('Y/m/d'),
-                'updated_at' => $coin->created_at->format('Y/m/d'),
-            ];
+            foreach ($this->getColumns() as $column) {
+                if ($column === 'created_at' || $column === 'updated_at') {
+                    $csvData[$index][$column] = Carbon::parse($coin->$column)->format('Y/m/d H:i');
+                } else {
+                    $csvData[$index][$column] = $coin->$column;
+                }
+            }
         }
         $columnLabels = $this->getColumnLabels();
         $columns = $this->getColumns();
@@ -102,8 +97,8 @@ class CoinController extends Controller
             'PayPal取引ステータス',
             '有効期限',
             '備考',
-            '作成日',
-            '更新日',
+            '作成日時',
+            '更新日時',
         ];
     }
 

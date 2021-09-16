@@ -21,6 +21,8 @@ class MateUser extends Authenticatable implements MustVerifyEmail
 
     protected $guarded = ['id'];
 
+    protected $dates = ['last_login_at'];
+
     /**
      * 認証メール
      */

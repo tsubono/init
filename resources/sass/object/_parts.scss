@@ -249,3 +249,15 @@
   padding: 5px 15px;
   border-radius: 14px;
 }
+
+.p-image-list {
+  &__thumbnail {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+
+    @include breakpoint-md {
+      width: 100%;
+    }
+  }
+}

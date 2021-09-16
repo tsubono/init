@@ -46,6 +46,16 @@
           margin-top: 15px;
         }
       }
+
+      &__user_info {
+        flex-basis: 90%;
+        text-align: left;
+        padding: 0 20px;
+
+        .user_info-name {
+          font-size: 20px;
+        }
+      }
     }
   }
 

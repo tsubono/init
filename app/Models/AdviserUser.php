@@ -29,6 +29,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
 
     protected $guarded = ['id'];
 
+    protected $dates = ['last_login_at'];
+
     /**
      * 認証メール
      */
@@ -344,6 +346,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
           'first_name_kana',
           'birthday',
           'tel',
+          'zipcode',
+          'address',
           'email',
           'skype_name',
           'skype_id',
