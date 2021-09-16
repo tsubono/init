@@ -33,18 +33,20 @@ Route::middleware(['check.maintenance'])->namespace('App\Http\Controllers')->gro
      * Auth 共通
      */
     Route::middleware(['auth.common'])->group(function () {
-        // 受講関連
+        // 受講アクション関連
         Route::get('/attendances', 'AttendanceController@index')->name('attendances.index');
         Route::get('/attendances/{attendance}', 'AttendanceController@show')->name('attendances.show');
         Route::post('/attendances/request/{lesson}', 'AttendanceController@request')->name('attendances.request');
         Route::post('/attendances/{attendance}/cancel-request', 'AttendanceController@cancelRequest')->name('attendances.cancel-request');
         Route::post('/attendances/{attendance}/approval', 'AttendanceController@approval')->name('attendances.approval');
         Route::post('/attendances/{attendance}/reject', 'AttendanceController@reject')->name('attendances.reject');
-        Route::get('/attendances/{attendance}/messages', 'AttendanceController@messages')->name('attendances.messages');
-        Route::post('/attendances/{attendance}/send-message', 'AttendanceController@sendMessage')->name('attendances.send-message');
-        Route::get('/attendances/{attendance}/download/{attendanceMessage}/{fileIndex}', 'AttendanceController@downloadMessageFile')->name('attendances.download');
-        Route::get('/attendances/{attendance}/review', 'AttendanceController@reviewForm')->name('attendances.review-form');
-        Route::post('/attendances/{attendance}/review', 'AttendanceController@review')->name('attendances.review');
+        // メッセージ関連
+        Route::get('/attendances/{attendance}/messages', 'AttendanceMessageController@messages')->name('attendances.messages');
+        Route::post('/attendances/{attendance}/send-message', 'AttendanceMessageController@sendMessage')->name('attendances.send-message');
+        Route::get('/attendances/{attendance}/download/{attendanceMessage}/{fileIndex}', 'AttendanceMessageController@downloadMessageFile')->name('attendances.download');
+        // レビュー関連
+        Route::get('/attendances/{attendance}/review', 'AttendanceReviewController@reviewForm')->name('attendances.review-form');
+        Route::post('/attendances/{attendance}/review', 'AttendanceReviewController@review')->name('attendances.review');
         Route::post('/attendances/{attendance}/cancel', 'AttendanceController@cancel')->name('attendances.cancel');
         Route::post('/attendances/{attendance}/report', 'AttendanceController@report')->name('attendances.report');
         Route::post('/attendances/{attendance}/close', 'AttendanceController@close')->name('attendances.close');

@@ -12,19 +12,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  *
  * status
- * 1: 売上保留 (まだ受講中)
- * 2: 売上確定 (受講完了)
- * 3: 売上振り込み申請済み
- * 4: 売上振り込済み
+ * 1: 確定
+ * 2: 振り込み申請済み
+ * 3: 振り込済み
  */
 class AttendanceSale extends Model
 {
     use HasFactory, SoftDeletes;
 
-    const STATUS_PENDING = 1;
-    const STATUS_CONFIRMED = 2;
-    const STATUS_REQUEST = 3;
-    const STATUS_TRANSFERRED = 4;
+    const STATUS_CONFIRMED = 1;
+    const STATUS_REQUEST = 2;
+    const STATUS_TRANSFERRED = 3;
 
     protected $guarded = ['id'];
 

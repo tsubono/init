@@ -2,24 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AttendanceMessageRequest;
 use App\Http\Requests\AttendanceRequest;
-use App\Http\Requests\ReviewRequest;
 use App\Mail\AttendanceCancelMail;
 use App\Mail\AttendanceCloseMail;
-use App\Mail\AttendanceMessageMail;
 use App\Mail\AttendanceReportMail;
 use App\Mail\AttendanceRequestMail;
 use App\Mail\AttendanceRequestResultMail;
-use App\Mail\AttendanceReviewMail;
 use App\Models\Attendance;
-use App\Models\AttendanceMessage;
 use App\Models\AttendanceSale;
 use App\Models\Lesson;
 use App\Notifications\AttendanceNotification;
 use App\Repositories\Attendance\AttendanceRepositoryInterface;
-use App\Repositories\AttendanceMessage\AttendanceMessageRepositoryInterface;
-use App\Repositories\AttendanceReview\AttendanceReviewRepositoryInterface;
 use App\Repositories\AttendanceSale\AttendanceSaleRepositoryInterface;
 use App\Repositories\MateUserCoin\MateUserCoinRepositoryInterface;
 use Carbon\Carbon;
@@ -27,36 +20,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 
 class AttendanceController extends Controller
 {
     private AttendanceRepositoryInterface $attendanceRepository;
     private MateUserCoinRepositoryInterface $mateUserCoinRepository;
     private AttendanceSaleRepositoryInterface $attendanceSaleRepository;
-    private AttendanceMessageRepositoryInterface $attendanceMessageRepository;
-    private AttendanceReviewRepositoryInterface $attendanceReviewRepository;
 
     /**
      * AttendanceController constructor.
      * @param AttendanceRepositoryInterface $attendanceRepository
      * @param MateUserCoinRepositoryInterface $mateUserCoinRepository
      * @param AttendanceSaleRepositoryInterface $attendanceSaleRepository
-     * @param AttendanceMessageRepositoryInterface $attendanceMessageRepository
-     * @param AttendanceReviewRepositoryInterface $attendanceReviewRepository
      */
     public function __construct(
         AttendanceRepositoryInterface $attendanceRepository,
         MateUserCoinRepositoryInterface $mateUserCoinRepository,
-        AttendanceSaleRepositoryInterface $attendanceSaleRepository,
-        AttendanceMessageRepositoryInterface $attendanceMessageRepository,
-        AttendanceReviewRepositoryInterface $attendanceReviewRepository
+        AttendanceSaleRepositoryInterface $attendanceSaleRepository
     ) {
         $this->attendanceRepository = $attendanceRepository;
         $this->mateUserCoinRepository = $mateUserCoinRepository;
         $this->attendanceSaleRepository = $attendanceSaleRepository;
-        $this->attendanceMessageRepository = $attendanceMessageRepository;
-        $this->attendanceReviewRepository = $attendanceReviewRepository;
     }
 
     /**
@@ -180,7 +164,7 @@ class AttendanceController extends Controller
             $this->mateUserCoinRepository->store([
                 'mate_user_id' => $attendance->mate_user_id,
                 'amount' => -$attendance->mateUserCoin->amount, // 受講申請キャンセルなので受講時に使用した分を払い戻し
-                'note' => "{$attendance->lesson->name}の受講申請キャンセルのため払い戻し",
+                'note' => "「{$attendance->lesson->name}」の受講申請キャンセルのため払い戻し",
             ]);
 
             DB::commit();
@@ -213,23 +197,6 @@ class AttendanceController extends Controller
             $attendance = $this->attendanceRepository->update($attendance->id, [
                 'status' => Attendance::STATUS_APPROVAL
             ]);
-            
-            // 1コイン = 100円
-            $price = $attendance->lesson->coin_amount * 100;
-            // アドバイザーに設定されている手数料率から手数料を算出
-            $fee = $price * ($attendance->adviserUser->fee_rate / 100);
-            // アドバイザー売上登録
-            $this->attendanceSaleRepository->store([
-               'adviser_user_id' =>  $attendance->adviser_user_id,
-                'attendance_id' => $attendance->id,
-                'name' => $attendance->lesson->name,
-                'coin_amount' => $attendance->lesson->coin_amount,
-                'description' => $attendance->lesson->description,
-                'price' => $price,
-                'fee' => $fee,
-                'subtotal' => $price - $fee,
-                'status' => AttendanceSale::STATUS_PENDING,
-            ]);
 
             /************* 通知 *************/
             // メイトの場合は通知フラグがONの場合のみメール通知
@@ -241,7 +208,7 @@ class AttendanceController extends Controller
             }
             // メイトへDB通知登録
             $attendance->mateUser->notify(new AttendanceNotification(
-                "「{$attendance->lesson->name}」へ受講申請結果が届きました",
+                "「{$attendance->lesson->name}」への受講申請結果が届きました",
                 $attendance->adviserUser->avatar_image,
                 $attendance->adviserUser->full_name,
                 route('attendances.show', compact('attendance'))
@@ -296,7 +263,7 @@ class AttendanceController extends Controller
             }
             // メイトへDB通知登録
             $attendance->mateUser->notify(new AttendanceNotification(
-                "「{$attendance->lesson->name}」へ受講申請結果が届きました",
+                "「{$attendance->lesson->name}」への受講申請結果が届きました",
                 $attendance->adviserUser->avatar_image,
                 $attendance->adviserUser->full_name,
                 route('attendances.show', compact('attendance'))
@@ -313,73 +280,56 @@ class AttendanceController extends Controller
     }
 
     /**
-     * 受講メッセージ
+     * 受講完了
      *
      * @param Attendance $attendance
-     * @return \Illuminate\Contracts\View\View
-     */
-    public function messages(Attendance $attendance)
-    {
-        // 関係ないユーザー & 受講承認前のものは弾く
-        if (!$this->checkUser($attendance) ||
-            ($attendance->status === Attendance::STATUS_REQUEST || $attendance->status === Attendance::STATUS_REJECT)) {
-            abort(404);
-        }
-
-        // 既読にする
-        $fromUserColumn = auth()->guard('adviser')->check() ? 'mate_user_id' : 'adviser_user_id';
-        $this->attendanceRepository->updateMessagesToRead($attendance->id, $fromUserColumn);
-
-        return view('attendances.messages', compact('attendance'));
-    }
-
-    /**
-     * 受講メッセージ送信
-     *
-     * @param Attendance $attendance
-     * @param AttendanceMessageRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function sendMessage(Attendance $attendance, AttendanceMessageRequest $request)
+    public function close(Attendance $attendance)
     {
-        // 関係ないユーザー & 受講承認前のものは弾く
-        if (!$this->checkUser($attendance) ||
-            ($attendance->status === Attendance::STATUS_REQUEST || $attendance->status === Attendance::STATUS_REJECT)) {
+        // アドバイザーのみ実行可能
+        if (!auth()->guard('adviser')->check() || !$this->checkUser($attendance)) {
             abort(404);
         }
-
-        // ログインしているユーザーIDを取得
-        $adviserUserId = auth()->guard('adviser')->check() ? auth()->guard('adviser')->user()->id : null;
-        $mateUserId = auth()->guard('mate')->check() ? auth()->guard('mate')->user()->id : null;
 
         DB::beginTransaction();
         try {
             /************* DB操作 *************/
-            // メッセージ登録
-            $this->attendanceMessageRepository->store($request->all() +
-                [
-                    'attendance_id' => $attendance->id,
-                    'adviser_user_id' => $adviserUserId,
-                    'mate_user_id' => $mateUserId,
-                ]
-            );
+            // 受講ステータス更新
+            $attendance = $this->attendanceRepository->update($attendance->id, [
+                'status' => Attendance::STATUS_CLOSED
+            ]);
+            // 受講に支払われた金額を算出
+            $price = -$attendance->mateUserCoin->amount * 100;
+            // マッチングフィーを算出
+            $fee = $price * ($attendance->adviserUser->fee_rate / 100); 
+            // アドバイザー売上レコード登録
+            $this->attendanceSaleRepository->store([
+                'adviser_user_id' =>  $attendance->adviser_user_id,
+                'attendance_id' => $attendance->id,
+                'name' => $attendance->lesson->name,
+                'coin_amount' => $attendance->lesson->coin_amount,
+                'description' => $attendance->lesson->description,
+                'price' => $price,
+                'fee' => $fee,
+                'subtotal' => $price - $fee,
+                'status' => AttendanceSale::STATUS_CONFIRMED,
+                'note' => "「{$attendance->lesson->name}」の受講完了により受講金額を取得",
+            ]);
 
             /************* 通知 *************/
-            $toUser = !is_null($adviserUserId) ? $attendance->mateUser : $attendance->adviserUser;
-            $fromUser = !is_null($adviserUserId) ? $attendance->adviserUser : $attendance->mateUser;
-            $userType = !is_null($adviserUserId) ? 'mate' : 'adviser';
             // メイトの場合は通知フラグがONの場合のみメール通知
-            if ($userType === 'adviser' || ($userType === 'mate' && $attendance->mateUser->is_notice)) {
-                // 相手ユーザーへメッセージメール通知
-                Mail::to($toUser->email)->send(
-                    new AttendanceMessageMail($attendance, $userType)
+            if ($attendance->mateUser->is_notice) {
+                // メイトへ受講完了メール通知
+                Mail::to($attendance->mateUser->email)->send(
+                    new AttendanceCloseMail($attendance)
                 );
             }
-            // 相手ユーザーへDB通知登録
-            $toUser->notify(new AttendanceNotification(
-                "「{$attendance->lesson->name}」へ受講メッセージが届きました",
-                $fromUser->avatar_image,
-                $fromUser->full_name,
+            // メイトへDB通知登録
+            $attendance->mateUser->notify(new AttendanceNotification(
+                "「{$attendance->lesson->name}」の受講が完了しました",
+                $attendance->adviserUser->avatar_image,
+                $attendance->adviserUser->full_name,
                 route('attendances.messages', compact('attendance'))
             ));
 
@@ -390,102 +340,7 @@ class AttendanceController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('attendances.messages', compact('attendance')))->with('success_message', 'メッセージを送信しました');
-    }
-
-    /**
-     * メッセージ添付ファイルをダウンロード
-     *
-     * @param Attendance $attendance
-     * @param AttendanceMessage $attendanceMessage
-     * @param int $fileIndex
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
-     */
-    public function downloadMessageFile(Attendance $attendance, AttendanceMessage $attendanceMessage, int $fileIndex)
-    {
-        // 関係ないユーザーは弾く
-        if (!$this->checkUser($attendance)) {
-            abort(404);
-        }
-
-        $filePathColumn = "file_path_{$fileIndex}";
-        $fileNameColumn = "file_name_{$fileIndex}";
-
-        return Storage::disk('public')
-            ->download(str_replace('/storage', '', $attendanceMessage->$filePathColumn), $attendanceMessage->$fileNameColumn);
-    }
-
-    /**
-     * @param Attendance $attendance
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function reviewForm(Attendance $attendance)
-    {
-        if (!$attendance->can_review || $attendance->done_review) {
-            abort(404);
-        }
-
-        return view('attendances.review', compact('attendance'));
-    }
-
-    /**
-     * レビュー送信
-     *
-     * @param ReviewRequest $request
-     * @param Attendance $attendance
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     * @throws \Exception
-     */
-    public function review(ReviewRequest $request, Attendance $attendance)
-    {
-        if (!$attendance->can_review) {
-            abort(404);
-        }
-
-        // ログインしているユーザーIDを取得
-        $adviserUserId = auth()->guard('adviser')->check() ? auth()->guard('adviser')->user()->id : null;
-        $mateUserId = auth()->guard('mate')->check() ? auth()->guard('mate')->user()->id : null;
-
-        DB::beginTransaction();
-        try {
-            /************* DB操作 *************/
-            // レビュー登録
-            $this->attendanceReviewRepository->store($request->all() +
-                [
-                    'attendance_id' => $attendance->id,
-                    'lesson_id' => $attendance->lesson_id,
-                    'adviser_user_id' => $adviserUserId,
-                    'mate_user_id' => $mateUserId,
-                ]
-            );
-
-            /************* 通知 *************/
-            $toUser = !is_null($adviserUserId) ? $attendance->mateUser : $attendance->adviserUser;
-            $fromUser = !is_null($adviserUserId) ? $attendance->adviserUser : $attendance->mateUser;
-            $userType = !is_null($adviserUserId) ? 'mate' : 'adviser';
-            // メイトの場合は通知フラグがONの場合のみメール通知
-            if ($userType === 'adviser' || ($userType === 'mate' && $attendance->mateUser->is_notice)) {
-                // 相手ユーザーへレビューメール通知
-                Mail::to($toUser->email)->send(
-                    new AttendanceReviewMail($attendance, $userType)
-                );
-            }
-            // 相手ユーザーへDB通知登録
-            $toUser->notify(new AttendanceNotification(
-                "「{$attendance->lesson->name}」の受講レビューが届きました",
-                $fromUser->avatar_image,
-                $fromUser->full_name,
-                route('attendances.messages', compact('attendance'))
-            ));
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
-            Log::error($e->getMessage());
-            throw new \Exception($e);
-        }
-
-        return redirect(route('attendances.index'))->with('success_message', 'レビューを登録しました');
+        return redirect(route('attendances.index'))->with('success_message', 'ステータスを更新しました');
     }
 
     /**
@@ -501,23 +356,19 @@ class AttendanceController extends Controller
             abort(404);
         }
 
-        // ログインしているユーザーIDを取得
-        $adviserUserId = auth()->guard('adviser')->check() ? auth()->guard('adviser')->user()->id : null;
-        $mateUserId = auth()->guard('mate')->check() ? auth()->guard('mate')->user()->id : null;
+        $cancel_cause_mate_user_id = $cancel_cause_adviser_user_id = null;
+        // キャンセルしたのがアドバイザーの場合
+        if (auth()->guard('adviser')->check()) {
+            // 原因はアドバイザー
+            $cancel_cause_adviser_user_id = $attendance->adviser_user_id;
+            // キャンセルしたのがメイトの場合
+        } else {
+            // 原因はメイト
+            $cancel_cause_mate_user_id = $attendance->mate_user_id;
+        }
 
         DB::beginTransaction();
         try {
-            $cancel_cause_mate_user_id = $cancel_cause_adviser_user_id = null;
-            // キャンセルしたのがアドバイザーの場合
-            if (auth()->guard('adviser')->check()) {
-                // 原因はアドバイザー
-                $cancel_cause_adviser_user_id = $attendance->adviser_user_id;
-            // キャンセルしたのがメイトの場合
-            } else {
-                // 原因はメイト
-                $cancel_cause_mate_user_id = $attendance->mate_user_id;
-            }
-
             /************* DB操作 *************/
             // 受講ステータス更新
             $attendance = $this->attendanceRepository->update($attendance->id, [
@@ -525,16 +376,15 @@ class AttendanceController extends Controller
                 ] + compact('cancel_cause_mate_user_id', 'cancel_cause_adviser_user_id'));
 
             /************* 払い戻し処理 *********/
+            // 受講の何日前かを取得
             $dayBefore = $this->dayBefore($attendance);
-            $attendanceSale = $this->attendanceSaleRepository->findByAttendanceId($attendance->id);
-
             auth()->guard('adviser')->check()
-                ? $this->refundForCancelByAdviser($attendance, $attendanceSale, $dayBefore)
-                : $this->refundForCancelByMate($attendance, $attendanceSale, $dayBefore);
+                ? $this->refundForCancelByAdviser($attendance, $dayBefore)
+                : $this->refundForCancelByMate($attendance, $dayBefore);
 
             /************* 通知 *************/
-            $toUser = !is_null($adviserUserId) ? $attendance->mateUser : $attendance->adviserUser;
-            $fromUser = !is_null($adviserUserId) ? $attendance->adviserUser : $attendance->mateUser;
+            $toUser = auth()->guard('adviser')->check() ? $attendance->mateUser : $attendance->adviserUser;
+            $fromUser = auth()->guard('adviser')->check() ? $attendance->adviserUser : $attendance->mateUser;
             $userType = is_null($cancel_cause_mate_user_id) ? 'mate' : 'adviser';
             // メイトの場合は通知フラグがONの場合のみメール通知
             if ($userType === 'adviser' || ($userType === 'mate' && $attendance->mateUser->is_notice)) {
@@ -574,36 +424,34 @@ class AttendanceController extends Controller
             abort(404);
         }
 
-        // ログインしているユーザーIDを取得
-        $adviserUserId = auth()->guard('adviser')->check() ? auth()->guard('adviser')->user()->id : null;
-        $mateUserId = auth()->guard('mate')->check() ? auth()->guard('mate')->user()->id : null;
+        $cancel_cause_mate_user_id = $cancel_cause_adviser_user_id = null;
+        // 通報したのがアドバイザーの場合
+        if (auth()->guard('adviser')->check()) {
+            // 原因はメイト
+            $cancel_cause_mate_user_id = $attendance->mate_user_id;
+        // 通報したのがメイトの場合
+        } else {
+            // 原因はアドバイザー
+            $cancel_cause_adviser_user_id = $attendance->adviser_user_id;
+        }
 
         DB::beginTransaction();
         try {
-            $cancel_cause_mate_user_id = $cancel_cause_adviser_user_id = null;
-            // 通報したのがアドバイザーの場合
-            if (!is_null($adviserUserId)) {
-                // 原因はメイト
-                $cancel_cause_mate_user_id = $attendance->mate_user_id;
-            // 通報したのがメイトの場合
-            } else {
-                // 原因はアドバイザー
-                $cancel_cause_adviser_user_id = $attendance->adviser_user_id;
-            }
-
             /************* DB操作 *************/
             // 受講ステータス更新
             $attendance = $this->attendanceRepository->update($attendance->id, [
                 'status' => Attendance::STATUS_REPORT,
             ] + compact('cancel_cause_mate_user_id', 'cancel_cause_adviser_user_id'));
 
-            /************* 払い戻し ************/
-            $this->refundForReport($attendance);
+            /************* 払い戻し処理 *********/
+            auth()->guard('adviser')->check()
+                ? $this->refundForReportByAdviser($attendance)
+                : $this->refundForReportByMate($attendance);
 
             /************* 通知 *************/
-            $toUser = !is_null($adviserUserId) ? $attendance->mateUser : $attendance->adviserUser;
-            $fromUser = !is_null($adviserUserId) ? $attendance->adviserUser : $attendance->mateUser;
-            $userType = !is_null($cancel_cause_mate_user_id) ? 'mate' : 'adviser';
+            $toUser = auth()->guard('adviser')->check() ? $attendance->mateUser : $attendance->adviserUser;
+            $fromUser = auth()->guard('adviser')->check() ? $attendance->adviserUser : $attendance->mateUser;
+            $userType = auth()->guard('adviser')->check() ? 'mate' : 'adviser';
             // メイトの場合は通知フラグがONの場合のみメール通知
             if ($userType === 'adviser' || ($userType === 'mate' && $attendance->mateUser->is_notice)) {
                 // 相手ユーザーへ通報メール通知
@@ -630,93 +478,158 @@ class AttendanceController extends Controller
     }
 
     /**
-     * 受講完了
+     * アドバイザーからの通報による払い戻し処理
+     * = メイトが受講に現れなかった
      *
-     * @param Attendance $attendance
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function close(Attendance $attendance)
-    {
-        // アドバイザーのみ実行可能
-        if (!auth()->guard('adviser')->check() || !$this->checkUser($attendance)) {
-            abort(404);
-        }
-
-        DB::beginTransaction();
-        try {
-            /************* DB操作 *************/
-            // 受講ステータス更新
-            $attendance = $this->attendanceRepository->update($attendance->id, [
-                'status' => Attendance::STATUS_CLOSED
-            ]);
-            $attendanceSale = $this->attendanceSaleRepository->findByAttendanceId($attendance->id);
-            $this->attendanceSaleRepository->update($attendanceSale->id, [
-               'status' => AttendanceSale::STATUS_CONFIRMED
-            ]);
-
-            /************* 通知 *************/
-            // メイトの場合は通知フラグがONの場合のみメール通知
-            if ($attendance->mateUser->is_notice) {
-                // メイトへ受講完了メール通知
-                Mail::to($attendance->mateUser->email)->send(
-                    new AttendanceCloseMail($attendance)
-                );
-            }
-            // メイトへDB通知登録
-            $attendance->mateUser->notify(new AttendanceNotification(
-                "「{$attendance->lesson->name}」の受講が完了しました",
-                $attendance->adviserUser->avatar_image,
-                $attendance->adviserUser->full_name,
-                route('attendances.messages', compact('attendance'))
-            ));
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
-            Log::error($e->getMessage());
-            throw new \Exception($e);
-        }
-
-        return redirect(route('attendances.index'))->with('success_message', 'ステータスを更新しました');
-    }
-
-    /**
-     * 払い戻し処理
+     * ★ メイトへの受講料のコイン返還はしない
+     * ★ 受講料の50％はアドバイザーが獲得
      * 
      * @param Attendance $attendance
      */
-    private function refundForReport(Attendance $attendance): void
+    private function refundForReportByAdviser(Attendance $attendance): void
     {
-        if (auth()->guard('adviser')->check()) {
-            /***** メイトが授業に現れなかった場合 *****/
-            // 半額払い戻し
-            $price = $attendance->lesson->coin_amount * 50;
-            // アドバイザーに設定されている手数料率から手数料を算出
-            $fee = $price * ($attendance->adviserUser->fee_rate / 100);
-            $this->attendanceSaleRepository->updatePriceByReport($attendance->id, [
-                'price' => $price,
-                'fee' => $fee,
-                'subtotal' => $price + $fee,
-            ]);
-        } else {
-            /***** アドバイザーが授業に現れなかった場合 *****/
-            // メイトへの通報返金(アドバイザーが授業に現れなかった場合)
-            $this->mateUserCoinRepository->store([
-                'mate_user_id' => $attendance->mate_user_id,
-                'amount' => -$attendance->mateUserCoin->amount, // 全額返金のため使用した分を払い戻し
-                'note' => "{$attendance->lesson->name}の通報返金",
-            ]);
-            $this->attendanceSaleRepository->updatePriceByReport($attendance->id, [
-                'price' => 0,
-                'fee' => 0,
-                'subtotal' => 0,
+        // 受講に支払われた金額を算出
+        $price = -$attendance->mateUserCoin->amount * 100;
+        // アドバイザーは受講に支払われた金額の50%を獲得
+        $price = $price / 2;
+        // マッチングフィーを算出
+        $fee = $price * ($attendance->adviserUser->fee_rate / 100);
+        // アドバイザー売上レコード登録
+        $this->attendanceSaleRepository->store([
+            'adviser_user_id' =>  $attendance->adviser_user_id,
+            'attendance_id' => $attendance->id,
+            'name' => $attendance->lesson->name,
+            'coin_amount' => $attendance->lesson->coin_amount,
+            'description' => $attendance->lesson->description,
+            'price' => $price,
+            'fee' => $fee,
+            'subtotal' => $price - $fee,
+            'status' => AttendanceSale::STATUS_CONFIRMED,
+            'note' => "「{$attendance->lesson->name}」への受講通報によりペナルティ金額を増額",
+        ]);
+    }
+
+    /**
+     * メイトからの通報による払い戻し処理
+     * = アドバイザーが受講に現れなかった
+     *
+     * ★ メイトに全コイン返金
+     * ★ アドバイザーからペナルティとして受講料の100％のキャンセル料を徴収
+     *
+     * @param Attendance $attendance
+     */
+    private function refundForReportByMate(Attendance $attendance): void
+    {
+        // 受講に支払われた金額を算出
+        $price = -$attendance->mateUserCoin->amount * 100;
+
+        /***** メイトへのコイン返金 *****/
+        $this->mateUserCoinRepository->store([
+            'mate_user_id' => $attendance->mate_user_id,
+            'amount' => -$attendance->mateUserCoin->amount, // 全額返金のため使用した分を払い戻し
+            'note' => "{$attendance->lesson->name}への通報による返金",
+        ]);
+
+        /***** アドバイザーへの売上減額 *****/
+        // 売上をマイナスで登録
+        $this->attendanceSaleRepository->store([
+            'adviser_user_id' =>  $attendance->adviser_user_id,
+            'attendance_id' => $attendance->id,
+            'name' => $attendance->lesson->name,
+            'coin_amount' => $attendance->lesson->coin_amount,
+            'description' => $attendance->lesson->description,
+            'price' => -$price,
+            'subtotal' => -$price,
+            'status' => AttendanceSale::STATUS_CONFIRMED,
+            'note' => "メイトからの「{$attendance->lesson->name}」の受講通報によりペナルティ金額を減額",
+        ]);
+    }
+
+    /**
+     * アドバイザーからのキャンセルによる払い戻し
+     *
+     * ★ メイトに全コイン返金
+     * ★ アドバイザーからペナルティとして(受講料 * 負担率)のペナルティ金額を徴収
+     * 
+     * @param Attendance $attendance
+     * @param int $dayBefore
+     */
+    private function refundForCancelByAdviser(Attendance $attendance, int $dayBefore): void
+    {
+        // 受講に支払われた金額を算出
+        $price = -$attendance->mateUserCoin->amount * 100;
+
+        /***** メイトへのコイン返金 *****/
+        $this->mateUserCoinRepository->store([
+            'mate_user_id' => $attendance->mateUser->id,
+            'amount' => -$attendance->mateUserCoin->amount, // 全額返金のため使用した分を払い戻し
+            'note' => "{$attendance->lesson->name}のキャンセルによる返金",
+        ]);
+
+        /***** アドバイザーへの売上減額 *****/
+        if ($dayBefore <= 7) {
+            // 定数で設定している負担率から、ペナルティ金額を算出
+            $penaltyPrice = $price * config('const.cancel_rate.to_adviser.' . $dayBefore);
+            // 売上をマイナスで登録
+            $this->attendanceSaleRepository->store([
+                'adviser_user_id' =>  $attendance->adviser_user_id,
+                'attendance_id' => $attendance->id,
+                'name' => $attendance->lesson->name,
+                'coin_amount' => $attendance->lesson->coin_amount,
+                'description' => $attendance->lesson->description,
+                'price' => -intval($penaltyPrice),
+                'subtotal' => -intval($penaltyPrice),
+                'status' => AttendanceSale::STATUS_CONFIRMED,
+                'note' => "「{$attendance->lesson->name}」の受講キャンセルによりペナルティ金額を減額",
             ]);
         }
+    }
+
+    /**
+     * メイトからのキャンセルによる払い戻し
+     *
+     * ★ メイトにペナルティ金額 (= 受講料 * 負担率) を差し引いたコインを返金
+     * ★ アドバイザーはペナルティ金額の半分を獲得
+     * 
+     * @param Attendance $attendance
+     * @param int $dayBefore
+     */
+    private function refundForCancelByMate(Attendance $attendance, int $dayBefore): void
+    {
+        // 受講に支払われた金額を算出
+        $price = -$attendance->mateUserCoin->amount * 100;
+        
+        /***** メイトへのコイン返金 *****/
+        // 定数で設定している負担率から、ペナルティ金額を算出 & コインに変換
+        $penaltyAmount = -$attendance->mateUserCoin->amount - ($price * config('const.cancel_rate.to_mate.' . $dayBefore)) / 100;
+        $this->mateUserCoinRepository->store([
+            'mate_user_id' => $attendance->mateUser->id,
+            'amount' => round($penaltyAmount),
+            'note' => "「{$attendance->lesson->name}」の受講キャンセルによる返金",
+        ]);
+
+        /***** アドバイザーへの売上増額 *****/
+        // アドバイザーにはペナルティ金額の50%を与える
+        $halfPenaltyPrice = ceil($price * config('const.cancel_rate.to_mate.'. $dayBefore) / 2);
+        $fee = intval($halfPenaltyPrice) * ($attendance->adviserUser->fee_rate / 100);
+        // 売上を登録
+        $this->attendanceSaleRepository->store([
+            'adviser_user_id' =>  $attendance->adviser_user_id,
+            'attendance_id' => $attendance->id,
+            'name' => $attendance->lesson->name,
+            'coin_amount' => $attendance->lesson->coin_amount,
+            'description' => $attendance->lesson->description,
+            'price' => intval($halfPenaltyPrice),
+            'fee' => $fee,
+            'subtotal' => intval($halfPenaltyPrice) - $fee,
+            'status' => AttendanceSale::STATUS_CONFIRMED,
+            'note' => "メイトからの「{$attendance->lesson->name}」の受講キャンセルによりペナルティ金額を増額",
+        ]);
     }
 
     /**
      * キャンセルした日が受講日から何日前かを取得する
-     * 
+     *
      * @param Attendance $attendance
      * @return int
      */
@@ -726,63 +639,6 @@ class AttendanceController extends Controller
         $dayBefore = Carbon::now()->startOfDay()->diffInDays($dateOfCourse);
         // 7日前以上は負担率0%なので7日前を指定
         return $dayBefore > 7 ? 7 : $dayBefore;
-    }
-
-    /**
-     * アドバイザーからのキャンセルによる払い戻し
-     * 
-     * @param Attendance $attendance
-     * @param AttendanceSale $attendanceSale
-     * @param int $dayBefore
-     */
-    private function refundForCancelByAdviser(Attendance $attendance, AttendanceSale $attendanceSale, int $dayBefore): void
-    {
-        // アドバイザーの売上金の更新
-        if ($dayBefore <= 7) {
-            $penaltyPrice = $attendanceSale->price - $attendanceSale->price * config('const.cancel_rate.to_adviser.' . $dayBefore);
-            $price = intval($penaltyPrice);
-            $fee = $price * ($attendance->adviserUser->fee_rate / 100);
-            $this->attendanceSaleRepository->updatePriceByCancel($attendance->id, [
-                'price' => intval($penaltyPrice),
-                'fee' => $fee,
-                'subtotal' => $price - $fee,
-            ]);
-        }
-
-        // メイトが使用したコインを払い戻す
-        $this->mateUserCoinRepository->store([
-            'mate_user_id' => $attendance->mateUser->id,
-            'amount' => -$attendance->mateUserCoin->amount, // 全額返金のため使用した分を払い戻し
-            'note' => "{$attendance->lesson->name}のキャンセル返金",
-        ]);
-    }
-
-    /**
-     * メイトからのキャンセルによる払い戻し
-     * 
-     * @param Attendance $attendance
-     * @param AttendanceSale $attendanceSale
-     * @param int $dayBefore
-     */
-    private function refundForCancelByMate(Attendance $attendance, AttendanceSale $attendanceSale, int $dayBefore): void
-    {
-        // メイトへのキャンセル返金
-        $penaltyAmount = -$attendance->mateUserCoin->amount - ($attendanceSale->price * config('const.cancel_rate.to_mate.' . $dayBefore)) / 100;
-        $this->mateUserCoinRepository->store([
-            'mate_user_id' => $attendance->mateUser->id,
-            'amount' => round($penaltyAmount),
-            'note' => "{$attendance->lesson->name}のキャンセル返金",
-        ]);
-
-        // アドバイザーにペナルティ金額の半分を与える
-        $penaltyPrice = ceil($attendanceSale->price * config('const.cancel_rate.to_mate.'. $dayBefore) / 2);
-        $price = intval($penaltyPrice);
-        $fee = $price * ($attendance->adviserUser->fee_rate / 100);
-        $this->attendanceSaleRepository->updatePriceByCancel($attendance->id, [
-            'price' => $price,
-            'fee' => $fee,
-            'subtotal' => $price - $fee,
-        ]);
     }
 
     /*

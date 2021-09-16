@@ -16,6 +16,10 @@ class AttendanceSaleRepository implements AttendanceSaleRepositoryInterface
 {
     private AttendanceSale $attendanceSale;
 
+    /**
+     * AttendanceSaleRepository constructor.
+     * @param AttendanceSale $attendanceSale
+     */
     public function __construct(AttendanceSale $attendanceSale) {
         $this->attendanceSale = $attendanceSale;
     }
@@ -85,31 +89,8 @@ class AttendanceSaleRepository implements AttendanceSaleRepositoryInterface
         return $this->attendanceSale
             ->query()
             ->where('adviser_user_id', $adviserUserId)
-            ->where('status', '<>',  AttendanceSale::STATUS_PENDING) // 確定している売り上げのみ
             ->orderBy('created_at', 'desc')
             ->paginate($perCount);
-    }
-
-    /**
-     * @param int $attendance_id
-     * @param array $data
-     */
-    public function updatePriceByReport(int $attendance_id, array $data): void
-    {
-        DB::beginTransaction();
-
-        try {
-            $attendanceSale = $this->attendanceSale->where('attendance_id', $attendance_id);
-            $attendanceSale->update($data);
-
-            DB::commit();
-
-        } catch (\Exception $e) {
-            DB::rollback();
-            Log::error($e->getMessage());
-            throw new \Exception($e);
-        }
-
     }
 
     /**
@@ -131,17 +112,6 @@ class AttendanceSaleRepository implements AttendanceSaleRepositoryInterface
             Log::error($e->getMessage());
             throw new \Exception($e);
         }
-    }
-
-    /**
-     * @param int $attendance_id
-     * @return AttendanceSale
-     */
-    public function findByAttendanceId(int $attendanceId): AttendanceSale
-    {
-        return $this->attendanceSale
-            ->where('attendance_id', $attendanceId)
-            ->first();
     }
 
     /**

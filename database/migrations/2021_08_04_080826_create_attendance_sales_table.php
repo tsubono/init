@@ -25,6 +25,7 @@ class CreateAttendanceSalesTable extends Migration
             $table->integer('subtotal')->nullable()->default(0)->comment('小計');
             $table->tinyInteger('status')->comment('ステータス');
             $table->unsignedBigInteger('transfer_request_id')->comment('振り込申請ID')->nullable();
+            $table->text('note')->comment('備考')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
