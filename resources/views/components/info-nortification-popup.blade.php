@@ -1,4 +1,4 @@
-<template id="notification-content">
+<template id="info-notification-content">
     <div>
         <ul class="p-notification-popover__list">
             @php $user = auth()->guard('adviser')->check() ? auth()->guard('adviser')->user() : auth()->guard('mate')->user()@endphp
@@ -12,7 +12,7 @@
                     </form>
                 </li>
             @empty
-                <p>まだ通知はありません</p>
+                <p class="m-2">まだ通知はありません</p>
             @endforelse
         </ul>
         <a href="{{ route('infos.index') }}" class="p-notification-popover__to-list primary-link">一覧へ</a>
@@ -20,7 +20,7 @@
 </template>
 
 <script type="text/javascript">
-  const notificationLinks = document.querySelectorAll('[data-bs-toggle="notification-popover"]');
+  const notificationLinks = document.querySelectorAll('[data-bs-toggle="info-notification-popover"]');
   for (let i = 0; i < notificationLinks.length; i++) {
     let popover = new bootstrap.Popover(notificationLinks[i], {
       template: `
@@ -28,7 +28,7 @@
                 <div class="popover-body p-0"></div>
             </div>`,
       html: true,
-      content: document.querySelector('#notification-content').content.firstElementChild,
+      content: document.querySelector('#info-notification-content').content.firstElementChild,
       offset: [165, 10],
       placement: 'bottom',
     });

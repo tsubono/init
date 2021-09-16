@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
+use App\Repositories\Setting\SettingRepositoryInterface;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
+    private SettingRepositoryInterface $settingRepository;
+
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * SettingController constructor.
+     * @param SettingRepositoryInterface $settingRepository
      */
-    public function __construct()
+    public function __construct(SettingRepositoryInterface $settingRepository)
     {
-        //
+        $this->settingRepository = $settingRepository;
     }
 
     /**
@@ -24,16 +27,22 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('admin.setting.index');
+        $setting = $this->settingRepository->getOne();
+
+        return view('admin.setting.index', compact('setting'));
     }
 
     /**
      * サイト設定更新
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Setting $setting
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update()
+    public function update(Setting $setting, Request $request)
     {
-        // TODO
+        $this->settingRepository->update($setting->id, $request->all());
+
+        return redirect(route('admin.setting.index'))->with('success_message', '設定を更新しました');
     }
 }

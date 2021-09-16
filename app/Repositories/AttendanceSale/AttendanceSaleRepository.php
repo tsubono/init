@@ -67,7 +67,7 @@ class AttendanceSaleRepository implements AttendanceSaleRepositoryInterface
      * @param int $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginate(int $perCount = 30): LengthAwarePaginator
+    public function getPaginate(int $perCount = 15): LengthAwarePaginator
     {
         return $this->attendanceSale
             ->query()
@@ -80,7 +80,7 @@ class AttendanceSaleRepository implements AttendanceSaleRepositoryInterface
      * @param int $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getByAdviserUserIdPaginate(int $adviserUserId, int $perCount = 30): LengthAwarePaginator
+    public function getByAdviserUserIdPaginate(int $adviserUserId, int $perCount = 15): LengthAwarePaginator
     {
         return $this->attendanceSale
             ->query()

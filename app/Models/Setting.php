@@ -11,4 +11,7 @@ class Setting extends Model
 
     protected $guarded = ['id'];
 
+    protected $table = 'setting';
+
+    public $timestamps = false;
 }

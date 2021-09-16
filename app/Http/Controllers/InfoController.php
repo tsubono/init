@@ -55,7 +55,7 @@ class InfoController extends Controller
      * @param DatabaseNotification $notification
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function readInfoNotification(DatabaseNotification $notification)
+    public function readNotification(DatabaseNotification $notification)
     {
         $notification->markAsRead();
 
@@ -63,12 +63,12 @@ class InfoController extends Controller
     }
 
     /**
-     * 全て通知を既読にする
+     * 全通知を既読にする
      *
      * @param DatabaseNotification $notification
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function readAllInfoNotification(DatabaseNotification $notification)
+    public function readAllNotification(DatabaseNotification $notification)
     {
         // ログインユーザー取得
         $user = auth()->guard('adviser')->check() ? auth()->guard('adviser')->user() : auth()->guard('mate')->user();

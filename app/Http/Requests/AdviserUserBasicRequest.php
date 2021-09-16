@@ -33,6 +33,8 @@ class AdviserUserBasicRequest extends FormRequest
             'birthday_m' => 'required',
             'birthday_d' => 'required',
             'tel' => 'required',
+            'zipcode' => 'required',
+            'address' => 'required',
             'email' => ['required', 'email', Rule::unique('adviser_users','email')->ignore($this->id)],
             'skype_name' => 'required',
             'skype_id' => 'required',

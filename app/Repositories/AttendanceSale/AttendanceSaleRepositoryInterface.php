@@ -9,8 +9,8 @@ interface AttendanceSaleRepositoryInterface
 {
     public function store(array $data): AttendanceSale;
     public function update(int $id, array $data): void;
-    public function getPaginate(int $perCount = 30): LengthAwarePaginator;
-    public function getByAdviserUserIdPaginate(int $adviserUserId, int $perCount = 30): LengthAwarePaginator;
+    public function getPaginate(int $perCount = 15): LengthAwarePaginator;
+    public function getByAdviserUserIdPaginate(int $adviserUserId, int $perCount = 15): LengthAwarePaginator;
     public function updatePriceByReport(int $attendance_id, array $data): void;
     public function updatePriceByCancel(int $attendanceId, array $data): void;
     public function updateStatusToRequest(int $adviserUserId, int $transferRequestId): void;

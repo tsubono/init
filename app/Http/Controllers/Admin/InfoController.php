@@ -19,9 +19,8 @@ class InfoController extends Controller
     private InformationRepositoryInterface $informationRepository;
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * InfoController constructor.
+     * @param InformationRepositoryInterface $informationRepository
      */
     public function __construct(InformationRepositoryInterface $informationRepository)
     {
@@ -33,11 +32,12 @@ class InfoController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $infos = $this->informationRepository->getPaginate();
+        $condition = $request->get('condition', []);
+        $infos = $this->informationRepository->getByConditionPaginate($condition);
 
-        return view('admin.infos.index', compact('infos'));
+        return view('admin.infos.index', compact('infos', 'condition'));
     }
 
     /**

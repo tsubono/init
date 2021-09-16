@@ -3,6 +3,7 @@
 namespace App\Repositories\TransferRequest;
 
 use App\Models\TransferRequest;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -17,6 +18,18 @@ class TransferRequestRepository implements TransferRequestRepositoryInterface
 
     public function __construct(TransferRequest $transferRequest) {
         $this->transferRequest = $transferRequest;
+    }
+
+    /**
+     * @param int $perCount
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getPaginate(int $perCount = 15): LengthAwarePaginator
+    {
+        return $this->transferRequest
+            ->query()
+            ->orderBy('created_at', 'desc')
+            ->paginate($perCount);
     }
 
     /**

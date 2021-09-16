@@ -13,7 +13,7 @@
                 <div class="modal-content">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
                     <div class="modal-body">
-                        <h2 class="p-heading2">教えられる言語</h2>
+                        <h2 class="p-heading2">言語</h2>
                         <div class="row">
                             <div
                                 v-for="(language, index) in languages"
@@ -23,7 +23,7 @@
                                     <input type="checkbox"
                                            class="form-check-input"
                                            name="mst_language_ids[]"
-                                           id="`form-check__language${index}`"
+                                           :id="`form-check__language${index}`"
                                            :value="language.id"
                                            v-model="selected"
                                     />

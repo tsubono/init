@@ -6,8 +6,8 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface LessonRepositoryInterface
 {
-    public function getPaginate(int $perCount = 10): LengthAwarePaginator;
-    public function getByAdviserIdPaginate(int $adviserUserId, int $perCount = 10): LengthAwarePaginator;
+    public function getPaginate(int $perCount = 15): LengthAwarePaginator;
+    public function getByAdviserIdPaginate(int $adviserUserId, int $perCount = 15): LengthAwarePaginator;
     public function getByConditionPaginate(
         int $perCount,
         ?string $orderBy,

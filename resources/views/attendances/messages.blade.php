@@ -102,7 +102,8 @@
             @endforelse
 
             @if ($attendance->can_message_action)
-                <div class="p-message__message-box">
+                @if (!auth()->guard('admin')->check())
+                    <div class="p-message__message-box">
                     <form action="{{ route('attendances.send-message', compact('attendance')) }}" method="post">
                         @csrf
                         <textarea class="p-message__textarea" placeholder="メッセージを入力"
@@ -147,13 +148,14 @@
                     </form>
                 </div>
 
-                <div class="p-message__action">
-                    @if (auth()->guard('adviser')->check())
-                        <button type="button" class="p-btn p-btn__defalut d-inline-block px-70px" data-bs-toggle="modal" data-bs-target="#closeModal">
-                            受講完了にする
-                        </button>
-                    @endif
-                </div>
+                    <div class="p-message__action">
+                        @if (auth()->guard('adviser')->check())
+                            <button type="button" class="p-btn p-btn__defalut d-inline-block px-70px" data-bs-toggle="modal" data-bs-target="#closeModal">
+                                受講完了にする
+                            </button>
+                        @endif
+                    </div>
+                @endif
             @else
                 <div class="p-message__message-box text-center p-error-text">
                     この受講はクローズしているのでメッセージの送受信は行えません。<br>

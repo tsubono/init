@@ -61,6 +61,11 @@ return [
       'tiktok',
     ],
 
+    // リマインダー
+    'reminder_minute' => [
+        15,
+    ],
+
     // お知らせカテゴリ
     'info_categories' => [
         'お知らせカテゴリ1',

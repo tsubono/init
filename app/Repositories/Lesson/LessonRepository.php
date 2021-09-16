@@ -26,11 +26,11 @@ class LessonRepository implements LessonRepositoryInterface
      * @param  int  $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginate(int $perCount = 10): LengthAwarePaginator
+    public function getPaginate(int $perCount = 15): LengthAwarePaginator
     {
         return $this->lesson
             ->query()
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->paginate($perCount);
     }
 
@@ -39,12 +39,12 @@ class LessonRepository implements LessonRepositoryInterface
      * @param  int  $perCount
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getByAdviserIdPaginate(int $adviserUserId, int $perCount = 10): LengthAwarePaginator
+    public function getByAdviserIdPaginate(int $adviserUserId, int $perCount = 15): LengthAwarePaginator
     {
         return $this->lesson
             ->query()
             ->where('adviser_user_id', $adviserUserId)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->paginate($perCount);
     }
 

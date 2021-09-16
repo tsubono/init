@@ -180,5 +180,8 @@ return [
         'account_image_1' => '口座画像（表紙）',
         'account_image_2' => '口座画像（見開きページ）',
         'rate' => '評点',
+        'type' => '種別',
+        'zipcode' => '郵便番号',
+        'address' => '住所',
     ],
 ];

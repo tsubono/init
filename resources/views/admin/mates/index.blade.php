@@ -1,7 +1,108 @@
 @extends('layouts.app')
 
-@section('title', '（運営）メイト一覧')
+@section('title', 'メイト一覧')
 
 @section('content')
-    <!-- TODO -->
+    <section class="p-searchblock bg-light l-content-block">
+        <div class="container">
+            <form action="" class="p-form">
+                <a class="p-btn p-btn__outline d-md-none" data-bs-toggle="collapse" href="#collapseDetail" role="button" aria-expanded="false" aria-controls="collapseDetail">
+                    検索
+                </a>
+                <div class="collapse" id="collapseDetail">
+                    <div class="row">
+                        <div class="col-md-6 mb-3 mb-md-4">
+                            <h3 class="p-heading3">ユーザー名</h3>
+                            <input type="text" class="form-control" placeholder="記入してください"
+                                   name="condition[user_name]"
+                                   value="{{ isset($condition['user_name']) ? $condition['user_name'] : '' }}"
+                            />
+                        </div>
+                        <div class="col-md-6 mb-3 mb-md-4">
+                            <h3 class="p-heading3">電話番号</h3>
+                            <input type="text" class="form-control" placeholder="記入してください"
+                                   name="condition[tel]"
+                                   value="{{ isset($condition['tel']) ? $condition['tel'] : '' }}"
+                            />
+                        </div>
+                        <div class="col-md-6 mb-3 mb-md-4">
+                            <h3 class="p-heading3">メール</h3>
+                            <input type="text" class="form-control" placeholder="記入してください"
+                                   name="condition[email]"
+                                   value="{{ isset($condition['email']) ? $condition['email'] : '' }}"
+                            />
+                        </div>
+                    </div><!-- /.row -->
+                    <div class="d-flex justify-content-end align-items-center p-searchblock__controls">
+                        <a class="primary-link mx-5" href="{{ route('admin.mates.index') }}">リセット</a>
+                        <button class="p-btn p-btn__black d-inline-block mt-2 py-2 px-5">検索</button>
+                    </div>
+                </div><!-- /.collapse -->
+            </form>
+        </div>
+    </section>
+    <section class="p-mate p-admin-list l-content-block">
+        <div class="container">
+            <div class="text-end">
+                <a onclick="document.getElementById('exportForm').submit()" class="p-btn p-btn__defalut d-inline-block px-80px">
+                    エクスポート
+                </a>
+                <form action="{{ route('admin.mates.export-csv') }}" method="post" id="exportForm">
+                    @csrf
+                    <input type="hidden" name="condition[user_name]" value="{{ !empty($condition['user_name']) ? $condition['user_name'] : null }}">
+                    <input type="hidden" name="condition[email]" value="{{ !empty($condition['email']) ? $condition['email'] : null }}">
+                    <input type="hidden" name="condition[tel]" value="{{ !empty($condition['tel']) ? $condition['tel'] : null }}">
+                </form>
+            </div>
+            <div class="p-search__content tab-content">
+                <div class="p-admin-list__infos">
+                    @forelse ($mateUsers as $mateUser)
+                        <div class="p-card3">
+                            <div class="p-card3__user_info">
+                                <div class="user_info-name my-2">
+                                    {{ $mateUser->full_name }}
+                                </div>
+                                <div class="my-2">
+                                    TEL：{{ $mateUser->tel }}
+                                    メール：{{ $mateUser->email }}
+                                </div>
+                                <hr class="my-3">
+                                <form action="{{ route('admin.mates.update', compact('mateUser')) }}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-4 d-flex flex-wrap align-items-center">
+                                            <span class="small">保持コイン：</span>
+                                            <input class="form-control w-50" name="amount" value="{{ $mateUser->total_coin_amount }}">
+                                            <span class="mx-2">枚</span>
+                                        </div>
+                                        <div class="col-md-4 d-flex flex-wrap align-items-center">
+                                            <span class="small">有効期限：</span>
+                                            <input class="form-control w-75" name="expiration_date" value="{{ $mateUser->total_coin_amount }}">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="p-btn--rect py-2 px-2 btn-success" disabled>更新する</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="p-card3__controls">
+                                <a href="{{ route('admin.mates.show', compact('mateUser')) }}" class="p-btn p-btn__defalut d-inline-block mt-2 py-2 px-4">
+                                    詳細
+                                </a>
+                            </div>
+                        </div><!-- /.p-card3 -->
+                    @empty
+                        <div class="text-center">メイトは見つかりませんでした。</div>
+                    @endforelse
+                </div>
+            </div><!-- /.p-search__content -->
+            <div class="text-center">
+                {!! $mateUsers->appends([
+                 'condition[user_name]' => $condition['user_name'] ?? '',
+                 'condition[tel]' => $condition['tel'] ?? '',
+                 'condition[email]' => $condition['email'] ?? '',
+             ])->render('vendor.pagination.custom')!!}
+            </div>
+        </div><!-- /.container -->
+    </section>
 @endsection

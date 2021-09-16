@@ -100,8 +100,8 @@ class SaleController extends Controller
                 // 売上金残高
                 $remainTotalPrice += $sale->subtotal;
             }
-            // 振り込み申請済みの場合
-            if ($sale->status == AttendanceSale::STATUS_REQUEST) {
+            // 振り込み申請済みの場合 && 未振り込みの場合
+            if ($sale->status == AttendanceSale::STATUS_REQUEST && $sale->transferRequest->status == TransferRequest::STATUS_PROGRESS) {
                 // 振り込み予定金額
                 $scheduledTransferPrice += $sale->subtotal;
             }

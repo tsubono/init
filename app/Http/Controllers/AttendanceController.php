@@ -16,6 +16,7 @@ use App\Models\Attendance;
 use App\Models\AttendanceMessage;
 use App\Models\AttendanceSale;
 use App\Models\Lesson;
+use App\Notifications\AttendanceNotification;
 use App\Repositories\Attendance\AttendanceRepositoryInterface;
 use App\Repositories\AttendanceMessage\AttendanceMessageRepositoryInterface;
 use App\Repositories\AttendanceReview\AttendanceReviewRepositoryInterface;
@@ -127,15 +128,22 @@ class AttendanceController extends Controller
                     'lesson_id' => $lesson->id,
                     'mate_user_coin_id' => $mateUserCoin->id,
                     'status' => Attendance::STATUS_REQUEST,
-                    'datetime' => "{$request->date} {$request->time}"
+                    'datetime' => "{$request->date} {$request->time}:00"
                 ]
             );
 
-            /************* メール通知 *************/
+            /************* 通知 *************/
             // アドバイザーへ受講申請メール通知
             Mail::to($lesson->adviserUser->email)->send(
                 new AttendanceRequestMail($attendance)
             );
+            // アドバイザーへDB通知登録
+            $lesson->adviserUser->notify(new AttendanceNotification(
+                "「{$lesson->name}」へ受講申請が届きました",
+                $attendance->mateUser->avatar_image,
+                $attendance->mateUser->full_name,
+                route('attendances.show', compact('attendance'))
+            ));
 
             DB::commit();
         } catch (\Exception $e) {
@@ -223,11 +231,21 @@ class AttendanceController extends Controller
                 'status' => AttendanceSale::STATUS_PENDING,
             ]);
 
-            /************* メール通知 *************/
-            // メイトへ受講申請結果メール通知
-            Mail::to($attendance->mateUser->email)->send(
-                new AttendanceRequestResultMail($attendance)
-            );
+            /************* 通知 *************/
+            // メイトの場合は通知フラグがONの場合のみメール通知
+            if ($attendance->mateUser->is_notice) {
+                // メイトへ受講申請結果メール通知
+                Mail::to($attendance->mateUser->email)->send(
+                    new AttendanceRequestResultMail($attendance)
+                );
+            }
+            // メイトへDB通知登録
+            $attendance->mateUser->notify(new AttendanceNotification(
+                "「{$attendance->lesson->name}」へ受講申請結果が届きました",
+                $attendance->adviserUser->avatar_image,
+                $attendance->adviserUser->full_name,
+                route('attendances.show', compact('attendance'))
+            ));
 
             DB::commit();
         } catch (\Exception $e) {
@@ -268,11 +286,21 @@ class AttendanceController extends Controller
                 'note' => "{$attendance->lesson->name}の受講否認のため払い戻し",
             ]);
 
-            /************* メール通知 *************/
-            // メイトへ受講申請結果メール通知
-            Mail::to($attendance->mateUser->email)->send(
-                new AttendanceRequestResultMail($attendance)
-            );
+            /************* 通知 *************/
+            // メイトの場合は通知フラグがONの場合のみメール通知
+            if ($attendance->mateUser->is_notice) {
+                // メイトへ受講申請結果メール通知
+                Mail::to($attendance->mateUser->email)->send(
+                    new AttendanceRequestResultMail($attendance)
+                );
+            }
+            // メイトへDB通知登録
+            $attendance->mateUser->notify(new AttendanceNotification(
+                "「{$attendance->lesson->name}」へ受講申請結果が届きました",
+                $attendance->adviserUser->avatar_image,
+                $attendance->adviserUser->full_name,
+                route('attendances.show', compact('attendance'))
+            ));
 
             DB::commit();
         } catch (\Exception $e) {
@@ -336,13 +364,24 @@ class AttendanceController extends Controller
                 ]
             );
 
-            /************* メール通知 *************/
-            // 相手ユーザーへメッセージメール通知
-            $email = !is_null($adviserUserId) ? $attendance->mateUser->email : $attendance->adviserUser->email;
+            /************* 通知 *************/
+            $toUser = !is_null($adviserUserId) ? $attendance->mateUser : $attendance->adviserUser;
+            $fromUser = !is_null($adviserUserId) ? $attendance->adviserUser : $attendance->mateUser;
             $userType = !is_null($adviserUserId) ? 'mate' : 'adviser';
-            Mail::to($email)->send(
-                new AttendanceMessageMail($attendance, $userType)
-            );
+            // メイトの場合は通知フラグがONの場合のみメール通知
+            if ($userType === 'adviser' || ($userType === 'mate' && $attendance->mateUser->is_notice)) {
+                // 相手ユーザーへメッセージメール通知
+                Mail::to($toUser->email)->send(
+                    new AttendanceMessageMail($attendance, $userType)
+                );
+            }
+            // 相手ユーザーへDB通知登録
+            $toUser->notify(new AttendanceNotification(
+                "「{$attendance->lesson->name}」へ受講メッセージが届きました",
+                $fromUser->avatar_image,
+                $fromUser->full_name,
+                route('attendances.messages', compact('attendance'))
+            ));
 
             DB::commit();
         } catch (\Exception $e) {
@@ -420,13 +459,24 @@ class AttendanceController extends Controller
                 ]
             );
 
-            /************* メール通知 *************/
-            // 相手ユーザーへレビューメール通知
-            $email = !is_null($adviserUserId) ? $attendance->mateUser->email : $attendance->adviserUser->email;
+            /************* 通知 *************/
+            $toUser = !is_null($adviserUserId) ? $attendance->mateUser : $attendance->adviserUser;
+            $fromUser = !is_null($adviserUserId) ? $attendance->adviserUser : $attendance->mateUser;
             $userType = !is_null($adviserUserId) ? 'mate' : 'adviser';
-            Mail::to($email)->send(
-                new AttendanceReviewMail($attendance, $userType)
-            );
+            // メイトの場合は通知フラグがONの場合のみメール通知
+            if ($userType === 'adviser' || ($userType === 'mate' && $attendance->mateUser->is_notice)) {
+                // 相手ユーザーへレビューメール通知
+                Mail::to($toUser->email)->send(
+                    new AttendanceReviewMail($attendance, $userType)
+                );
+            }
+            // 相手ユーザーへDB通知登録
+            $toUser->notify(new AttendanceNotification(
+                "「{$attendance->lesson->name}」の受講レビューが届きました",
+                $fromUser->avatar_image,
+                $fromUser->full_name,
+                route('attendances.messages', compact('attendance'))
+            ));
 
             DB::commit();
         } catch (\Exception $e) {
@@ -450,6 +500,10 @@ class AttendanceController extends Controller
         if (!$this->checkUser($attendance)) {
             abort(404);
         }
+
+        // ログインしているユーザーIDを取得
+        $adviserUserId = auth()->guard('adviser')->check() ? auth()->guard('adviser')->user()->id : null;
+        $mateUserId = auth()->guard('mate')->check() ? auth()->guard('mate')->user()->id : null;
 
         DB::beginTransaction();
         try {
@@ -478,13 +532,24 @@ class AttendanceController extends Controller
                 ? $this->refundForCancelByAdviser($attendance, $attendanceSale, $dayBefore)
                 : $this->refundForCancelByMate($attendance, $attendanceSale, $dayBefore);
 
-            /************* メール通知 *************/
-            // 相手ユーザーへキャンセルメール通知
-            $email = is_null($cancel_cause_mate_user_id) ? $attendance->mateUser->email : $attendance->adviserUser->email;
+            /************* 通知 *************/
+            $toUser = !is_null($adviserUserId) ? $attendance->mateUser : $attendance->adviserUser;
+            $fromUser = !is_null($adviserUserId) ? $attendance->adviserUser : $attendance->mateUser;
             $userType = is_null($cancel_cause_mate_user_id) ? 'mate' : 'adviser';
-            Mail::to($email)->send(
-                new AttendanceCancelMail($attendance, $userType)
-            );
+            // メイトの場合は通知フラグがONの場合のみメール通知
+            if ($userType === 'adviser' || ($userType === 'mate' && $attendance->mateUser->is_notice)) {
+                // 相手ユーザーへキャンセルメール通知
+                Mail::to($toUser->email)->send(
+                    new AttendanceCancelMail($attendance, $userType)
+                );
+            }
+            // 相手ユーザーへDB通知登録
+            $toUser->notify(new AttendanceNotification(
+                "「{$attendance->lesson->name}」の受講へのキャンセルが届きました",
+                $fromUser->avatar_image,
+                $fromUser->full_name,
+                route('attendances.show', compact('attendance'))
+            ));
 
             DB::commit();
         } catch (\Exception $e) {
@@ -509,11 +574,15 @@ class AttendanceController extends Controller
             abort(404);
         }
 
+        // ログインしているユーザーIDを取得
+        $adviserUserId = auth()->guard('adviser')->check() ? auth()->guard('adviser')->user()->id : null;
+        $mateUserId = auth()->guard('mate')->check() ? auth()->guard('mate')->user()->id : null;
+
         DB::beginTransaction();
         try {
             $cancel_cause_mate_user_id = $cancel_cause_adviser_user_id = null;
             // 通報したのがアドバイザーの場合
-            if (auth()->guard('adviser')->check()) {
+            if (!is_null($adviserUserId)) {
                 // 原因はメイト
                 $cancel_cause_mate_user_id = $attendance->mate_user_id;
             // 通報したのがメイトの場合
@@ -531,13 +600,24 @@ class AttendanceController extends Controller
             /************* 払い戻し ************/
             $this->refundForReport($attendance);
 
-            /************* メール通知 *************/
-            // 相手ユーザーへ通報メール通知
-            $email = !is_null($cancel_cause_mate_user_id) ? $attendance->mateUser->email : $attendance->adviserUser->email;
+            /************* 通知 *************/
+            $toUser = !is_null($adviserUserId) ? $attendance->mateUser : $attendance->adviserUser;
+            $fromUser = !is_null($adviserUserId) ? $attendance->adviserUser : $attendance->mateUser;
             $userType = !is_null($cancel_cause_mate_user_id) ? 'mate' : 'adviser';
-            Mail::to($email)->send(
-                new AttendanceReportMail($attendance, $userType)
-            );
+            // メイトの場合は通知フラグがONの場合のみメール通知
+            if ($userType === 'adviser' || ($userType === 'mate' && $attendance->mateUser->is_notice)) {
+                // 相手ユーザーへ通報メール通知
+                Mail::to($toUser->email)->send(
+                    new AttendanceReportMail($attendance, $userType)
+                );
+            }
+            // 相手ユーザーへDB通知登録
+            $toUser->notify(new AttendanceNotification(
+                "「{$attendance->lesson->name}」の受講への通報が届きました",
+                $fromUser->avatar_image,
+                $fromUser->full_name,
+                route('attendances.show', compact('attendance'))
+            ));
 
             DB::commit();
         } catch (\Exception $e) {
@@ -574,11 +654,21 @@ class AttendanceController extends Controller
                'status' => AttendanceSale::STATUS_CONFIRMED
             ]);
 
-            /************* メール通知 *************/
-            // メイトへ受講完了メール通知
-            Mail::to($attendance->mateUser->email)->send(
-                new AttendanceCloseMail($attendance)
-            );
+            /************* 通知 *************/
+            // メイトの場合は通知フラグがONの場合のみメール通知
+            if ($attendance->mateUser->is_notice) {
+                // メイトへ受講完了メール通知
+                Mail::to($attendance->mateUser->email)->send(
+                    new AttendanceCloseMail($attendance)
+                );
+            }
+            // メイトへDB通知登録
+            $attendance->mateUser->notify(new AttendanceNotification(
+                "「{$attendance->lesson->name}」の受講が完了しました",
+                $attendance->adviserUser->avatar_image,
+                $attendance->adviserUser->full_name,
+                route('attendances.messages', compact('attendance'))
+            ));
 
             DB::commit();
         } catch (\Exception $e) {

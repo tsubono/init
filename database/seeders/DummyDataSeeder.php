@@ -34,30 +34,35 @@ class DummyDataSeeder extends Seeder
                     ->has(LessonMovie::factory([
                         "movie_path" => "https://www.youtube.com/watch?v=57wtrBtPma4",
                         "type" => "youtube",
+                        "sort" => 0,
                     ]))
                     ->has(LessonMovie::factory([
                         "movie_path" => "https://vimeo.com/83949049",
                         "type" => "vimeo",
+                        "sort" => 1,
                     ]))
                     ->has(LessonMovie::factory([
                         "movie_path" => "https://twitter.com/ccchisa76/status/1436271453263958021?ref_src=twsrc%5Etfw",
                         "type" => "twitter",
+                        "sort" => 2,
                     ]))
                     ->has(LessonMovie::factory([
                         "movie_path" => "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Frugbyworldcupjp%2Fvideos%2F361483822288928%2F&show_text=false&width=476&t=0",
                         "type" => "fb",
+                        "sort" => 3,
                     ]))
                     ->has(LessonMovie::factory([
                         "movie_path" => "https://www.instagram.com/p/CTgPLBEBbAr/?utm_source=ig_embed&amp;utm_campaign=loading",
                         "type" => "instagram",
+                        "sort" => 4,
                     ]))
                     ->has(LessonMovie::factory([
                         "movie_path" => "https://www.tiktok.com/@meeeeeeeu/video/7000386946027490562",
                         "type" => "tiktok",
+                        "sort" => 5,
                     ]))
                     ->count(5)
             )
-            ->has(AdviserUserImage::factory()->count(3))
             ->has(AdviserUserPersonalInfo::factory()->count(3))
             ->has(AdviserUserMovie::factory([
                 "movie_path" => "https://www.youtube.com/watch?v=57wtrBtPma4",
@@ -88,13 +93,18 @@ class DummyDataSeeder extends Seeder
                 $adviserUser->categories()->sync($categoryIds);
                 $languageIds = MstLanguage::all()->random(3)->pluck('id')->toArray();
                 $adviserUser->languages()->sync($languageIds);
+                for ($i=0; $i<3; $i++) {
+                    AdviserUserImage::factory(['adviser_user_id' => $adviserUser->id, 'sort' => $i])->count(1)->create();
+                }
             });
 
         Lesson::all()->each(function ($lesson) {
             $categoryIds = MstCategory::all()->random(3)->pluck('id')->toArray();
             $lesson->categories()->sync($categoryIds);
 
-            LessonImage::factory(['lesson_id' => $lesson->id])->count(3)->create();
+            for ($i=0; $i<3; $i++) {
+                LessonImage::factory(['lesson_id' => $lesson->id, 'sort' => $i])->count(1)->create();
+            }
         });
 
         MateUser::factory(3)

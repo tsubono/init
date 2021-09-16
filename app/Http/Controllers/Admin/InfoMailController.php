@@ -3,18 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\InformationMailRequest;
+use App\Models\InformationMail;
+use App\Repositories\InformationMail\InformationMailRepositoryInterface;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class InfoMailController extends Controller
 {
+    private InformationMailRepositoryInterface $informationMailRepository;
+
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * InfoMailController constructor.
+     * @param InformationMailRepositoryInterface $informationMailRepository
      */
-    public function __construct()
+    public function __construct(InformationMailRepositoryInterface $informationMailRepository)
     {
-        //
+        $this->informationMailRepository = $informationMailRepository;
     }
 
     /**
@@ -24,7 +29,9 @@ class InfoMailController extends Controller
      */
     public function index()
     {
-        return view('admin.info-mails.index');
+        $infoMails = $this->informationMailRepository->getPaginate();
+
+        return view('admin.info-mails.index', compact('infoMails'));
     }
 
     /**
@@ -34,46 +41,89 @@ class InfoMailController extends Controller
      */
     public function create()
     {
-        return view('admin.info-mails.create');
+        $infoMail = new InformationMail();
+
+        return view('admin.info-mails.create', compact('infoMail'));
     }
 
     /**
      * お知らせ配信登録処理
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param InformationMailRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store()
+    public function store(InformationMailRequest $request)
     {
-        // TODO
+        DB::beginTransaction();
+        try {
+            // お知らせ配信テーブルへ登録
+            $this->informationMailRepository->store($request->all());
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new \Exception($e);
+        }
+
+        return redirect(route('admin.info-mails.index'))->with('success_message', 'お知らせ配信を登録しました');
     }
 
     /**
      * お知らせ配信編集フォーム
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param InformationMail $infoMail
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit()
+    public function edit(InformationMail $infoMail)
     {
-        return view('admin.info-mails.edit');
+        return view('admin.info-mails.edit', compact('infoMail'));
     }
 
     /**
      * お知らせ配信更新処理
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param InformationMailRequest $request
+     * @param InformationMail $infoMail
+     * \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update()
+    public function update(InformationMailRequest $request, InformationMail $infoMail)
     {
-        // TODO
+        DB::beginTransaction();
+        try {
+            // お知らせ配信テーブル更新
+            $this->informationMailRepository->update($infoMail->id, $request->all());
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new \Exception($e);
+        }
+
+        return redirect(route('admin.info-mails.index'))->with('success_message', 'お知らせ配信を更新しました');
     }
 
     /**
      * お知らせ配信削除処理
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param InformationMail $infoMail
+     * \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy()
+    public function destroy(InformationMail $infoMail)
     {
-        // TODO
+        DB::beginTransaction();
+        try {
+            // お知らせ配信テーブル削除
+            $this->informationMailRepository->destroy($infoMail->id);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error($e->getMessage());
+            throw new \Exception($e);
+        }
+
+        return redirect(route('admin.info-mails.index'))->with('success_message', 'お知らせ配信を削除しました');
     }
 }
