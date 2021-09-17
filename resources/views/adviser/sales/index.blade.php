@@ -5,9 +5,6 @@
 @section('content')
     <section class="p-sale l-content-block">
         <div class="container">
-            <div class="text-end">
-                <a href="{{ route('mate.coins.buy') }}" class="p-btn p-btn__defalut d-inline-block px-80px">コイン購入</a>
-            </div>
             <h3 class="p-heading3 text-center mt-5">累計売上</h3>
             <div class="text-center my-5 price-total">¥ {{ number_format($totalPrice) }}</div>
 
