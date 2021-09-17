@@ -54,9 +54,7 @@ return [
     ],
 
     // リマインダー
-    'reminder_minute' => [
-        15,
-    ],
+    'reminder_minute' => 60,
 
     // お知らせカテゴリ
     'info_categories' => [
