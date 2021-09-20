@@ -26,7 +26,7 @@ class AttendanceMessageController extends Controller
      */
     public function __construct(
         AttendanceRepositoryInterface $attendanceRepository,
-        AttendanceMessageRepositoryInterface $attendanceMessageRepository,
+        AttendanceMessageRepositoryInterface $attendanceMessageRepository
     ) {
         $this->attendanceRepository = $attendanceRepository;
         $this->attendanceMessageRepository = $attendanceMessageRepository;
