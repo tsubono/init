@@ -161,4 +161,6 @@ Route::middleware(['check.maintenance'])->namespace('App\Http\Controllers')->gro
     Route::get('/mate-terms', function () { return view('mate-terms'); })->name('mate-terms');
     Route::get('/adviser-terms', function () { return view('adviser-terms'); })->name('adviser-terms');
     Route::get('/withdrawal', function () { return view('withdrawal'); })->name('withdrawal');
+    Route::get('/intellectual-property', function () { return view('intellectual-property'); })->name('intellectual-property');
+    Route::get('/tax-payment', function () { return view('tax-payment'); })->name('tax-payment');
 });

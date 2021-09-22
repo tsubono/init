@@ -34,12 +34,14 @@
             </div>
             <div class="footer-nav-list">
                 <ul>
-                    <li><a href="{{ route('team') }}">INIT運営チームについて</a></li>
+                    <li><a href="{{ route('team') }}">TEAM INITについて</a></li>
                     <li><a href="{{ route('tradelaw') }}">特商法に基づく表示</a></li>
                     <li><a href="{{ route('privacy') }}">プライバシーポリシー</a></li>
                     <li><a href="{{ route('cancel-policy') }}">キャンセルポリシー</a></li>
                     <li><a href="{{ route('mate-terms') }}">受講者規約</a></li>
                     <li><a href="{{ route('adviser-terms') }}">講師規約</a></li>
+                    <li><a href="{{ route('intellectual-property') }}">知的財産権ガイドライン</a></li>
+                    <li><a href="{{ route('tax-payment') }}">納税について</a></li>
                     <li><a href="{{ route('contact.index') }}">お問い合わせ</a></li>
                 </ul>
             </div>

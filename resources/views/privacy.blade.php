@@ -5,25 +5,9 @@
 @section('content')
     <section class="l-content-block p-team">
         <div class="container pb-100px">
-            <!-- タブ部分 -->
-            <ul class="nav nav-pills p-setting__tab nav-fill" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button id="basic-tab" class="nav-link active" data-bs-toggle="tab" data-bs-target="#mate" type="button" role="tab" aria-controls="mate" aria-selected="true">
-                        メイト
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button id="learn-tab" class="nav-link" data-bs-toggle="tab" data-bs-target="#adviser" type="button" role="tab" aria-controls="adviser" aria-selected="false">
-                        講師
-                    </button>
-                    <!-- TODO -->
-                </li>
-            </ul>
-
-            <!-- パネル部分 -->
             <div class="tab-content p-setting__content">
-                <div id="mate" class="tab-pane active" role="tabpanel" aria-labelledby="mate-tab">
-                    <p>株式会社　　　　（以下、「当社」といいます）は、個人情報を大切に保護することを企業の重要な社会的使命と認識し、役員はじめ全従業者が個人情報保護に関する法規範を遵守するとともに、当社が運営するサービスであるInit（http://www        以下、「本サービス」といいます）を通じて取得される個人情報の取扱いについての当社の基本方針（以下、「本ポリシー」といいます）を以下のとおり定め、全社を挙げて個人情報の保護に取り組むことを宣言いたします。</p>
+                <div id="mate">
+                    <p>「Init」（https://init-online.com   以下、「本サービス」といいます。）は、個人情報を大切に保護することを企業の重要な社会的使命と認識し、役員はじめ全従業者が個人情報保護に関する法規範を遵守するとともに、当社が運営するサービスであるInit（http://www        以下、「本サービス」といいます）を通じて取得される個人情報の取扱いについての当社の基本方針（以下、「本ポリシー」といいます）を以下のとおり定め、全社を挙げて個人情報の保護に取り組むことを宣言いたします。</p>
                     <br>
                     <b>1. 個人情報の定義、適用範囲</b><br>
                     <p>本ポリシーにおける「個人情報」とは個人に関する情報で、当該情報に含まれる一定の情報により、特定の個人を識別し得る情報（個人情報保護法第２条同旨）をいいます。但し、当社が運営する最新のウェブサイト（以下、｢当社サイト｣といいます）内のリンク先のウェブサイト、その他当社が直接管理していないウェブサイト等に登録された個人情報は、本ポリシーの適用範囲外とします。</p>
@@ -113,8 +97,7 @@
                         1) 当社は、個人情報の取扱いに関する苦情、相談等受けた場合には、下記の個人情報に関する苦情及び相談窓口にて、可能な限り迅速かつ適切な対応を致します。<br>
                         2) 当社は、個人情報に関する利用目的の通知、開示、訂正、追加、削除、利用停止、第三者提供停止、消去のご依頼があった場合、ご本人様であることを確認させて頂いた上で、お手続きをさせていただきます。<br>
                         3) 本条第１項及び前項の苦情、相談及び各種請求につきましては、以下の窓口までお問い合わせ下さいますようお願い致します。<br>
-                        会社名：<br>
-                        電話 ：<br>
+                        会社名：INIT運営事務局<br>
                         メール：
                     </p>
                     <br>
@@ -137,11 +120,7 @@
                     <p>
                         本ポリシーは、日本語と日本語以外の言語で作成されるものとし、日本語で作成された本ポリシーと日本語以外の言語で作成された本ポリシーの内容が異なる場合には、日本語で作成された本ポリシーの内容に従うものとします。
                     </p>
-                    <p>年　月　日 制定・施行</p>
-
-                </div>
-                <div id="adviser" class="tab-pane" role="tabpanel" aria-labelledby="adviser-tab">
-                    <!-- TODO -->
+                    <p>令和3年9月17日 制定・施行</p>
                 </div>
             </div>
         </div>
