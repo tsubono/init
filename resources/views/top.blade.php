@@ -3,6 +3,7 @@
 @section('title', 'トップページ')
 
 @section('content')
+    <div id="jsParticles"></div>
     <section class="p-index-main">
         <div class="p-index-main__inner">
             <h1 class="p-index-main__catch">オンラインで世界中から<br>
@@ -10,10 +11,6 @@
             <div class="p-index-main__read"><span class="p-obi p-obi__blue">“やりたいこと”</span>を<span class="p-obi p-obi__purple">“学びたい言語”</span>で。<br>
                 Init!（イニット）は挑戦する方々を応援します</div>
             <a href="{{ route('mate.register') }}" class="p-index-main__btn p-btn p-btn__defalut">新規登録する</a>
-        </div>
-        <div class="p-index-main__bg">
-            <img src="{{ asset('img/index-mv.png') }}" class="d-none d-md-block" alt="">
-            <img src="{{ asset('img/index-mv-sp.png') }}" class="d-md-none" alt="">
         </div>
     </section>
     <section class="p-index-about l-content-block">
@@ -181,4 +178,9 @@
             <a href="{{ route('lessons.index') }}" class="p-index-lesson__btn p-btn p-btn__defalut">レッスンを探す</a>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script src="{{ asset('assets/particles/particles.js') }}"></script>
+    <script src="{{ asset('assets/particles/setting.js') }}"></script>
 @endsection

@@ -15,7 +15,7 @@
             </div>
             <div class="mt-5 w-75 mx-auto">
                 <a class="p-btn p-btn__defalut" href="{{ route('adviser.register') }}">講師として登録する</a>
-                <a class="p-btn p-btn__defalut mt-3" href="#">スタッフ募集中</a>
+                <a class="p-btn p-btn__defalut mt-3" href="{{ route('contact.index') }}">スタッフ募集中</a>
             </div>
         </div>
     </section>

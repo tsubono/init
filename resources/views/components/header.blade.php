@@ -26,7 +26,7 @@
                     </button>
                 @endif
                 @if (!$hasSubMenu)
-                    <div class="login-link dropdown">
+                    <div class="login-link dropdown d-lg-none">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             ログイン
                         </a>

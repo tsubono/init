@@ -15,6 +15,9 @@
     <link href="{{ mix('css/style.css') }}" rel="stylesheet">
 
     <title>@yield('title', '') | INIT</title>
+
+    <meta name="keywords" content="英語,ビジネス英語,語学学習,オンライン学習,オンライン英会話,マッチング,init,online lesson,Japan,online learning">
+    <meta name="description" content="「やりたいこと」を「学びたい言語」で。INITに登録して、世界中からあなただけの講師を見つけよう。ただ勉強するのではなく、趣味を通じて繋がる講師と楽しく学び、あなたの目標に挑戦しませんか？INITは、あなたの挑戦を待っています！">
 </head>
 <body>
     <!-- 固定ヘッダーメニュー -->
@@ -50,7 +53,7 @@
     </footer>
 
     <!-- Scripts -->
-    @if (!request()->is('mate/coins/buy'))
+    @if (!request()->is('mate/coins/buy') && !request()->is('/'))
         <script src="{{ mix('js/app.js') }}" defer></script>
     @endif
     <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ek" crossorigin="anonymous"></script>

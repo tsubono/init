@@ -1,5 +1,13 @@
+#jsParticles {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
 .p-index-main {
-  position: relative;
+  position: absolute;
+  top: 50%;
   width: 100%;
   height: 800px;
   display: flex;
@@ -8,12 +16,12 @@
   @include breakpoint-md {
     height: 700px;
   }
+
   &__inner {
     position: relative;
     z-index: 2;
     margin: auto;
     max-width: $max-width;
-    padding-left: 40%;
     @include breakpoint-md {
       padding-left: 0;
       padding-bottom: 180px;
@@ -26,6 +34,7 @@
     font-weight: bold;
     margin-bottom: 30px;
     line-height: 160%;
+    text-align: center;
     @include breakpoint-md {
       font-size: 1.375rem;
       margin-bottom: 20px;
@@ -35,13 +44,14 @@
     font-size: 1.25rem;
     font-weight: bold;
     line-height: 160%;
+    text-align: center;
     @include breakpoint-md {
       font-size: 0.875rem;
     }
   }
   &__btn {
     max-width: 250px;
-    margin-top: 40px;
+    margin: 40px auto 0;
     @include breakpoint-md {
       margin: 30px auto;
     }
@@ -93,6 +103,12 @@
     img {
       width: 100%;
       box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.1);
+      object-fit: cover;
+      height: 300px;
+
+      @include breakpoint-md {
+        height: 200px;
+      }
     }
   }
   &__btn {
