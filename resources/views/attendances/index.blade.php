@@ -89,7 +89,7 @@
                             @if ($userType === 'mate')
                                 <div class="p-card3__advisor">
                                     <div class="p-card3__advisor_img">
-                                        <img src="{{ $attendance->adviserUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="アドバイザー画像">
+                                        <img src="{{ $attendance->adviserUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="講師画像">
                                     </div>
                                     <div class="p-card3__advisor_text">
                                         <p>講師</p>
@@ -107,7 +107,7 @@
                             @elseif ($userType === 'adviser')
                                 <div class="p-card3__advisor">
                                     <div class="p-card3__advisor_img">
-                                        <img src="{{ $attendance->mateUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="アドバイザー画像">
+                                        <img src="{{ $attendance->mateUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="講師画像">
                                     </div>
                                     <div class="p-card3__advisor_text">
                                         <p>受講者</p>
@@ -117,7 +117,7 @@
                             @else
                                 <div class="p-card3__advisor">
                                     <div class="p-card3__advisor_img">
-                                        <img src="{{ $attendance->adviserUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="アドバイザー画像">
+                                        <img src="{{ $attendance->adviserUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="講師画像">
                                     </div>
                                     <div class="p-card3__advisor_text">
                                         <p>講師</p>
@@ -134,7 +134,7 @@
                                 </div>
                                 <div class="p-card3__advisor">
                                     <div class="p-card3__advisor_img">
-                                        <img src="{{ $attendance->mateUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="アドバイザー画像">
+                                        <img src="{{ $attendance->mateUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="講師画像">
                                     </div>
                                     <div class="p-card3__advisor_text">
                                         <p>受講者</p>

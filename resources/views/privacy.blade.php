@@ -14,7 +14,7 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <button id="learn-tab" class="nav-link" data-bs-toggle="tab" data-bs-target="#adviser" type="button" role="tab" aria-controls="adviser" aria-selected="false">
-                        アドバイザー
+                        講師
                     </button>
                     <!-- TODO -->
                 </li>

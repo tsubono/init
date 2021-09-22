@@ -1,7 +1,7 @@
 <template>
     <!-- パネル部分 -->
     <div class="p-search__content">
-        <div v-if="isEmpty">該当のアドバイザーは見つかりませんでした。</div>
+        <div v-if="isEmpty">該当の講師は見つかりませんでした。</div>
         <template v-else>
             <SearchAdviser
                 v-for="adviser in advisers"

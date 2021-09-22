@@ -22,7 +22,7 @@ Route::middleware(['check.maintenance'])->namespace('App\Http\Controllers')->gro
     // レッスン検索・詳細
     Route::get('/lessons', 'LessonController@index')->name('lessons.index');
     Route::get('/lessons/{lesson}', 'LessonController@show')->name('lessons.show');
-    // アドバイザー検索・詳細
+    // 講師検索・詳細
     Route::get('/advisers', 'AdviserController@index')->name('advisers.index');
     Route::get('/advisers/{adviserUser}', 'AdviserController@show')->name('advisers.show');
     // お問い合わせフォーム・送信
@@ -62,7 +62,7 @@ Route::middleware(['check.maintenance'])->namespace('App\Http\Controllers')->gro
     });
 
     /**
-     * アドバイザー Group
+     * 講師 Group
      */
     Route::prefix('adviser')->as('adviser.')->namespace('Adviser')->group(function () {
         Auth::routes(['verify' => true]);
@@ -119,7 +119,7 @@ Route::middleware(['check.maintenance'])->namespace('App\Http\Controllers')->gro
         Auth::routes(['register' => false]);
 
         Route::middleware('auth.admin')->group(function () {
-            // アドバイザー管理
+            // 講師管理
             Route::get('/advisers', 'AdviserController@index')->name('advisers.index');
             Route::post('/advisers/export-csv', 'AdviserController@exportCsv')->name('advisers.export-csv');
             Route::get('/advisers/{adviserUser}', 'AdviserController@show')->name('advisers.show');

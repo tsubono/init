@@ -39,7 +39,7 @@
                 >
                     <div class="row">
                         <div class="col-md-6 mb-3 mb-md-4">
-                            <h3 class="p-heading3">アドバイザーが話せる言語</h3>
+                            <h3 class="p-heading3">講師が話せる言語</h3>
                             <select
                                 class="form-select"
                                 v-model="formData.language"
@@ -56,7 +56,7 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3 mb-md-4">
-                            <h3 class="p-heading3">アドバイザー名</h3>
+                            <h3 class="p-heading3">講師名</h3>
                             <input
                                 type="text"
                                 class="form-control"
@@ -67,7 +67,7 @@
                         </div>
                         <div class="col-lg-3 col-6 mb-md-4">
                             <h3 class="p-heading3">
-                                <span class="d-none d-md-inline">アドバイザーの</span>出身国
+                                <span class="d-none d-md-inline">講師の</span>出身国
                             </h3>
                             <select
                                 class="form-select"
@@ -86,7 +86,7 @@
                         </div>
                         <div class="col-lg-3 col-6 mb-md-4">
                             <h3 class="p-heading3">
-                                <span class="d-none d-md-inline">アドバイザーの</span>居住国
+                                <span class="d-none d-md-inline">講師の</span>居住国
                             </h3>
                             <select
                                 class="form-select"
@@ -105,7 +105,7 @@
                         </div>
                         <div class="col-lg-3 col-6">
                             <h3 class="p-heading3">
-                                <span class="d-none d-md-inline">アドバイザーの</span>年齢
+                                <span class="d-none d-md-inline">講師の</span>年齢
                             </h3>
                             <select class="form-select">
                                 <option selected>すべて</option>
@@ -113,7 +113,7 @@
                         </div>
                         <div class="col-lg-3 col-6">
                             <h3 class="p-heading3">
-                                <span class="d-none d-md-inline">アドバイザーの</span>性別
+                                <span class="d-none d-md-inline">講師の</span>性別
                             </h3>
                             <select
                                 class="form-select"

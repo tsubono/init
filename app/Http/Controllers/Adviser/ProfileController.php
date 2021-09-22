@@ -47,7 +47,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * アドバイザープロフィール設定 (基本情報)
+     * 講師プロフィール設定 (基本情報)
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -60,7 +60,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * アドバイザープロフィール更新処理 (基本情報)
+     * 講師プロフィール更新処理 (基本情報)
      *
      * @param AdviserUserBasicRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -78,7 +78,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * アドバイザープロフィール設定 (教える設定)
+     * 講師プロフィール設定 (教える設定)
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -93,7 +93,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * アドバイザープロフィール更新処理 (教える設定)
+     * 講師プロフィール更新処理 (教える設定)
      *
      * @param AdviserUserTeachRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -108,7 +108,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * アドバイザープロフィール設定 (パスワード)
+     * 講師プロフィール設定 (パスワード)
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -120,7 +120,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * アドバイザープロフィール更新処理 (パスワード)
+     * 講師プロフィール更新処理 (パスワード)
      *
      * @param AdviserUserPasswordRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -139,7 +139,7 @@ class ProfileController extends Controller
 
 
     /**
-     * アドバイザープロフィール設定 (個人情報)
+     * 講師プロフィール設定 (個人情報)
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -151,7 +151,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * アドバイザープロフィール更新処理 (個人情報)
+     * 講師プロフィール更新処理 (個人情報)
      *
      * @param AdviserUserPersonalRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -166,7 +166,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * アドバイザーユーザー退会
+     * 講師ユーザー退会
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -178,7 +178,7 @@ class ProfileController extends Controller
         // 紐づくレッスンたちを非公開にする
         $this->lessonRepository->stopByAdviserUserId($user->id);
 
-        // アドバイザーユーザーへ退会完了通知
+        // 講師ユーザーへ退会完了通知
         Mail::to($user->email)->send(
             new WithdrawalMail($user)
         );

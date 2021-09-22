@@ -16,7 +16,7 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('mate_user_id')->comment('メイトユーザーID');
-            $table->unsignedBigInteger('adviser_user_id')->comment('アドバイザーユーザーID');
+            $table->unsignedBigInteger('adviser_user_id')->comment('講師ユーザーID');
             $table->unsignedBigInteger('lesson_id')->comment('レッスンID');
             $table->unsignedBigInteger('mate_user_coin_id')->comment('メイトユーザーコインID');
             $table->tinyInteger('status')->comment('ステータス');
@@ -24,7 +24,7 @@ class CreateAttendancesTable extends Migration
             $table->text('request_text')->nullable()->comment('受講申請メッセージ');
             $table->text('reject_text')->nullable()->comment('受講拒否メッセージ');
             $table->unsignedBigInteger('cancel_cause_mate_user_id')->comment('キャンセルの起因となったメイトユーザーID')->nullable();
-            $table->unsignedBigInteger('cancel_cause_adviser_user_id')->comment('キャンセルの起因となったアドバイザーユーザーID')->nullable();
+            $table->unsignedBigInteger('cancel_cause_adviser_user_id')->comment('キャンセルの起因となった講師ユーザーID')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

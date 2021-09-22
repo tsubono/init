@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'アドバイザー規約')
+@section('title', '講師規約')
 
 @section('content')
     <section class="l-content-block p-team">

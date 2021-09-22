@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'アドバイザー一覧')
+@section('title', '講師一覧')
 
 @section('content')
     <section class="p-searchblock bg-light l-content-block">
@@ -94,7 +94,7 @@
                             </div>
                         </div><!-- /.p-card3 -->
                     @empty
-                        <div class="text-center">アドバイザーは見つかりませんでした。</div>
+                        <div class="text-center">講師は見つかりませんでした。</div>
                     @endforelse
                 </div>
             </div><!-- /.p-search__content -->

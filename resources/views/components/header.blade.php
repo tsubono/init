@@ -32,7 +32,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <li><a class="dropdown-item" href="{{ route('mate.login') }}">メイトログイン</a></li>
-                            <li><a class="dropdown-item" href="{{ route('adviser.login') }}">アドバイザーログイン</a></li>
+                            <li><a class="dropdown-item" href="{{ route('adviser.login') }}">講師ログイン</a></li>
                         </ul>
                     </div>
                 @endif
@@ -47,7 +47,7 @@
                     <li class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page"><a href="{{ route('top') }}">ホーム</a></li>
                     <li class="nav-link {{ request()->is('about') ? 'active' : '' }}"><a href="{{ route('about') }}">はじめての方</a></li>
                     <li class="nav-link {{ request()->is('lessons', 'lessons/*') ? 'active' : '' }}"><a href="{{ route('lessons.index') }}">レッスン検索</a></li>
-                    <li class="nav-link {{ request()->is('advisers', 'advisers/*') ? 'active' : '' }}"><a href="{{ route('advisers.index') }}">アドバイザー検索</a></li>
+                    <li class="nav-link {{ request()->is('advisers', 'advisers/*') ? 'active' : '' }}"><a href="{{ route('advisers.index') }}">講師検索</a></li>
                     @if (auth()->guard('mate')->check())
                         <li class="nav-link nav-link__login">
                             <a onclick="document.getElementById('logoutForm').submit()">ログアウト</a>
@@ -75,7 +75,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li><a class="dropdown-item" href="{{ route('mate.login') }}">メイトログイン</a></li>
-                    <li><a class="dropdown-item" href="{{ route('adviser.login') }}">アドバイザーログイン</a></li>
+                    <li><a class="dropdown-item" href="{{ route('adviser.login') }}">講師ログイン</a></li>
                 </ul>
             </div>
         @endif
@@ -108,7 +108,7 @@
                         <li class="nav-link {{ request()->is('adviser/sales', 'adviser/sales/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('adviser.sales.index') }}">売上管理</a></li>
                     @elseif (auth()->guard('admin')->check())
                         <!-- TODO -->
-                        <li class="nav-link {{ request()->is('admin/advisers/*', 'admin/advisers/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.advisers.index') }}">アドバイザー管理</a></li>
+                        <li class="nav-link {{ request()->is('admin/advisers/*', 'admin/advisers/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.advisers.index') }}">講師管理</a></li>
                         <li class="nav-link {{ request()->is('admin/mates', 'admin/mates/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.mates.index') }}">メイト管理</a></li>
                         <li class="nav-link {{ request()->is('admin/coins', 'admin/coins/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.coins.index') }}">コイン管理</a></li>
                         <li class="nav-link {{ request()->is('admin/attendances', 'admin/attendances/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.attendances.index') }}">受講管理</a></li>

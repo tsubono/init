@@ -39,7 +39,7 @@
                     <li><a href="{{ route('privacy') }}">プライバシーポリシー</a></li>
                     <li><a href="{{ route('cancel-policy') }}">キャンセルポリシー</a></li>
                     <li><a href="{{ route('mate-terms') }}">受講者規約</a></li>
-                    <li><a href="{{ route('adviser-terms') }}">アドバイザー規約</a></li>
+                    <li><a href="{{ route('adviser-terms') }}">講師規約</a></li>
                     <li><a href="{{ route('contact.index') }}">お問い合わせ</a></li>
                 </ul>
             </div>

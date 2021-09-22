@@ -35,7 +35,7 @@ class SaleController extends Controller
     }
 
     /**
-     * (アドバイザーマイページ) 売上一覧
+     * (講師マイページ) 売上一覧
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -49,7 +49,7 @@ class SaleController extends Controller
     }
 
     /**
-     * (アドバイザーマイページ) 振り込み申請
+     * (講師マイページ) 振り込み申請
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Exception

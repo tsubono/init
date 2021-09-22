@@ -57,7 +57,7 @@ class AttendanceReminder extends Command
 
                     Log::debug('リマインダー送信開始。受講ID: '. $attendance->id);
 
-                    // アドバイザーへリマインダーメール通知
+                    // 講師へリマインダーメール通知
                     Mail::to($attendance->adviserUser->email)->send(
                         new AttendanceReminderMail($attendance, 'adviser')
                     );

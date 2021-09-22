@@ -15,7 +15,7 @@ class CreateAdviserUserMstLanguagesTable extends Migration
     {
         Schema::create('adviser_user_mst_language', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('adviser_user_id')->comment('アドバイザーユーザーID');
+            $table->unsignedBigInteger('adviser_user_id')->comment('講師ユーザーID');
             $table->unsignedBigInteger('mst_language_id')->comment('言語マスターID');
 
             $table->foreign('adviser_user_id')->references('id')->on('adviser_users')->onDelete('CASCADE');

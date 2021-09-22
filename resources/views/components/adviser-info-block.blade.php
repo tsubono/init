@@ -1,5 +1,5 @@
 <div class="p-lesson-show__avatar">
-    <img src="{{ $adviserUser->avatar_image }}" alt="アドバイザー画像">
+    <img src="{{ $adviserUser->avatar_image }}" alt="講師画像">
 </div>
 <h2 class="fw-bold fs-4 text-center mx-auto my-20px">
     {{ $adviserUser->full_name }}

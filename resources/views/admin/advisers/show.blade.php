@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'アドバイザー詳細')
+@section('title', '講師詳細')
 
 @section('content')
     <section class="p-admin-show l-content-block">
@@ -158,7 +158,7 @@
 
             <div class="my-5 text-center">
                 <a href="{{ route('admin.advisers.index') }}" class="p-btn p-btn__defalut d-inline-block px-80px">
-                    アドバイザー一覧へ戻る
+                    講師一覧へ戻る
                 </a>
             </div>
         </div><!-- /.container -->

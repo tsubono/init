@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'アドバイザープロフィール')
+@section('title', '講師プロフィール')
 
 @section('content')
     <section class="l-content-block p-profile">

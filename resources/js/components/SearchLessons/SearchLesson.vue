@@ -29,7 +29,7 @@
                 </div><!-- /.p-card3__info -->
                 <div class="p-card3__advisor">
                     <div class="p-card3__advisor_img">
-                        <img :src="lesson.adviser_user.avatar_image" alt="アドバイザー画像">
+                        <img :src="lesson.adviser_user.avatar_image" alt="講師画像">
                     </div>
                     <div class="p-card3__advisor_text">
                         <h4>

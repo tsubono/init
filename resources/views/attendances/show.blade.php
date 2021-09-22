@@ -167,7 +167,7 @@
                 </a>
             </div>
             <div class="mb-3">
-                <h3 class="p-heading3">アドバイザー</h3>
+                <h3 class="p-heading3">講師</h3>
                 @if ($attendance->adviserUser)
                     <a href="{{ route('advisers.show', ['adviserUser' => $attendance->adviserUser]) }}" class="primary-link" target="_blank">
                         <p>{{ $attendance->adviserUser->full_name ?? '退会ユーザー' }}</p>

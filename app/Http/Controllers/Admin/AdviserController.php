@@ -23,7 +23,7 @@ class AdviserController extends Controller
     }
 
     /**
-     * アドバイザー一覧
+     * 講師一覧
      *
      * @param Request $request
      * @return \Illuminate\Contracts\Support\Renderable
@@ -38,7 +38,7 @@ class AdviserController extends Controller
     }
 
     /**
-     * アドバイザー詳細
+     * 講師詳細
      *
      * @param AdviserUser $adviserUser
      * @return \Illuminate\Contracts\View\View
@@ -49,7 +49,7 @@ class AdviserController extends Controller
     }
 
     /**
-     * アドバイザー更新
+     * 講師更新
      *
      * @param AdviserUser $adviserUser
      * @param Request $request
@@ -63,7 +63,7 @@ class AdviserController extends Controller
     }
 
     /**
-     * アドバイザーCSVエクスポート
+     * 講師CSVエクスポート
      *
      * @param Request $request
      * @param FileService $fileService

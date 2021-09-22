@@ -36,7 +36,7 @@ class AdviserController extends Controller
     }
 
     /**
-     * アドバイザー検索
+     * 講師検索
      *
      * @param  Request  $request
      * @return \Illuminate\Contracts\Support\Renderable

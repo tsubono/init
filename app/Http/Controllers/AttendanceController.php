@@ -117,11 +117,11 @@ class AttendanceController extends Controller
             );
 
             /************* 通知 *************/
-            // アドバイザーへ受講申請メール通知
+            // 講師へ受講申請メール通知
             Mail::to($lesson->adviserUser->email)->send(
                 new AttendanceRequestMail($attendance)
             );
-            // アドバイザーへDB通知登録
+            // 講師へDB通知登録
             $lesson->adviserUser->notify(new AttendanceNotification(
                 "「{$lesson->name}」へ受講申請が届きました",
                 $attendance->mateUser->avatar_image,
@@ -185,7 +185,7 @@ class AttendanceController extends Controller
      */
     public function approval(Attendance $attendance)
     {
-        // アドバイザーのみ実行可能
+        // 講師のみ実行可能
         if (!auth()->guard('adviser')->check() || !$this->checkUser($attendance)) {
             abort(404);
         }
@@ -233,7 +233,7 @@ class AttendanceController extends Controller
      */
     public function reject(Attendance $attendance, Request $request)
     {
-        // アドバイザーのみ実行可能
+        // 講師のみ実行可能
         if (!auth()->guard('adviser')->check() || !$this->checkUser($attendance)) {
             abort(404);
         }
@@ -287,7 +287,7 @@ class AttendanceController extends Controller
      */
     public function close(Attendance $attendance)
     {
-        // アドバイザーのみ実行可能
+        // 講師のみ実行可能
         if (!auth()->guard('adviser')->check() || !$this->checkUser($attendance)) {
             abort(404);
         }
@@ -303,7 +303,7 @@ class AttendanceController extends Controller
             $price = -$attendance->mateUserCoin->amount * 100;
             // マッチングフィーを算出
             $fee = $price * ($attendance->adviserUser->fee_rate / 100); 
-            // アドバイザー売上レコード登録
+            // 講師売上レコード登録
             $this->attendanceSaleRepository->store([
                 'adviser_user_id' =>  $attendance->adviser_user_id,
                 'attendance_id' => $attendance->id,
@@ -357,9 +357,9 @@ class AttendanceController extends Controller
         }
 
         $cancel_cause_mate_user_id = $cancel_cause_adviser_user_id = null;
-        // キャンセルしたのがアドバイザーの場合
+        // キャンセルしたのが講師の場合
         if (auth()->guard('adviser')->check()) {
-            // 原因はアドバイザー
+            // 原因は講師
             $cancel_cause_adviser_user_id = $attendance->adviser_user_id;
             // キャンセルしたのがメイトの場合
         } else {
@@ -425,13 +425,13 @@ class AttendanceController extends Controller
         }
 
         $cancel_cause_mate_user_id = $cancel_cause_adviser_user_id = null;
-        // 通報したのがアドバイザーの場合
+        // 通報したのが講師の場合
         if (auth()->guard('adviser')->check()) {
             // 原因はメイト
             $cancel_cause_mate_user_id = $attendance->mate_user_id;
         // 通報したのがメイトの場合
         } else {
-            // 原因はアドバイザー
+            // 原因は講師
             $cancel_cause_adviser_user_id = $attendance->adviser_user_id;
         }
 
@@ -478,11 +478,11 @@ class AttendanceController extends Controller
     }
 
     /**
-     * アドバイザーからの通報による払い戻し処理
+     * 講師からの通報による払い戻し処理
      * = メイトが受講に現れなかった
      *
      * ★ メイトへの受講料のコイン返還はしない
-     * ★ 受講料の50％はアドバイザーが獲得
+     * ★ 受講料の50％は講師が獲得
      * 
      * @param Attendance $attendance
      */
@@ -490,11 +490,11 @@ class AttendanceController extends Controller
     {
         // 受講に支払われた金額を算出
         $price = -$attendance->mateUserCoin->amount * 100;
-        // アドバイザーは受講に支払われた金額の50%を獲得
+        // 講師は受講に支払われた金額の50%を獲得
         $price = $price / 2;
         // マッチングフィーを算出
         $fee = $price * ($attendance->adviserUser->fee_rate / 100);
-        // アドバイザー売上レコード登録
+        // 講師売上レコード登録
         $this->attendanceSaleRepository->store([
             'adviser_user_id' =>  $attendance->adviser_user_id,
             'attendance_id' => $attendance->id,
@@ -511,10 +511,10 @@ class AttendanceController extends Controller
 
     /**
      * メイトからの通報による払い戻し処理
-     * = アドバイザーが受講に現れなかった
+     * = 講師が受講に現れなかった
      *
      * ★ メイトに全コイン返金
-     * ★ アドバイザーからペナルティとして受講料の100％のキャンセル料を徴収
+     * ★ 講師からペナルティとして受講料の100％のキャンセル料を徴収
      *
      * @param Attendance $attendance
      */
@@ -530,7 +530,7 @@ class AttendanceController extends Controller
             'note' => "{$attendance->lesson->name}への通報による返金",
         ]);
 
-        /***** アドバイザーへの売上減額 *****/
+        /***** 講師への売上減額 *****/
         // 売上をマイナスで登録
         $this->attendanceSaleRepository->store([
             'adviser_user_id' =>  $attendance->adviser_user_id,
@@ -546,10 +546,10 @@ class AttendanceController extends Controller
     }
 
     /**
-     * アドバイザーからのキャンセルによる払い戻し
+     * 講師からのキャンセルによる払い戻し
      *
      * ★ メイトに全コイン返金
-     * ★ アドバイザーからペナルティとして(受講料 * 負担率)のペナルティ金額を徴収
+     * ★ 講師からペナルティとして(受講料 * 負担率)のペナルティ金額を徴収
      * 
      * @param Attendance $attendance
      * @param int $dayBefore
@@ -566,7 +566,7 @@ class AttendanceController extends Controller
             'note' => "{$attendance->lesson->name}のキャンセルによる返金",
         ]);
 
-        /***** アドバイザーへの売上減額 *****/
+        /***** 講師への売上減額 *****/
         if ($dayBefore <= 7) {
             // 定数で設定している負担率から、ペナルティ金額を算出
             $penaltyPrice = $price * config('const.cancel_rate.to_adviser.' . $dayBefore);
@@ -589,7 +589,7 @@ class AttendanceController extends Controller
      * メイトからのキャンセルによる払い戻し
      *
      * ★ メイトにペナルティ金額 (= 受講料 * 負担率) を差し引いたコインを返金
-     * ★ アドバイザーはペナルティ金額の半分を獲得
+     * ★ 講師はペナルティ金額の半分を獲得
      * 
      * @param Attendance $attendance
      * @param int $dayBefore
@@ -608,8 +608,8 @@ class AttendanceController extends Controller
             'note' => "「{$attendance->lesson->name}」の受講キャンセルによる返金",
         ]);
 
-        /***** アドバイザーへの売上増額 *****/
-        // アドバイザーにはペナルティ金額の50%を与える
+        /***** 講師への売上増額 *****/
+        // 講師にはペナルティ金額の50%を与える
         $halfPenaltyPrice = ceil($price * config('const.cancel_rate.to_mate.'. $dayBefore) / 2);
         $fee = intval($halfPenaltyPrice) * ($attendance->adviserUser->fee_rate / 100);
         // 売上を登録

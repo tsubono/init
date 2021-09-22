@@ -110,14 +110,14 @@
         <div class="container">
             <h2 class="p-heading1">
                 <div class="p-heading1__en purple">Advisor</div>
-                アドバイザー紹介
+                講師紹介
             </h2>
             <div class="p-index-advisor__list">
                 @foreach ($adviserUsers as $adviserUser)
                     <div class="p-card">
                         <a href="{{ route('advisers.show', compact('adviserUser')) }}">
                             <div class="p-card__img">
-                                <img src="{{ $adviserUser->avatar_image }}" alt="アドバイザー画像">
+                                <img src="{{ $adviserUser->avatar_image }}" alt="講師画像">
                             </div>
                             <div class="p-card__info">
                                 <div class="p-card__name">{{ $adviserUser->full_name }}</div>
@@ -137,7 +137,7 @@
                     </div>
                 @endforeach
             </div><!-- index-advisor__list -->
-            <a href="{{ route('advisers.index') }}" class="p-index-advisor__btn p-btn p-btn__defalut">アドバイザーを探す</a>
+            <a href="{{ route('advisers.index') }}" class="p-index-advisor__btn p-btn p-btn__defalut">講師を探す</a>
         </div>
     </section>
     <section class="p-index-lesson l-content-block">
@@ -161,7 +161,7 @@
                                 <div class="p-lesson__point">{{ number_format($lesson->coin_amount) }} Coin</div>
                             </div>
                             <div class="p-lesson__adviser">
-                                <div class="p-lesson__adviser-img"><img src="{{ $lesson->adviserUser->avatar_image }}" alt="アドバイザー画像"></div>
+                                <div class="p-lesson__adviser-img"><img src="{{ $lesson->adviserUser->avatar_image }}" alt="講師画像"></div>
                                 <div class="p-lesson__adviser-info">
                                     <div class="p-lesson__name">{{ $lesson->adviserUser->full_name }}</div>
                                     <div class="p-lesson__details">

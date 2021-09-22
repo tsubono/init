@@ -33,7 +33,7 @@ class LessonController extends Controller
     }
 
     /**
-     * (アドバイザーマイページ) レッスン一覧
+     * (講師マイページ) レッスン一覧
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -46,7 +46,7 @@ class LessonController extends Controller
     }
 
     /**
-     * (アドバイザーマイページ) レッスン登録フォーム
+     * (講師マイページ) レッスン登録フォーム
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -61,7 +61,7 @@ class LessonController extends Controller
     }
 
     /**
-     *  (アドバイザーマイページ) レッスン登録処理
+     *  (講師マイページ) レッスン登録処理
      *
      * @param LessonRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -75,7 +75,7 @@ class LessonController extends Controller
     }
 
     /**
-     * (アドバイザーマイページ) レッスン編集フォーム
+     * (講師マイページ) レッスン編集フォーム
      *
      * @param Lesson $lesson
      * @return \Illuminate\Contracts\View\View
@@ -90,7 +90,7 @@ class LessonController extends Controller
     }
 
     /**
-     *  (アドバイザーマイページ) レッスン更新処理
+     *  (講師マイページ) レッスン更新処理
      *
      * @param Lesson $lesson
      * @param LessonRequest $request
@@ -104,7 +104,7 @@ class LessonController extends Controller
     }
 
     /**
-     * (アドバイザーマイページ) レッスン削除処理
+     * (講師マイページ) レッスン削除処理
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */

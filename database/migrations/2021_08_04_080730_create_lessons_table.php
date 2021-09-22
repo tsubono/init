@@ -15,7 +15,7 @@ class CreateLessonsTable extends Migration
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('adviser_user_id')->comment('アドバイザーユーザーID');
+            $table->unsignedBigInteger('adviser_user_id')->comment('講師ユーザーID');
             $table->string('name')->comment('レッスン名');
             $table->integer('coin_amount')->comment('必要コイン数');
             $table->text('description')->comment('説明');

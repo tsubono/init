@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'アドバイザーを探す')
+@section('title', '講師を探す')
 
 @section('content')
     <search-advisers
