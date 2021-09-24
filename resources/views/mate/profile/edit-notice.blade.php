@@ -14,6 +14,7 @@
                 <div class="tab-content p-setting__content">
                     <div id="notification">
                         <h2 class="p-heading1">通知設定</h2>
+                        <p class="small">講師からの連絡があった場合、メール通知を行うか設定できます</p>
                         <div class="p-form">
                             <div class="row">
                                 <div class="col-12">

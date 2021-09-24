@@ -40,7 +40,7 @@ return [
         'array'   => ':attributeは、:min個から:max個の間で指定してください。',
     ],
     'boolean'              => ':attributeは、trueかfalseを指定してください。',
-    'confirmed'            => ':attributeと、確認フィールドとが、一致していません。',
+    'confirmed'            => ':attributeとパスワード確認用が、一致していません。',
     'date'                 => ':attributeには有効な日付を指定してください。',
     'date_format'          => ':attributeは:format形式で指定してください。',
     'different'            => ':attributeと:otherには、異なった内容を指定してください。',

@@ -12,7 +12,7 @@
             <div class="text-center my-5 price-remain">¥ {{ number_format($remainTotalPrice) }}</div>
 
             <div class="my-5 text-center">
-                @if ($remainTotalPrice !== 0 && !empty(auth()->guard('adviser')->user()->payment_method))
+                @if ($remainTotalPrice > 0 && !empty(auth()->guard('adviser')->user()->payment_method))
                     <button type="button" class="p-btn p-btn__defalut d-inline-block px-80px" data-bs-toggle="modal" data-bs-target="#requestModal">
                         振り込み申請する
                     </button>

@@ -107,9 +107,11 @@
                             <button type="button" class="p-btn--rect py-1 px-2 btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal">
                                 キャンセル
                             </button>
-                            <button type="button" class="p-btn--rect py-1 px-2 btn-danger" data-bs-toggle="modal" data-bs-target="#reportModal">
-                                通報する
-                            </button>
+                            @if ($attendance->datetime <= now())
+                                <button type="button" class="p-btn--rect py-1 px-2 btn-danger" data-bs-toggle="modal" data-bs-target="#reportModal">
+                                    通報する
+                                </button>
+                            @endif
                             <!-- キャンセルモーダル -->
                             <div class="modal p-modal p-setting fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel">
                                 <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -127,23 +129,25 @@
                                 </div><!-- /.modal-dialog -->
                             </div><!-- /.modal -->
                             <!-- /キャンセルモーダル -->
-                            <!-- 通報モーダル -->
-                            <div class="modal p-modal p-setting fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel">
-                                <div class="modal-dialog modal-dialog-centered modal-lg">
-                                    <div class="modal-content">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
-                                        <div class="modal-body">
-                                            <h2 class="p-heading2 mt-0 text-center">通報確認</h2>
-                                            <p class="text-center">「{{ $attendance->lesson->name }}」の受講を通報します。<br>よろしいですか？</p>
-                                            <form action="{{ route('attendances.report', compact('attendance')) }}" method="post">
-                                                @csrf
-                                                <button class="p-btn p-btn__defalut">通報する</button>
-                                            </form>
-                                        </div><!-- /.modal-body -->
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div><!-- /.modal -->
-                            <!-- /通報モーダル -->
+                            @if ($attendance->datetime <= now())
+                                <!-- 通報モーダル -->
+                                <div class="modal p-modal p-setting fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                                            <div class="modal-body">
+                                                <h2 class="p-heading2 mt-0 text-center">通報確認</h2>
+                                                <p class="text-center">「{{ $attendance->lesson->name }}」の受講を通報します。<br>よろしいですか？</p>
+                                                <form action="{{ route('attendances.report', compact('attendance')) }}" method="post">
+                                                    @csrf
+                                                    <button class="p-btn p-btn__defalut">通報する</button>
+                                                </form>
+                                            </div><!-- /.modal-body -->
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                                <!-- /通報モーダル -->
+                            @endif
                         @endif
                     @endif
                     @if ($attendance->can_review)
