@@ -1,14 +1,14 @@
 <template>
     <div class="p-card3">
         <div class="p-card3__img">
-            <a :href="adviserUrl">
-                <img :src="adviser.avatar_image" :alt="adviser.full_name">
+            <a :href="_adviser.url">
+                <img :src="_adviser.avatarImage" :alt="_adviser.fullName">
             </a>
         </div>
         <div class="p-card3__detail">
-            <a :href="adviserUrl">
-                <h3>{{ adviser.full_name }}</h3>
-                <p>{{ prText }}</p>
+            <a :href="_adviser.url">
+                <h3>{{ _adviser.fullName }}</h3>
+                <p>{{ _adviser.prTextSliced }}</p>
                 <div class="row">
                     <div class="col-lg-8 p-card3__box">
                         <h4 class="p-heading3">
@@ -17,11 +17,11 @@
                         </h4>
                         <div class="p-card3__country">
                             <div>
-                                {{ adviser.from_country.name }}
+                                {{ _adviser.fromCountryName }}
                             </div>
                             <span class="d-none d-lg-inline">/</span>
                             <div>
-                                {{ adviser.residence_country.name }}
+                                {{ _adviser.residenceCountryName }}
                             </div>
                         </div>
                     </div>
@@ -29,14 +29,14 @@
                         <h4 class="p-heading3 gender">性別</h4>
                         <div class="p-card3__gender">
                             <div class="p-label__age woman">
-                                {{ adviser.gender }}
+                                {{ _adviser.gender }}
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12 p-card3__box">
                         <h4 class="p-heading3">言語</h4>
                         <div class="p-card3__country">
-                            <p>{{ languages }}</p>
+                            <p>{{ _adviser.languagesText }}</p>
                         </div>
                     </div>
                     <div class="col-md-12 p-card3__box">
@@ -44,7 +44,7 @@
                         <div class="p-card3__country">
                             <ul class="p-profile__category">
                                 <li
-                                    v-for="category in adviser.categories"
+                                    v-for="category in _adviser.categories"
                                     :key="category.id"
                                 >
                                     <div class="p-category language">
@@ -67,12 +67,12 @@
                     <div class="inner py-4">
                         <ul class="p-timezone__list">
                             <li
-                                v-for="(dayText, day) in days"
+                                v-for="(availableTime, day) in _adviser.availableTimes"
                                 :key="day"
                             >
-                                {{ dayText }}
-                                <span class="time time-first">{{ getStartTime(day) }}</span>
-                                <span class="time time-last">{{ getEndTime(day) }}</span>
+                                {{ availableTime.day }}
+                                <span class="time time-first">{{ availableTime.start }}</span>
+                                <span class="time time-last">{{ availableTime.end }}</span>
                             </li>
                         </ul>
                     </div>
@@ -83,6 +83,8 @@
 </template>
 
 <script>
+import { Adviser } from './models/Adviser'
+
 export default {
     name: 'SearchAdviser',
 
@@ -93,45 +95,10 @@ export default {
         },
     },
 
-    data: () => ({
-        days: {
-            monday: '月',
-            tuesday: '火',
-            wednesday: '水',
-            thursday: '木',
-            friday: '金',
-            saturday: '土',
-            sunday: '日',
-        },
-    }),
-
     computed: {
-        adviserUrl () {
-            return location.origin + '/advisers/' + this.adviser.id
-        },
-        prText () {
-            if (this.adviser.pr_text.length <= 200) {
-                return this.adviser.pr_text
-            } else {
-                return this.adviser.pr_text.slice(0, 200) + '...'
-            }
-        },
-        languages () {
-            return this.adviser.languages.map(({name}) => name).join(' / ')
+        _adviser () {
+            return new Adviser(this.adviser)
         }
-    },
-
-    methods: {
-        getStartTime (day) {
-            return this.adviser[`available_time_${day}_start`]
-        },
-        getEndTime (day) {
-            return this.adviser[`available_time_${day}_end`]
-        },
     },
 }
 </script>
-
-<style scoped>
-
-</style>
