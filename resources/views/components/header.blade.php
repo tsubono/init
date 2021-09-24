@@ -31,7 +31,7 @@
                             ログイン
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('mate.login') }}">メイトログイン</a></li>
+                            <li><a class="dropdown-item" href="{{ route('mate.login') }}">受講者ログイン</a></li>
                             <li><a class="dropdown-item" href="{{ route('adviser.login') }}">講師ログイン</a></li>
                         </ul>
                     </div>
@@ -74,7 +74,7 @@
                     ログイン
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="{{ route('mate.login') }}">メイトログイン</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mate.login') }}">受講者ログイン</a></li>
                     <li><a class="dropdown-item" href="{{ route('adviser.login') }}">講師ログイン</a></li>
                 </ul>
             </div>
@@ -109,7 +109,7 @@
                     @elseif (auth()->guard('admin')->check())
                         <!-- TODO -->
                         <li class="nav-link {{ request()->is('admin/advisers/*', 'admin/advisers/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.advisers.index') }}">講師管理</a></li>
-                        <li class="nav-link {{ request()->is('admin/mates', 'admin/mates/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.mates.index') }}">メイト管理</a></li>
+                        <li class="nav-link {{ request()->is('admin/mates', 'admin/mates/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.mates.index') }}">受講者管理</a></li>
                         <li class="nav-link {{ request()->is('admin/coins', 'admin/coins/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.coins.index') }}">コイン管理</a></li>
                         <li class="nav-link {{ request()->is('admin/attendances', 'admin/attendances/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.attendances.index') }}">受講管理</a></li>
                         <li class="nav-link {{ request()->is('admin/transfer-requests', 'admin/transfer-requests/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.transfer-requests.index') }}">振り込み申請管理</a></li>

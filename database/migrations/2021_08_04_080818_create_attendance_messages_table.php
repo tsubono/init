@@ -17,7 +17,7 @@ class CreateAttendanceMessagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('attendance_id')->comment('受講ID');
             $table->unsignedBigInteger('adviser_user_id')->nullable()->comment('講師ユーザーID');
-            $table->unsignedBigInteger('mate_user_id')->nullable()->comment('メイトユーザーID');
+            $table->unsignedBigInteger('mate_user_id')->nullable()->comment('受講者ユーザーID');
             $table->text('content')->nullable()->comment('内容');
             $table->string('file_path_1')->nullable()->comment('ファイルパス1');
             $table->string('file_path_2')->nullable()->comment('ファイルパス2');

@@ -42,7 +42,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * メイトプロフィール設定 (基本情報)
+     * 受講者プロフィール設定 (基本情報)
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -56,7 +56,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * メイトプロフィール更新処理 (基本情報)
+     * 受講者プロフィール更新処理 (基本情報)
      *
      * @param MateUserBasicRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -74,7 +74,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * メイトプロフィール設定 (学びたい設定)
+     * 受講者プロフィール設定 (学びたい設定)
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -89,7 +89,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * メイトプロフィール更新処理 (学びたい設定)
+     * 受講者プロフィール更新処理 (学びたい設定)
      *
      * @param MateUserLearnRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -104,7 +104,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * メイトプロフィール設定 (パスワード)
+     * 受講者プロフィール設定 (パスワード)
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -116,7 +116,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * メイトプロフィール更新処理 (パスワード)
+     * 受講者プロフィール更新処理 (パスワード)
      *
      * @param MateUserPasswordRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -134,7 +134,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * メイトプロフィール設定 (通知設定)
+     * 受講者プロフィール設定 (通知設定)
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -146,7 +146,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * メイトプロフィール更新処理 (通知設定)
+     * 受講者プロフィール更新処理 (通知設定)
      *
      * @param MateUserNoticeRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -159,7 +159,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * メイトユーザー退会
+     * 受講者ユーザー退会
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -168,7 +168,7 @@ class ProfileController extends Controller
         $user = auth()->guard('mate')->user();
         // DBからユーザー削除
         $this->mateUserRepository->destroy($user->id);
-        // メイトユーザーへ退会完了通知
+        // 受講者ユーザーへ退会完了通知
         Mail::to($user->email)->send(
             new WithdrawalMail($user)
         );

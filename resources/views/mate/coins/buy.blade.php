@@ -83,7 +83,7 @@
               amount: {
                 value: document.querySelector('[name=amount]').value * 100,
               },
-              description: 'メイトユーザーID: {{ auth()->user()->id }} によるコイン購入'
+              description: '受講者ユーザーID: {{ auth()->user()->id }} によるコイン購入'
             }],
           });
         },

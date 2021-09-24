@@ -9,7 +9,7 @@
             <ul class="nav nav-pills p-setting__tab nav-fill" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button id="basic-tab" class="nav-link active" data-bs-toggle="tab" data-bs-target="#mate" type="button" role="tab" aria-controls="mate" aria-selected="true">
-                        メイト
+                        受講者
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">

@@ -90,7 +90,7 @@ class AttendanceController extends Controller
      */
     public function request(Lesson $lesson, AttendanceRequest $request)
     {
-        // メイトのみ実行可能
+        // 受講者のみ実行可能
         if (!auth()->guard('mate')->check()) {
             abort(404);
         }
@@ -148,7 +148,7 @@ class AttendanceController extends Controller
      */
     public function cancelRequest(Attendance $attendance, Request $request)
     {
-        // メイトのみ実行可能
+        // 受講者のみ実行可能
         if (!auth()->guard('mate')->check() || !$this->checkUser($attendance)) {
             abort(404);
         }
@@ -160,7 +160,7 @@ class AttendanceController extends Controller
             $attendance = $this->attendanceRepository->update($attendance->id, [
                 'status' => Attendance::STATUS_REQUEST_CANCEL,
             ]);
-            // メイトが使用したコインを払い戻す
+            // 受講者が使用したコインを払い戻す
             $this->mateUserCoinRepository->store([
                 'mate_user_id' => $attendance->mate_user_id,
                 'amount' => -$attendance->mateUserCoin->amount, // 受講申請キャンセルなので受講時に使用した分を払い戻し
@@ -199,14 +199,14 @@ class AttendanceController extends Controller
             ]);
 
             /************* 通知 *************/
-            // メイトの場合は通知フラグがONの場合のみメール通知
+            // 受講者の場合は通知フラグがONの場合のみメール通知
             if ($attendance->mateUser->is_notice) {
-                // メイトへ受講申請結果メール通知
+                // 受講者へ受講申請結果メール通知
                 Mail::to($attendance->mateUser->email)->send(
                     new AttendanceRequestResultMail($attendance)
                 );
             }
-            // メイトへDB通知登録
+            // 受講者へDB通知登録
             $attendance->mateUser->notify(new AttendanceNotification(
                 "「{$attendance->lesson->name}」への受講申請結果が届きました",
                 $attendance->adviserUser->avatar_image,
@@ -246,7 +246,7 @@ class AttendanceController extends Controller
                 'status' => Attendance::STATUS_REJECT,
                 'reject_text' => $request->reject_text,
             ]);
-            // メイトが使用したコインを払い戻す
+            // 受講者が使用したコインを払い戻す
             $this->mateUserCoinRepository->store([
                 'mate_user_id' => $attendance->mate_user_id,
                 'amount' => -$attendance->mateUserCoin->amount, // 否認なので受講時に使用した分を払い戻し
@@ -254,14 +254,14 @@ class AttendanceController extends Controller
             ]);
 
             /************* 通知 *************/
-            // メイトの場合は通知フラグがONの場合のみメール通知
+            // 受講者の場合は通知フラグがONの場合のみメール通知
             if ($attendance->mateUser->is_notice) {
-                // メイトへ受講申請結果メール通知
+                // 受講者へ受講申請結果メール通知
                 Mail::to($attendance->mateUser->email)->send(
                     new AttendanceRequestResultMail($attendance)
                 );
             }
-            // メイトへDB通知登録
+            // 受講者へDB通知登録
             $attendance->mateUser->notify(new AttendanceNotification(
                 "「{$attendance->lesson->name}」への受講申請結果が届きました",
                 $attendance->adviserUser->avatar_image,
@@ -318,14 +318,14 @@ class AttendanceController extends Controller
             ]);
 
             /************* 通知 *************/
-            // メイトの場合は通知フラグがONの場合のみメール通知
+            // 受講者の場合は通知フラグがONの場合のみメール通知
             if ($attendance->mateUser->is_notice) {
-                // メイトへ受講完了メール通知
+                // 受講者へ受講完了メール通知
                 Mail::to($attendance->mateUser->email)->send(
                     new AttendanceCloseMail($attendance)
                 );
             }
-            // メイトへDB通知登録
+            // 受講者へDB通知登録
             $attendance->mateUser->notify(new AttendanceNotification(
                 "「{$attendance->lesson->name}」の受講が完了しました",
                 $attendance->adviserUser->avatar_image,
@@ -361,9 +361,9 @@ class AttendanceController extends Controller
         if (auth()->guard('adviser')->check()) {
             // 原因は講師
             $cancel_cause_adviser_user_id = $attendance->adviser_user_id;
-            // キャンセルしたのがメイトの場合
+            // キャンセルしたのが受講者の場合
         } else {
-            // 原因はメイト
+            // 原因は受講者
             $cancel_cause_mate_user_id = $attendance->mate_user_id;
         }
 
@@ -386,7 +386,7 @@ class AttendanceController extends Controller
             $toUser = auth()->guard('adviser')->check() ? $attendance->mateUser : $attendance->adviserUser;
             $fromUser = auth()->guard('adviser')->check() ? $attendance->adviserUser : $attendance->mateUser;
             $userType = is_null($cancel_cause_mate_user_id) ? 'mate' : 'adviser';
-            // メイトの場合は通知フラグがONの場合のみメール通知
+            // 受講者の場合は通知フラグがONの場合のみメール通知
             if ($userType === 'adviser' || ($userType === 'mate' && $attendance->mateUser->is_notice)) {
                 // 相手ユーザーへキャンセルメール通知
                 Mail::to($toUser->email)->send(
@@ -427,9 +427,9 @@ class AttendanceController extends Controller
         $cancel_cause_mate_user_id = $cancel_cause_adviser_user_id = null;
         // 通報したのが講師の場合
         if (auth()->guard('adviser')->check()) {
-            // 原因はメイト
+            // 原因は受講者
             $cancel_cause_mate_user_id = $attendance->mate_user_id;
-        // 通報したのがメイトの場合
+        // 通報したのが受講者の場合
         } else {
             // 原因は講師
             $cancel_cause_adviser_user_id = $attendance->adviser_user_id;
@@ -452,7 +452,7 @@ class AttendanceController extends Controller
             $toUser = auth()->guard('adviser')->check() ? $attendance->mateUser : $attendance->adviserUser;
             $fromUser = auth()->guard('adviser')->check() ? $attendance->adviserUser : $attendance->mateUser;
             $userType = auth()->guard('adviser')->check() ? 'mate' : 'adviser';
-            // メイトの場合は通知フラグがONの場合のみメール通知
+            // 受講者の場合は通知フラグがONの場合のみメール通知
             if ($userType === 'adviser' || ($userType === 'mate' && $attendance->mateUser->is_notice)) {
                 // 相手ユーザーへ通報メール通知
                 Mail::to($toUser->email)->send(
@@ -479,9 +479,9 @@ class AttendanceController extends Controller
 
     /**
      * 講師からの通報による払い戻し処理
-     * = メイトが受講に現れなかった
+     * = 受講者が受講に現れなかった
      *
-     * ★ メイトへの受講料のコイン返還はしない
+     * ★ 受講者への受講料のコイン返還はしない
      * ★ 受講料の50％は講師が獲得
      * 
      * @param Attendance $attendance
@@ -510,10 +510,10 @@ class AttendanceController extends Controller
     }
 
     /**
-     * メイトからの通報による払い戻し処理
+     * 受講者からの通報による払い戻し処理
      * = 講師が受講に現れなかった
      *
-     * ★ メイトに全コイン返金
+     * ★ 受講者に全コイン返金
      * ★ 講師からペナルティとして受講料の100％のキャンセル料を徴収
      *
      * @param Attendance $attendance
@@ -523,7 +523,7 @@ class AttendanceController extends Controller
         // 受講に支払われた金額を算出
         $price = -$attendance->mateUserCoin->amount * 100;
 
-        /***** メイトへのコイン返金 *****/
+        /***** 受講者へのコイン返金 *****/
         $this->mateUserCoinRepository->store([
             'mate_user_id' => $attendance->mate_user_id,
             'amount' => -$attendance->mateUserCoin->amount, // 全額返金のため使用した分を払い戻し
@@ -541,14 +541,14 @@ class AttendanceController extends Controller
             'price' => -$price,
             'subtotal' => -$price,
             'status' => AttendanceSale::STATUS_CONFIRMED,
-            'note' => "メイトからの「{$attendance->lesson->name}」の受講通報によりペナルティ金額を減額",
+            'note' => "受講者からの「{$attendance->lesson->name}」の受講通報によりペナルティ金額を減額",
         ]);
     }
 
     /**
      * 講師からのキャンセルによる払い戻し
      *
-     * ★ メイトに全コイン返金
+     * ★ 受講者に全コイン返金
      * ★ 講師からペナルティとして(受講料 * 負担率)のペナルティ金額を徴収
      * 
      * @param Attendance $attendance
@@ -559,7 +559,7 @@ class AttendanceController extends Controller
         // 受講に支払われた金額を算出
         $price = -$attendance->mateUserCoin->amount * 100;
 
-        /***** メイトへのコイン返金 *****/
+        /***** 受講者へのコイン返金 *****/
         $this->mateUserCoinRepository->store([
             'mate_user_id' => $attendance->mateUser->id,
             'amount' => -$attendance->mateUserCoin->amount, // 全額返金のため使用した分を払い戻し
@@ -586,9 +586,9 @@ class AttendanceController extends Controller
     }
 
     /**
-     * メイトからのキャンセルによる払い戻し
+     * 受講者からのキャンセルによる払い戻し
      *
-     * ★ メイトにペナルティ金額 (= 受講料 * 負担率) を差し引いたコインを返金
+     * ★ 受講者にペナルティ金額 (= 受講料 * 負担率) を差し引いたコインを返金
      * ★ 講師はペナルティ金額の半分を獲得
      * 
      * @param Attendance $attendance
@@ -599,7 +599,7 @@ class AttendanceController extends Controller
         // 受講に支払われた金額を算出
         $price = -$attendance->mateUserCoin->amount * 100;
         
-        /***** メイトへのコイン返金 *****/
+        /***** 受講者へのコイン返金 *****/
         // 定数で設定している負担率から、ペナルティ金額を算出 & コインに変換
         $penaltyAmount = -$attendance->mateUserCoin->amount - ($price * config('const.cancel_rate.to_mate.' . $dayBefore)) / 100;
         $this->mateUserCoinRepository->store([
@@ -623,7 +623,7 @@ class AttendanceController extends Controller
             'fee' => $fee,
             'subtotal' => intval($halfPenaltyPrice) - $fee,
             'status' => AttendanceSale::STATUS_CONFIRMED,
-            'note' => "メイトからの「{$attendance->lesson->name}」の受講キャンセルによりペナルティ金額を増額",
+            'note' => "受講者からの「{$attendance->lesson->name}」の受講キャンセルによりペナルティ金額を増額",
         ]);
     }
 

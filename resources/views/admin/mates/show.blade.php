@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'メイト詳細')
+@section('title', '受講者詳細')
 
 @section('content')
     <section class="p-admin-show l-content-block">
@@ -44,7 +44,7 @@
 
             <div class="my-5 text-center">
                 <a href="{{ route('admin.mates.index') }}" class="p-btn p-btn__defalut d-inline-block px-80px">
-                    メイト一覧へ戻る
+                    受講者一覧へ戻る
                 </a>
             </div>
         </div><!-- /.container -->

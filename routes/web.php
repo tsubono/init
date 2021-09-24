@@ -88,7 +88,7 @@ Route::middleware(['check.maintenance'])->namespace('App\Http\Controllers')->gro
     });
 
     /**
-     * メイト Group
+     * 受講者 Group
      */
     Route::prefix('mate')->as('mate.')->namespace('Mate')->group(function () {
         Auth::routes(['verify' => true]);
@@ -124,7 +124,7 @@ Route::middleware(['check.maintenance'])->namespace('App\Http\Controllers')->gro
             Route::post('/advisers/export-csv', 'AdviserController@exportCsv')->name('advisers.export-csv');
             Route::get('/advisers/{adviserUser}', 'AdviserController@show')->name('advisers.show');
             Route::post('/advisers/{adviserUser}', 'AdviserController@update')->name('advisers.update');
-            // メイト管理
+            // 受講者管理
             Route::get('/mates', 'MateController@index')->name('mates.index');
             Route::post('/mates/export-csv', 'MateController@exportCsv')->name('mates.export-csv');
             Route::get('/mates/{mateUser}', 'MateController@show')->name('mates.show');

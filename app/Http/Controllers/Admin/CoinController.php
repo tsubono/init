@@ -90,7 +90,7 @@ class CoinController extends Controller
     {
         return [
             'ID',
-            'メイトユーザーID',
+            '受講者ユーザーID',
             '枚数',
             'PAY.JP決済ID',
             'PayPal取引ID',

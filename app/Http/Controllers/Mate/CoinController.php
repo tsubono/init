@@ -93,7 +93,7 @@ class CoinController extends Controller
                 "customer" => $customer->id,
                 "amount" => $request->price,
                 "currency" => 'jpy',
-                "description" => "メイトユーザーID: {$mateUser->id} によるコイン購入"
+                "description" => "受講者ユーザーID: {$mateUser->id} によるコイン購入"
             ]);
 
             /**
@@ -162,7 +162,7 @@ class CoinController extends Controller
             // payjpで顧客新規登録 & カード登録
             $customer = \Payjp\Customer::create([
                 'card' => $request->get('payjp-token'),
-                'description' => "メイトユーザーID: {$mateUser->id}",
+                'description' => "受講者ユーザーID: {$mateUser->id}",
             ]);
         }
 

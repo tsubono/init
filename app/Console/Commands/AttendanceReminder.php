@@ -62,9 +62,9 @@ class AttendanceReminder extends Command
                         new AttendanceReminderMail($attendance, 'adviser')
                     );
 
-                    // メイトの場合は通知フラグがONの場合のみメール通知
+                    // 受講者の場合は通知フラグがONの場合のみメール通知
                     if ($attendance->mateUser->is_notice) {
-                        // メイトへリマインダーメール通知
+                        // 受講者へリマインダーメール通知
                         Mail::to($attendance->mateUser->email)->send(
                             new AttendanceReminderMail($attendance)
                         );

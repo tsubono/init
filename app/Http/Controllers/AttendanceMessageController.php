@@ -86,7 +86,7 @@ class AttendanceMessageController extends Controller
             $toUser = !is_null($adviserUserId) ? $attendance->mateUser : $attendance->adviserUser;
             $fromUser = !is_null($adviserUserId) ? $attendance->adviserUser : $attendance->mateUser;
             $userType = !is_null($adviserUserId) ? 'mate' : 'adviser';
-            // メイトの場合は通知フラグがONの場合のみメール通知
+            // 受講者の場合は通知フラグがONの場合のみメール通知
             if ($userType === 'adviser' || ($userType === 'mate' && $attendance->mateUser->is_notice)) {
                 // 相手ユーザーへメッセージメール通知
                 Mail::to($toUser->email)->send(

@@ -18,7 +18,7 @@ class CreateAttendanceReviewsTable extends Migration
             $table->unsignedBigInteger('attendance_id')->comment('受講ID');
             $table->unsignedBigInteger('lesson_id')->comment('レッスンID');
             $table->unsignedBigInteger('adviser_user_id')->nullable()->comment('講師ユーザーID');
-            $table->unsignedBigInteger('mate_user_id')->nullable()->comment('メイトユーザーID');
+            $table->unsignedBigInteger('mate_user_id')->nullable()->comment('受講者ユーザーID');
             $table->integer('rate')->comment('評点');
             $table->text('content')->comment('内容');
             $table->timestamps();

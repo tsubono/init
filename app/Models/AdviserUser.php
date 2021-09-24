@@ -181,7 +181,7 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * lessons から 受講メイト数を算出する
+     * lessons から 受講受講者数を算出する
      */
     public function getMateCountAttribute()
     {

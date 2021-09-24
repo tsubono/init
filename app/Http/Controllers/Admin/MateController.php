@@ -23,7 +23,7 @@ class MateController extends Controller
     }
 
     /**
-     * メイト一覧
+     * 受講者一覧
      *
      * @param Request $request
      * @return \Illuminate\Contracts\Support\Renderable
@@ -38,7 +38,7 @@ class MateController extends Controller
     }
 
     /**
-     * メイト詳細
+     * 受講者詳細
      *
      * @param MateUser $mateUser
      * @return \Illuminate\Contracts\View\View
@@ -49,7 +49,7 @@ class MateController extends Controller
     }
 
     /**
-     * メイト更新
+     * 受講者更新
      *
      * @param MateUser $mateUser
      * @param Request $request
@@ -63,7 +63,7 @@ class MateController extends Controller
     }
 
     /**
-     * メイトCSVエクスポート
+     * 受講者CSVエクスポート
      *
      * @param Request $request
      * @param FileService $fileService

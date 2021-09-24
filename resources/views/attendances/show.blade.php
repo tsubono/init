@@ -177,7 +177,7 @@
                 @endif
             </div>
             <div class="mb-3">
-                <h3 class="p-heading3">メイト</h3>
+                <h3 class="p-heading3">受講者</h3>
                 <p>{{ $attendance->mateUser->full_name ?? '退会ユーザー' }}</p>
             </div>
             <div class="mb-3">
