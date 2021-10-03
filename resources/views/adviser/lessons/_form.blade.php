@@ -86,13 +86,7 @@
             <h3 class="p-heading2">必要コイン<span class="badge bg-danger ms-2">必須</span></h3>
             <input type="number" class="form-control" name="coin_amount"
                    value="{{ old('coin_amount', $lesson->coin_amount) }}">
-        </div>
-
-        <div class="col-12">
-            <h3 class="p-heading2">必要ポイント<span class="badge bg-danger ms-2">必須</span></h3>
-            <textarea rows="10" class="form-control"
-                      name="point_text">{{ old('point_text', $lesson->point_text) }}</textarea>
-            @error('point_text')
+            @error('coin_amount')
             <div class="p-error-text" role="alert">
                 <strong>{{ $message }}</strong>
             </div>

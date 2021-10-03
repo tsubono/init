@@ -32,8 +32,14 @@ class LessonRequest extends FormRequest
             'mst_language_id' => 'required',
             'mst_category_ids' => 'required',
             'coin_amount' => 'required|int|min:1',
-            'point_text' => 'required|max:3000',
             'movies' => 'array',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'レッスン名'
         ];
     }
 }

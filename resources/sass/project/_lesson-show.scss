@@ -3,9 +3,11 @@
     display: flex;
     flex: 1;
     flex-wrap: wrap;
+
     & > * + * {
       margin-left: 8px;
     }
+
     .p-category {
       @include breakpoint-md {
         padding: 8px;
@@ -13,17 +15,20 @@
       }
     }
   }
+
   &__avatar {
     border-radius: 400px;
     overflow: hidden;
     position: relative;
     max-width: 250px;
     margin: auto;
+
     &::before {
       content: "";
       display: block;
       padding-top: 100%;
     }
+
     img {
       position: absolute;
       width: 100%;
@@ -50,6 +55,20 @@
     @include breakpoint-md {
       margin: auto;
       margin-bottom: 20px;
+    }
+  }
+
+  .request-form {
+    padding: 3rem;
+
+    @include breakpoint-sm {
+      padding: 1rem;
+    }
+  }
+
+  .adviser-info {
+    @include breakpoint-sm {
+      margin-top: 30px;
     }
   }
 }

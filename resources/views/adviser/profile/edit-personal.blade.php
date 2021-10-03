@@ -65,7 +65,7 @@
                                 <div class="col-6">
                                     <div class="form-check">
                                         <input type="radio"
-                                                class="form-check-input"
+                                               class="form-check-input"
                                                name="payment_method"
                                                id="form-radio__payment2"
                                                value="Paypal送金"
@@ -97,16 +97,16 @@
                                 </div>
                                 @enderror
 
-                                <h3 class="p-heading2">Paypalメールアドレス</h3>
-                                <input type="text" class="form-control" name="paypal_email" value="{{ old('paypal_email', $user->paypal_email) }}">
+                                <h3 class="p-heading2 js-paypal-only">Paypalメールアドレス</h3>
+                                <input type="text" class="form-control js-paypal-only" name="paypal_email" value="{{ old('paypal_email', $user->paypal_email) }}">
                                 @error('paypal_email')
                                 <div class="p-error-text" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </div>
                                 @enderror
 
-                                <h3 class="p-heading2">口座画像</h3>
-                                <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                                <h3 class="p-heading2 js-account-only">口座画像</h3>
+                                <div class="col-md-6 col-lg-3 mb-3 mb-lg-0 js-account-only">
                                     <h4 class="mb-2"><strong>表紙</strong></h4>
                                     <file-upload
                                             name="account_image_1"
@@ -114,7 +114,7 @@
                                             upload-dir="uploaded/advisers/{{ $user->id }}/personal"
                                     ></file-upload>
                                 </div>
-                                <div class="col-md-6 col-lg-3">
+                                <div class="col-md-6 col-lg-3 js-account-only">
                                     <h4 class="mb-2"><strong>見開きページ</strong></h4>
                                     <file-upload
                                             name="account_image_2"
@@ -140,4 +140,30 @@
             </form>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        togglePaymentDisplay()
+
+        document.getElementsByName('payment_method').forEach(
+          target => target.addEventListener('change',
+            () => {
+              togglePaymentDisplay()
+          })
+        )
+      })
+
+      function togglePaymentDisplay() {
+        const selectedPayment = document.querySelector('input[name="payment_method"]:checked').value
+        if (selectedPayment === 'Paypal送金') {
+          Array.from(document.getElementsByClassName('js-paypal-only')).forEach(target => target.style.display = 'block')
+          Array.from(document.getElementsByClassName('js-account-only')).forEach(target => target.style.display = 'none')
+        } else if (selectedPayment === '口座振替') {
+          Array.from(document.getElementsByClassName('js-paypal-only')).forEach(target => target.style.display = 'none')
+          Array.from(document.getElementsByClassName('js-account-only')).forEach(target => target.style.display = 'block')
+        }
+      }
+    </script>
 @endsection

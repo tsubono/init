@@ -69,9 +69,28 @@
                 </div><!-- /.row -->
 
                 <div class="my-4">
-                    <button type="submit" class="p-btn p-btn__defalut">送信する</button>
+                    <div>
+                        <div class="form-check p-card">
+                            <input class="form-check-input" type="checkbox" name="agree_check" onchange="toggleSubmitButton()" />
+                            <label class="form-check-label">
+                                <a href="{{ route('privacy') }}" target="_blank" class="primary-link">プライバシーポリシー</a>に同意する
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="p-btn p-btn__defalut" id="submitButton" disabled>送信する</button>
                 </div>
             </form>
         </div>
     </section>
+@endsection
+@section ('js')
+   <script>
+        function toggleSubmitButton() {
+          if (document.querySelector('input[name="agree_check"]:checked') === null) {
+            document.getElementById('submitButton').disabled = true
+          } else {
+            document.getElementById('submitButton').disabled = false
+          }
+        }
+   </script>
 @endsection

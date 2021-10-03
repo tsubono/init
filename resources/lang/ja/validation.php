@@ -156,7 +156,6 @@ return [
         'mst_language_ids' => '言語',
         'mst_category_ids' => 'カテゴリ',
         'coin_amount' => '必要コイン',
-        'point_text' => '必要ポイント',
         'movies' => '動画',
         'birthday_y' => '生年月日 (西暦)',
         'birthday_m' => '生年月日 (月)',

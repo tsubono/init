@@ -5,7 +5,7 @@
 @section('content')
     <section class="l-content-block p-team">
         <div class="container pb-100px">
-            <p>制定・施行日: 2021年9月16日</p>
+            <p>制定・施行日: 令和3年9月17日</p>
             <br>
             <p>
                 <b>・知的財産権について</b><br>

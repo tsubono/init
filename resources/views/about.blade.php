@@ -29,6 +29,7 @@
                     <h3 class="p-room-intro__head">
                         <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                             ビジネスルーム
+                            <p>語学（ビジネス用語）、<br class="d-none d-md-block">セミナーや資格取得など、ビジネスで<br class="d-none d-md-block">必要となるスキルを学べます。</p>
                         </button>
                     </h3>
                 </div>
@@ -52,6 +53,7 @@
                     <h3 class="p-room-intro__head">
                         <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             自分磨きルーム
+                            <p>ファッション、ライフスタイル、ビューティー、<br class="d-none d-md-block">フィットネスなどの知識を学べます。<br>講師と一緒に楽しく自分磨きを。</p>
                         </button>
                     </h3>
                 </div>
@@ -83,6 +85,7 @@
                     <h3 class="p-room-intro__head">
                         <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             スキルアップルーム
+                            <p>語学（フリートーク）、音楽、スポーツ、<br class="d-none d-md-block">IT、芸術、 セラピーなど、様々な分野にて<br class="d-none d-md-block">新たな趣味を見つけ、自分自身の向上を目指せます。</p>
                         </button>
                     </h3>
                 </div>
@@ -163,8 +166,8 @@
                         </div>
                         <div class="p-aboutlist__text">
                             <h3>Init Pointの購入</h3>
-                            <p>Initでは、専用ポイントを購入し、毎レッスンお申込みの際にご使用頂きます。<br>
-                                1ポイント＝100円（税別）でクレジットカードやPaypalから決済選択できます。</p>
+                            <p>Initでは、専用コインを購入し、毎レッスンお申込みの際にご使用頂きます。<br>
+                                1コイン＝100円（税別）でクレジットカードやPaypalから決済選択できます。</p>
                         </div>
                     </li>
                     <li class="p-aboutlist__box num04">

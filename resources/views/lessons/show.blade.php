@@ -72,14 +72,18 @@
                         </div><!-- /.col-md-12 -->
                         @if (auth()->guard('mate')->check())
                             <div class="col-md-12 mt-5">
-                                <div class="border p-5">
+                                <div class="border request-form">
                                     <form class="p-form" action="{{ route('attendances.request', compact('lesson')) }}" method="post">
                                         @csrf
                                         <div>
                                             <label class="mb-2">希望日時</label>
-                                            <div class="d-flex pe-100px">
-                                                <input type="date" class="form-control" placeholder="2021/12/12" name="date" value="{{ old('date') }}">
-                                                <input type="text" class="form-control ms-4" placeholder="20:30" name="time" value="{{ old('time') }}">
+                                            <div class="row pe-100px">
+                                                <div class="col-md-6 col-xs-12">
+                                                    <input type="date" class="form-control" placeholder="2021/12/12" name="date" value="{{ old('date') }}">
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <input type="text" class="form-control" placeholder="20:30" name="time" value="{{ old('time') }}">
+                                                </div>
                                             </div>
                                             @error('date')
                                             <div class="p-error-text" role="alert">
@@ -119,7 +123,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-3 col-md-4 adviser-info">
                     @include('components.adviser-info-block', ['adviserUser' => $lesson->adviserUser])
 
                     <div class="text-center mt-5">

@@ -3,25 +3,26 @@
 @section('title', 'コイン購入')
 
 @section('content')
+    <div class="alert alert-warning text-center">コインの有効期限は購入日より{{ config('const.coin_expiration_month') }}ヶ月です</div>
     <section class="p-coin l-content-block">
         <div class="container">
             <div class="row">
-                <div class="col-8">
+                <div class="col-md-8 col-xs-12">
                     <h3 class="p-heading2">購入コイン枚数<span class="badge bg-danger ms-2">必須</span></h3>
                     <input type="number" name="amount" class="form-control" placeholder="コイン枚数を入力してください" min="1" />
                     <p class="mt-1">※ 1コイン = 100円になります</p>
                     <p class="p-error-text" id="errorTxt"></p>
                 </div>
             </div>
-            <div class="row" id="paymentButtons">
-                <div class="col-6">
-                    <h3 class="p-heading3 text-center mt-5">PayPal決済</h3>
+            <div class="row button-area" id="paymentButtons">
+                <div class="col-md-6 col-xs-12">
+                    <h3 class="p-heading3 text-center mt-3">PayPal決済</h3>
                     <!-- PayPal決済ボタン表示 -->
                     <div id="paypal-button-container" class="pe-none o-60"></div>
                 </div>
 
-                <div class="col-6">
-                    <h3 class="p-heading3 text-center mt-5">PAY.JP決済</h3>
+                <div class="col-md-6 col-xs-12">
+                    <h3 class="p-heading3 text-center mt-3">PAY.JP決済</h3>
                     <form action="{{ route('mate.coins.payment-by-payjp') }}" method="post" id="payjpForm1" class="pe-none o-60">
                         @csrf
                         <input type="hidden" name="price" class="price-input" />

@@ -65,7 +65,9 @@ export default {
     }),
 
     created () {
-        this.selected = Array.isArray(this.value) ? this.value : []
+      this.selected = Array.isArray(this.value) ? this.value.map(function(value) {
+        return Number(value);
+      }) : []
     },
 
     computed: {

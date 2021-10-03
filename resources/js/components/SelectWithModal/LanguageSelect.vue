@@ -66,7 +66,7 @@ export default {
     }),
 
     created () {
-        this.selected = this.value
+        this.selected = Number(this.value)
     },
 
     computed: {
