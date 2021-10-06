@@ -17,6 +17,7 @@ interface AdviserUserRepositoryInterface
         ?string $name,
         ?string $country,
         ?string $residenceCountry,
+        ?string $age,
         ?string $gender
     ): LengthAwarePaginator;
     public function getByConditionPaginateForAdmin(array $condition, int $perCount = 15): LengthAwarePaginator;

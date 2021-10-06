@@ -67,6 +67,7 @@ class AdviserController extends Controller
             $request->get('name'),
             $request->get('country'),
             $request->get('residence-country'),
+            $request->get('age'),
             $request->get('gender')
         );
 
