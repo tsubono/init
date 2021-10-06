@@ -8,6 +8,7 @@
         :languages="{{ $languages }}"
         :countries="{{ $countries }}"
         :advisers="{{ $advisers }}"
+        :ages="{{ $ages }}"
         :total="{{ $total }}"
     ></search-advisers>
 @endsection

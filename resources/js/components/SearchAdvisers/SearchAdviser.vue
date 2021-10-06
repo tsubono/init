@@ -28,7 +28,10 @@
                     <div class="col-lg-4 p-card3__box">
                         <h4 class="p-heading3 gender">性別</h4>
                         <div class="p-card3__gender">
-                            <div class="p-label__age woman">
+                            <div
+                                class="p-label__age"
+                                :class="genderIconClass"
+                            >
                                 {{ _adviser.gender }}
                             </div>
                         </div>
@@ -98,7 +101,11 @@ export default {
     computed: {
         _adviser () {
             return new Adviser(this.adviser)
-        }
+        },
+
+        genderIconClass () {
+            return this._adviser.gender === '女性' ? 'woman' : 'men'
+        },
     },
 }
 </script>
