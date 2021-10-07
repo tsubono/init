@@ -107,8 +107,19 @@
                             <h3 class="p-heading3">
                                 <span class="d-none d-md-inline">講師の</span>年齢
                             </h3>
-                            <select class="form-select">
-                                <option selected>すべて</option>
+                            <select
+                                class="form-select"
+                                v-model="formData.age"
+                                @change="search"
+                            >
+                                <option value="">すべて</option>
+                                <option
+                                    v-for="age in ages"
+                                    :key="age"
+                                    :value="age"
+                                >
+                                    {{ age }}
+                                </option>
                             </select>
                         </div>
                         <div class="col-lg-3 col-6">
@@ -143,6 +154,11 @@ export default {
             required: true,
         },
 
+        ages: {
+            type: Array,
+            required: true,
+        },
+
         categories: {
             type: Array,
             required: true,
@@ -166,6 +182,7 @@ export default {
             name: '',
             country: '',
             residenceCountry: '',
+            age: '',
             gender: '',
         },
     }),

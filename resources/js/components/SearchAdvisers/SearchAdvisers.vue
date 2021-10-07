@@ -2,6 +2,7 @@
     <div>
         <SearchAdvisersForm
             :search-params="searchParams"
+            :ages="ages"
             :categories="categories"
             :languages="languages"
             :countries="countries"
@@ -52,6 +53,11 @@ export default {
             type: Array,
             required: true,
         },
+
+        ages: {
+            type: Array,
+            required: true,
+        },
     },
 
     data: () => ({
@@ -61,6 +67,7 @@ export default {
             name: '',
             country: '',
             residenceCountry: '',
+            age: '',
             gender: '',
         },
         order: '',

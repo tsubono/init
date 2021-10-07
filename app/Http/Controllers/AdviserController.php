@@ -46,6 +46,18 @@ class AdviserController extends Controller
         $categories = $this->mstCategoryRepository->all();
         $languages = $this->mstLanguageRepository->all();
         $countries = $this->mstCountryRepository->all();
+        $ages = collect([
+            '〜19歳',
+            '20〜29歳',
+            '30〜39歳',
+            '40〜49歳',
+            '50〜59歳',
+            '60〜69歳',
+            '70〜79歳',
+            '80〜89歳',
+            '90〜99歳',
+            '100〜109歳',
+        ]);
 
         $advisersPagination = $this->adviserUserRepository->getByConditionPaginate(
             10,
@@ -55,13 +67,14 @@ class AdviserController extends Controller
             $request->get('name'),
             $request->get('country'),
             $request->get('residence-country'),
+            $request->get('age'),
             $request->get('gender')
         );
 
         $advisers = collect($advisersPagination->items());
         $total = $advisersPagination->total();
 
-        return view('advisers.index', compact('categories', 'languages', 'countries', 'advisers', 'total'));
+        return view('advisers.index', compact('ages', 'categories', 'languages', 'countries', 'advisers', 'total'));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Repositories\AdviserUser;
 
 use App\Models\AdviserUser;
+use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
@@ -164,6 +165,7 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
         ?string $name,
         ?string $country,
         ?string $residenceCountry,
+        ?string $age,
         ?string $gender
     ): LengthAwarePaginator {
         $query = $this->adviserUser
@@ -200,6 +202,16 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
             $query->whereHas('residenceCountry', function (Builder $query) use ($residenceCountry) {
                 $query->where('name', $residenceCountry);
             });
+        }
+        if ($age) {
+            $ageEnd = (int) preg_replace("/^.*〜(\d+)歳$/", "$1", $age);
+            $ageStart = $ageEnd === 19 ? 0 : $ageEnd - 9;
+            $ageStartBirthday = Carbon::now()->subYears($ageStart)->toDate();
+            $ageEndBirthday = Carbon::now()->subYears($ageEnd)->toDate();
+
+            $query
+                ->where('birthday', '>=', $ageEndBirthday)
+                ->where('birthday', '<', $ageStartBirthday);
         }
         if ($gender) {
             $query->where('gender', $gender);
