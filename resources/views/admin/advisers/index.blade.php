@@ -68,24 +68,6 @@
                                     TEL：{{ $adviserUser->tel }}
                                     メール：{{ $adviserUser->email }}
                                 </div>
-                                <hr class="my-3">
-                                <form action="{{ route('admin.advisers.update', compact('adviserUser')) }}" method="post">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-md-4 d-flex flex-wrap align-items-center">
-                                            <span class="small">保持コイン：</span>
-                                            <input class="form-control w-50" name="amount" value="{{ $adviserUser->total_coin_amount }}">
-                                            <span class="mx-2">枚</span>
-                                        </div>
-                                        <div class="col-md-4 d-flex flex-wrap align-items-center">
-                                            <span class="small">有効期限：</span>
-                                            <input class="form-control w-75" name="expiration_date" value="{{ $adviserUser->total_coin_amount }}">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button class="p-btn--rect py-2 px-2 btn-success" disabled>更新する</button>
-                                        </div>
-                                    </div>
-                                </form>
                             </div>
                             <div class="p-card3__controls">
                                 <a href="{{ route('admin.advisers.show', compact('adviserUser')) }}" class="p-btn p-btn__defalut d-inline-block mt-2 py-2 px-4">
