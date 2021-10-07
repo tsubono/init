@@ -82,7 +82,7 @@
                                                     <input type="date" class="form-control" placeholder="2021/12/12" name="date" value="{{ old('date') }}">
                                                 </div>
                                                 <div class="col-md-4 col-xs-12">
-                                                    <input type="text" class="form-control" placeholder="20:30" name="time" value="{{ old('time') }}">
+                                                    <input type="time" class="form-control" placeholder="20:30" name="time" value="{{ old('time') }}">
                                                 </div>
                                             </div>
                                             @error('date')

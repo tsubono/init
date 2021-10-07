@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class AdviserUser extends Authenticatable implements MustVerifyEmail
 {
@@ -23,8 +24,6 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
         'adviserUserImages',
         'adviserUserPersonalInfos',
         'adviserUserMovies',
-        'languages',
-        'categories'
     ];
 
     protected $guarded = ['id'];
@@ -125,8 +124,57 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(MstCountry::class, 'residence_country_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function infoNotifications()
+    {
+        return $this->notifications()
+            ->where('data->is_information', true)
+            ->where('data->date', '<=', now());
+    }
+
+    /**
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function unreadInfoNotifications()
+    {
+        return $this->unreadNotifications()
+            ->where('data->is_information', true)
+            ->where('data->date', '<=', now());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function attendanceNotifications()
+    {
+        return $this->notifications()
+            ->where('data->is_attendance', true);
+    }
+
+    /**
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function unreadAttendanceNotifications()
+    {
+        return $this->unreadNotifications()
+            ->where('data->is_attendance', true);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function transferRequests(): HasMany
+    {
+        return $this->hasMany(TransferRequest::class);
+    }
+
+
     // ============ Attributes ============
     /**
+     * アバター画像
+     *
      * @return \Illuminate\Database\Eloquent\HigherOrderBuilderProxy|mixed|string
      */
     public function getAvatarImageAttribute()
@@ -243,6 +291,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * フルネーム
+     *
      * @return string
      */
     public function getFullNameAttribute(): string
@@ -252,6 +302,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * 紐づくカテゴリID配列
+     *
      * @return mixed
      */
     public function getCategoryIdsAttribute()
@@ -260,6 +312,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * 紐づく言語ID配列
+     *
      * @return mixed
      */
     public function getLanguageIdsAttribute()
@@ -268,6 +322,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * 誕生年
+     *
      * @return int|string
      */
     public function getBirthdayYearAttribute()
@@ -276,6 +332,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * 誕生月
+     *
      * @return int|string
      */
     public function getBirthdayMonthAttribute()
@@ -284,6 +342,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * 誕生日
+     *
      * @return int|string
      */
     public function getBirthdayDayAttribute()
@@ -292,6 +352,7 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * 個人情報 (表面)
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getPersonalInfoFrontAttribute(): Collection
@@ -302,6 +363,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * 個人情報 (裏面)
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getPersonalInfoBackAttribute(): Collection
@@ -312,6 +375,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * 公開中のレッスン
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getOpenLessonsAttribute()
@@ -322,6 +387,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * レッスンを公開できるかどうか
+     *
      * @return false
      */
     public function getCanOpenLessonAttribute(): bool
@@ -348,6 +415,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * レッスン公開のためにプロフィール登録必須な項目を取得する
+     *
      * @return string[]
      */
     private function getRequiredColumns()
@@ -373,26 +442,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function infoNotifications()
-    {
-        return $this->notifications()
-            ->where('data->is_information', true)
-            ->where('data->date', '<=', now());
-    }
-
-    /**
-     * @return \Illuminate\Database\Query\Builder
-     */
-    public function unreadInfoNotifications()
-    {
-        return $this->unreadNotifications()
-            ->where('data->is_information', true)
-            ->where('data->date', '<=', now());
-    }
-
-    /**
+     * ポップアップ表示用のお知らせ通知を取得
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getInfoNotificationsForPopupAttribute()
@@ -403,6 +454,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * 未読のお知らせ通知があるかどうか
+     *
      * @return bool
      */
     public function getIsUnreadInfoNotificationAttribute(): bool
@@ -411,24 +464,8 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function attendanceNotifications()
-    {
-        return $this->notifications()
-            ->where('data->is_attendance', true);
-    }
-
-    /**
-     * @return \Illuminate\Database\Query\Builder
-     */
-    public function unreadAttendanceNotifications()
-    {
-        return $this->unreadNotifications()
-            ->where('data->is_attendance', true);
-    }
-
-    /**
+     * ポップアップ表示用の受講通知を取得
+     *
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getAttendanceNotificationsForPopupAttribute()
@@ -439,10 +476,24 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * 未読の受講通知があるかどうか
+     *
      * @return bool
      */
     public function getIsUnreadAttendanceNotificationAttribute(): bool
     {
         return $this->unreadAttendanceNotifications()->count() !== 0;
+    }
+
+    /**
+     * 振り込み待ちの振り込み申請があるかどうか
+     *
+     * @return bool
+     */
+    public function getHasActiveTransferRequestAttribute()
+    {
+        return $this->transferRequests()
+            ->where('status', TransferRequest::STATUS_PROGRESS)
+            ->exists();
     }
 }

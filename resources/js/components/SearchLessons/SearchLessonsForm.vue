@@ -56,7 +56,7 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3 mb-md-4">
-                            <h3 class="p-heading3">ルーム名</h3>
+                            <h3 class="p-heading3">レッスン名</h3>
                             <input
                                 type="text"
                                 class="form-control"

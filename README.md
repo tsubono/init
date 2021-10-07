@@ -25,6 +25,10 @@ php artisan migrate --seed
 php artisan storage:link
 ```
 
+### ローカル用管理ユーザー (admin_users)
+email: admin@test.com
+pass: test
+
 ### ダミーデータ作成
 ```
 php artisan db:seed --class=DummyDataSeeder

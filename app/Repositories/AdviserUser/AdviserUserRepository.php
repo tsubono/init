@@ -292,7 +292,6 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
 
     /**
      * @param int $id
->>>>>>> develop
      * @return void
      * @throws \Exception
      */

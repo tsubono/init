@@ -287,9 +287,16 @@
                 </div>
             </form>
             <div class="text-end mt-3">
-                <button type="button" class="p-btn--rect btn-default small py-1 px-3" data-bs-toggle="modal" data-bs-target="#withdrawalModal">
-                    退会する
-                </button>
+                @if ($user->has_active_attendance)
+                    <button type="button" class="p-btn--rect btn-default small py-1 px-3" disabled>
+                        退会する
+                    </button>
+                    <p class="p-error-text small">受講申請中もしくは受講中のレッスンがあるため退会できません</p>
+                @else
+                    <button type="button" class="p-btn--rect btn-default small py-1 px-3" data-bs-toggle="modal" data-bs-target="#withdrawalModal">
+                        退会する
+                    </button>
+                @endif
             </div>
             <!-- 退会確認モーダル -->
             <div class="modal p-modal p-setting fade" id="withdrawalModal" tabindex="-1" aria-labelledby="withdrawalModal">

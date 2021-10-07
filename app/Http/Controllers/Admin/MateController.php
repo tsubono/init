@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\MateUser;
 use App\Repositories\MateUser\MateUserRepositoryInterface;
+use App\Repositories\MateUserCoin\MateUserCoinRepositoryInterface;
 use App\Services\FileService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -12,14 +13,19 @@ use Illuminate\Http\Request;
 class MateController extends Controller
 {
     private MateUserRepositoryInterface $mateUserRepository;
+    private MateUserCoinRepositoryInterface $mateUserCoinRepository;
 
     /**
      * MateController constructor.
      * @param MateUserRepositoryInterface $mateUserRepository
+     * @param MateUserCoinRepositoryInterface $mateUserCoinRepository
      */
-    public function __construct(MateUserRepositoryInterface $mateUserRepository)
-    {
+    public function __construct(
+        MateUserRepositoryInterface $mateUserRepository,
+        MateUserCoinRepositoryInterface $mateUserCoinRepository
+    ) {
         $this->mateUserRepository = $mateUserRepository;
+        $this->mateUserCoinRepository = $mateUserCoinRepository;
     }
 
     /**
@@ -57,7 +63,17 @@ class MateController extends Controller
      */
     public function update(MateUser $mateUser, Request $request)
     {
-        $this->mateUserRepository->update($mateUser->id, $request->all());
+        $totalCoin = $mateUser->total_coin_amount;
+        $newTotalCoin = $request->amount;
+
+        if ($totalCoin != $newTotalCoin) {
+            $this->mateUserCoinRepository->store([
+                'mate_user_id' => $mateUser->id,
+                'amount' => $newTotalCoin - $totalCoin,
+                'expiration_date' => now()->addMonths(config('const.coin_expiration_month')),
+                'note' => '運営によるコイン調整'
+            ]);
+        }
 
         return redirect(route('admin.mates.index'))->with('success_message', '更新が完了しました');
     }
