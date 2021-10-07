@@ -44,11 +44,11 @@
                     </div>
 
                     <div class="col-12">
-                        <h3 class="p-heading2">ふりがな</h3>
+                        <h3 class="p-heading2">英字</h3>
                     </div>
                     <div class="col-md-4">
                         <label>
-                            <div class="p-form__label">せい<span class="badge bg-danger ms-2">必須</span></div>
+                            <div class="p-form__label">姓<span class="badge bg-danger ms-2">必須</span></div>
                         </label>
                         <input type="text" class="form-control" value="{{ old('family_name_kana') }}" name="family_name_kana">
                         @error('family_name_kana')
@@ -59,7 +59,7 @@
                     </div>
                     <div class="col-md-4">
                         <label>
-                            <div class="p-form__label">みどるねーむ</div>
+                            <div class="p-form__label">ミドルネーム</div>
                         </label>
                         <input type="text" class="form-control" value="{{ old('middle_name_kana') }}" name="middle_name_kana">
                         @error('middle_name_kana')
@@ -70,7 +70,7 @@
                     </div>
                     <div class="col-md-4">
                         <label>
-                            <div class="p-form__label">めい<span class="badge bg-danger ms-2">必須</span></div>
+                            <div class="p-form__label">名<span class="badge bg-danger ms-2">必須</span></div>
                         </label>
                         <input type="text" class="form-control" value="{{ old('first_name_kana') }}" name="first_name_kana">
                         @error('first_name_kana')
