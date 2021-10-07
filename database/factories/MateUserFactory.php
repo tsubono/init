@@ -39,7 +39,6 @@ class MateUserFactory extends Factory
             'residence_country_id' => $this->faker->numberBetween(1, 7),
             'pr_text' => $this->faker->text,
             'is_notice' => $this->faker->randomElement([true, false]),
-            'can_apply' => true,
             'last_login_at' => now(),
         ];
     }

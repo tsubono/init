@@ -25,7 +25,7 @@ class LessonFactory extends Factory
             'name' => $this->faker->text(30),
             'coin_amount' => $this->faker->numberBetween(10, 100),
             'description' => $this->faker->realText,
-            'mst_language_id' => $this->faker->numberBetween(1, 7),
+            'mst_language_id' => $this->faker->numberBetween(1, 3),
             'is_stop' => $this->faker->randomElement([true, false]),
         ];
     }
