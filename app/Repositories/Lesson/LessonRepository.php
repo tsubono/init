@@ -89,9 +89,7 @@ class LessonRepository implements LessonRepositoryInterface
         }
 
         if ($room) {
-            $query->whereHas('categories.room', function (Builder $query) use ($room) {
-                $query->where('name', 'like', "%$room%");
-            });
+            $query->where('name', 'like', "%$room%");
         }
 
         if ($country) {
