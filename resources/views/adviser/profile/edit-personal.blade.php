@@ -16,6 +16,7 @@
                         <div class="p-form">
                             <div class="row">
                                 <h3 class="p-heading2">個人情報確認画像（表面）<span class="badge bg-danger ms-2">必須</span></h3>
+                                <p class="small mb-2">※運転免許証、保険証、マイナンバーカードのいずれかをご添付ください。</p>
                                 <div class="row">
                                     @for ($i=0; $i<4; $i++)
                                         <div class="col">
@@ -39,6 +40,7 @@
                                 </div>
 
                                 <h3 class="p-heading2">個人情報確認画像（裏面）<span class="badge bg-danger ms-2">必須</span></h3>
+                                <p class="small mb-2">※運転免許証、保険証、マイナンバーカードのいずれかをご添付ください。</p>
                                 <div class="row">
                                     @for ($i=0; $i<4; $i++)
                                         <div class="col">

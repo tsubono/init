@@ -139,7 +139,7 @@
                                         <option value="">----</option>
                                         @for ($i=1900; $i<=now()->year; $i++)
                                             <option value="{{ $i }}"
-                                                    {{ old('birthday_y', $user->birthday_year) == $i  ? 'selected' : '' }}>
+                                                    {{ old('birthday_y', (!empty($user->birthday_year) ? $user->birthday_year : 2000)) == $i  ? 'selected' : '' }}>
                                                 {{ $i }}
                                             </option>
                                         @endfor
