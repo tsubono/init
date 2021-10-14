@@ -15,6 +15,7 @@
   justify-content: flex-end;
   @include breakpoint-md {
     height: 700px;
+    top: 17%;
   }
 
   &__inner {
@@ -49,12 +50,19 @@
       font-size: 0.875rem;
     }
   }
+  .btn-area {
+    margin: 40px auto 0;
+
+    @include breakpoint-md {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      width: 85%;
+    }
+  }
   &__btn {
     max-width: 250px;
-    margin: 40px auto 0;
-    @include breakpoint-md {
-      margin: 30px auto;
-    }
+    margin: 10px auto;
   }
   &__bg {
     position: absolute;
@@ -76,6 +84,13 @@
 }
 
 .p-index-about {
+  @include breakpoint-md {
+    padding: 50px 0;
+
+    &.top {
+      padding: 125px 0 50px;
+    }
+  }
   &__inner {
     display: flex;
     align-items: center;
