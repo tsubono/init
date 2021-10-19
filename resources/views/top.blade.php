@@ -78,7 +78,7 @@
                         <div class="p-flowlist__icon">
                             <img src="{{ asset('img/flow-icon01.svg') }}" alt="">
                         </div>
-                        <p>新規登録後<br class="d-none d-md-block">ポイント購入</p>
+                        <p>新規登録後<br class="d-none d-md-block">コイン購入</p>
                     </li>
                     <li class="p-flowlist__box num02">
                         <div class="p-flowlist__num">2</div>
