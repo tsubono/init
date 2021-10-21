@@ -4,9 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
+use \App\Facades\UserTimezone as UserTimezoneFacade;
 
-class TimeZone
+class UserTimezone
 {
     /**
      * クッキーからタイムゾーンを取得して、設定に反映する
@@ -17,9 +17,9 @@ class TimeZone
      */
     public function handle(Request $request, Closure $next)
     {
-        $timezone = $request->cookie('timezone') ?? config('app.timezone');
+        $timezone = $request->cookie('timezone') ?? UserTimezoneFacade::getUserTimezone();
 
-        config()->set('app.user_timezone', $timezone);
+        UserTimezoneFacade::setUserTimezone($timezone);
 
         /** @var $response \Illuminate\Http\Response */
         $response = $next($request);

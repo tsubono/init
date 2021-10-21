@@ -37,9 +37,9 @@ Vue.component('language-select-multi', require('./components/SelectWithModal/Lan
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const Cookies = require('js-cookie')
+window.Cookies = require('js-cookie')
 
-const timezone = 'Asia/Magadan' // Intl.DateTimeFormat().resolvedOptions().timeZone
+const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
 
 // タイムゾーンがブラウザの既定と違う場合は、クッキーをセットして再読み込み
 if (Cookies.get('timezone') !== timezone) {
