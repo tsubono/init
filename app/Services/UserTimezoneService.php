@@ -7,7 +7,8 @@ class UserTimezoneService
     private \DateTimeZone $appTimezone;
     private \DateTimeZone $userTimezone;
 
-    public function __construct () {
+    public function __construct()
+    {
         $this->appTimezone = new \DateTimeZone(config('app.timezone', 'Asia/Tokyo'));
         $this->userTimezone = $this->appTimezone;
     }
@@ -17,7 +18,8 @@ class UserTimezoneService
      *
      * @param  string  $timezone
      */
-    public function setUserTimezone (string $timezone) {
+    public function setUserTimezone(string $timezone)
+    {
         $this->userTimezone = new \DateTimeZone($timezone);
     }
 
@@ -26,8 +28,20 @@ class UserTimezoneService
      *
      * @return string
      */
-    public function getUserTimezone (): string {
+    public function getUserTimezone(): string
+    {
         return $this->userTimezone->getName();
+    }
+
+    /**
+     * 文字列をユーザーのタイムゾーンの DateTime オブジェクトにパースする
+     *
+     * @param  string  $datetimeString
+     * @return \DateTime
+     */
+    public function parse($datetimeString): \DateTime
+    {
+        return new \DateTime($datetimeString, $this->userTimezone);
     }
 
     /**
@@ -36,7 +50,8 @@ class UserTimezoneService
      * @param  \DateTime  $userTimezoneDateTime
      * @return \DateTime
      */
-    public function toAppTimezone(\DateTime $userTimezoneDateTime) {
+    public function toAppTimezone(\DateTime $userTimezoneDateTime)
+    {
         return $userTimezoneDateTime->setTimezone($this->appTimezone);
     }
 
@@ -46,7 +61,8 @@ class UserTimezoneService
      * @param  \DateTime  $appTimezoneDateTime
      * @return \DateTime
      */
-    public function fromAppTimezone(\DateTime $appTimezoneDateTime) {
+    public function fromAppTimezone(\DateTime $appTimezoneDateTime)
+    {
         return $appTimezoneDateTime->setTimezone($this->userTimezone);
     }
 }
