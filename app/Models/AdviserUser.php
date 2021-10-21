@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\UserTimezone;
 use App\Notifications\AdviserVerifyEmail;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -31,6 +32,7 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'avatar_image',
         'full_name',
+        'localized_available_times',
     ];
 
     protected $dates = ['last_login_at'];
@@ -182,6 +184,34 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
         $image = $this->adviserUserImages()->first();
 
         return !empty($image) ? $image->image_path : asset('img/default-avatar.png');
+    }
+
+    /**
+     * レッスン可能時間をユーザーのタイムゾーンに合わせたもの
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function getLocalizedAvailableTimesAttribute () {
+        $days = [
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday',
+            'sunday'
+        ];
+
+        $localized = collect();
+
+        foreach ($days as $day) {
+            $start = $this["available_time_{$day}_start"] ? UserTimezone::fromAppTimezone(new \DateTime($this["available_time_{$day}_start"]))->format('H:i') : '';
+            $end = $this["available_time_{$day}_end"] ? UserTimezone::fromAppTimezone(new \DateTime($this["available_time_{$day}_end"]))->format('H:i') : '';
+
+            $localized[] = compact("day", "start", "end");
+        }
+
+        return $localized;
     }
 
     /**
