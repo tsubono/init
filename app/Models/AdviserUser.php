@@ -192,22 +192,22 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
      */
     public function getAvailableTimesAttribute () {
         $days = [
-            'monday',
-            'tuesday',
-            'wednesday',
-            'thursday',
-            'friday',
-            'saturday',
-            'sunday'
+            'monday' => '月',
+            'tuesday' => '火',
+            'wednesday' => '水',
+            'thursday' => '木',
+            'friday' => '金',
+            'saturday' => '土',
+            'sunday' => '日'
         ];
 
         $localized = collect();
 
-        foreach ($days as $day) {
+        foreach ($days as $day => $dayText) {
             $start = $this["available_time_{$day}_start"] ? UserTimezone::fromAppTimezone(new \DateTime($this["available_time_{$day}_start"]))->format('H:i') : '';
             $end = $this["available_time_{$day}_end"] ? UserTimezone::fromAppTimezone(new \DateTime($this["available_time_{$day}_end"]))->format('H:i') : '';
 
-            $localized[] = compact("day", "start", "end");
+            $localized[] = compact("day", "dayText", "start", "end");
         }
 
         return $localized;
