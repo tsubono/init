@@ -30,8 +30,7 @@ export class Adviser {
         this.#residenceCountry = adviser.residence_country || { name: '' }
         this.#languages = adviser.languages || []
         this.#categories = adviser.categories || []
-        console.log(adviser.localized_available_times)
-        this.#availableTimes = Object.entries(adviser.localized_available_times)
+        this.#availableTimes = Object.entries(adviser.available_times)
             .reduce((sub, [day, {start, end}]) => ({
                 ...sub,
                 [day]: {

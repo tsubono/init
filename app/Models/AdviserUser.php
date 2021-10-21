@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
-use Illuminate\Testing\Fluent\Concerns\Has;
 
 class AdviserUser extends Authenticatable implements MustVerifyEmail
 {
@@ -32,7 +31,7 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'avatar_image',
         'full_name',
-        'localized_available_times',
+        'available_times',
     ];
 
     protected $dates = ['last_login_at'];
@@ -191,7 +190,7 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getLocalizedAvailableTimesAttribute () {
+    public function getAvailableTimesAttribute () {
         $days = [
             'monday',
             'tuesday',
