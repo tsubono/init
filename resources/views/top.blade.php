@@ -10,11 +10,13 @@
                 あなただけの講師を見つけよう</h1>
             <div class="p-index-main__read"><span class="p-obi p-obi__blue">“やりたいこと”</span>を<span class="p-obi p-obi__purple">“学びたい言語”</span>で。<br>
                 Init!（イニット）は挑戦する方々を応援します</div>
-            <a href="{{ route('mate.register') }}" class="p-index-main__btn p-btn p-btn__defalut">新規登録する</a>
-            <a href="{{ route('adviser.register') }}" class="p-index-main__btn p-btn p-btn__defalut">講師登録する</a>
+            <div class="btn-area">
+                <a href="{{ route('mate.register') }}" class="p-index-main__btn p-btn p-btn__defalut">新規登録する</a>
+                <a href="{{ route('adviser.register') }}" class="p-index-main__btn p-btn p-btn__defalut">講師登録する</a>
+            </div>
         </div>
     </section>
-    <section class="p-index-about l-content-block">
+    <section class="p-index-about l-content-block top">
         <div class="p-index-about__inner container">
             <div class="p-index-about__img"><img src="{{ asset('img/index-about-img01@2x.png') }}" alt=""></div>
             <div class="p-index-about__text">
@@ -76,7 +78,7 @@
                         <div class="p-flowlist__icon">
                             <img src="{{ asset('img/flow-icon01.svg') }}" alt="">
                         </div>
-                        <p>新規登録後<br class="d-none d-md-block">ポイント購入</p>
+                        <p>新規登録後<br class="d-none d-md-block">コイン購入</p>
                     </li>
                     <li class="p-flowlist__box num02">
                         <div class="p-flowlist__num">2</div>

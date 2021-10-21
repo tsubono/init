@@ -165,7 +165,7 @@
                             </div>
                         </div>
                         <div class="p-aboutlist__text">
-                            <h3>Init Pointの購入</h3>
+                            <h3>Init Coinの購入</h3>
                             <p>Initでは、専用コインを購入し、毎レッスンお申込みの際にご使用頂きます。<br>
                                 1コイン＝100円（税別）でクレジットカードやPaypalから決済選択できます。</p>
                         </div>
