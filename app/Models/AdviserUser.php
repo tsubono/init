@@ -207,8 +207,11 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
         $localized = collect();
 
         foreach ($days as $day => $dayText) {
-            $start = $this["available_time_{$day}_start"] ? UserTimezone::fromAppTimezone(new \DateTime($this["available_time_{$day}_start"]))->format('H:i') : '';
-            $end = $this["available_time_{$day}_end"] ? UserTimezone::fromAppTimezone(new \DateTime($this["available_time_{$day}_end"]))->format('H:i') : '';
+            $start_time_str = $this["available_time_{$day}_start"];
+            $start = $this->fromAppTimezone($start_time_str);
+
+            $end_time_str = $this["available_time_{$day}_end"];
+            $end = $this->fromAppTimezone($end_time_str);
 
             $localized[] = compact('day', 'dayText', 'start', 'end');
         }
@@ -217,19 +220,62 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * 時刻フォーマットの文字列であれば、ユーザーのタイムゾーンに修正して返す。
+     * 時刻フォーマットでなければそのまま返す。
+     *
+     * @param  string  $time_str
+     * @return string
+     */
+    private function fromAppTimezone (string $time_str): string
+    {
+        if ($this->isTimeString($time_str)) {
+            return UserTimezone::fromAppTimezone(new \DateTime($time_str))->format('H:i');
+        }
+
+        return $time_str;
+    }
+
+    /**
      * アプリケーションの時間に合わせてレッスン可能時間をセット
      *
-     * @param  array  $availableTimes
+     * @param  array  $available_times
      */
-    public function setAvailableTimesAttribute(array $availableTimes)
+    public function setAvailableTimesAttribute(array $available_times)
     {
-        foreach ($availableTimes as $day => $availableTime) {
-            $app_timezone_start = UserTimezone::toAppTimezone(UserTimezone::parse($availableTime['start']));
-            $app_timezone_end = UserTimezone::toAppTimezone(UserTimezone::parse($availableTime['end']));
+        foreach ($available_times as $day => $available_time) {
+            $start_time_str = $available_time['start'];
+            $this["available_time_{$day}_start"] = $this->toAppTimezone($start_time_str);
 
-            $this["available_time_{$day}_start"] = $app_timezone_start->format('H:i');
-            $this["available_time_{$day}_end"] = $app_timezone_end->format('H:i');
+            $end_time_str = $available_time['end'];
+            $this["available_time_{$day}_end"] = $this->toAppTimezone($end_time_str);
         }
+    }
+
+    /**
+     * 時刻フォーマットの文字列であれば、アプリのタイムゾーンに修正して返す。
+     * 時刻フォーマットでなければそのまま返す。
+     *
+     * @param  string  $time_str
+     * @return string
+     */
+    private function toAppTimezone (string $time_str): string
+    {
+        if ($this->isTimeString($time_str)) {
+            return UserTimezone::toAppTimezone(UserTimezone::parse($time_str))->format('H:i');
+        }
+
+        return $time_str;
+    }
+
+    /**
+     * 指定された文字列が H:i の形式であるかどうかをチェックする
+     *
+     * @param  string  $time_str
+     * @return bool
+     */
+    private function isTimeString (string $time_str): bool
+    {
+        return !!preg_match("/^(?:[01]?[0-9]|2[0-3]):[0-5]?[0-9]$/u", $time_str);
     }
 
     /**
