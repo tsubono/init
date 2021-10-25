@@ -56,7 +56,6 @@
     @if (!request()->is('mate/coins/buy') && !request()->is('/'))
         <script src="{{ mix('js/app.js') }}" defer></script>
     @endif
-    <script src="{{ asset('assets/bootstrap/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/popperjs/popper.min.js') }}"></script>
     <script src="{{ asset('assets/bootstrap/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/ajaxzip3/ajaxzip3.js') }}"></script>
