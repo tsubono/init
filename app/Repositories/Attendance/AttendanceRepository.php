@@ -113,7 +113,10 @@ class AttendanceRepository implements AttendanceRepositoryInterface
         DB::beginTransaction();
 
         try {
-            $attendance = $this->attendance->create($data);
+            $attendance = $this->attendance->newInstance($data);
+            // 時差計算をするため、この時点では $data['datetime'] はユーザーのタイムゾーン
+            $attendance->datetimeTxt = $data['datetime'];
+            $attendance->save();
 
             DB::commit();
 

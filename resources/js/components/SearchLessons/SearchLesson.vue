@@ -113,10 +113,10 @@ export default {
 
     methods: {
         getStartTime (day) {
-            return this.lesson.adviser_user[`available_time_${day}_start`]
+            return this.lesson.adviser_user.available_times.find((times) => times.day === day).start
         },
         getEndTime (day) {
-            return this.lesson.adviser_user[`available_time_${day}_end`]
+            return this.lesson.adviser_user.available_times.find((times) => times.day === day).end
         },
     },
 }

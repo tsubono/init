@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\UserTimezone;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,6 +36,8 @@ class Attendance extends Model
     const STATUS_CLOSED = 6;
 
     protected $guarded = ['id'];
+
+    protected $appends = ['datetimeTxt'];
 
     // ============ Relations ============
     /**
@@ -91,7 +94,15 @@ class Attendance extends Model
      */
     public function getDatetimeTxtAttribute(): string
     {
-        return Carbon::parse($this->datetime)->format('Y/m/d H:i');
+        return UserTimezone::fromAppTimezone(new \DateTime($this->datetime))->format('Y/m/d H:i');
+    }
+
+    /**
+     * @param  string  $datetimeTxt
+     */
+    public function setDatetimeTxtAttribute(string $datetimeTxt)
+    {
+        $this->datetime = UserTimezone::toAppTimezone(UserTimezone::parse($datetimeTxt))->format('Y-m-d H:i:s');
     }
 
     /**

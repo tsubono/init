@@ -62,41 +62,13 @@
 <div class="p-timezone border text-center">
     <div class="inner p-3">
         <ul class="p-timezone__list">
-            <li>
-                月　
-                <span class="time time-first">{{ $adviserUser->available_time_monday_start }}</span>
-                <span class="time time-last">{{ $adviserUser->available_time_monday_end }}</span>
-            </li>
-            <li>
-                火　
-                <span class="time time-first">{{ $adviserUser->available_time_tuesday_start }}</span>
-                <span class="time time-last">{{ $adviserUser->available_time_tuesday_end }}</span>
-            </li>
-            <li>
-                水　
-                <span class="time time-first">{{ $adviserUser->available_time_wednesday_start }}</span>
-                <span class="time time-last">{{ $adviserUser->available_time_wednesday_end }}</span>
-            </li>
-            <li>
-                木　
-                <span class="time time-first">{{ $adviserUser->available_time_thursday_start }}</span>
-                <span class="time time-last">{{ $adviserUser->available_time_thursday_end }}</span>
-            </li>
-            <li>
-                金　
-                <span class="time time-first">{{ $adviserUser->available_time_friday_start }}</span>
-                <span class="time time-last">{{ $adviserUser->available_time_friday_end }}</span>
-            </li>
-            <li>
-                土　
-                <span class="time time-first">{{ $adviserUser->available_time_saturday_start }}</span>
-                <span class="time time-last">{{ $adviserUser->available_time_saturday_end }}</span>
-            </li>
-            <li>
-                日　
-                <span class="time time-first">{{ $adviserUser->available_time_sunday_start }}</span>
-                <span class="time time-last">{{ $adviserUser->available_time_sunday_end }}</span>
-            </li>
+            @foreach($adviserUser->available_times as $available_time)
+                <li>
+                    {{ $available_time['dayText'] }}
+                    <span class="time time-first">{{ $available_time['start'] }}</span>
+                    <span class="time time-last">{{ $available_time['end'] }}</span>
+                </li>
+            @endforeach
         </ul>
     </div>
 </div>

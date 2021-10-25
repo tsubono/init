@@ -30,13 +30,13 @@ export class Adviser {
         this.#residenceCountry = adviser.residence_country || { name: '' }
         this.#languages = adviser.languages || []
         this.#categories = adviser.categories || []
-        this.#availableTimes = Object.entries(days)
-            .reduce((sub, [day, dayText]) => ({
+        this.#availableTimes = Object.entries(adviser.available_times)
+            .reduce((sub, [day, {start, end}]) => ({
                 ...sub,
                 [day]: {
-                    day: dayText,
-                    start: adviser[`available_time_${day}_start`] || '',
-                    end: adviser[`available_time_${day}_end`] || '',
+                    day: days[day],
+                    start,
+                    end,
                 }
             }), {})
     }

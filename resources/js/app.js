@@ -37,6 +37,17 @@ Vue.component('language-select-multi', require('./components/SelectWithModal/Lan
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+window.Cookies = require('js-cookie')
+
+const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+
+// タイムゾーンがブラウザの既定と違う場合は、クッキーをセットして再読み込み
+if (Cookies.get('timezone') !== timezone) {
+    Cookies.set('timezone', timezone)
+    // noinspection SillyAssignmentJS
+    location.href = location.href
+}
+
 const app = new Vue({
     el: '#app',
 });

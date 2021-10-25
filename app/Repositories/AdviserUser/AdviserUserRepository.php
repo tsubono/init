@@ -42,7 +42,10 @@ class AdviserUserRepository implements AdviserUserRepositoryInterface
 
         try {
             $adviserUser = $this->adviserUser->findOrFail($id);
-            $adviserUser->update($data);
+            $adviserUser->fill($data);
+            // 時差計算をするため、この時点では $data['available_times'] はユーザーのタイムゾーン
+            $adviserUser->available_times = $data['available_times'];
+            $adviserUser->save();
             $this->updateRelation($adviserUser, $data);
 
             DB::commit();

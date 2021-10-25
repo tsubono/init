@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\UserTimezone;
 use App\Notifications\AdviserVerifyEmail;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -13,7 +14,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
-use Illuminate\Testing\Fluent\Concerns\Has;
 
 class AdviserUser extends Authenticatable implements MustVerifyEmail
 {
@@ -31,6 +31,7 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'avatar_image',
         'full_name',
+        'available_times',
     ];
 
     protected $dates = ['last_login_at'];
@@ -44,6 +45,7 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     // ============ Relations ============
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -172,6 +174,7 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
 
 
     // ============ Attributes ============
+
     /**
      * アバター画像
      *
@@ -185,6 +188,97 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * レッスン可能時間をユーザーのタイムゾーンに合わせたもの
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function getAvailableTimesAttribute()
+    {
+        $days = [
+            'monday' => '月',
+            'tuesday' => '火',
+            'wednesday' => '水',
+            'thursday' => '木',
+            'friday' => '金',
+            'saturday' => '土',
+            'sunday' => '日'
+        ];
+
+        $localized = collect();
+
+        foreach ($days as $day => $dayText) {
+            $start_time_str = $this["available_time_{$day}_start"];
+            $start = $this->fromAppTimezone($start_time_str);
+
+            $end_time_str = $this["available_time_{$day}_end"];
+            $end = $this->fromAppTimezone($end_time_str);
+
+            $localized[] = compact('day', 'dayText', 'start', 'end');
+        }
+
+        return $localized;
+    }
+
+    /**
+     * 時刻フォーマットの文字列であれば、ユーザーのタイムゾーンに修正して返す。
+     * 時刻フォーマットでなければそのまま返す。
+     *
+     * @param  string  $time_str
+     * @return string
+     */
+    private function fromAppTimezone (string $time_str): string
+    {
+        if ($this->isTimeString($time_str)) {
+            return UserTimezone::fromAppTimezone(new \DateTime($time_str))->format('H:i');
+        }
+
+        return $time_str;
+    }
+
+    /**
+     * アプリケーションの時間に合わせてレッスン可能時間をセット
+     *
+     * @param  array  $available_times
+     */
+    public function setAvailableTimesAttribute(array $available_times)
+    {
+        foreach ($available_times as $day => $available_time) {
+            $start_time_str = $available_time['start'];
+            $this["available_time_{$day}_start"] = $this->toAppTimezone($start_time_str);
+
+            $end_time_str = $available_time['end'];
+            $this["available_time_{$day}_end"] = $this->toAppTimezone($end_time_str);
+        }
+    }
+
+    /**
+     * 時刻フォーマットの文字列であれば、アプリのタイムゾーンに修正して返す。
+     * 時刻フォーマットでなければそのまま返す。
+     *
+     * @param  string  $time_str
+     * @return string
+     */
+    private function toAppTimezone (string $time_str): string
+    {
+        if ($this->isTimeString($time_str)) {
+            return UserTimezone::toAppTimezone(UserTimezone::parse($time_str))->format('H:i');
+        }
+
+        return $time_str;
+    }
+
+    /**
+     * 指定された文字列が H:i の形式であるかどうかをチェックする
+     *
+     * @param  string  $time_str
+     * @return bool
+     */
+    private function isTimeString (string $time_str): bool
+    {
+        return !!preg_match("/^(?:[01]?[0-9]|2[0-3]):[0-5]?[0-9]$/u", $time_str);
+    }
+
+    /**
      * birthday (date) から 40〜49歳といったテキスト文言を算出する
      */
     public function getAgeTxtAttribute()
@@ -192,7 +286,7 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
         $ageTxt = null;
         $age = Carbon::parse($this->birthday)->age;
 
-        switch($age) {
+        switch ($age) {
             case $age <= 19:
                 $ageTxt = '〜19歳';
                 break;
@@ -236,9 +330,9 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
         $lessonIds = $this->lessons->pluck('id')->toArray();
 
         return $this->attendances
-                          ->whereIn('lesson_id', $lessonIds)
-                          ->unique('mate_user_id')
-                          ->count();
+            ->whereIn('lesson_id', $lessonIds)
+            ->unique('mate_user_id')
+            ->count();
     }
 
     /**
@@ -271,12 +365,12 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
         if ($diffDate->d >= 1) {
             $lastLoginTxt = $diffDate->d >= 3
                 ? '3日以上前'
-                : $diffDate->d . '日前ログイン';
+                : $diffDate->d.'日前ログイン';
         }
 
         // dayは0日、hourが1時間以上ある場合
         if ($diffDate->d === 0 && $diffDate->h >= 1) {
-            $lastLoginTxt = $diffDate->h . '時間前ログイン';
+            $lastLoginTxt = $diffDate->h.'時間前ログイン';
         }
 
         // dayは0日、hourが0時間、minutesが1分以上ある場合
@@ -284,7 +378,7 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
             $minutes = ceil($diffDate->i / 10) * 10;
             $lastLoginTxt = $minutes === 60
                 ? '1時間前ログイン'
-                : $minutes . '分前ログイン';
+                : $minutes.'分前ログイン';
         }
 
         return $lastLoginTxt;
@@ -422,22 +516,22 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     private function getRequiredColumns()
     {
         return [
-          'family_name',
-          'first_name',
-          'family_name_kana',
-          'first_name_kana',
-          'birthday',
-          'tel',
-          'zipcode',
-          'address',
-          'email',
-          'skype_name',
-          'skype_id',
-          'from_country_id',
-          'residence_country_id',
-          'reason_text',
-          'passion_text',
-          'password',
+            'family_name',
+            'first_name',
+            'family_name_kana',
+            'first_name_kana',
+            'birthday',
+            'tel',
+            'zipcode',
+            'address',
+            'email',
+            'skype_name',
+            'skype_id',
+            'from_country_id',
+            'residence_country_id',
+            'reason_text',
+            'passion_text',
+            'password',
         ];
     }
 

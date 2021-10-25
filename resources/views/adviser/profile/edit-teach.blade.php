@@ -89,72 +89,30 @@
 
                                     <h3 class="p-heading2">レッスン可能時間帯</h3>
                                     <table class="p-form__timezone">
-                                        <tr>
-                                            <th class="pt-4">月</th>
-                                            <td class="pt-4">
-                                                <div class="p-form__timezone__column">
-                                                    <input type="text" class="form-control" name="available_time_monday_start" value="{{ old('available_time_monday_start', $user->available_time_monday_start) }}">
-                                                    <span>〜</span>
-                                                    <input type="text" class="form-control" name="available_time_monday_end" value="{{ old('available_time_monday_end', $user->available_time_monday_end) }}">
-                                                </div>
-                                            </td>
-                                            <th class="pt-4">火</th>
-                                            <td class="pt-4">
-                                                <div class="p-form__timezone__column">
-                                                    <input type="text" class="form-control" name="available_time_tuesday_start" value="{{ old('available_time_tuesday_start', $user->available_time_tuesday_start) }}">
-                                                    <span>〜</span>
-                                                    <input type="text" class="form-control" name="available_time_tuesday_end" value="{{ old('available_time_tuesday_end', $user->available_time_tuesday_end) }}">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>水</th>
-                                            <td class="pt-4">
-                                                <div class="p-form__timezone__column">
-                                                    <input type="text" class="form-control" name="available_time_wednesday_start" value="{{ old('available_time_wednesday_start', $user->available_time_wednesday_start) }}">
-                                                    <span>〜</span>
-                                                    <input type="text" class="form-control" name="available_time_wednesday_end" value="{{ old('available_time_wednesday_end', $user->available_time_wednesday_end) }}">
-                                                </div>
-                                            </td>
-                                            <th>木</th>
-                                            <td class="pt-4">
-                                                <div class="p-form__timezone__column">
-                                                    <input type="text" class="form-control" name="available_time_thursday_start" value="{{ old('available_time_thursday_start', $user->available_time_thursday_start) }}">
-                                                    <span>〜</span>
-                                                    <input type="text" class="form-control" name="available_time_thursday_end" value="{{ old('available_time_thursday_end', $user->available_time_thursday_end) }}">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>金</th>
-                                            <td class="pt-4">
-                                                <div class="p-form__timezone__column">
-                                                    <input type="text" class="form-control" name="available_time_friday_start" value="{{ old('available_time_friday_start', $user->available_time_friday_start) }}">
-                                                    <span>〜</span>
-                                                    <input type="text" class="form-control" name="available_time_friday_end" value="{{ old('available_time_friday_end', $user->available_time_friday_end) }}">
-                                                </div>
-                                            </td>
-                                            <th>土</th>
-                                            <td class="pt-4">
-                                                <div class="p-form__timezone__column">
-                                                    <input type="text" class="form-control" name="available_time_saturday_start" value="{{ old('available_time_saturday_start', $user->available_time_saturday_start) }}">
-                                                    <span>〜</span>
-                                                    <input type="text" class="form-control" name="available_time_saturday_end" value="{{ old('available_time_saturday_end', $user->available_time_saturday_end) }}">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>日</th>
-                                            <td class="pt-4">
-                                                <div class="p-form__timezone__column">
-                                                    <input type="text" class="form-control" name="available_time_sunday_start" value="{{ old('available_time_sunday_start', $user->available_time_sunday_start) }}">
-                                                    <span>〜</span>
-                                                    <input type="text" class="form-control" name="available_time_sunday_end" value="{{ old('available_time_sunday_end', $user->available_time_sunday_end) }}">
-                                                </div>
-                                            </td>
-                                            <th></th>
-                                            <td></td>
-                                        </tr>
+                                        @foreach(collect($user->available_times)->chunk(2) as $available_times_row)
+                                            <tr>
+                                                @foreach($available_times_row as $available_time)
+                                                    <th class="pt-4">{{ $available_time['dayText'] }}</th>
+                                                    <td class="pt-4">
+                                                        <div class="p-form__timezone__column">
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                name="available_times[{{ $available_time['day'] }}][start]"
+                                                                value="{{ old("available_times[{$available_time['day']}][start]", $available_time['start']) }}"
+                                                            >
+                                                            <span>〜</span>
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                name="available_times[{{ $available_time['day'] }}][end]"
+                                                                value="{{ old("available_times[{$available_time['day']}][end]", $available_time['end']) }}"
+                                                            >
+                                                        </div>
+                                                    </td>
+                                                @endforeach
+                                            </tr>
+                                        @endforeach
                                     </table>
 
                                     <h3 class="p-heading2">講師をするきっかけ・理由<span class="badge bg-danger ms-2">必須</span></h3>
