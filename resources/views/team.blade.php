@@ -12,7 +12,7 @@
                 </div>
                 <div class="member-list__item">
                     <img src="{{ asset('img/team/Atsushi.png') }}" alt="Atsushi" class="team-icon">
-                    <p class="team-name">CSO Atsuhi</p>
+                    <p class="team-name">SCO Atsushi</p>
                 </div>
                 <div class="member-list__item">
                     <img src="{{ asset('img/team/Natsuko.png') }}" alt="Natsuko" class="team-icon">

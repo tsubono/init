@@ -85,6 +85,9 @@
                                                     <input type="time" class="form-control" placeholder="20:30" name="time" value="{{ old('time') }}">
                                                 </div>
                                             </div>
+                                            <p class="small p-error-text">
+                                                ※講師の「レッスン可能時間」はサマータイム導入国と未導入国で、表示が1時間ずれる場合がございます。
+                                            </p>
                                             @error('date')
                                             <div class="p-error-text" role="alert">
                                                 <strong>{{ $message }}</strong>
