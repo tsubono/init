@@ -22,12 +22,6 @@
             </p>
             <br>
             <p>
-                <b>税務申告を行うための証書の取得方法</b><br>
-                講師ログイン後、<a class="primary-link" href="http://init-online.com/adviser/sales" target="_blank">フィーの支払請求ページ</a>より、「電子明細書作成」をご選択下さい。<br>
-                以下に日本の税金に伴うよくある情報を記載させていただきます。各国の税務については、お近くの機関などにお問い合わせください。
-            </p>
-            <br>
-            <p>
                 <b>•副業で講師活動をする場合の確定申告について</b><br>
                 一般的に、給与所得以外の所得（収入ー必要経費）が年間20万円未満の場合には、確定申告は不要です。ただし、INIT以外でも副業収入がある場合には、それらもまとめて20万円を超えるかどうか判定する必要があります。
                 ➔  国税庁／タックスアンサー／所得の区分のあらまし  (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm</a> )

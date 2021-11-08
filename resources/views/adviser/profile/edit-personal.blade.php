@@ -95,7 +95,10 @@
                                         </label>
                                     </div>
                                 </div>
-                                <p class="mt-2">※日本国内の口座でない場合は、PayPal送金のみのお支払い方法となります。</p>
+                                <p class="mt-2">
+                                    ※日本国内の口座でない場合は、PayPal送金のみのお支払い方法となります。<br>
+                                    ※「海外の人への支払い方法の制御」は、銀行振込は日本国内のみになります。
+                                </p>
                                 @error('payment_method')
                                 <div class="p-error-text" role="alert">
                                     <strong>{{ $message }}</strong>
