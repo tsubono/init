@@ -270,10 +270,10 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     /**
      * 指定された文字列が H:i の形式であるかどうかをチェックする
      *
-     * @param  string  $time_str
+     * @param  ?string  $time_str
      * @return bool
      */
-    private function isTimeString (string $time_str): bool
+    private function isTimeString (?string $time_str): bool
     {
         return !!preg_match("/^(?:[01]?[0-9]|2[0-3]):[0-5]?[0-9]$/u", $time_str);
     }
