@@ -223,10 +223,10 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
      * 時刻フォーマットの文字列であれば、ユーザーのタイムゾーンに修正して返す。
      * 時刻フォーマットでなければそのまま返す。
      *
-     * @param  string  $time_str
+     * @param  ?string  $time_str
      * @return string
      */
-    private function fromAppTimezone (string $time_str): string
+    private function fromAppTimezone (?string $time_str): string
     {
         if ($this->isTimeString($time_str)) {
             return UserTimezone::fromAppTimezone(new \DateTime($time_str))->format('H:i');
