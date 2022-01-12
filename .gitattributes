@@ -7,5 +7,5 @@ CHANGELOG.md export-ignore
 *.html linguist-detectable=false
 *.js linguist-detectable=false
 *.txt linguist-detectable=false
-*.blade linguist-detectable=false
+*.blade.php linguist-detectable=false
 *.php linguist-detectable=true
