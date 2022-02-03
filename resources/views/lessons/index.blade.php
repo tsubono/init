@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'レッスンを探す')
+@section('title', __('message.Find a lesson'))
 
 @section('content')
     <search-lessons

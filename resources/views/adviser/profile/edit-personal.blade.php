@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'プロフィール設定')
+@section('title', __('message.Profile setting'))
 
 @section('content')
     <section class="l-content-block p-setting">
@@ -12,13 +12,13 @@
             @csrf
                 <div class="tab-content p-setting__content">
                     <div id="privacy">
-                        <h2 class="p-heading1">個人情報の変更</h2>
+                        <h2 class="p-heading1">{{ __('message.Change of personal information') }} </h2>
                         <div class="p-form">
                             <div class="row">
-                                <h3 class="p-heading2">個人情報確認画像（表面）<span class="badge bg-danger ms-2">必須</span></h3>
+                                <h3 class="p-heading2">{{ __('message.Personal information confirmation image (surface)') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
                                 <p class="small mb-2">
-                                    ※運転免許証、保険証、マイナンバーカードのいずれかをご添付ください。<br>
-                                    資格などをお持ちの方は、その証明書をご添付ください。
+                                    {{ __('message.※ Please attach one of the driver's license, insurance card, and minbal card.') }} <br>
+                                    {{ __('message.If you have a qualification, please attach the certificate.') }} 
                                 </p>
                                 <div class="row">
                                     @for ($i=0; $i<4; $i++)
@@ -42,8 +42,8 @@
                                     @enderror
                                 </div>
 
-                                <h3 class="p-heading2">個人情報確認画像（裏面）<span class="badge bg-danger ms-2">必須</span></h3>
-                                <p class="small mb-2">※運転免許証、保険証、マイナンバーカードのいずれかをご添付ください。</p>
+                                <h3 class="p-heading2">{{ __('message.Personal information confirmation image (back side)') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
+                                <p class="small mb-2">{{ __('message.※ Please attach one of the driver's license, insurance card, and minbal card.') }} </p>
                                 <div class="row">
                                     @for ($i=0; $i<4; $i++)
                                         <div class="col">
@@ -66,7 +66,7 @@
                                     @enderror
                                 </div>
 
-                                <h3 class="p-heading2">支払い方法</h3>
+                                <h3 class="p-heading2">{{ __('message.method of payment') }} </h3>
                                 <div class="col-6">
                                     <div class="form-check">
                                         <input type="radio"
@@ -77,7 +77,7 @@
                                                {{ old('payment_method', $user->payment_method) === 'Paypal送金' ? 'checked' : '' }}
                                         />
                                         <label class="form-check-label" for="form-radio__payment2">
-                                            Paypal送金
+                                            {{ __('message.PayPal remittance') }} 
                                         </label>
                                     </div>
                                 </div>
@@ -91,13 +91,13 @@
                                                 {{ old('payment_method', $user->payment_method) === '口座振替' ? 'checked' : '' }}
                                         />
                                         <label class="form-check-label" for="form-radio__payment1">
-                                            口座振替
+                                            {{ __('message.Account transfer') }} 
                                         </label>
                                     </div>
                                 </div>
                                 <p class="mt-2">
-                                    ※日本国内の口座でない場合は、PayPal送金のみのお支払い方法となります。<br>
-                                    ※「海外の人への支払い方法の制御」は、銀行振込は日本国内のみになります。
+                                    {{ __('message.※ If it is not an account in Japan, it will be a payment method for PayPal remittance only.') }} <br>
+                                    {{ __('message.※ 'Control of payment method for overseas people' is only in Japan for bank transfer.') }} 
                                 </p>
                                 @error('payment_method')
                                 <div class="p-error-text" role="alert">
@@ -105,7 +105,7 @@
                                 </div>
                                 @enderror
 
-                                <h3 class="p-heading2 js-paypal-only">Paypalメールアドレス</h3>
+                                <h3 class="p-heading2 js-paypal-only">{{ __('message.PayPal E-mail Address') }} </h3>
                                 <input type="text" class="form-control js-paypal-only" name="paypal_email" value="{{ old('paypal_email', $user->paypal_email) }}">
                                 @error('paypal_email')
                                 <div class="p-error-text" role="alert">
@@ -113,9 +113,9 @@
                                 </div>
                                 @enderror
 
-                                <h3 class="p-heading2 js-account-only">口座画像</h3>
+                                <h3 class="p-heading2 js-account-only">{{ __('message.Account image') }} </h3>
                                 <div class="col-md-6 col-lg-3 mb-3 mb-lg-0 js-account-only">
-                                    <h4 class="mb-2"><strong>表紙</strong></h4>
+                                    <h4 class="mb-2"><strong>{{ __('message.cover') }} </strong></h4>
                                     <file-upload
                                             name="account_image_1"
                                             image-path="{{ old('account_image_1', $user->account_image_1) }}"
@@ -123,7 +123,7 @@
                                     ></file-upload>
                                 </div>
                                 <div class="col-md-6 col-lg-3 js-account-only">
-                                    <h4 class="mb-2"><strong>見開きページ</strong></h4>
+                                    <h4 class="mb-2"><strong>{{ __('message.Space-open page') }} </strong></h4>
                                     <file-upload
                                             name="account_image_2"
                                             image-path="{{ old('account_image_2', $user->account_image_2) }}"
@@ -141,7 +141,7 @@
                                 </div>
                                 @enderror
                             </div><!--/.row -->
-                            <button type="submit" class="p-btn p-btn__defalut">保存する</button>
+                            <button type="submit" class="p-btn p-btn__defalut">{{ __('message.save') }} </button>
                         </div>
                     </div>
                 </div>

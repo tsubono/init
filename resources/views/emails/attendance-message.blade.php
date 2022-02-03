@@ -1,11 +1,11 @@
-{{ $userType === 'mate' ? $attendance->mateUser->full_name : $attendance->adviserUser->full_name }} さま <br>
+{{ $userType === 'mate' ? $attendance->mateUser->full_name : $attendance->adviserUser->full_name }} {{ __('message.looks') }}  <br>
 <br>
-こんにちは、INITです。<br>
-レッスン「{{ $attendance->lesson->name }}」への受講メッセージが届きました。<br>
+{{ __('message.Hi, INIT.') }} <br>
+{{ __('message.lesson') }} 「{{ $attendance->lesson->name }}」{{ __('message.The message to the course has arrived.') }} <br>
 <br>
-下記のリンクからメッセージの詳細を確認できます。 <br>
-<a href="{{ route('attendances.messages', compact('attendance')) }}?type={{ $userType }}">メッセージ画面</a>
+{{ __('message.You can check the details of the message from the link below.') }}  <br>
+<a href="{{ route('attendances.messages', compact('attendance')) }}?type={{ $userType }}">{{ __('message.Message screen') }} </a>
 <br>
-<p>※こちらのメールは送信専用のメールアドレスより送信しています。恐れ入りますが、直接返信しないようお願いします。</p>
+<p>※{{ __('message.This email is sent from the send-only email address. Excuse me, but please do not reply directly.') }} </p>
 
 @include('emails._footer')

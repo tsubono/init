@@ -1,41 +1,41 @@
 @extends('layouts.app')
 
-@section('title', '受講者一覧')
+@section('title', __('message.List of students'))
 
 @section('content')
     <section class="p-searchblock bg-light l-content-block">
         <div class="container">
             <form action="" class="p-form">
                 <a class="p-btn p-btn__outline d-md-none" data-bs-toggle="collapse" href="#collapseDetail" role="button" aria-expanded="false" aria-controls="collapseDetail">
-                    検索
+                    {{ __('message.search') }} 
                 </a>
                 <div class="collapse" id="collapseDetail">
                     <div class="row">
                         <div class="col-md-6 mb-3 mb-md-4">
-                            <h3 class="p-heading3">ユーザー名</h3>
-                            <input type="text" class="form-control" placeholder="記入してください"
+                            <h3 class="p-heading3">{{ __('message.username') }} </h3>
+                            <input type="text" class="form-control" placeholder="{{ __('message.Please fill in') }} "
                                    name="condition[user_name]"
                                    value="{{ isset($condition['user_name']) ? $condition['user_name'] : '' }}"
                             />
                         </div>
                         <div class="col-md-6 mb-3 mb-md-4">
-                            <h3 class="p-heading3">電話番号</h3>
-                            <input type="text" class="form-control" placeholder="記入してください"
+                            <h3 class="p-heading3">{{ __('message.telephone number') }} </h3>
+                            <input type="text" class="form-control" placeholder="{{ __('message.Please fill in') }} "
                                    name="condition[tel]"
                                    value="{{ isset($condition['tel']) ? $condition['tel'] : '' }}"
                             />
                         </div>
                         <div class="col-md-6 mb-3 mb-md-4">
                             <h3 class="p-heading3">メール</h3>
-                            <input type="text" class="form-control" placeholder="記入してください"
+                            <input type="text" class="form-control" placeholder="{{ __('message.Please fill in') }} "
                                    name="condition[email]"
                                    value="{{ isset($condition['email']) ? $condition['email'] : '' }}"
                             />
                         </div>
                     </div><!-- /.row -->
                     <div class="d-flex justify-content-end align-items-center p-searchblock__controls">
-                        <a class="primary-link mx-5" href="{{ route('admin.mates.index') }}">リセット</a>
-                        <button class="p-btn p-btn__black d-inline-block mt-2 py-2 px-5">検索</button>
+                        <a class="primary-link mx-5" href="{{ route('admin.mates.index') }}">{{ __('message.reset') }} </a>
+                        <button class="p-btn p-btn__black d-inline-block mt-2 py-2 px-5">{{ __('message.search') }} </button>
                     </div>
                 </div><!-- /.collapse -->
             </form>
@@ -45,7 +45,7 @@
         <div class="container">
             <div class="text-end">
                 <a onclick="document.getElementById('exportForm').submit()" class="p-btn p-btn__defalut d-inline-block px-80px">
-                    エクスポート
+                    {{ __('message.export') }} 
                 </a>
                 <form action="{{ route('admin.mates.export-csv') }}" method="post" id="exportForm">
                     @csrf
@@ -71,24 +71,24 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-4 d-flex flex-wrap align-items-center">
-                                            <span class="small">保持コイン：</span>
+                                            <span class="small">{{ __('message.Holding coin') }} ：</span>
                                             <input class="form-control w-50" name="amount" value="{{ $mateUser->total_coin_amount }}">
-                                            <span class="mx-2">枚</span>
+                                            <span class="mx-2">{{ __('message.Sheet') }} </span>
                                         </div>
                                         <div class="col-md-2">
-                                            <button class="p-btn--rect py-2 px-2 btn-success">更新する</button>
+                                            <button class="p-btn--rect py-2 px-2 btn-success">{{ __('message.Update') }} </button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <div class="p-card3__controls">
                                 <a href="{{ route('admin.mates.show', compact('mateUser')) }}" class="p-btn p-btn__defalut d-inline-block mt-2 py-2 px-4">
-                                    詳細
+                                    {{ __('message.detail') }} 
                                 </a>
                             </div>
                         </div><!-- /.p-card3 -->
                     @empty
-                        <div class="text-center">受講者は見つかりませんでした。</div>
+                        <div class="text-center">{{ __('message.The student was not found.') }} </div>
                     @endforelse
                 </div>
             </div><!-- /.p-search__content -->

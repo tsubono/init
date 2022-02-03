@@ -1,26 +1,26 @@
 <br>
 @if ($isAdmin)
-    お問い合わせフォームからお問い合わせが届きました。<br>
-    以下の内容をご確認ください。<br>
+    {{ __('message.Inquiry I received an inquiry from the inquiry form.') }} <br>
+    {{ __('message.Please check the following contents.') }} <br>
 @else
-    {{ $contact->name }} 様 <br>
+    {{ $contact->name }} {{ __('message.looks') }}  <br>
     <br>
-    この度は、INITへお問い合わせいただき誠にありがとうございます。<br>
-    以下の内容でお問い合わせを受け付けいたしました。<br>
-    数日経過しましても返信がない場合は、お手数ですが再度お問い合わせくださいますようお願いいたします。<br>
+    {{ __('message.Thank you very much for contacting Init.') }} <br>
+    {{ __('message.We received inquiries with the following contents.') }} <br>
+    {{ __('message.If there is no reply even after a few days, please contact us again.') }} <br>
 @endif
 <br>
 ================================ <br>
-▼お問い合わせ内容 <br>
+▼{{ __('message.Contents of inquiry') }}  <br>
 -------------------------------- <br>
-【お名前】{{ $contact->name }} 様 <br>
-【メールアドレス】{{ $contact->email }} <br>
-【カテゴリ】{{ $contact->category }} <br>
-【件名】{{ $contact->title }} <br>
-【内容】<br>
+【{{ __('message.name') }} 】{{ $contact->name }} {{ __('message.looks') }}  <br>
+【{{ __('message.email address') }} 】{{ $contact->email }} <br>
+【{{ __('message.category') }} 】{{ $contact->category }} <br>
+【{{ __('message.subject') }} 】{{ $contact->title }} <br>
+【{{ __('message.Content') }} 】<br>
 {!! nl2br(e($contact->content)) !!}<br>
 <br>
 <br>
-<p>※こちらのメールは送信専用のメールアドレスより送信しています。恐れ入りますが、直接返信しないようお願いします。</p>
+<p>※{{ __('message.This email is sent from the send-only email address. Excuse me, but please do not reply directly.') }} </p>
 
 @include('emails._footer')

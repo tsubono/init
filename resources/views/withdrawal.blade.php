@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', '退会完了')
+@section('title', __('message.Withdrawal completion'))
 
 @section('content')
     <section class="l-content-block p-setting">
         <div class="container">
             <div class="text-center">
-                <p>退会を受け付けました。</p>
-                <p>この度はご利用いただき、誠にありがとうございました。</p>
+                <p>{{ __('message.I accepted withdrawal.') }} </p>
+                <p>{{ __('message.Thank you very much for using this time.') }} </p>
         </div>
     </section>
 @endsection

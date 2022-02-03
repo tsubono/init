@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'プロフィール設定')
+@section('title', __('message.Profile setting'))
 
 @section('content')
     <section class="l-content-block p-setting">
@@ -14,14 +14,14 @@
 
                 <div class="tab-content p-setting__content">
                     <div id="basic">
-                        <h2 class="p-heading1">基本情報の変更</h2>
+                        <h2 class="p-heading1">{{ __('message.Basic information change') }} </h2>
 
                         <div class="p-form">
                             <div class="row">
-                                <div class="col-12"><h3 class="p-heading2">お名前</h3></div>
+                                <div class="col-12"><h3 class="p-heading2">{{ __('message.name') }} </h3></div>
                                 <div class="col-md-4">
                                     <label for="">
-                                        <div class="p-form__label">姓<span class="badge bg-danger ms-2">必須</span></div>
+                                        <div class="p-form__label">{{ __('message.Surname') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></div>
                                     </label>
                                     <input type="text" class="form-control" name="family_name" value="{{ old('family_name', $user->family_name) }}">
                                     @error('family_name')
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">
-                                        <div class="p-form__label">ミドルネーム</div>
+                                        <div class="p-form__label">{{ __('message.middle name') }} </div>
                                     </label>
                                     <input type="text" class="form-control" name="middle_name" value="{{ old('middle_name', $user->middle_name) }}">
                                     @error('middle_name')
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">
-                                        <div class="p-form__label">名<span class="badge bg-danger ms-2">必須</span></div>
+                                        <div class="p-form__label">{{ __('message.Name') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></div>
                                     </label>
                                     <input type="text" class="form-control" name="first_name" value="{{ old('first_name', $user->first_name) }}">
                                     @error('first_name')
@@ -54,11 +54,11 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <h3 class="p-heading2">英字</h3>
+                                    <h3 class="p-heading2">{{ __('message.Letter') }} </h3>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">
-                                        <div class="p-form__label">姓<span class="badge bg-danger ms-2">必須</span></div>
+                                        <div class="p-form__label">{{ __('message.Surname') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></div>
                                     </label>
                                     <input type="text" class="form-control" name="family_name_kana" value="{{ old('family_name_kana', $user->family_name_kana) }}">
                                     @error('family_name_kana')
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">
-                                        <div class="p-form__label">ミドルネーム</div>
+                                        <div class="p-form__label">{{ __('message.middle name') }} </div>
                                     </label>
                                     <input type="text" class="form-control" name="middle_name_kana" value="{{ old('middle_name_kana', $user->middle_name_kana) }}">
                                     @error('middle_name_kana')
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">
-                                        <div class="p-form__label">名<span class="badge bg-danger ms-2">必須</span></div>
+                                        <div class="p-form__label">{{ __('message.Name') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></div>
                                     </label>
                                     <input type="text" class="form-control" name="first_name_kana" value="{{ old('first_name_kana', $user->first_name_kana) }}">
                                     @error('first_name_kana')
@@ -91,7 +91,7 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <h3 class="p-heading2">性別</h3>
+                                    <h3 class="p-heading2">{{ __('message.sex') }} </h3>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check">
@@ -103,7 +103,7 @@
                                                 {{ old('gender', $user->gender) === '男性' ? 'checked' : '' }}
                                         />
                                         <label class="form-check-label" for="form-radio__gender2">
-                                            男性
+                                            {{ __('message.male') }} 
                                         </label>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                                                 {{ old('gender', $user->gender) === '女性' ? 'checked' : '' }}
                                         />
                                         <label class="form-check-label" for="form-radio__gender1">
-                                            女性
+                                            {{ __('message.woman') }} 
                                         </label>
                                     </div>
                                 </div>
@@ -128,11 +128,11 @@
                                 @enderror
 
                                 <div class="col-12">
-                                    <h3 class="p-heading2">生年月日<span class="badge bg-danger ms-2">必須</span></h3>
+                                    <h3 class="p-heading2">{{ __('message.date of birth') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
                                 </div>
                                 <div class="col-4">
                                     <label for="">
-                                        <div class="p-form__label">西暦</div>
+                                        <div class="p-form__label">{{ __('message.Year') }} </div>
                                     </label>
                                     <select class="form-select" name="birthday_y">
                                         <option value="">----</option>
@@ -151,7 +151,7 @@
                                 </div>
                                 <div class="col-4">
                                     <label for="">
-                                        <div class="p-form__label">月</div>
+                                        <div class="p-form__label">{{ __('message.Month') }} </div>
                                     </label>
                                     <select class="form-select" name="birthday_m">
                                         <option value="">----</option>
@@ -170,7 +170,7 @@
                                 </div>
                                 <div class="col-4">
                                     <label for="">
-                                        <div class="p-form__label">日</div>
+                                        <div class="p-form__label">{{ __('message.Day') }} </div>
                                     </label>
                                     <select class="form-select" name="birthday_d">
                                         <option value="">----</option>
@@ -189,7 +189,7 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <h3 class="p-heading2">TEL<span class="badge bg-danger ms-2">必須</span></h3>
+                                    <h3 class="p-heading2">TEL<span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
                                     <input type="tel" class="form-control" name="tel" value="{{ old('tel', $user->tel) }}">
                                     @error('tel')
                                     <div class="p-error-text" role="alert">
@@ -198,10 +198,10 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-12"><h3 class="p-heading2">住所</h3></div>
+                                <div class="col-12"><h3 class="p-heading2">{{ __('message.address') }} </h3></div>
                                 <div class="col-12">
                                     <label for="">
-                                        <div class="p-form__label">郵便番号<span class="badge bg-danger ms-2">必須</span></div>
+                                        <div class="p-form__label">{{ __('message.post code') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></div>
                                     </label>
                                     <input type="text"
                                            class="form-control"
@@ -217,7 +217,7 @@
                                 </div>
                                 <div class="col-12 mt-3">
                                     <label for="">
-                                        <div class="p-form__label">住所<span class="badge bg-danger ms-2">必須</span></div>
+                                        <div class="p-form__label">{{ __('message.address') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></div>
                                     </label>
                                     <input type="text" class="form-control" name="address" value="{{ old('address', $user->address) }}">
                                     @error('address')
@@ -228,7 +228,7 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <h3 class="p-heading2">メールアドレス<span class="badge bg-danger ms-2">必須</span></h3>
+                                    <h3 class="p-heading2">{{ __('message.email address') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
                                     <input type="text" class="form-control" name="email" value="{{ old('email', $user->email) }}">
                                     @error('email')
                                     <div class="p-error-text" role="alert">
@@ -238,7 +238,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <h3 class="p-heading2">Skype名<span class="badge bg-danger ms-2">必須</span></h3>
+                                    <h3 class="p-heading2">{{ __('message.Skype name') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
                                     <input type="text" class="form-control" name="skype_name" value="{{ old('skype_name', $user->skype_name) }}">
                                     @error('skype_name')
                                     <div class="p-error-text" role="alert">
@@ -248,7 +248,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <h3 class="p-heading2">SkypeID<span class="badge bg-danger ms-2">必須</span></h3>
+                                    <h3 class="p-heading2">SkypeID<span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
                                     <input type="text" class="form-control" name="skype_id" value="{{ old('skype_id', $user->skype_id) }}">
                                     @error('skype_id')
                                     <div class="p-error-text" role="alert">
@@ -258,7 +258,7 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <h3 class="p-heading2">プロフィール画像</h3>
+                                    <h3 class="p-heading2">{{ __('message.profile image') }} </h3>
                                 </div>
                                 <div class="row">
                                     @for ($i=0; $i<3; $i++)
@@ -284,9 +284,9 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <h3 class="p-heading2">出身国<span class="badge bg-danger ms-2">必須</span></h3>
+                                    <h3 class="p-heading2">{{ __('message.Country of origin') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
                                     <select class="form-select" name="from_country_id">
-                                        <option value="">選択してください</option>
+                                        <option value="">{{ __('message.Please select') }} </option>
                                         @foreach ($mst_countries as $mst_country)
                                             <option value="{{ $mst_country->id }}"
                                                     {{ old('from_country_id', $user->from_country_id) == $mst_country->id ? 'selected' : '' }}>
@@ -302,9 +302,9 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <h3 class="p-heading2">居住国<span class="badge bg-danger ms-2">必須</span></h3>
+                                    <h3 class="p-heading2">{{ __('message.Country of Residence') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
                                     <select class="form-select" name="residence_country_id">
-                                        <option value="">選択してください</option>
+                                        <option value="">{{ __('message.Please select') }} </option>
                                         @foreach ($mst_countries as $mst_country)
                                             <option value="{{ $mst_country->id }}"
                                                 {{ old('residence_country_id', $user->residence_country_id) == $mst_country->id ? 'selected' : '' }}>
@@ -319,30 +319,30 @@
                                     @enderror
                                 </div>
                             </div><!-- /.row -->
-                            <button type="submit" class="p-btn p-btn__defalut mb-2">保存する</button>
+                            <button type="submit" class="p-btn p-btn__defalut mb-2">{{ __('message.save') }} </button>
                         </div>
                     </div><!-- /.tab-pane -->
                 </div>
             </form>
             <div class="text-end mt-3">
                 <button type="button" class="p-btn--rect btn-default small py-1 px-3" data-bs-toggle="modal" data-bs-target="#withdrawalModal">
-                    退会する
+                    {{ __('message.Withdraw') }} 
                 </button>
             </div>
             <!-- 退会確認モーダル -->
             <div class="modal p-modal p-setting fade" id="withdrawalModal" tabindex="-1" aria-labelledby="withdrawalModal">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }} "></button>
                         <div class="modal-body">
-                            <h2 class="p-heading2 mt-0 text-center">退会確認</h2>
+                            <h2 class="p-heading2 mt-0 text-center">{{ __('message.Withdrawal confirmation') }} </h2>
                             <p class="text-center">
-                                INITを退会されますと登録されたデータは全て削除されます。<br>よろしいですか？
+                                {{ __('message.With Init, all registered data will be deleted.') }} <br>{{ __('message.Is it OK?') }} 
                             </p>
                             <div class="text-center mt-2">
                                 <form action="{{ route('adviser.profile.withdrawal') }}" method="post">
                                     @csrf
-                                    <button class="p-btn--rect btn-default py-1 px-3">退会する</button>
+                                    <button class="p-btn--rect btn-default py-1 px-3">{{ __('message.Withdraw') }} </button>
                                 </form>
                             </div>
                         </div><!-- /.modal-body -->

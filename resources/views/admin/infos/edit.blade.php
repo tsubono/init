@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'お知らせ編集')
+@section('title', __('message.Notice edit'))
 
 @section('content')
     <section class="l-content-block p-setting">
@@ -12,7 +12,7 @@
                 @include('admin.infos._form')
 
                 <div class="my-80px">
-                    <button type="submit" class="p-btn p-btn__defalut">保存する</button>
+                    <button type="submit" class="p-btn p-btn__defalut">{{ __('message.save') }} </button>
                 </div>
             </form>
         </div>

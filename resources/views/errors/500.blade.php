@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
-@section('title', '404エラー')
+@section('title', '__('message.404 error')')
 
 @section('content')
     <section class="l-content-block">
         <div class="container pt-40px pb-100px">
             <div class="border rounded p-box-with-icon">
                 <div class="p-box-with-icon__icon">
-                    <img src="{{ asset('img/mood-bad.svg') }}" alt="エラー">
+                    <img src="{{ asset('img/mood-bad.svg') }}" alt="{{ __('message.error') }} ">
                 </div>
                 <div>
                     <div class="fs-5 fw-bold">System Error</div>
                     <div class="mt-3 lh-lg">
-                        システムエラーが発生しました。<br>
-                        時間を置いて再度お試しいただくか、
-                        <a href="{{ route('contact.index') }}" class="primary-link">お問い合わせフォーム></a>よりご連絡をお願いいたします。
+                    {{ __('message.A system error has occurred.') }} <br>
+                    {{ __('message.Take time to try again,') }} 
+                        <a href="{{ route('contact.index') }}" class="primary-link">{{ __('message.Inquiry form') }} ></a>{{ __('message.Please contact me more.') }} 
                     </div>
                 </div>
             </div>

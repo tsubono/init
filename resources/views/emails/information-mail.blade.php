@@ -2,6 +2,6 @@
 {!! nl2br(e($informationMail->content)) !!}<br>
 <br>
 <br>
-<p>※こちらのメールは送信専用のメールアドレスより送信しています。恐れ入りますが、直接返信しないようお願いします。</p>
+<p>※{{ __('message.This email is sent from the send-only email address. Excuse me, but please do not reply directly.') }} </p>
 
 @include('emails._footer')

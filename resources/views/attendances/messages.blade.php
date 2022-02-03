@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'メッセージ')
+@section('title', __('message.message'))
 
 @section('content')
     <section class="p-message l-content-block">
         <div class="container">
             @if (count($attendance->reviews) !== 0)
             <div class="p-5 p-review">
-                <h3 class="p-heading3"><b>レビュー</b></h3>
+                <h3 class="p-heading3"><b>{{ __('message.review') }} </b></h3>
                 <div class="px-5 d-flex flex-column align-items-center p-review__list">
                     @foreach ($attendance->reviews as $review)
                         <div class="p-review-box my-2 w-100">
@@ -20,7 +20,7 @@
                             </div>
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <img src="{{ $review->user->avatar_image ?? asset('img/default-avatar.png') }}" class="p-review-box__avatar" alt="{{ $review->user ? $review->user->full_name : '退会ユーザー' }}のプロフィール画像">
+                                    <img src="{{ $review->user->avatar_image ?? asset('img/default-avatar.png') }}" class="p-review-box__avatar" alt="{{ $review->user ? $review->user->full_name : '退会ユーザー' }}{{ __('message.Profile image') }} ">
                                     <span class="fw-bold ms-3">{{ $review->user->full_name ?? '退会ユーザー' }}</span>
                                 </div>
                                 <time>{{ $review->created_at->format('Y/m/d H:i') }}</time>
@@ -36,15 +36,15 @@
 
             @if ($attendance->can_review && !$attendance->done_review)
                 <div class="text-center mb-70px">
-                    <a class="p-btn--rect btn-warning p-4" href="{{ route('attendances.review-form', compact('attendance')) }}">レビュー登録する</a>
+                    <a class="p-btn--rect btn-warning p-4" href="{{ route('attendances.review-form', compact('attendance')) }}">{{ __('message.Register Review') }} </a>
                 </div>
             @endif
 
             <div class="d-flex justify-content-between align-items-center mb-5 flex-wrap mt-3">
-                <h1 class="fs-2 fw-bold">「{{ $attendance->lesson->name }}」 に関するメッセージ</h1>
+                <h1 class="fs-2 fw-bold">「{{ $attendance->lesson->name }}」 {{ __('message.Message about') }} </h1>
                 @if (auth()->guard('adviser')->check() && $attendance->can_message_action)
                     <button type="button" class="p-btn p-btn__defalut px-70px mt-3" data-bs-toggle="modal" data-bs-target="#closeModal">
-                        受講完了にする
+                    {{ __('message.To attend the completion') }} 
                     </button>
                 @endif
             </div>
@@ -53,7 +53,7 @@
                 <div class="p-message__message-box">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <div class="d-flex justify-content-between align-items-center">
-                            <img src="{{ $message->user->avatar_image ?? asset('img/default-avatar.png') }}" class="p-message__avatar" alt="{{ $message->user ? $message->user->full_name : '退会ユーザー' }}のプロフィール画像">
+                            <img src="{{ $message->user->avatar_image ?? asset('img/default-avatar.png') }}" class="p-message__avatar" alt="{{ $message->user ? $message->user->full_name : '退会ユーザー' }}{{ __('message.Profile image') }} ">
                             <span class="fw-bold ms-3">{{ $message->user->full_name ?? '退会ユーザー' }}</span>
                         </div>
                         <time>{{ $message->created_at->format('Y/m/d H:i') }}</time>
@@ -97,7 +97,7 @@
                 </div>
             @empty
                 <div class="p-message__message-box">
-                    <p class="text-center m-3">まだメッセージはありません</p>
+                    <p class="text-center m-3">{{ __('message.There is no message yet') }} </p>
                 </div>
             @endforelse
 
@@ -106,7 +106,7 @@
                     <div class="p-message__message-box">
                     <form action="{{ route('attendances.send-message', compact('attendance')) }}" method="post">
                         @csrf
-                        <textarea class="p-message__textarea" placeholder="メッセージを入力"
+                        <textarea class="p-message__textarea" placeholder="{{ __('message.Enter a message') }} "
                                   name="content">{{ old('content') }}</textarea>
                         @error('content')
                         <div class="p-error-text" role="alert">
@@ -143,7 +143,7 @@
                                     ></file-upload-not-preview>
                                 </div>
                             </div>
-                            <button type="submit" class="p-btn p-btn--rect p-btn__black px-75px">送信する</button>
+                            <button type="submit" class="p-btn p-btn--rect p-btn__black px-75px">{{ __('message.Send') }} </button>
                         </div>
                     </form>
                 </div>
@@ -151,15 +151,15 @@
                     <div class="p-message__action">
                         @if (auth()->guard('adviser')->check())
                             <button type="button" class="p-btn p-btn__defalut d-inline-block px-70px" data-bs-toggle="modal" data-bs-target="#closeModal">
-                                受講完了にする
+                            {{ __('message.To attend the completion') }} 
                             </button>
                         @endif
                     </div>
                 @endif
             @else
                 <div class="p-message__message-box text-center p-error-text">
-                    この受講はクローズしているのでメッセージの送受信は行えません。<br>
-                    お困りのことがございましたら<a class="primary-link" href="{{ route('contact.index') }}" target="_blank">お問い合わせ</a>をお願いいたします。
+                {{ __('message.This will be closed, so you can not send and receive messages.') }} <br>
+                {{ __('message.If you have trouble') }} <a class="primary-link" href="{{ route('contact.index') }}" target="_blank">{{ __('message.inquiry') }} </a>{{ __('message.Please give me.') }} 
                 </div>
             @endif
         </div><!-- /.container -->
@@ -169,13 +169,13 @@
             <div class="modal p-modal p-setting fade" id="closeModal" tabindex="-1" aria-labelledby="closeModalLabel">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }} "></button>
                         <div class="modal-body">
-                            <h2 class="p-heading2 mt-0 text-center">受講完了確認</h2>
-                            <p class="text-center">{{ $attendance->mateUser->full_name ?? '' }}さんの受講を完了します。<br>よろしいですか？</p>
+                            <h2 class="p-heading2 mt-0 text-center">{{ __('message.Recruitment confirmation confirmation') }} </h2>
+                            <p class="text-center">{{ $attendance->mateUser->full_name ?? '' }}{{ __('message.Complete the attendance of.') }} <br>{{ __('message.Is it OK?') }} </p>
                             <form action="{{ route('attendances.close', compact('attendance')) }}" method="post">
                                 @csrf
-                                <button class="p-btn p-btn__defalut">完了する</button>
+                                <button class="p-btn p-btn__defalut">{{ __('message.Be completed') }} </button>
                             </form>
                         </div><!-- /.modal-body -->
                     </div><!-- /.modal-content -->

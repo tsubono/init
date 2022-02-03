@@ -1,62 +1,62 @@
 @extends('layouts.app')
 
-@section('title', '講師フィーの納税について')
+@section('title', __('message.About tax payment of lecturer fee'))
 
 @section('content')
     <section class="l-content-block p-team">
         <div class="container pb-100px">
             <p>
-                •INITは、当社から送付したレッスンフィーなどについて、 <a href="{{ route('adviser-terms') }}#terms14" target="_blank" class="primary-link">講師規約14条④</a> に記載したとおり、税金や税金支払の手続きの全てを講師自身で対応していただくこととしております。<br>
-                納税の義務やその体系は、日本をはじめ各国によって様々で、かつ複雑です。 ご不明な点は必ず各機関のホームページで調べるか、最寄りの税務署や各地方税理士会の相談窓口などでご相談ください。
+                •{{ __('message.INIT is about the lesson fee sent from the Company, etc.') }}  <a href="{{ route('adviser-terms') }}#terms14" target="_blank" class="primary-link">{{ __('message.Article 14 Article Article 14') }} ④</a> {{ __('message.As described in') }} <br>
+                {{ __('message.Tax obligations and their systems vary and are complex in each country, including Japan. If you have any questions, please be sure to check the website of each institution, or consult with the nearest tax office or the consultation desk of each local tax accountant association.') }} 
             </p>
             <br>
             <p>
-                •東京には「財団法人　日本税務研究センター」に納税者支援センターがあり、「無料相談」という窓口を設けています。<br>
+                •{{ __('message.Tokyo has a taxpayer support center in Japan Japan Tax Research Center, and has a window called 'Free consultation'.') }} <br>
                 ➔  <a class="primary-link" href="http://www.jtri.or.jp/counsel/index.php" target="_blank">http://www.jtri.or.jp/counsel/index.php</a><br>
                 <br>
-                国税局タックスアンサーでは、税の種別毎に「よくある税の質問」として案内されています。<br>
+                {{ __('message.National Tax Public Tax Answer is guided as a 'common tax question' for each type of tax.') }} <br>
                 ➔  <a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/index2.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/index2.htm</a> <br>
                 <br>
-                Internal Revenue Service（米国内国歳入庁 英文）<br>
+                Internal Revenue Service（{{ __('message.United States International Revenue Agency English') }} ）<br>
                 ➔  <a class="primary-link" href="//www.irs.gov/" target="_blank">www.irs.gov/</a> <br>
             </p>
             <br>
             <p>
-                <b>•副業で講師活動をする場合の確定申告について</b><br>
-                一般的に、給与所得以外の所得（収入ー必要経費）が年間20万円未満の場合には、確定申告は不要です。ただし、INIT以外でも副業収入がある場合には、それらもまとめて20万円を超えるかどうか判定する必要があります。
-                ➔  国税庁／タックスアンサー／所得の区分のあらまし  (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm</a> )
+                <b>•{{ __('message.About final income tax return to lecturer activities in the side work') }} </b><br>
+                {{ __('message.Generally, if your income other than salary income (income-necessary expenses) is less than 200,000 yen per year, you do not need to file a tax return. However, if you have side business income other than INIT, you need to determine whether they also exceed 200,000 yen.') }} 
+                ➔  {{ __('message.Summary of National Tax Agency / Tax Answer / Category of income') }}  (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm</a> )
             </p>
             <br>
             <p>
-                <b>•講師活動で得た収入の消費税の申告について</b><br>
-                講師活動をして2年未満の方や、2年前の事業での収入が1,000万円未満の方は、消費税の申告の必要はないと考えられますが、事業の内容等についてはご確認下さい。
-                ➔  国税庁／タックスアンサー／消費税  (<a class="primary-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/shouhi.htm" target="_blank">https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/shouhi.htm</a> )
+                <b>•{{ __('message.About declaration of consumption tax of income obtained in lecturer activity') }} </b><br>
+                {{ __('message.Those who have been instructors for less than two years or who earned less than 10 million yen in the business two years ago are not considered to need to file a consumption tax, but please check the details of the business. Please.') }} 
+                ➔  {{ __('message.National Tax Agency / Tax Answer / Consumption Tax') }}   (<a class="primary-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/shouhi.htm" target="_blank">https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/shouhi.htm</a> )
             </p>
             <br>
             <p>
-                <b>•講師フィーの所得種類と所得申告</b><br>
-                あなたの所得状況、就業状況等によって、申告する所得種類が異なります。<br>
-                ➔  国税庁／タックスアンサー／所得の区分のあらまし  (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm</a> )
+                <b>•{{ __('message.In-lecturer Fee's income and income declaration') }} </b><br>
+                {{ __('message.Depending on your income situation, employment status, etc., the income type will be declared.') }} <br>
+                ➔  {{ __('message.Summary of National Tax Agency / Tax Answer / Category of income') }}  (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm</a> )
             </p>
             <br>
             <p>
-                <b>•配偶者控除</b><br>
-                たとえば主婦業のかたわらに講師をしている場合、年間の合計所得金額が38万円以下であれば控除対象配偶者とされます。 合計所得額の算出方法（必要経費の計算等）は、所得の種類によっても異なります。<br>
-                ➔  国税庁／タックスアンサー／配偶者控除  (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm</a> )
+                <b>•{{ __('message.Spouse deduction') }} </b><br>
+                {{ __('message.For example, if you are a teacher while working as a housewife, you will be considered a deductible spouse if your total annual income is 380,000 yen or less. The method of calculating the total income (calculation of necessary expenses, etc.) also differs depending on the type of income.') }} <br>
+                ➔  {{ __('message.National Tax Agency / Tax Answer / Spouse deduction') }}   (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm</a> )
             </p>
             <br>
             <p>
-                <b>•給与所得者の確定申告</b><br>
-                たとえばサラリーマンで副業として講師をし収入を得た場合、給与以外（雑所得・事業所得）の年間所得金額によっては申告が必要となり、給与年収額によってその上限が異なります。 合計所得額の算出方法（必要経費の計算等）は、所得の種類によっても異なります。<br>
-                ➔  国税庁／タックスアンサー／サラリーマンで確定申告が必要な人  (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm</a> )
+                <b>•{{ __('message.Fixed declaration of salary income person') }} </b><br>
+                {{ __('message.For example, if you are a salaryman and earn income as a side job, you will need to file a tax return depending on the amount of annual income other than salary (miscellaneous income / business income), and the upper limit will differ depending on the amount of annual salary. The method of calculating the total income (calculation of necessary expenses, etc.) also differs depending on the type of income.') }} <br>
+                ➔  {{ __('message.Person who needs tax return in National Tax Agency / Tax Answer / Salaryman') }}   (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1900.htm</a> )
             </p>
             <br>
             <p>
-                <b>•海外在住の場合の申告</b><br>
-                納税義務は、居住地での滞在日数や生活の本拠などから「居住者」「非居住者」のどちらに判断されるかで異なります。<br>
-                非居住者の方がINITで収益を上げた場合には、基本的には日本での納税義務は生じず現地国の税法に準じることとなります。<br>
-                たとえば、海外旅行や短期の留学などで海外に住んでいる方は、非居住者には該当しないと考えられますので、日本にて課税される可能性があります。<br>
-                ➔  国税庁／タックスアンサー／居住者と非居住者の区分  (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2875.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2875.htm</a> )
+                <b>•{{ __('message.Report in case of overseas living') }} </b><br>
+                {{ __('message.Tax payment obligations vary depending on whether they are judged to 'residents' and 'non-resident' from the number of days of stay at the residence and the real life of life.') }} <br>
+                {{ __('message.If non-residents revenue in init with init, basically, tax duty in Japan will not occur and it will conform to the current tax law.') }} <br>
+                {{ __('message.For example, if you live abroad in overseas travel and short-term study abroad, it is considered that non-residents will not be applicable, so it may be taxed in Japan.') }} <br>
+                ➔  {{ __('message.National Tax Agency / Tax Answer / Resident and Non-Residents') }}   (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2875.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2875.htm</a> )
             </p>
         </div>
     </section>

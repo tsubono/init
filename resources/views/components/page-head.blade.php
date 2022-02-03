@@ -14,6 +14,6 @@
     <div class="alert alert-danger text-center">{!! session('error_message') !!}</div>
 @endif
 @if ($errors->any())
-    <div class="alert alert-danger text-center">入力フォームにエラーがあります</div>
+    <div class="alert alert-danger text-center">{{ __('message.There is an error in the input form') }} </div>
 @endif
 <!-- /messages -->

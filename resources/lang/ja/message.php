@@ -1049,16 +1049,14 @@ return [
     "13. コインの購入・管理・使用等"=>"13. Purchase, management, use, etc. of coin",
     "13-1. 受講者は、当社からコインを購入した上、購入したコインを使用する方法で当社にサービスフィーを支払うものとします。なお、サービスフィーのうちレッスンフィーについては、当社が受講者に代わって講師に対し現金を振込送金する方法で支払うものとします。"=>"13-1. Students shall purchase coins from us and pay us the service fee by using the purchased coins. Of the service fees, the lesson fee shall be paid by our company by transfer of cash to the instructor on behalf of the student.",
     "13-2. サービスフィーの支払に必要なコインの数については、講師がその裁量のもとに決定するものとします。"=>"13-2. An instructor shall determine the number of coins required for service fee payment.",
-    """13-3. 受講者がレッスン契約の申込を行うと同時に当該受講者の保有コインから当該レッスン契約に係るサービスフィーに相当するコインが差し引かれるものとします。
-    ""=>""'13-3. At the same time, the number of courses of the students will be subtracted from the held coins of the student from the held coin of the student."","
+    "13-3. 受講者がレッスン契約の申込を行うと同時に当該受講者の保有コインから当該レッスン契約に係るサービスフィーに相当するコインが差し引かれるものとします。" => "13-3. At the same time, the number of courses of the students will be subtracted from the held coins of the student from the held coin of the student.",
     "13-4. 受講者は、レッスン契約を申し込む前に、当社からコインを購入しなければならないものとします。"=>"13-4. Students shall be able to purchase coins from our company before applying for a lesson contract.",
     "13-5. 受講者は、当社からコインを購入する際、当社が別途指定する一定数のコインをまとめて購入しなければならないことにあらかじめ同意するものとします。"=>"13-5. When purchasing coins from our company, we must agree in advance that we must purchase a certain number of coins separately specified separately.",
     "13-6. コインの購入代金は、当社が別途定める場合を除き、1コイン100円（税込）とします。"=>"13-6. The purchase price of coin is 1 coin 100 yen (tax included) except when we set up separately.",
     "受講者は、コインの購入を希望する場合、当社が別途指定する方法により自ら購入申込（以下、「購入申込」といいます。）を行うものとします。"=>"If you wish to purchase coins, the Company shall make purchase application (hereinafter referred to as 'purchase application') by the method of specifying separately.",
     "13-8. 受講者は、購入申込の際、虚偽の内容を入力してはならないものとします。"=>"13-8. Students shall not enter false content during purchase application.",
-    """13-9. コインの購入代金は、銀行振込による支払、受講者本人名義のクレジットカード（当社が別途指定するクレジットカード会社が発行するものに限るものとします。）による支払、PayPal（ペイパル）による支払その他当社が別途指定する方法により支払うものとします。
-    ""=>""'13-9. Purchasing of coin is payment by bank transfer, and a credit card of the student identifier (which will be limited to what is issued by a credit card company separately.) PayPal (Paypal) Payments Other Payments will be paid by the method separately."","
-    "13-10. 受講者は、購入申込をした後は、当社が別途認める場合を除いて購入申込を撤回又は取り消すことができないことにあらかじめ同意するものとします。"=>"13-10. After making a purchase application, we will agree in advance that we can not withdraw or cancel the purchase application except when we admit separately.",
+    "13-9. コインの購入代金は、銀行振込による支払、受講者本人名義のクレジットカード（当社が別途指定するクレジットカード会社が発行するものに限るものとします。）による支払、PayPal（ペイパル）による支払その他当社が別途指定する方法により支払うものとします。"=>"'13-9. Purchasing of coin is payment by bank transfer, and a credit card of the student identifier (which will be limited to what is issued by a credit card company separately.) PayPal (Paypal) Payments Other Payments will be paid by the method separately.",
+    "13-10. 受講者は、購入申込をした後は、当社が別途認める場合を除いて購入申込を撤回又は取り消すことができないことにあらかじめ同意するものとします。" => "13-10. After making a purchase application, we will agree in advance that we can not withdraw or cancel the purchase application except when we admit separately.",
     "13-11. 当社は、以下の各号のいずれかに該当する場合、受講者に事前の通知をすることなく、コインの抹消その他適切な措置をとることができるものとします。"=>"13-11. If any of the following items are applicable to any of the following items, I can take the quarter of coin without prior notice.",
     "① 購入申込が受講者以外の第三者により行われたことが判明した場合"=>"1 If it has been found that purchase application has been done by third parties other than the students",
     "② 購入申込の際に受講者が入力した内容に虚偽、誤記又は入力漏れがあったことが判明した場合"=>"(2) When it is found that there was false, error or input leaks in the content entered by the student during purchase application",
@@ -1384,5 +1382,18 @@ return [
     "退会完了"=>"Withdrawal completion",
     "退会を受け付けました。"=>"I accepted withdrawal.",
     "この度はご利用いただき、誠にありがとうございました。"=>"Thank you very much for using this time.",
+    "や、" => "&",
+    "第16条各号に定める行為を行った場合" => "Article 16 When performing the acts specified in each issue",
+    "プロフィール入力" => "Profile input",
+    "（講師）売上詳細" => "(Lecturer) Sales Details",
+    "受講一覧へ戻る" => "Back to the list",
+    "INITの使い方" => "How to use init",
+    "Skypeのダウンロード・登録方法はこちら" => "Click here for Skype's download and registration method",
+    "講師が受講者から受けたレッスン契約の申込の拒否の可否、成立後のレッスン契約のキャンセル又は時間変更の可否、成立後のレッスン契約をキャンセルした場合の取扱等については、この「キャンセルポリシー（講師向け）」（以下、「本ポリシー」といいます。）に定めるとおりとします。 なお、本ポリシーにおける用語の定義は、本ポリシーに特に定めのない限り、当社が別途定める 「講師規約」（URLお願いいたします）の定義によるものとします。" => "This 'Cancellation Policy (Lecturer, Cancel Policy (Lecturer) ) ')' Below is called 'this policy'.). In addition, the definition of terms in this policy is based on the definition of the 'Terms of Terms' (please URL) separately defined by the Company unless otherwise specified in this policy.",
+    "講師は、受講者から受けたレッスン契約の申込については、拒否するか否かを自由に判断することができるものとします。" => "The instructor shall freely judge whether or not to reject the lesson contract received from the student.",
+    "講師は、本サービス上のシステムを利用して受講者によるレッスン契約の申込を承諾する旨の電子メールを送信してレッスン契約が成立した後、以下のキャンセルポリシーが適用され、日にちに関わらず当事務局にキャンセル料の支払いが科せられるものとします。" => "The instructor sends an e-mail to accept the application of the lesson contract by the student using the system on the service and the following cancellation policy is applied, and the following cancellation policy is applied, and regardless of the date The secretariat shall be paid for cancellation fee.",
+    "否認メッセージを必ず入力してください" => "Please be sure to enter a non-negative message",
+   
+
         
 ];

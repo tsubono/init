@@ -1,11 +1,11 @@
-{{ $attendance->adviserUser->full_name }} さま <br>
+{{ $attendance->adviserUser->full_name }} {{ __('message.looks') }}  <br>
 <br>
-こんにちは、INITです。<br>
-あなたのレッスン「{{ $attendance->lesson->name }}」に受講申請がありました！<br>
+{{ __('message.Hi, INIT.') }} <br>
+{{ __('message.Your lesson') }} 「{{ $attendance->lesson->name }}」{{ __('message.There was an application for attendance!') }} <br>
 <br>
-下記のリンクから受講申請の詳細を確認できます。 <br>
-<a href="{{ route('attendances.show', compact('attendance')) }}?type=adviser">受講詳細</a>
+{{ __('message.You can check the details of the attendance application from the link below.') }}  <br>
+<a href="{{ route('attendances.show', compact('attendance')) }}?type=adviser">{{ __('message.Taking details') }} </a>
 <br>
-<p>※こちらのメールは送信専用のメールアドレスより送信しています。恐れ入りますが、直接返信しないようお願いします。</p>
+<p>※{{ __('message.This email is sent from the send-only email address. Excuse me, but please do not reply directly.') }} </p>
 
 @include('emails._footer')

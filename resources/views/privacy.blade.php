@@ -1,126 +1,126 @@
 @extends('layouts.app')
 
-@section('title', 'プライバシーポリシー')
+@section('title', __('message.privacy policy'))
 
 @section('content')
     <section class="l-content-block p-team">
         <div class="container pb-100px">
             <div class="tab-content p-setting__content">
                 <div id="mate">
-                    <p>「Init」（https://init-online.com   以下、「本サービス」といいます。）は、個人情報を大切に保護することを企業の重要な社会的使命と認識し、役員はじめ全従業者が個人情報保護に関する法規範を遵守するとともに、当社が運営するサービスであるInit（http://www        以下、「本サービス」といいます）を通じて取得される個人情報の取扱いについての当社の基本方針（以下、「本ポリシー」といいます）を以下のとおり定め、全社を挙げて個人情報の保護に取り組むことを宣言いたします。</p>
+                    <p>「Init」（https://init-online.com   {{ __('message.Hereinafter referred to as 'this service'. ) Recognizes the important protection of personal information as an important social mission of the company, and all employees including officers comply with the legal norms regarding the protection of personal information, and Init (http) is a service operated by the Company. We have established the following basic policy (hereinafter referred to as 'this policy') regarding the handling of personal information acquired through: // www (hereinafter referred to as 'this service'), and the entire company as a whole is an individual. We declare that we will work to protect information.') }} </p>
                     <br>
-                    <b>1. 個人情報の定義、適用範囲</b><br>
-                    <p>本ポリシーにおける「個人情報」とは個人に関する情報で、当該情報に含まれる一定の情報により、特定の個人を識別し得る情報（個人情報保護法第２条同旨）をいいます。但し、当社が運営する最新のウェブサイト（以下、｢当社サイト｣といいます）内のリンク先のウェブサイト、その他当社が直接管理していないウェブサイト等に登録された個人情報は、本ポリシーの適用範囲外とします。</p>
+                    <b>1. {{ __('message.Definition of personal information, scope') }} </b><br>
+                    <p>{{ __('message.'Personal information' in this policy is information about an individual, and means information that can identify a specific individual by certain information contained in the information (the same as Article 2 of the Personal Information Protection Law). However, personal information registered on linked websites in the latest websites operated by the Company (hereinafter referred to as 'our site') and other websites not directly managed by the Company shall be covered by this policy. Is out of the scope of application.') }} </p>
                     <br>
-                    <b>2. 個人情報に関する法令、国の定める指針、その他の規範の遵守</b>
-                    <p>当社は、大切な個人情報をお預かりする企業として、個人情報保護の取扱いに関する法令、個人情報保護法に基づいて各所管官庁が作成したガイドライン・指針、JISQ15001をはじめとするその他個人情報保護に関連する規範（以下、「関連法令等」といいます）を遵守します。</p>
+                    <b>2. {{ __('message.Understanding personal information law, guidelines to establish in the country, compliance with other norms') }} </b>
+                    <p>{{ __('message.As a company that keeps important personal information, we are related to laws and regulations regarding the handling of personal information protection, guidelines and guidelines created by each competent authority based on the Personal Information Protection Law, JISQ15001 and other personal information protection. We will comply with the norms (hereinafter referred to as 'related laws and regulations').') }} </p>
                     <br>
-                    <b>3. 個人情報の適正な取得</b>
+                    <b>3. {{ __('message.Proper acquisition of personal information') }} </b>
                     <p>
-                        1) 当社は、適法かつ公正な手段により取得した個人情報を取り扱います。<br>
-                        2) 個人情報を本人（当社サイト上で、当社に個人情報をお預け頂く情報主体をいい、以下同様とします）から直接的に取得する場合は、個人情報の利用目的等の必要事項を本人に明示し、同意を得た上で取得します。個人情報を第三者から間接的に入手する場合は、提供者が本人から適正に入手したものであるかどうかを確認し、当社サイト上に個人情報の利用目的等の必要事項を通知致します。<br>
-                        3) 当社では、以下に該当する特定の機微な個人情報は取得致しません。但し関連法令等で取得を義務付けられている場合はこの限りではありません。<br>
-                        &nbsp; ① 思想、信条又は宗教に関する情報<br>
-                        &nbsp; ② 人種、民族、門地、本籍地（所在都道府県に関する情報を除きます）、身体・精神障害、犯罪歴その他の社会的差別の原因となる情報<br>
-                        &nbsp; ③ 勤労者の団結権、団体交渉その他の団体行動の行為に関する情報<br>
-                        &nbsp; ④ 集団示威行為への参加、請願権の行使その他の政治的権利の行使に関する情報<br>
-                        &nbsp; ⑤ 保健医療又は性生活に関する情報<br>
-                        4) 当社は、受講者又は講師のcookie（ウェブサーバが本人のブラウザを識別する業界標準の技術をいい、以下同様とします）によって取得した情報やご利用になったページ、利用環境などの情報を本人のブラウザから自動的に受け取り、これらを分析して当社サイトにおいて提供するサービスの品質を向上を図っています。これらの情報からは、特定の個人を識別することができないため個人情報にはあたりませんが、本人がcookieによる情報を当社が取得することを希望しない場合は、ご利用のブラウザの設定でcookieを無効にすることができます。
+                        1) {{ __('message.We handle personal information acquired by law and fair means.') }} <br>
+                        2) {{ __('message.When personal information is obtained directly from the person (the information subject who entrusts the personal information to the company on our site, the same shall apply hereinafter), the necessary items such as the purpose of use of the personal information shall be clearly stated to the person. , Obtain after obtaining consent. When personal information is indirectly obtained from a third party, we will confirm whether the provider has properly obtained it from the person and notify the necessary items such as the purpose of use of personal information on our site. ..') }} <br>
+                        3) {{ __('message.We do not acquire specific micro personal information corresponding to the following. However, this is not the case if it is required to be acquired by related laws and regulations.') }} <br>
+                        &nbsp; ① {{ __('message.Information about thought, belief or religion') }} <br>
+                        &nbsp; ② {{ __('message.Information that causes physical, mental disorders, criminal history and other social discrimination') }} <br>
+                        &nbsp; ③ {{ __('message.Information on workers' unity, group negotiations and other group behavior acts') }} <br>
+                        &nbsp; ④ {{ __('message.Information on the participation in the population regeneration, and the exercise of the exercise of the petition right') }} <br>
+                        &nbsp; ⑤ {{ __('message.Information about health care or sexual life') }} <br>
+                        4) {{ __('message.We will use the information obtained by the cookie of the student or the instructor (the industry standard technology that the web server identifies the browser of the person, the same shall apply hereinafter), the page used, the usage environment, etc. of the person. We automatically receive them from your browser and analyze them to improve the quality of the services we provide on our site. This information is not personal information because it is not possible to identify a specific individual, but if you do not want us to obtain information by cookie, please set the cookie in your browser settings. Can be disabled.') }} 
                     </p>
                     <br>
-                    <b>4. 個人情報の目的外利用の禁止</b>
+                    <b>4. {{ __('message.Prohibition of unusual use of personal information') }} </b>
                     <p>
-                        1) 当社は、特定された利用目的の達成に必要な範囲を超えた個人情報の目的外利用を行いません。また当社は、目的外の個人情報の利用を防止するため、個人情報の管理体制について、日常的な点検、内部監査等を行います。<br>
-                        2) 当社が収集した個人情報の主な利用目的は以下のとおりです。<br>
-                        &nbsp; ① 本サービスを円滑に運営する目的<br>
-                        &nbsp; ② 本サービスにおいて語学レッスン提供を希望する講師と語学レッスンの受講を希望する受講者との間で語学レッスンの予約及び実施をする目的<br>
-                        &nbsp; ③ 本サービスを利用してレッスンの提供を希望する講師の公開用プロフィールの作成・公開、語学レッスン提供の対価として受講者が当社を介して講師に料金の支払をする目的<br>
-                        &nbsp; ④ 本人確認をする目的<br>
-                        &nbsp; ⑤ 当社が提供する本サービス及びその他のサービスの立案や改善の参考にする目的<br>
-                        &nbsp; ⑥ メールマガジン配信の目的<br>
-                        &nbsp; ⑦ 本人に有益と思われる当社が提供するサービス等の情報を本人に提供する目的<br>
+                        1) {{ __('message.We will not use personal information for purposes other than those necessary to achieve the specified purpose of use. In addition, in order to prevent the use of personal information for purposes other than the intended purpose, we will carry out daily inspections and internal audits of the personal information management system.') }} <br>
+                        2) {{ __('message.The main use of personal information collected by our company is as follows.') }} <br>
+                        &nbsp; ① {{ __('message.Purpose to operate this service smoothly') }} <br>
+                        &nbsp; ② {{ __('message.Purpose to reserve and carry out languages ​​lessons between lecturers who wish to provide language lessons in this service and students who wish to attend language lessons') }} <br>
+                        &nbsp; ③ {{ __('message.The purpose of creating and publishing a public profile of the instructor who wishes to provide lessons using this service, and for the students to pay the instructor through our company as a consideration for providing language lessons.') }} <br>
+                        &nbsp; ④ {{ __('message.Purpose to confirm the identity') }} <br>
+                        &nbsp; ⑤ {{ __('message.For purposes of making the construction and improvement of the service and other services provided by the Company') }} <br>
+                        &nbsp; ⑥ {{ __('message.Purpose of mail magazine delivery') }} <br>
+                        &nbsp; ⑦ {{ __('message.The purpose of providing information such as services provided by the Company that seems to be beneficial to the person') }} <br>
                     </p>
                     <br>
-                    <b>5. 第三者への個人情報の適切な提供</b>
+                    <b>5. {{ __('message.Appropriate provision of personal information to third parties') }} </b>
                     <p>
-                        当社は次に掲げる場合を除くほか、取得した個人情報を適切に管理し、予め本人の同意を得ず本人以外の第三者に提供、開示等は致しません。<br>
-                        1) 法令に基づく場合<br>
-                        2) 人の生命、身体又は財産の保護のために必要がある場合であって、本人の同意を得ることが困難であるとき<br>
-                        3) 公衆衛生の向上又は児童の健全な育成の促進のために特に必要がある場合であって、本人の同意を得ることが困難であるとき<br>
-                        4) 国の機関若しくは地方公共団体又はその委託を受けた者が法令の定める事務を遂行することに対して当社が協力する必要がある場合であって、本人の同意を得ることにより当該事務の遂行に支障を及ぼすおそれがあるとき
+                        {{ __('message.In addition to the following cases, we manage the acquired personal information appropriately, and do not obtain the consent of the person in advance and do not provide, disclose, etc. to third parties other than the person.') }} <br>
+                        1) {{ __('message.When based on laws and regulations') }} <br>
+                        2) {{ __('message.When it is necessary for human life, body or property protection, it is difficult to obtain the consent of the person') }} <br>
+                        3) {{ __('message.When it is particularly necessary to improve public health or promote the healthy development of children, it is difficult to obtain the consent of the person') }} <br>
+                        4) {{ __('message.When it is necessary for the Company to cooperate in carrying out the affairs stipulated by laws and regulations by a national institution or a local public organization or a person entrusted with it, and with the consent of the person in question, the affairs will be carried out. When there is a risk of hindrance') }} 
                     </p>
                     <br>
-                    <b>6. 第3者が発行するクッキーについて</b>
+                    <b>6. {{ __('message.About cookies issued by Part 3') }} </b>
                     <p>
-                        1) クッキーとは、ウェブページを利用したときに、ブラウザとサーバーとの間で送受信した利用履歴や入力内容などを、お客様のコンピュータにファイルとして保存しておく仕組みです。次回、同じページにアクセスすると、クッキーの情報を使って、ページの運営者はお客様ごとに表示を変えたりすることができます。お客様がブラウザの設定でクッキーの送受信を許可している場合、ウェブサイトは、ユーザーのブラウザからクッキーを取得できます。なお、お客様のブラウザは、プライバシー保護のため、そのウェブサイトのサーバーが送受信したクッキーのみを送信します。<br>
-                        2) お客様は、クッキーの送受信に関する設定を「すべてのクッキーを許可する」、「すべてのクッキーを拒否する」、「クッキーを受信したらユーザーに通知する」などから選択できます。設定方法は、ブラウザにより異なります。クッキーに関する設定方法は、お使いのブラウザの「ヘルプ」メニューでご確認ください。<br>
-                        3) すべてのクッキーを拒否する設定を選択されますと、認証が必要なサービスを受けられなくなる等、インターネット上の各種サービスの利用上、制約を受ける場合がありますのでご注意ください。
+                        1) {{ __('message.A cookie is a mechanism that saves the usage history and input contents sent and received between the browser and the server as a file on your computer when you use a web page. The next time you visit the same page, the cookie information can be used by the page operator to change the display for each customer. If you allow the sending and receiving of cookies in your browser settings, the website can retrieve cookies from your browser. Please note that your browser will only send cookies sent and received by the website's servers to protect your privacy.') }} <br>
+                        2) {{ __('message.You can select the settings for sending and receiving cookies from 'Allow all cookies', 'Deny all cookies', 'Notify user when cookies are received', and so on. The setting method differs depending on the browser. Please check the 'Help' menu of your browser for how to set cookies.') }} <br>
+                        3) {{ __('message.Please note that if you select the setting to reject all cookies, you may be restricted in using various services on the Internet, such as not being able to receive services that require authentication.') }} 
                     </p>
                     <br>
-                    <b>7. 当社からのサービス等のご案内の停止</b>
+                    <b>7. {{ __('message.Stop guidance such as services from our company') }} </b>
                     <p>
-                        当社は、本人に有益と思われる当社が提供するサービス等の情報を、電子メール等により本人に送信させていただく場合がございます。本人は、当社が別途定める方法にてお申し出いただくことにより、これらの取扱いを中止させたり、再開させたりすることができます。
+                        {{ __('message.The Company may send information such as services provided by the Company that may be useful to the person to the person by e-mail or the like. The person himself / herself can suspend or resume the handling of these items by requesting them by a method separately determined by the Company.') }} 
                     </p>
                     <br>
-                    <b>8. 個人情報の内容の正確性の確保</b>
+                    <b>8. {{ __('message.Ensuring accuracy of content of personal information') }} </b>
                     <p>
-                        当社は、利用目的の達成に必要な範囲内で、個人情報の内容をできる限り正確かつ最新の内容に保つよう努めます。
+                        {{ __('message.We will strive to keep the contents of personal information as accurate and the latest within the scope necessary to achieve the purpose of use') }} 。
                     </p>
                     <br>
-                    <b>9. 個人情報の漏洩、滅失又は毀損の防止</b>
+                    <b>9. {{ __('message.Prevention of leakage of personal information, loss or damage') }} </b>
                     <p>
-                        不正アクセス等を通じた個人情報の漏洩、滅失又は毀損の防止のため、以下の安全管理措置を講じております。安全管理上の不備が発覚した場合には、速やかに是正措置を講じます。<br>
-                        1) 不正アクセス対策を施した情報システム内に個人情報を保管するとともに、アクセスログを取得し、監視します<br>
-                        2) 個人情報が記載、記録された紙及び電子媒体は施錠されたスペースに保管します<br>
-                        3) オフィス、サーバ室は不正侵入を防止するための物理的安全管理措置を講じます<br>
-                        4) 個人情報の処理、保管を委託する業者に対して、個人情報保護を適切に実施していることを確認するとともに、必要な監督を行います
+                        {{ __('message.We have taken the following security management measures to prevent leakage, loss or damage of personal information through unauthorized access. If any deficiencies in safety management are discovered, we will promptly take corrective measures.') }} <br>
+                        1) {{ __('message.Keep personal information in an unauthorized access information system and gets and monitor access logs') }} <br>
+                        2) {{ __('message.Personal information, recorded paper and electronic media store in locked space') }} <br>
+                        3) {{ __('message.Office, server room takes physical safety management measures to prevent malicious intrusion') }} <br>
+                        4) {{ __('message.Make sure that personal information protection is properly implemented for the provision of personal information processing and storage, and we will do necessary supervision') }} 
                     </p>
                     <br>
-                    <b>10. 免責事項</b>
+                    <b>10. {{ __('message.Disclaimer') }} </b>
                     <p>
-                        当社は、本人のID及びパスワードの管理については、関与致しません。万が一、本人の不注意によりID及びパスワードが第三者に利用された場合は、ご登録頂いている個人情報等を閲覧される可能性がございますので、ご利用にあたっては使用及び管理について本人が責任を負うと共に、使用上の過誤又は第三者による不正使用等について十分注意をして下さい。
+                        {{ __('message.We are not involved in the management of the person's ID and password. In the unlikely event that the ID and password are used by a third party due to the carelessness of the person, the registered personal information etc. may be viewed, so the person is responsible for the use and management when using it. Please be careful about mistakes in use or unauthorized use by a third party.') }} 
                     </p>
                     <br>
-                    <b>11. 従業者及び委託先の監督</b>
+                    <b>11. {{ __('message.Supervisors of employees and consignees') }} </b>
                     <p>
-                        1) 当社は個人情報の適正な管理のため、個人情報を取り扱う業務に従事する者に対し必要な教育研修等を実施するとともに適切な監督を行います。<br>
-                        2) 当社は個人情報の取扱いを外部に委託する場合には、守秘義務契約の締結等により委託先においても適正に取り扱われるよう管理、監督します。
+                        1) {{ __('message.Due to the proper management of personal information, we will carry out necessary educational training etc. for those who work with personal information.') }} <br>
+                        2) {{ __('message.If we outsource the handling of personal information to the outside, we manage and oversee to properly handle the consignee by the conclusion of the confidentiality agreement.') }} 
                     </p>
                     <br>
-                    <b>12. 個人情報保護管理体制の継続的改善</b>
+                    <b>12. {{ __('message.Continuous improvement of personal information protection management system') }} </b>
                     <p>
-                        個人情報を適切に利用し、またその保護を徹底するために、ビジネス環境・社会情勢の変化、情報セキュリティ技術の進歩、法令の制定及び改訂に合わせ、個人情報保護管理体制を定期的に検証し、継続的に改善を行います。
+                        {{ __('message.In order to properly use and protect personal information, we regularly verify the personal information protection management system in accordance with changes in business environment and social conditions, advances in information security technology, and enactment and revision of laws and regulations. , We will continue to improve.') }} 
                     </p>
                     <br>
-                    <b>13. 個人情報に関するお問い合わせ</b>
+                    <b>13. {{ __('message.Inquiry about personal information') }} </b>
                     <p>
-                        1) 当社は、個人情報の取扱いに関する苦情、相談等受けた場合には、下記の個人情報に関する苦情及び相談窓口にて、可能な限り迅速かつ適切な対応を致します。<br>
-                        2) 当社は、個人情報に関する利用目的の通知、開示、訂正、追加、削除、利用停止、第三者提供停止、消去のご依頼があった場合、ご本人様であることを確認させて頂いた上で、お手続きをさせていただきます。<br>
-                        3) 本条第１項及び前項の苦情、相談及び各種請求につきましては、以下の窓口までお問い合わせ下さいますようお願い致します。<br>
-                        会社名：INIT運営事務局<br>
+                        1) {{ __('message.In the case of receiving complaints and consultations on handling of personal information, we will respond as quickly and properly as possible at the complaints and consultation desks on personal information below.') }} <br>
+                        2) {{ __('message.When we receive a request for notification, disclosure, correction, addition, deletion, suspension of use, suspension of provision to a third party, or deletion of the purpose of use regarding personal information, we will confirm that you are the person. So, we will process it.') }} <br>
+                        3) {{ __('message.Please contact the following window for complaints, consultations and various claims in paragraph 1 and preceding paragraph.') }} <br>
+                       {{ __('message.Company name: INIT Operating Office') }} <br>
                         メール：k.ozaki@init-online.com
                     </p>
                     <br>
-                    <b>14. 本ポリシーの改訂について</b>
+                    <b>14. {{ __('message.About revision of this policy') }} </b>
                     <p>
-                        当社は、今後も個人情報保護に万全を期すべく、以上の方針を今後実務の動向を踏まえ適宜改訂してまいります。その場合には、全ての更新はこのページにてお知らせしますことをご了承ください。
+                        {{ __('message.We will continue to revise the above policies in the future, based on the practice trends in the future. In that case, please note that all updates will be announced on this page.') }} 
                     </p>
                     <br>
-                    <b>15. 準拠法</b>
+                    <b>15. {{ __('message.Governing law') }} </b>
                     <p>
-                        本ポリシーの準拠法は、日本法とします。
+                        {{ __('message.The compliance method of this policy is Japan Law.') }} 
                     </p>
                     <br>
-                    <b>16. 合意管轄</b>
+                    <b>16. {{ __('message.Jurisdiction') }} </b>
                     <p>
-                        本ポリシーに関する紛争については、東京簡易裁判所又は東京地方裁判所を専属の合意管轄裁判所とします。
+                       {{ __('message.For conflicts for this policy, use the Tokyo Query Court or Tokyo District Court as an exclusive agreement jurisdiction.') }} 
                     </p>
                     <br>
-                    <b>17. 言語</b>
+                    <b>17. {{ __('message.language') }} </b>
                     <p>
-                        本ポリシーは、日本語と日本語以外の言語で作成されるものとし、日本語で作成された本ポリシーと日本語以外の言語で作成された本ポリシーの内容が異なる場合には、日本語で作成された本ポリシーの内容に従うものとします。
+                        {{ __('message.This policy shall be created in Japanese and languages other than Japanese, and if the content of this policy created in Japanese differs from that of this policy created in a language other than Japanese, it shall be written in Japanese. We will comply with the contents of this policy created.') }} 
                     </p>
-                    <p>令和3年9月17日 制定・施行</p>
+                    <p>{{ __('message.September 17, 3rd, January, January 3') }} </p>
                 </div>
             </div>
         </div>

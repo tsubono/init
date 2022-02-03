@@ -5,13 +5,13 @@
         @if ($paginator->onFirstPage())
             <li class="disabled">
                 <a>
-                    <img src="{{ asset('img/arrow-previous.svg') }}" class="p-pagination__previous" alt="前へ">
+                    <img src="{{ asset('img/arrow-previous.svg') }}" class="p-pagination__previous" alt="{{ __('message.Forward') }} ">
                 </a>
             </li>
         @else
             <li>
                 <a href="{{ $paginator->previousPageUrl() }}">
-                    <img src="{{ asset('img/arrow-previous.svg') }}" class="p-pagination__previous" alt="前へ">
+                    <img src="{{ asset('img/arrow-previous.svg') }}" class="p-pagination__previous" alt="{{ __('message.Forward') }} ">
                 </a>
             </li>
         @endif
@@ -43,13 +43,13 @@
         @if ($paginator->hasMorePages())
             <li>
                 <a href="{{ $paginator->nextPageUrl() }}">
-                    <img src="{{ asset('img/arrow-next.svg') }}" class="p-pagination__next" alt="次へ">
+                    <img src="{{ asset('img/arrow-next.svg') }}" class="p-pagination__next" alt="{{ __('message.to the next') }} ">
                 </a>
             </li>
         @else
             <li class="disabled">
                 <a>
-                    <img src="{{ asset('img/arrow-next.svg') }}" class="p-pagination__next" alt="次へ">
+                    <img src="{{ asset('img/arrow-next.svg') }}" class="p-pagination__next" alt="{{ __('message.to the next') }} ">
                 </a>
             </li>
         @endif

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12">
-        <h3 class="p-heading2">レッスン名<span class="badge bg-danger ms-2">必須</span></h3>
+        <h3 class="p-heading2">{{ __('message.Lesson name') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
         <input type="text" class="form-control" name="name" value="{{ old('name', $lesson->name) }}">
         @error('name')
         <div class="p-error-text" role="alert">
@@ -10,7 +10,7 @@
     </div>
 
     <div class="col-12">
-        <h3 class="p-heading2">画像<span class="badge bg-danger ms-2">必須</span></h3>
+        <h3 class="p-heading2">{{ __('message.image') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
         <div class="row">
             <div class="col">
                 <file-upload
@@ -47,7 +47,7 @@
     </div>
 
     <div class="col-12">
-        <h3 class="p-heading2">説明<span class="badge bg-danger ms-2">必須</span></h3>
+        <h3 class="p-heading2">{{ __('message.Explanation') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
         <textarea rows="10" class="form-control"
                   name="description">{{ old('description', $lesson->description) }}</textarea>
         @error('description')
@@ -58,7 +58,7 @@
     </div>
 
     <div class="col-12">
-        <h3 class="p-heading2">言語<span class="badge bg-danger ms-2">必須</span></h3>
+        <h3 class="p-heading2">{{ __('message.language') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
         <language-select
             :languages="{{ $mst_languages }}"
             :value="{{ old('mst_language_id', isset($lesson->mst_language_id) ? $lesson->mst_language_id : "null") }}"
@@ -71,7 +71,7 @@
     </div>
 
     <div class="col-12">
-        <h3 class="p-heading2">カテゴリ<span class="badge bg-danger ms-2">必須</span></h3>
+        <h3 class="p-heading2">{{ __('message.category') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
         <category-select
             :rooms="{{ $mst_rooms }}"
             :value="{{ json_encode(old('mst_category_ids', $lesson ? $lesson->category_ids : [])) }}"
@@ -83,7 +83,7 @@
         @enderror
 
         <div class="col-12">
-            <h3 class="p-heading2">必要コイン<span class="badge bg-danger ms-2">必須</span></h3>
+            <h3 class="p-heading2">{{ __('message.Required coin') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
             <input type="number" class="form-control" name="coin_amount"
                    value="{{ old('coin_amount', $lesson->coin_amount) }}">
             @error('coin_amount')
@@ -94,17 +94,17 @@
         </div>
 
         <div class="col-12">
-            <h3 class="p-heading2">動画URL</h3>
+            <h3 class="p-heading2">{{ __('message.Video URL') }} </h3>
             <div class="d-flex flex-wrap">
                 @for ($i=0; $i<3; $i++)
                     <div class="mb-2 mx-2 flex-grow-1">
-                        <p class="small">アイキャッチ画像</p>
+                        <p class="small">{{ __('message.I catch image') }} </p>
                         <file-upload
                             name="movies[{{ $i }}][eye_catch_path]"
                             image-path="{{ old("movies.{$i}.eye_catch_path", isset($lesson->movies[$i]) ? $lesson->movies[$i]['eye_catch_path'] : null) }}"
                             upload-dir="uploaded/advisers/{{ auth()->guard('adviser')->user()->id }}/lessons"
                         ></file-upload>
-                        <p class="small mt-1">動画種別</p>
+                        <p class="small mt-1">{{ __('message.Videos') }} </p>
                         <select class="form-select col-2" name="movies[{{ $i }}][type]">
                             @foreach (config('const.movie_types') as $movie_type)
                                 <option value="{{ $movie_type }}"
@@ -113,7 +113,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        <p class="small mt-1">動画URL</p>
+                        <p class="small mt-1">{{ __('message.Video URL') }} </p>
                         <input type="text"
                                class="form-control"
                                placeholder="https://"
@@ -123,11 +123,11 @@
                     </div>
                 @endfor
             </div>
-            <p class="small p-error-text mx-3">※ 画像・種別・URL全てが入力されていないと登録されませんのでご注意ください</p>
+            <p class="small p-error-text mx-3">{{ __('message.※ Please note that the image, type type, and URL are not registered without all input') }} </p>
         </div>
 
         <div class="col-12">
-            <h3 class="p-heading2">ステータス</h3>
+            <h3 class="p-heading2">{{ __('message.status') }} </h3>
         </div>
         <div class="col-6">
             <div class="form-check">
@@ -152,13 +152,13 @@
                     <input type="hidden" name="is_stop" value="1"/>
                 @endif
                 <label class="form-check-label" for="form-control-status">
-                    受講停止にする
+                    {{ __('message.Suspend') }} 
                 </label>
             </div>
         </div>
         @if (!auth()->guard('adviser')->user()->can_open_lesson)
-            <p class="p-error-text font-weight-bold"><b>※ レッスンを公開するためには<a class="primary-link"
-                                                                          href="{{ route('adviser.profile.edit') }}">プロフィール更新画面</a>で必須項目の登録が必要です</b>
+            <p class="p-error-text font-weight-bold"><b>{{ __('message.※ In order to publish the lesson') }} <a class="primary-link"
+                                                                          href="{{ route('adviser.profile.edit') }}">{{ __('message.Profile Update Screen') }} </a>で{{ __('message.Required') }} {{ __('message.Required to register required items') }} </b>
             </p>
         @endif
     </div><!-- /.row -->

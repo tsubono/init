@@ -37,15 +37,15 @@
             </div>
             <div class="footer-nav-list">
                 <ul>
-                    <li><a href="{{ route('team') }}">TEAM INITについて</a></li>
-                    <li><a href="{{ route('tradelaw') }}">特商法に基づく表示</a></li>
-                    <li><a href="{{ route('privacy') }}">プライバシーポリシー</a></li>
-                    <li><a href="{{ route('cancel-policy') }}">キャンセルポリシー</a></li>
-                    <li><a href="{{ route('mate-terms') }}">受講者規約</a></li>
-                    <li><a href="{{ route('adviser-terms') }}">講師規約</a></li>
-                    <li><a href="{{ route('intellectual-property') }}">知的財産権ガイドライン</a></li>
-                    <li><a href="{{ route('tax-payment') }}">納税について</a></li>
-                    <li><a href="{{ route('contact.index') }}">お問い合わせ</a></li>
+                    <li><a href="{{ route('team') }}">{{ __('message.About Team INIT') }} </a></li>
+                    <li><a href="{{ route('tradelaw') }}">{{ __('message.Display based on special business') }} </a></li>
+                    <li><a href="{{ route('privacy') }}">{{ __('message.privacy policy') }} </a></li>
+                    <li><a href="{{ route('cancel-policy') }}">{{ __('message.cancellation policy') }} </a></li>
+                    <li><a href="{{ route('mate-terms') }}">{{ __('message.Terms of study') }} </a></li>
+                    <li><a href="{{ route('adviser-terms') }}">{{ __('message.Instructors') }} </a></li>
+                    <li><a href="{{ route('intellectual-property') }}">{{ __('message.Intellectual Property Length Guidelines') }} </a></li>
+                    <li><a href="{{ route('tax-payment') }}">{{ __('message.About tax payment') }} </a></li>
+                    <li><a href="{{ route('contact.index') }}">{{ __('message.inquiry') }} </a></li>
                 </ul>
             </div>
             <address>Copyright &copy; 2021 INIT. All Rights Reserved.</address>

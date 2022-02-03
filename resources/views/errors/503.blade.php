@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
-@section('title', 'メンテナンスモード')
+@section('title', __('message.Maintenance mode'))
 
 @section('content')
     <section class="l-content-block">
         <div class="container pt-40px pb-100px">
             <div class="border rounded p-box-with-icon">
                 <div class="p-box-with-icon__icon">
-                    <img src="{{ asset('img/mood-bad.svg') }}" alt="エラー">
+                    <img src="{{ asset('img/mood-bad.svg') }}" alt="{{ __('message.error') }} ">
                 </div>
                 <div>
-                    <div class="fs-5 fw-bold">ただいまメンテナンスモードです</div>
+                    <div class="fs-5 fw-bold">{{ __('message.Maintenance mode now') }} </div>
                     <div class="mt-3 lh-lg">
-                        恐れ入りますが公開までしばしお待ちいただきますようお願い申し上げます。<br>
+                        {{ __('message.Excuse me, but please wait for the public until public.') }} <br>
                     </div>
                 </div>
             </div>

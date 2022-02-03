@@ -1,43 +1,43 @@
 @extends('layouts.app')
 
-@section('title', '知的財産権ガイドライン')
+@section('title', __('message.Intellectual Property Length Guidelines'))
 
 @section('content')
     <section class="l-content-block p-team">
         <div class="container pb-100px">
-            <p>制定・施行日: 令和3年9月17日</p>
+            <p>{{ __('message.Established and enforcement date: September 17, 3rd year') }} </p>
             <br>
             <p>
-                <b>・知的財産権について</b><br>
-                著作権、 肖像権、 パブリシティ権など様々な創造物に対して発生する権利、また特許庁へ登録された商標権など、身近なもののほとんどが様々な権利によって保護されています。<br>
-                よって、著作権、肖像権、パブリシティ権について、 INIT事務局の見解をご共有いたします。<br>
+                <b>・{{ __('message.About intellectual property rights') }} </b><br>
+                {{ __('message.Most of the familiar things such as copyrights, portrait rights, rights that arise for various creations such as publicity rights, and trademark rights registered with the Patent Office are protected by various rights.') }} <br>
+                {{ __('message.Therefore, we will share the opinion of the INIT secretariat about copyright, portrait rights and publication rights.') }} <br>
                 <br>
-                <b>•著作権について</b><br>
-                著作権とは全ての著作物、例えば、文章、絵、音楽、写真、映像、コンピュータブログラム等が創造された時点で、その権利が創造者に発生し保護されています。<br>
+                <b>•{{ __('message.About copyright') }} </b><br>
+                {{ __('message.Copyright is all works, for example, sentences, pictures, music, photos, images, computer brigames, etc., and that right is created and protected by creators.') }} <br>
                 <br>
-                その著作物が営利、非営利にかかわらず、二次利用の際には著作者の了解を得る必要があります。<br>
+                {{ __('message.It is necessary to obtain the author's consent of the secondary use, regardless of why the work is for commercial and non-profit.') }} <br>
             </p>
             <br>
             <p>
-                【例】<br>
-                　<b>レッスンで使用する教材について</b><br>
-                •自身が権利を保持していない著作物のコピーをレッスン資料や問題として生徒へ配布したり、著作物の内容を一部削除したり改変して公開することは、 <b>著作権の侵害</b>に当たると判断されます。<br>
-                •Webサイト上で一般に公開されている新聞記事や情報等を資料として利用する際も、それらを抜粋しPDFや資料として生徒に提供することも、<b>複製の禁止</b>や、<b>改変の禁止</b>事項にあたると判断されますのでご注意ください。<br>
-                •<b>著作権の保護義務</b>は各国の条約に基づきますが、 <b>INITはインターネット上のサービスとして、世界中に公開される事が前提</b>であることをご理解ください。<br>
+                【{{ __('message.example') }} 】<br>
+                　<b>{{ __('message.About teaching materials used in lessons') }} </b><br>
+                •{{ __('message.It is possible to distribute copies of works that do not hold rights and their copies as lesson materials and problems, or delete and publish their works') }}  <b>{{ __('message.Copyright infringement') }} </b>{{ __('message.It is judged to hit.') }} <br>
+                •{{ __('message.It is also possible to extract them and provide them as PDFs and materials, even when using newspaper articles and information, etc. that are publicly released on the website as data.') }} <b>{{ __('message.Prohibition of replication,') }} </b>{{ __('message.&') }}<b>{{ __('message.Prohibition of modification') }} </b>{{ __('message.Please note that it will be judged to be a matter.') }} <br>
+                •<b>{{ __('message.Copyright protection obligation') }} </b>{{ __('message.Based on the Convention of each country,') }}  <b>{{ __('message.Init is premised that it will be published worldwide as services on the Internet') }} </b>{{ __('message.Please understand that it is.') }} <br>
                 <br>
-                　<b>画像の利用について</b><br>
-                •レッスンのイメージを伝えるための補助資料として掲載する<b>画像</b>など、マイページ内にアップロードされた画像が<b>著作権、肖像権、パブリシティ権</b>で保護されている可能性があります。<br>
-                基本的にご自身で撮影された画像については著作権はご自身に帰属しますが、 <b>撮影された被写体に肖像権、パブリシティ権が発生していないか</b>をご確認ください。<br>
-                インターネット上で公開、提供されている <b>フリー画像</b>の利用についても、必ず<b>提供者が定める利用範囲</b>についての条件をご確認ください。<br>
+                　<b>{{ __('message.About the use of images') }} </b><br>
+                •{{ __('message.Publish as auxiliary document to convey the image of the lesson') }} <b>{{ __('message.image') }} </b>{{ __('message.Etc., such as the image uploaded in My Page') }} <b>{{ __('message.Copyright, Portrait Right, Publicity Right') }} </b>{{ __('message.May be protected.') }} <br>
+                {{ __('message.Basically, the copyright is attributable to yourself about the images taken by yourself.') }}  <b>{{ __('message.Portrait rights and publicity rights have been issued on the photographed subjects') }} </b>{{ __('message.Please confirm.') }} <br>
+                {{ __('message.Published on the Internet and provided') }}  <b>{{ __('message.Free image') }} </b>{{ __('message.Please be sure to use') }} <b>{{ __('message.Usage range specified by the provider') }} </b>{{ __('message.Please check the condition about.') }} <br>
             </p>
             <br>
             <p>
-                <b>•INIT事務局における見解</b><br>
-                これらの権利は法規的に明文化された権利ではないため、その分これまでの訴えの事例や法的機関の判断実績が反映され、処分が判断される問題になります。つきましては、当事務局がそれらの権利について「この利用方法は問題ない」「この利用方法は権利の侵害にあたる」等の判断をすることは一切できません。<br>
+                <b>•{{ __('message.Look at the INIT secretariat') }} </b><br>
+                {{ __('message.Since these rights are not legally stated rights, the cases of complaints and the judgment results of legal institutions will be reflected accordingly, and the disposition will be decided. Therefore, the Secretariat cannot make any judgments regarding these rights, such as 'this usage method is okay' or 'this usage method constitutes an infringement of the rights'.') }} <br>
                 <br>
-                もし皆さまのご利用上に関連して、利権者や第三者からのお問い合わせ、クレーム、請求等があった場合、また紛争となった場合、弊社はこの対応に関与いたしません。ご自身の責任で費用等全ての件にご対応ください。<br>
+                {{ __('message.If there are inquiries, complaints, claims, etc. from concessionaires or third parties related to your use, or if there is a dispute, we will not be involved in this response. Please handle all matters such as expenses at your own risk.') }} <br>
                 <br>
-                また弊社に対して、正当な手続きをもった著作者、利権者からの著作物侵害の報告および捜査機関からの個人情報開示請求があった場合は、それに従って対応させていただく場合があります。<br>
+                {{ __('message.In addition, we may respond to reports of copyright infringement from authors and concessionaires who have proper procedures and requests for disclosure of personal information from investigative agencies.') }} <br>
             </p>
         </div>
     </section>

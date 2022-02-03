@@ -1,308 +1,308 @@
 @extends('layouts.app')
 
-@section('title', '講師規約')
+@section('title', __('message.Instructors'))
 
 @section('content')
     <section class="l-content-block p-team">
         <div class="container pb-100px">
             <p>
-                「Init」（https://init-online.com   以下、「本サービス」といいます。）は、以下の「講師規約」（以下、「本規約」といいます。）を承諾頂いた講師（後記第1条第1項第3号にて定義します。）にのみ提供させて頂くサービスです。講師は、あらかじめ本規約の内容に同意の上、本サービスを利用するものとします。
+                「Init」（https://init-online.com   {{ __('message.Hereinafter referred to as 'this service'. ) Will be provided only to instructors who have accepted the following 'Instructor Terms' (hereinafter referred to as 'Terms') (defined in Article 1, Paragraph 1, Item 3 below). It is a service. The instructor shall use this service after agreeing to the contents of this agreement in advance.') }} 
             </p>
             <br>
-            <b>1. 定義・本サービスの内容</b>
+            <b>{{ __('message.1. Definition / Content of this service') }} </b>
             <p>
-                1-1. 本規約において、以下の各号の用語は、各号所定の意味を有するものとします。<br>
-                &nbsp; ①「レッスン」：知識の教授や情報の提供、会話や演奏の訓練、アドバイス行為等の総称<br>
-                &nbsp; ②「受講者」：レッスンの受講を希望し、又は実際に受講する者<br>
-                &nbsp; ③「講師」：レッスンの提供を希望し、又は実際に提供する者<br>
-                &nbsp; ④「レッスン契約」：講師と受講者との間で締結されるレッスンの提供及び受講に関する契約<br>
-                &nbsp; ⑤「レッスンフィー」：レッスン契約の対価として受講者が当社を介して講師に支払う料金<br>
-                &nbsp; ⑥「マッチングサービス」：本サービスのうちレッスン契約の締結及びレッスンフィーの支払を仲介するサービス<br>
-                &nbsp; ⑦「マッチングフィー」：マッチングサービス利用の対価として受講者が当社に支払う料金<br>
-                &nbsp; ⑧「サービスフィー」：レッスンフィーとマッチングフィーの合計金額<br>
-                &nbsp; ⑨「コイン」：一定の金銭を対価として当社から受講者に付与される電磁的記録であって、サービスフィーの支払手段となるもの<br>
-                &nbsp; ⑩「当社サイト」：当社が運営する最新のウェブサイト<br>
-                1-2. 本サービスは、以下の各号のサービスをその内容とします。<br>
-                &nbsp; ① 受講者によるレッスンの検索、レッスン契約の申込、申込済みのレッスン契約の管理等を容易にするサービス<br>
-                &nbsp; ② マッチングサービス<br>
-                &nbsp; ③ 受講者に対して前各号のサービスに関するカウンセリングを行うサービス<br>
-                &nbsp; ④ 受講者に対してレッスンを行うサービス<br>
-                &nbsp; ⑤ 受講者に対して電子メールにて定期的又は不定期的に当社サイトの更新情報、キャンペーン情報その他当社が別途定める情報の配信を行うサービス（以下、「メールマガジンサービス」といいます。）<br>
-                &nbsp; ⑥ 講師による受講者からのレッスン契約の申込に対する承諾を容易にするサービス<br>
-                &nbsp; ⑦ その他、当社が別途定めるサービス<br>
+                1-1. {{ __('message.In this agreement, the terms of each of the following items shall have the prescribed meaning of each item.') }} <br>
+                &nbsp; ①「{{ __('message.lesson') }} 」：{{ __('message.Attendance application') }} <br>
+                &nbsp; ②{{ __('message.'Students': Those who wish to take lessons or actually take them') }} <br>
+                &nbsp; ③{{ __('message.3 'Lecturer': Person who wants to provide lessons or actually offers') }} <br>
+                &nbsp; ④{{ __('message.'Lesson contract': A contract regarding the provision and attendance of lessons concluded between the instructor and the student.') }} <br>
+                &nbsp; ⑤{{ __('message.'Lesson fee': Fee paid by the student to the instructor through our company in consideration of the lesson contract') }} <br>
+                &nbsp; ⑥{{ __('message.6 'Matching Service': Service that mediates the sign of lesson contract and payment of lesson fee') }} <br>
+                &nbsp; ⑦{{ __('message.'Matching fee': Fee paid by the student to the Company as a consideration for using the matching service') }} <br>
+                &nbsp; ⑧{{ __('message.8 'Service Fee': Total amount of lesson fee and matching fee') }} <br>
+                &nbsp; ⑨{{ __('message.'Coin': An electromagnetic record given to students by the Company in exchange for a certain amount of money, which is a means of paying service fees.') }} <br>
+                &nbsp; ⑩{{ __('message.'Our site': The latest website operated by our company') }} <br>
+                {{ __('message.1-2. This service uses the following items of the following items.') }} <br>
+                &nbsp; {{ __('message.1 Service that searches for lessons by students, application for lesson contracts, application for application lesson contracts, etc.') }} <br>
+                &nbsp; ② {{ __('message.Matching service') }} <br>
+                &nbsp; ③ {{ __('message.A service that provides counseling to students regarding the services of the previous items') }} <br>
+                &nbsp; ④ {{ __('message.Service to give lessons to students') }} <br>
+                &nbsp; ⑤ {{ __('message.A service that regularly or irregularly distributes updated information on our site, campaign information, and other information separately determined by our company to students by e-mail (hereinafter referred to as 'email magazine service').') }} <br>
+                &nbsp; ⑥ {{ __('message.A service that facilitates the instructor's acceptance of lesson contract applications from students') }} <br>
+                &nbsp; ⑦ {{ __('message.Other services separately determined by the Company') }} <br>
             </p>
             <br>
-            <b>2. 規約の適用</b>
+            <b>2. {{ __('message.Application of terms') }} </b>
             <p>
-                2-1. 本規約は、講師による本サービスの利用について適用されるものとします。<br>
-                2-2. 本規約とは別に当社が定める利用規約及び諸規定並びに当社サイト上での掲示を含む当社が第3条に基づき講師に対して発する一切の通知（以下、総称して「当社が定める利用規約等」といいます。）は、それぞれ本規約の一部を構成するものとします。<br>
-                2-3. 本規約の規定と前項の利用規約、諸規定、通知の内容が異なる場合には、当該通知、当該諸規定、当該利用規約、本規約の順で優先して適用されるものとします。なお、当社サイト上での掲示による通知とその他の方法による通知の内容が異なる場合には、後に通知されたものが優先して適用されるものとします。<br>
-                2-4. 受講者による本サービスの利用については、当社が別途定める受講者規約（以下、「受講者規約」といいます。）が適用されるものとします。<br>
-                2-5. 本規約における日時は、日本の標準時刻に従うものとします。<br>
+                2-1. {{ __('message.This agreement shall apply to the use of this service by the instructor.') }} <br>
+                2-2. {{ __('message.In addition to these Terms, all notices issued by the Company to the instructor based on Article 3, including the Terms of Use and the provisions established by the Company and postings on the Company's website (hereinafter collectively referred to as 'Terms of Use, etc. Established by the Company, etc.' ') Each constitutes a part of this agreement.') }} <br>
+                2-3. {{ __('message.If the provisions of this agreement differ from the terms of use, provisions, and notifications set forth in the preceding paragraph, the notice, provisions, terms of use, and agreement shall be applied in that order. If the content of the notification posted on our site is different from the content of the notification by other methods, the one notified later shall be applied with priority.') }} <br>
+                2-4. {{ __('message.Regarding the use of this service by students, the student agreement (hereinafter referred to as 'student agreement') separately established by the Company shall apply.') }} <br>
+                2-5. {{ __('message.The date and time in this agreement shall be in accordance with the standard time in Japan.') }} <br>
             </p>
             <br>
-            <b>3. 当社からの通知</b>
+            <b>3. {{ __('message.Notice from us') }} </b>
             <p>
-                3-1. 当社は、当社サイト上での掲示、電子メールの送信、文書の送付その他当社が適当と判断する方法により、講師に対し、随時当社が必要と判断する事項を通知するものとします。<br>
-                3-2. 前項の通知は、当社が前項の通知を当社サイト上での掲示、電子メールの送信又は文書の送付により行った場合は、当社が当社サイト上に掲示し、電子メールを発信し、又は文書を発送した時点からその効力を生じるものとします。
+                3-1. {{ __('message.The Company shall notify the instructor of matters that the Company deems necessary at any time by posting on the Company's site, sending e-mails, sending documents, or any other method that the Company deems appropriate.') }} <br>
+                3-2. {{ __('message.For the notice set forth in the preceding paragraph, if the Company has posted the notice set forth in the preceding paragraph on the Company's site, sent an e-mail, or sent a document, the Company will post it on the Company's site, send an e-mail, or send a document. It shall take effect from the time of shipment.') }} 
             </p>
             <br>
-            <b>4. 本サービスの利用資格</b>
+            <b>4. {{ __('message.Eligibility to use this service') }} </b>
             <p>
-                講師が本サービスを利用するには、以下の各号の条件にいずれも該当する必要があるものとします。<br>
-                &nbsp; 4-1. 20歳以上で、法的責任能力があること<br>
-                &nbsp; 4-2. 居住国及び籍を置く国において、就業が許されていること<br>
+                {{ __('message.In order for the instructor to use this service, it is necessary to meet all of the following conditions.') }} <br>
+                &nbsp; 4-1. {{ __('message.Being at least 20 years old and legally responsible') }} <br>
+                &nbsp; 4-2. {{ __('message.Work is permitted in the country of residence and the country of residence') }} <br>
             </p>
             <br>
-            <b>5. 本サービスの利用に関して</b>
+            <b>5. {{ __('message.Regarding the use of this service') }} </b>
             <p>
-                5-1. 講師は、当社から提供される情報の真実性、正確性、確実性、信頼性、有用性等その他本サービスの品質、正確性、確実性、信頼性、有用性等については自ら判断するものとし、これらを自己の責任において利用することにあらかじめ同意するものとします。<br>
-                5-2. 当社は、講師を雇用するものではなく、講師は、当社と講師との間に雇用に関する契約が一切成立しないことにあらかじめ同意するものとします。<br>
-                5-3. 当社は、講師が安心してレッスンの提供ができるよう、当サイトの安全の確保に全力を尽くしますが、それを保障することはしないものとします。<br>
-                5-4. 講師は、本サービスを利用するにあたり、常に、受講者のことを最優先に考え、良識で考えられる範囲で、最善の対応を心がけるものとします。<br>
-                5-5. 当社は、受講者が円滑、且つ満足にレッスンの授与ができるよう、全力を尽くします。その為、講師の提供するレッスンや、その実施に伴う事前のやりとり、カスタマーサービスの質が、本条4号にて求められる水準に達していないと当社が判断した場合、当社の裁量で、講師への予告なく、レッスンフィーの取消を伴うサービスフィーの返還を行えるものとします。また、講師の、受講者への接客態度・対応やカスタマーサービスについての考え方が、当社が求める水準と著しく異なる場合、当社の裁量で、該当する講師の登録を抹消することができるものとします。<br>
-                5-6 レッスンは原則として講師により提供されるものとし、当社は、当社が別途必要と認めた場合を除いては、レッスンを提供しないものとします。<br>
-                5-7. 当社は、講師により提供されるレッスン及び講師と受講者との間において相互に提供される情報の査定又は管理を行う義務を負わないものとします。<br>
-                5-8. 当社は、講師及び受講者の身元情報その他講師及び受講者が掲示する諸情報の真実性、確実性、信頼性、有益性等については、一切保証しないものとします。<br>
-                5-9. 当社は、講師が本サービスに関連して法令に違反する行為を行ったとしても、一切の責任を負わないものとします。<br>
-                5-10. 当社は、受講者と講師との間で相互に提供されるいかなる情報、ファイル及び物品等について一切責任を負わないものとし、受講者は、これらの情報、ファイル又は物品等の提供によって受講者に生じたいかなる種類の損害又は損失等からも当社を免責することにあらかじめ同意するものとします。<br>
-                5-11. 講師は、当社が別途認める場合を除き、受講者に対し、マッチングサービスにより締結されたレッスン契約の履行以外の目的で情報、ファイル及び物品等を提供してはならないものとします。
+                5-1. {{ __('message.The instructor shall judge the truth, accuracy, certainty, reliability, usefulness, etc. of the information provided by the Company and other quality, accuracy, certainty, reliability, usefulness, etc. of this service by himself / herself. , You agree in advance to use these at your own risk.') }} <br>
+                5-2. {{ __('message.We do not hire instructors, and instructors agree in advance that no employment contract will be established between us and the instructor.') }} <br>
+                5-3. {{ __('message.We will do our utmost to ensure the safety of this site so that our instructors can provide lessons with peace of mind, but we do not guarantee it.') }} <br>
+                5-4. {{ __('message.When using this service, the instructor will always give top priority to the students and will try to do their best to the extent that they can think with good sense.') }} <br>
+                5-5. {{ __('message.We will do our utmost to ensure that our students are given lessons smoothly and satisfactorily. Therefore, if we determine that the quality of the lessons provided by the instructor, the prior communication accompanying the implementation, and the quality of customer service do not reach the level required by item 4 of this article, we will contact the instructor at our discretion. The service fee can be returned with the cancellation of the lesson fee without prior notice. In addition, if the instructor's attitude toward customer service / response and customer service are significantly different from the standards required by the Company, the registration of the instructor may be canceled at the discretion of the Company.') }} <br>
+                5-6 {{ __('message.In principle, lessons will be provided by the instructor, and we will not provide lessons unless we deem it necessary.') }} <br>
+                5-7. {{ __('message.We undertake no obligation to assess or manage the lessons provided by the instructor and the information provided to each other between the instructor and the student.') }} <br>
+                5-8. {{ __('message.The Company does not guarantee the truthfulness, certainty, reliability, usefulness, etc. of the identity information of the instructor and students and other information posted by the instructor and students.') }} <br>
+                5-9. {{ __('message.The Company shall not be liable for any act that the instructor violates the law in connection with this service.') }} <br>
+                5-10. {{ __('message.The Company shall not be liable for any information, files, articles, etc. provided to each other between the student and the instructor, and the student shall provide the student with such information, files, articles, etc. You agree in advance that we will not be liable for any kind of damage or loss that occurs.') }} <br>
+                5-11. {{ __('message.The instructor shall not provide information, files, goods, etc. to the students for any purpose other than fulfilling the lesson contract concluded by the matching service, unless otherwise approved by the Company.') }} 
             </p>
             <br>
-            <b>6. 他の講師等とのトラブル</b>
+            <b>6. {{ __('message.Trouble with other teachers') }} </b>
             <p>
-                講師は、万が一、他の受講者、講師その他の第三者から何らかの被害や迷惑を被る等、講師と他の講師、受講者その他の第三者との間でトラブルが生じた場合には、自己の責任と費用をもってその処理解決を図るものとし、当該トラブルに関連して当社が損害を被った場合には、その全ての損害（合理的な弁護士費用を含みますがこれに限りません。）を直ちに賠償する責任を負うものとします。なお、当社が当該トラブルを処理解決した場合には、その処理解決に要した全ての費用（合理的な弁護士費用を含みますがこれに限りません。）は、講師の負担とします。
+                {{ __('message.In the unlikely event that the instructor suffers some damage or inconvenience from other students, instructors or other third parties, and if a problem occurs between the instructor and other instructors, students or other third parties, We will try to resolve the problem at our own risk and expense, and if we suffer any damage in connection with the trouble, all the damage (including but not limited to reasonable attorney's fees). ) Shall be liable for immediate compensation. If the Company resolves the problem, the instructor will be responsible for all costs (including but not limited to reasonable attorney's fees) required to resolve the problem.') }} 
             </p>
             <br>
-            <b>7. 講師登録</b>
+            <b>7. {{ __('message.Lecturer registration') }} </b>
             <p>
-                7-1. 講師は、自ら当社サイト上の講師登録ページの入力フォームに自己の氏名、性別、電子メールアドレス、希望パスワード、居住国その他当社が別途指定する情報を入力し、これを当社に送信する方法その他当社が別途指定する方法により講師登録申込（以下、「講師登録申込」といいます。）を行うものとします。なお、講師は、講師登録申込を第三者に行わせてはならないものとし、また、講師登録申込の際、虚偽の内容を入力してはならないものとします。<br>
-                7-2. 当社は、講師に対し、講師登録申込を承諾する旨の電子メールを送信する方法その他当社が別途定める方法により講師登録申込を承諾するものとします。<br>
-                7-3. 当社は、以下の各号のいずれかに該当する場合、その理由を開示することなく、講師登録申込を承諾しないことができるものとします。<br>
-                &nbsp; ① 講師登録申込が講師以外の第三者により行われたことが判明した場合（但し、当社が別途認める場合を除きます。）<br>
-                &nbsp; ② 講師登録申込時に入力された内容に虚偽、誤記、入力漏れがあったことが判明した場合<br>
-                &nbsp; ③ 講師が過去に本規約違反等により講師登録の抹消処分等を受けていたことが判明した場合<br>
-                &nbsp; ④ その他、講師登録申込を承諾することが不適切であると当社が判断した場合<br>
-                7-4. 講師は、講師登録申込時に入力した氏名、電子メールアドレス、居住国その他当社が別途指定する情報に変更が生じた場合、当社が別途定める方法により直ちに当社に届け出るものとします。<br>
-                7-5. 講師は、当社が別途定める手続により自ら講師登録を抹消することができるものとします。ただし、既に確定したレッスン予定がある場合には、その限りではありません。
+                7-1. {{ __('message.The instructor himself enters his name, gender, e-mail address, desired password, country of residence and other information specified separately by us in the input form on the instructor registration page on our site, and sends it to us. Instructor registration application (hereinafter referred to as 'instructor registration application') shall be made by a method specified separately by. The instructor shall not allow a third party to apply for instructor registration, and shall not enter false information when applying for instructor registration.') }} <br>
+                7-2. {{ __('message.The Company shall approve the instructor registration application by sending an e-mail to the instructor to the effect that the instructor registration application is accepted or by any other method separately determined by the Company.') }} <br>
+                7-3. {{ __('message.If any of the following items apply, we may not accept the instructor registration application without disclosing the reason.') }} <br>
+                &nbsp; ① {{ __('message.When it is found that the instructor registration application was made by a third party other than the instructor (except when the Company approves separately)') }} <br>
+                &nbsp; ② {{ __('message.When it is found that the contents entered at the time of application for instructor registration are false, incorrect, or omitted.') }} <br>
+                &nbsp; ③ {{ __('message.When it is found that the instructor has been deleted from the instructor registration due to a violation of this agreement in the past') }} <br>
+                &nbsp; ④ {{ __('message.In addition, if we accept the instructor registration application, or if we determine that it is inappropriate to accept the instructor registration application, if we determine that it is inappropriate to accept it.') }} <br>
+                7-4. {{ __('message.If there is a change in the name, e-mail address, country of residence or other information specified by us when applying for instructor registration, the instructor shall immediately notify us by the method separately determined by us.') }} <br>
+                7-5. {{ __('message.The instructor may cancel the instructor registration by himself / herself according to the procedure separately determined by the Company. However, this does not apply if you already have a confirmed lesson schedule.') }} 
             </p>
             <br>
-            <b>8. 本サービス提供の停止・当社による講師登録の抹消</b>
+            <b>8. {{ __('message.Suspension of provision of this service ・ Cancellation of instructor registration by our company') }} </b>
             <p>
-                当社は、講師が以下の各号のいずれかに該当する場合、事前に通知することなく、当該講師に対する本サービスの提供を停止し、又は講師登録の抹消を行うことができるものとします。<br>
-                &nbsp; ① 過去に本規約違反等により講師登録の抹消処分等を受けていたことが判明した場合<br>
-                &nbsp; ② 第13条各号に定める行為を行った場合<br>
-                &nbsp; ③ 前二号に定める他、本規約に違反した場合<br>
-                &nbsp; ④ 受講者への接客姿勢や、レッスンの提供における考え方が、第5条4号にて求められる水準に満たないと判断された場合<br>
-                &nbsp; ⑤ 継続してレッスンを提供した場合、当サイトの信頼性を損ねると判断された場合<br>
-                &nbsp; ⑥ その他、本サービスを提供し、又は講師登録を維持することが不適切であると当社が判断した場合<br>
+                {{ __('message.If the instructor falls under any of the following items, the Company may suspend the provision of this service to the instructor or cancel the instructor registration without prior notice.') }} <br>
+                &nbsp; ① {{ __('message.If it is found that the instructor registration has been deleted due to a violation of this agreement in the past') }} <br>
+                &nbsp; ② {{ __('message.When the act specified in each item of Article 13 is performed') }} <br>
+                &nbsp; ③ {{ __('message.In addition to the provisions of the preceding two items, if you violate this agreement') }} <br>
+                &nbsp; ④ {{ __('message.When it is judged that the attitude of customer service to the students and the way of thinking in providing lessons do not meet the standards required by Article 5.4.') }} <br>
+                &nbsp; ⑤ {{ __('message.If it is determined that the reliability of this site will be impaired if the lessons are continuously provided.') }} <br>
+                &nbsp; ⑥ {{ __('message.In addition, if we determine that it is inappropriate to provide this service or maintain instructor registration.') }} <br>
             </p>
             <br>
-            <b>9. パスワードの管理・使用等</b>
+            <b>9. {{ __('message.Password management and use, etc.') }} </b>
             <p>
-                9-1. 講師は、当社が講師に発行したパスワード（以下、「パスワード」といいます。）の管理及び使用について一切の責任を負うものとし、当社はパスワードの管理について一切の責任を負いません。<br>
-                9-2. 講師は、当社が別途認める場合を除き、パスワードを第三者に譲渡、貸与若しくは開示し、又は使用させてはならないものとします。<br>
-                9-3. パスワードの使用上の過誤又は第三者の不正使用等による不利益、損害、改ざん等については、当該パスワードを保有する講師が一切の責任を負うものとし、当社は一切の責任を負わないものとします。<br>
-                9-4. 講師は、パスワードが第三者により無断で使用される等の不正使用がなされていることを発見した場合、当社へ直ちに連絡するものとし、当社から指示がある場合はこれに従うものとします。<br>
+                9-1. {{ __('message.The instructor shall be responsible for the management and use of the password issued by the Company to the instructor (hereinafter referred to as 'password'), and the Company shall not be responsible for the management of the password.') }} <br>
+                9-2. {{ __('message.The instructor shall not assign, lend, disclose, or use the password to a third party unless otherwise approved by the Company.') }} <br>
+                9-3. {{ __('message.The instructor who holds the password shall bear all responsibility for any disadvantage, damage, falsification, etc. due to mistakes in the use of the password or unauthorized use by a third party, and the Company shall not be liable at all. increase.') }} <br>
+                9-4. {{ __('message.If the instructor discovers that the password has been used illegally by a third party without permission, the instructor shall immediately contact the Company and shall comply with the instructions from the Company.') }} <br>
             </p>
             <br>
-            <b>10. 費用負担</b>
+            <b>10. {{ __('message.Cost burden') }} </b>
             <p>
-                10-1. 講師は、本サービスを利用し、又はレッスンを提供するために必要なハードウェア（PC、ヘッドセット、マイク、イヤホン等を含みますがこれらに限りません。）、ソフトウェア（後記第18条第1項に定める通話ソフトウェアを含みますがこれに限りません。）、通信回線その他の一切を自己の責任と費用をもって準備するものとします。<br>
-                10-2. 講師は、本サービスの利用又はレッスンの提供には、前項に定める他、電話代等の通信費用、インターネットへの接続費用、電気代その他の費用がかかることを了承し、これを負担するものとします。
+                10-1. {{ __('message.The instructor will use the hardware (including but not limited to PCs, headsets, microphones, earphones, etc.) and software (Article 18, Paragraph 1 below) necessary to use this service or provide lessons. Including, but not limited to, the calling software specified in Section), communication lines and everything else shall be prepared at your own risk and expense.') }} <br>
+                10-2. {{ __('message.The instructor acknowledges that the use of this service or the provision of lessons will incur communication costs such as telephone charges, internet connection costs, electricity costs and other costs in addition to those specified in the preceding paragraph, and shall bear these costs. increase.') }} 
             </p>
             <br>
-            <b>11. レッスンフィー</b>
+            <b>11. {{ __('message.Lesson Fee') }} </b>
             <p>
-                11-1. 講師は、当社に対し、当社が講師に代わって受講者からレッスンフィーを徴収し、又は受講者から徴収したレッスンフィーを返還するために必要な一切の権限を付与するものとします。<br>
-                11-2. 当社は、毎月末を締め日として所定の方法で請求されたレッスンフィーにつき、指定月末までに、当該月分のレッスンフィーを講師が別途指定し当社が事前に承認した銀行口座に振込送金の方法により送金するものとします。なお、当該振込に必要な手数料については振込手数料として講師が負担するものとします。<br>
-                11-3. 支払請求の期限は、レッスン提供日付から6ヵ月とし、その日付を過ぎた場合には、講師はレッスンフィーの請求に関する全ての権利を失うものとします。<br>
-                11-4. 前項の定めにかかわらず、当社は、以下の各号のいずれかに該当する場合、レッスンフィーの送金を留保することができるものとします。<br>
-                &nbsp;① 受講者から当社に使用ポイントの返還請求がなされた場合<br>
-                &nbsp;② レッスン契約で定められていたレッスン時間のうち累計20％に相当する時間分のレッスンの遂行が妨げられた場合又はその可能性があると当社が判断した場合<br>
-                &nbsp;③ 講師が本規約に違反し、又は違反している可能性があると当社が判断した場合<br>
-                &nbsp;④ 本条第4項に定める銀行口座その他講師が当社に届け出た情報に誤り又は不足等があるために当社がレッスンフィーの支払を行うことができない場合<br>
-                &nbsp;⑤ その他、当社がレッスンフィーの支払を留保する必要があると判断した場合<br>
-                11-5. 前項④の理由により、レッスンフィーの送金ができない場合、あるいは支払をしたにも関わらず口座情報の間違い・不足等によりレッスンフィーが当社に返却された場合、送金日から1ヶ月以内の再請求の場合に限り、再度送金手続きを行うものとする。<br>
-                11-6. 受講者規約及び当社が別途定める「キャンセルポリシー（受講者向け）」の定めに基づき当社が受講者からの使用ポイントの返還請求に応じた場合、受講者の講師に対するレッスンフィーの支払義務及び当社の講師に対する当該使用ポイントに対応するレッスンフィーの送金義務は消滅するものとし、当該レッスンフィーが送金済みの場合は、講師は直ちに当該送金済みのレッスンフィーに相当する金額を当社に返還するものとします。<br>
-                11-7. レッスンフィーの算出は日本円で行い、支払いは講師が選択した支払い通貨に換算して行われるものとします。<br>
-                11-8. 「海外の人への支払い方法の制御」は、銀行振込は日本国内のみになります。<br>
+                11-1. {{ __('message.The instructor shall grant us all the authority necessary for us to collect lesson fees from the students on behalf of the instructors or to return the lesson fees collected from the students.') }} <br>
+                11-2. {{ __('message.For lesson fees billed by the prescribed method with the end of each month as the closing date, we will transfer the lesson fee for the month to the bank account approved in advance by the instructor by the end of the designated month. Remittance shall be made. In addition, the instructor shall bear the fee required for the transfer as a transfer fee.') }} <br>
+                11-3. {{ __('message.The deadline for billing is 6 months from the date the lesson is offered, after which the instructor shall lose all rights to claim the lesson fee.') }} <br>
+                11-4. {{ __('message.Notwithstanding the provisions of the preceding paragraph, the Company may withhold the remittance of the lesson fee if any of the following items apply.') }} <br>
+                &nbsp;① {{ __('message.When the student requests us to return the points used') }} <br>
+                &nbsp;② {{ __('message.If the lesson time stipulated in the lesson contract is prevented from being completed for a total of 20% of the lesson time, or if the Company determines that there is a possibility of it.') }} <br>
+                &nbsp;③ {{ __('message.If we determine that the instructor has violated or may have violated this agreement') }} <br>
+                &nbsp;④ {{ __('message.When the Company cannot pay the lesson fee due to an error or lack of information such as the bank account specified in Paragraph 4 of this Article or other information reported to the Company by the instructor.') }} <br>
+                &nbsp;⑤ {{ __('message.In addition, if we determine that we need to withhold payment of the lesson fee') }} <br>
+                11-5. {{ __('message.If the lesson fee cannot be remitted due to the reason in (4) above, or if the lesson fee is returned to us due to an error or shortage of account information despite payment, the remittance will be made within one month from the date of remittance. Only in that case, the remittance procedure shall be performed again.') }} <br>
+                11-6. {{ __('message.If we respond to a request from a student to return the points used based on the student agreement and the 'Cancellation Policy (for students)' separately set by us, we will be obliged to pay the lesson fee to the instructor of the student and our company. The obligation to remit the lesson fee corresponding to the points used to the instructor shall be extinguished, and if the lesson fee has been remitted, the instructor shall immediately return the amount equivalent to the remitted lesson fee to the Company. ..') }} <br>
+                11-7. {{ __('message.The lesson fee will be calculated in Japanese Yen and the payment will be converted into the payment currency selected by the instructor.') }} <br>
+                11-8. {{ __('message.For 'control of payment method to foreigners', bank transfer is available only in Japan.') }} <br>
             </p>
             <br>
-            <b>12. レッスン契約</b>
+            <b>12. {{ __('message.Lesson contract') }} </b>
             <p>
-                12-1. レッスン契約は、受講者によるレッスン契約の申込に対し、講師が本サービス上のシステムを利用して当該申込を承諾する旨の電子メールを送信した時点で成立するものとします。<br>
-                12-2. 講師は、当社が別途定める「キャンセルポリシー（受講者向け）」に基づき受講者がレッスン契約の申込又は成立後のレッスン契約をキャンセルすることができることにあらかじめ同意するものとします。<br>
-                12-3. 講師が受講者から受けたレッスン契約の申込の拒否の可否、成立後のレッスン契約のキャンセル又は時間変更の可否、成立後のレッスン契約をキャンセルした場合の取扱等については、当社が別途定める「キャンセルポリシー（講師向け）」に従うものとします。<br>
-                12-4. 当社は、以下の各号のいずれかに該当する事態又は該当すると見込まれる事態が発生した場合、講師に対し、当社が必要と判断する情報の提供を請求することができるものとし、講師は当該請求に直ちに応じなければならないものとします。<br>
-                &nbsp; ① 講師又は受講者が成立後のレッスン契約をキャンセルした場合<br>
-                &nbsp; ② 第11条第5項各号のいずれかに該当する場合<br>
-                &nbsp; ③ その他、当社が必要と判断した場合<br>
+                12-1. {{ __('message.The lesson contract shall be established when the instructor sends an e-mail to the effect that the instructor accepts the application using the system on this service in response to the lesson contract application by the student.') }} <br>
+                12-2. {{ __('message.The instructor agrees in advance that the student can apply for the lesson contract or cancel the lesson contract after it is established based on the 'Cancellation Policy (for students)' separately set by the Company.') }} <br>
+                12-3. {{ __('message.Regarding whether or not the instructor can refuse the lesson contract application received from the student, whether or not the lesson contract can be canceled or the time can be changed after the establishment, and the handling when the lesson contract after the establishment is canceled, etc. Policy (for instructors) ”.') }} <br>
+                12-4. {{ __('message.The Company shall be able to request the instructor to provide information that the Company deems necessary in the event of a situation that falls under or is expected to fall under any of the following items, and the instructor shall be concerned. You must respond to your request immediately.') }} <br>
+                &nbsp; ① {{ __('message.When the instructor or student cancels the lesson contract after it is established') }} <br>
+                &nbsp; ② {{ __('message.When any of the items of Article 11 Paragraph 5 is applicable') }} <br>
+                &nbsp; ③ {{ __('message.In addition, when we deem it necessary') }} <br>
             </p>
             <br>
-            <b>13. 禁止事項</b>
+            <b>13. {{ __('message.Prohibited matter') }} </b>
             <p>
-                13-1. 講師は、本サービスの利用又はレッスンの提供に関連して、以下の行為を行わないものとします。<br>
-                &nbsp; ① 法律又は医療に関する助言等、資格、許可、認可、登録、ライセンス等が必要なレッスンその他のサービスを資格、許可、認可、登録、ライセンス等を得ていないにも関わらず提供する行為<br>
-                &nbsp; ② 犯罪や差別に関する内容を含むレッスンその他のサービスの提供その他犯罪に結びつく行為<br>
-                &nbsp; ③ 公序良俗に反する内容のレッスンその他のサービスの提供<br>
-                &nbsp; ④ わいせつ又は児童虐待にあたる言動、行為、画像、文書等を送信又は掲示する行為<br>
-                &nbsp; ⑤ 物品の売買等レッスンの提供以外の目的で本サービスを利用する行為<br>
-                &nbsp; ⑥ 他の講師、受講者その他第三者若しくは当社の財産、プライバシー、肖像権若しくはパブリシティ権を侵害する行為又は侵害するおそれのある行為<br>
-                &nbsp; ⑦ 事実に反する情報を送信又は掲示する行為<br>
-                &nbsp; ⑧ 本サービスにより利用しうる情報を改ざん又は消去する行為又はそれを試みる行為<br>
-                &nbsp; ⑨ 他の講師、受講者その他の第三者若しくは当社の著作権、商標権等の知的財産権を侵害する行為又は侵害するおそれのある行為<br>
-                &nbsp; ⑩ 他の講師、受講者その他の第三者若しくは当社を差別若しくは誹謗中傷し、又は他の講師、受講者その他の第三者若しくは当社の名誉若しくは信用を傷つける行為<br>
-                &nbsp; ⑪ 他の講師、受講者その他の第三者若しくは当社に対して無断で広告、宣伝、勧誘等の電子メールを送信する行為、受信者が嫌悪感を抱く電子メールを送信する行為、他者の電子メール受信を妨害する行為、連鎖的な電子メール転送を第三者に依頼する行為又は当該依頼に応じて電子メールの転送を行う行為<br>
-                &nbsp; ⑫ 宗教、政治結社、マルチ商法等の勧誘を目的とする行為。<br>
-                &nbsp; ⑬ 選挙運動若しくはこれに類似する行為又は公職選挙法に違反する行為<br>
-                &nbsp; ⑭ コンピュータウイルス等有害なプログラムを使用若しくは提供する行為又は推奨する行為<br>
-                &nbsp; ⑮ 他の講師、受講者その他の第三者になりすまして、本サービスを利用する行為<br>
-                &nbsp; ⑯ 本サービスに接続されている他のコンピュータシステム又はネットワークへの不正アクセスを試みる行為<br>
-                &nbsp; ⑰ 暴力的な要求行為、もしくは法的な責任を超えた不当な要求行為<br>
-                &nbsp; ⑱ 取引に関して、脅迫的な言動をし、又は暴力を用いる行為<br>
-                &nbsp; ⑲ 風説を流布し、偽計を用い又は威力を用いて相手方の信用を毀損し、又は相手方の業務を妨害する行為<br>
-                &nbsp; ⑳ 前各号に定める他、法令若しくは公序良俗に反する行為（売春、暴力、残虐行為等を含みますがこれらに限りません。）又は他の講師、受講者その他の第三者若しくは当社に不利益を与える行為<br>
-                &nbsp; ㉑ 他の講師、受講者その他の第三者に対して本サービスと競合し、又は競合する可能性のあるサービスを紹介、斡旋等する行為<br>
-                &nbsp; ㉒ 本サービスと競合、又は競合する可能性のある第三者に、講師として知り得た、本サービスに関する情報を提供する行為<br>
-                &nbsp; ㉓ 前各号に定める行為を助長又は促進する行為<br>
-                &nbsp; ㉔ その他、当社が不適切と判断した行為<br>
-                13-2. 講師は、講師登録中はもちろん講師登録抹消後であっても、本サービスに関連して知り得た受講者に関する情報を本サービスの利用及びマッチングサービスにより締結されたレッスン契約の履行以外の目的に使用してはならず、当該情報に含まれる受講者に対してマッチングサービスを利用することなく直接のレッスンの申込等を一切行ってはならないものとします。
+                13-1. {{ __('message.The instructor shall not perform the following acts in connection with the use of this service or the provision of lessons.') }} <br>
+                &nbsp; ① {{ __('message.Acts of providing lessons and other services that require qualifications, permits, authorizations, registrations, licenses, etc., such as legal or medical advice, even though they do not have qualifications, permits, authorizations, registrations, licenses, etc.') }} <br>
+                &nbsp; ② {{ __('message.Providing lessons and other services that include content related to crime and discrimination and other acts that lead to crime') }} <br>
+                &nbsp; ③ {{ __('message.Providing lessons and other services that are offensive to public order and morals') }} <br>
+                &nbsp; ④ {{ __('message.Acts of sending or posting obscene or child abuse behaviors, acts, images, documents, etc.') }} <br>
+                &nbsp; ⑤ {{ __('message.Acts of using this service for purposes other than providing lessons such as buying and selling goods') }} <br>
+                &nbsp; ⑥ {{ __('message.Acts that infringe or may infringe other instructors, students or other third parties or our property, privacy, portrait rights or publicity rights') }} <br>
+                &nbsp; ⑦ {{ __('message.Acts of sending or posting information that is contrary to the facts') }} <br>
+                &nbsp; ⑧ {{ __('message.Acts of falsifying or erasing information that can be used by this service, or acts of attempting it') }} <br>
+                &nbsp; ⑨ {{ __('message.Acts that infringe or may infringe intellectual property rights such as copyrights and trademark rights of other instructors, students and other third parties or our company') }} <br>
+                &nbsp; ⑩ {{ __('message.Acts that discriminate against or slander other instructors, students or other third parties or the Company, or damage the honor or credibility of other instructors, students or other third parties or the Company') }} <br>
+                &nbsp; ⑪ {{ __('message.Sending e-mails such as advertisements, advertisements, solicitations, etc. to other instructors, students or other third parties or our company without permission, sending e-mails that the recipient dislikes, e-mails of others Acts that interfere with the reception of emails, acts that request a third party to forward a chain of emails, or acts that forward emails in response to the request.') }} <br>
+                &nbsp; ⑫ {{ __('message.Acts aimed at soliciting religions, political associations, MLM, etc.') }} <br>
+                &nbsp; ⑬ {{ __('message.Election campaigns or similar acts or acts that violate the Public Offices Election Act') }} <br>
+                &nbsp; ⑭ {{ __('message.Acts of using or providing harmful programs such as computer viruses or acts of recommending') }} <br>
+                &nbsp; ⑮ {{ __('message.Acts of using this service by pretending to be another instructor, student, or other third party') }} <br>
+                &nbsp; ⑯ {{ __('message.Attempting unauthorized access to other computer systems or networks connected to this service') }} <br>
+                &nbsp; ⑰ {{ __('message.Violent demands or unreasonable demands beyond legal responsibility') }} <br>
+                &nbsp; ⑱ {{ __('message.Acts of threatening behavior or using violence in relation to transactions') }} <br>
+                &nbsp; ⑲ {{ __('message.Acts of disseminating rumors, damaging the credibility of the other party or interfering with the other party's business by using counterfeiting or power') }} <br>
+                &nbsp; ⑳ {{ __('message.In addition to the provisions of the preceding items, acts that violate laws and regulations or public order and morals (including but not limited to prostitution, violence, atrocities, etc.) or disadvantages to other instructors, students, other third parties, or the Company. Act of giving') }} <br>
+                &nbsp; ㉑ {{ __('message.Acts of introducing or arranging services that conflict with or may conflict with this service to other instructors, students, and other third parties.') }} <br>
+                &nbsp; ㉒ {{ __('message.The act of providing information about this service that you have learned as an instructor to a third party who competes with or may conflict with this service.') }} <br>
+                &nbsp; ㉓ {{ __('message.Acts that promote or promote the acts specified in the preceding items') }} <br>
+                &nbsp; ㉔ {{ __('message.Other acts that the Company deems inappropriate') }} <br>
+                13-2. {{ __('message.The instructor may use the information about the students that he / she has learned in connection with this service for purposes other than the use of this service and the fulfillment of the lesson contract concluded by the matching service, not only during the instructor registration but also after the instructor registration is deleted. It shall not be used, and no direct lesson application, etc. shall be made to the students included in the information without using the matching service.') }} 
             </p>
             <p id="terms14" style="position: relative;top: -150px;"></p>
             <br>
-            <b>14. 講師の責任</b>
+            <b>14. {{ __('message.Instructor responsibility') }} </b>
             <p>
-                講師は、当社に対し、以下の各号に定める事項を表明及び保証するとともに、講師が以下の各号に定める事項に違反したとしても、当社には一切の責任がないことにあらかじめ同意するものとします。<br>
-                &nbsp; ① 講師が本サイト上にアップロードしている情報その他講師が当社に届け出ている情報が正確かつ最新の情報であること<br>
-                &nbsp; ② 講師が受講者に提供する情報及びレッスンの真実性、正確性、信頼性、有用性等<br>
-                &nbsp; ③ レッスン契約において受講者と合意した内容（レッスン内容、レッスン時間を含みますがこれらに限りません。）を履行すること<br>
-                &nbsp; ④ 当社から受け取ったレッスンフィーについて、講師の出身国及び居住国の法令等に従い自ら全ての責任を負って税金や税金支払の手続等に対応すること<br>
+                {{ __('message.The instructor expresses and warrants to the Company the matters specified in the following items, and agrees in advance that the Company will not be liable for any violation of the items specified in the following items. will do.') }} <br>
+                &nbsp; ① {{ __('message.The information uploaded by the instructor on this site and other information reported to us by the instructor must be accurate and up-to-date.') }} <br>
+                &nbsp; ② {{ __('message.Information provided by the instructor to the students and the truth, accuracy, reliability, usefulness, etc. of the lesson') }} <br>
+                &nbsp; ③ {{ __('message.Fulfilling the content agreed with the student in the lesson contract (including but not limited to lesson content and lesson time)') }} <br>
+                &nbsp; ④ {{ __('message.Regarding the lesson fee received from our company, we will take full responsibility for the tax and tax payment procedures, etc. in accordance with the laws and regulations of the instructor's country of origin and country of residence.') }} <br>
             </p>
             <br>
-            <b>15. 電子メール・アップロードされた情報等</b>
+            <b>15. {{ __('message.E-mail, uploaded information, etc.') }} </b>
             <p>
-                15-1. 当社は、講師、受講者その他の第三者が作成した電子メール又はアップロードされた情報等の内容については、一切の責任を負わないものとします。<br>
-                15-2. 講師の電子メール送信、情報等のアップロード、電子メールのサービスプロバイダとの対応及び当該対応に関連する他の条件、保証又は表明については、講師が一切の責任を負うものとし、講師は、当該対応の結果としてのいかなる種類の損害又は損失等から当社を免責することに同意するものとします。
+                15-1. {{ __('message.The Company shall not be liable for the contents of e-mails or uploaded information created by instructors, students and other third parties.') }} <br>
+                15-2. {{ __('message.The instructor shall be solely responsible for the instructor's e-mail transmission, uploading of information, correspondence with the e-mail service provider, and other conditions, guarantees or representations related to the correspondence, and the instructor shall take such correspondence. You agree to indemnify us from any kind of damage or loss as a result of.') }} 
             </p>
             <br>
-            <b>16. 秘密情報等の取扱</b>
+            <b>16. {{ __('message.Handling of confidential information, etc.') }} </b>
             <p>
-                16-1. 講師は、講師登録申込の際その他当社が別途指定する機会に、本サービスの利用及びレッスンの提供に必要な情報として当社が別途指定する講師の個人情報その他講師に関する情報（以下、「個人情報等」といいます。）を当社に提供するものとします。当社は、個人情報等のうち当社が別途入力フォーム等において受講者に知らせる目的で本サイト上に掲示することを明示した上で当該掲示を行うことにつき講師からあらかじめ同意を得た情報を、本サイト上に掲示するものとします。<br>
-                16-2. 本規約に特に定める他、講師は、講師登録中はもちろん講師登録抹消後であっても、本サービスの利用又はレッスンの提供に関連して得られた他の講師、受講者その他の第三者及び当社に関する一切の情報（以下、「秘密情報」といいます。）について、その秘密を厳重に保持するものとし、方法の如何を問わず、これを第三者に開示あるいは漏洩し、また、本サービスの利用及びマッチングサービスにより締結されたレッスン契約の履行以外の目的のために使用してはならないものとします。<br>
-                16-3. 講師は、当社が要求した場合又は講師登録が抹消された場合、当社の指示に従い、直ちに当社から受領した情報、ファイル、物品等の一切を返却又は廃棄しなければならないものとします。<br>
-                16-4. 講師は、他の講師に対し、本サービスを利用してレッスンの内容に関する情報を提供してはならないものとします。但し、本条第1項に基づき本サイト上に掲示される情報についてはこの限りではないものとします。<br>
-                16-5. 本規約に特に定める他、講師は、レッスンフィーに関する情報及び本サービスと競合し、又は競合する可能性のあるサービスに関する情報を他の講師、受講者その他の第三者に提供してはならないものとします。<br>
+                16-1. {{ __('message.The instructor will use the personal information of the instructor and other information about the instructor (hereinafter referred to as 'personal information, etc.' '.) Will be provided to us. Of the personal information, etc., the information that we have obtained prior consent from the instructor to post on this site after clearly stating that we will post it on this site for the purpose of notifying the students separately in the input form etc. It shall be posted on the site.') }} <br>
+                16-2. {{ __('message.In addition to what is specifically stipulated in this agreement, the instructor may be another instructor, student or other third party obtained in connection with the use of this service or the provision of lessons, not only during the instructor registration but also after the instructor registration has been deleted. And all information about our company (hereinafter referred to as 'confidential information') shall be kept strictly confidential, and may be disclosed or leaked to a third party regardless of the method. It shall not be used for any purpose other than the use of this service and the fulfillment of the lesson contract concluded by the matching service.') }} <br>
+                16-3. {{ __('message.The instructor shall immediately return or dispose of any information, files, goods, etc. received from the Company in accordance with the instructions of the Company if requested by the Company or if the instructor registration is deleted.') }} <br>
+                16-4. {{ __('message.The instructor shall not use this service to provide information about the content of the lesson to other instructors. However, this does not apply to the information posted on this site based on Paragraph 1 of this Article.') }} <br>
+                16-5. {{ __('message.In addition to what is specifically provided for in these Terms, the instructor must not provide information about lesson fees and services that conflict with or may conflict with this service to other instructors, students or other third parties. will do.') }} <br>
             </p>
             <br>
-            <b>17. ライセンス権の許諾</b>
+            <b>17. {{ __('message.Grant of license right') }} </b>
             <p>
-                講師は、当社に対し、講師が当社サイトのプロフィールページその他のウェブページにアップロードした情報（これらの情報から発生又は派生する情報を含みますがこれに限りません。）を全世界で使用、公開、表示、再生、修正、翻訳、配布、削除等するサブライセンス権付き非独占的ライセンス権を、無償かつ永続的に許諾するものとします。なお、本条本文に基づき当社が講師からライセンス権の許諾を受ける情報には、テキスト、写真、絵画、音楽、評価を含め講師が当社サイトのプロフィールページその他のウェブページにアップロードした個人情報以外の全ての情報が含まれるものとします。
+                {{ __('message.The instructor will use and disclose to the Company the information that the instructor has uploaded to the profile page and other web pages of our site (including but not limited to information generated or derived from this information) worldwide. , Display, reproduction, modification, translation, distribution, deletion, etc. Non-exclusive license rights with sublicense rights shall be granted free of charge and permanently. In addition, all information other than personal information uploaded by the instructor to the profile page and other web pages of our site, including texts, photos, paintings, music, and evaluations, includes information for which we receive license rights from the instructor based on the main text of this article. Information is assumed to be included.') }} 
             </p>
             <br>
-            <b>18. 通話ソフトウェアの利用</b>
+            <b>18. {{ __('message.Use of calling software') }} </b>
             <p>
-                18-1. 講師は、レッスンを提供する際、第三者の提供する当社指定のオンライン通話ソフトウェア（以下、「通話ソフトウェア」といいます。）を使用するものとします。<br>
-                18-2. 講師は、通話ソフトウェアを使用する際には、通話ソフトウェアを提供する第三者の定める利用規約、使用条件その他の定めに従うものとします。<br>
-                18-3. 講師は、講師登録を行う前に、あらかじめ通話ソフトウェアをダウンロードし、講師の環境下で通話ソフトウェアが使用可能かどうかを確認しなければならないものとします。<br>
-                18-4. 当社は、講師の環境下で通話ソフトウェアが使用できなかったこと、通話ソフトウェアの使用に必要なハードウェアの故障及び設定不備その他講師側の事由により講師がレッスンを提供できなかったとしても、一切の責任を負わないものとします。
+                18-1. {{ __('message.When providing lessons, the instructor shall use the online calling software designated by us (hereinafter referred to as 'calling software') provided by a third party.') }} <br>
+                18-2. {{ __('message.When using the calling software, the instructor shall comply with the terms of use, terms of use and other provisions set by the third party who provides the calling software.') }} <br>
+                18-3. {{ __('message.Before registering as an instructor, the instructor must download the calling software and check whether the calling software can be used in the instructor's environment.') }} <br>
+                18-4. {{ __('message.Our company could not use call software under the instructor's environment, even if the lecturer could not provide lessons due to the hardware failure and setup required for the use of the call software. It shall be responsible.') }} 
             </p>
             <br>
-            <b>19. 非保証・免責</b>
+            <b>19. {{ __('message.Non-warranty / disclaimer') }} </b>
             <p>
-                19-1. 当社は、本サービスにおいて提供する情報の真実性、正確性、確実性、信頼性、有用性等その他本サービス及びレッスンの品質、信頼性、有用性等について、いかなる保証も行わないものとし、受講者がこれらに関連して被った損害又は損失等について、一切の責任を負わないものとします。<br>
-                19-2. 当社は、本サービスの提供の停止、受講者登録の抹消、本サービスの中断、変更、追加、廃止等により受講者が被った損害又は損失等について、一切の責任を負わないものとします。<br>
-                19-3. 当社は、講師が他の講師を含む第三者の作為又は不作為により被った損害又は損失等について、一切の責任を負わないものとします。<br>
-                19-4. 本規約に特に定める他、当社は、本サービスの利用に関連して講師が被った損害又は損失等について、一切の責任を負わないものとします。<br>
-                19-5. 当社は、講師が本サービスの利用に関連して他の講師、受講者その他の第三者に与えた損害又は損失等について、一切の責任を負わないものとします。
+                19-1. {{ __('message.The Company shall not provide any warranty for the authenticity, accuracy, certainty, reliability, usefulness, and lesson quality, reliability, usefulness, etc. of the information provided in this service. The person is not responsible for any damages or losses that are covered in connection with these.') }} <br>
+                19-2. {{ __('message.The Company shall not be liable for any damage or loss incurred by the student due to suspension of the provision of this service, cancellation of student registration, interruption, change, addition, abolition, etc. of this service.') }} <br>
+                19-3. {{ __('message.The Company shall not be liable for any damage or loss incurred by the instructor due to the act or omission of a third party including other instructors.') }} <br>
+                19-4. {{ __('message.In addition to the provisions of this agreement, the Company shall not be liable for any damage or loss incurred by the instructor in connection with the use of this service.') }} <br>
+                19-5. {{ __('message.The Company shall not be liable for any damage or loss caused by the instructor to other instructors, students or other third parties in connection with the use of this service.') }} 
             </p>
             <br>
-            <b>20. 広告主等との関係</b>
+            <b>20. {{ __('message.Relationship with advertisers, etc.') }} </b>
             <p>
-                20-1. 講師は、本サイト内に掲載される広告の広告主その他の事業者（以下、「広告主等」といいます。）の販促活動に参加する場合、講師と広告主等との間において生じるトラブル等については、全て講師と広告主等との間で処理解決されるべきものであることに同意するものとします。<br>
-                20-2. 当社は、広告主等が設置するリンク、広告主等が運営するウェブサイト又は本サービス若しくはソフトウェアの使用により講師が接触し連絡する者を含む第三者によるあらゆる行為について一切の責任を負わないものとします。<br>
-                20-3. 講師は、広告主等その他の第三者が講師に与えたいかなる損害又は損失等についても、当社を免責することにあらかじめ同意するものとします。<br>
+                20-1. {{ __('message.When the instructor participates in the sales promotion activities of the advertisers and other businesses (hereinafter referred to as 'advertisers, etc.') of the advertisements posted on this site, troubles that occur between the instructor and the advertisers, etc. It is agreed that all such matters should be processed and resolved between the instructor and the advertiser.') }} <br>
+                20-2. {{ __('message.The Company shall not be liable for any actions by third parties including those who are contacted and contacted by the instructor by using the links set up by the advertisers, the website operated by the advertisers, or the service or software. will do.') }} <br>
+                20-3. {{ __('message.The instructor agrees in advance to indemnify the Company for any damage or loss caused to the instructor by the advertiser or other third party.') }} <br>
             </p>
             <br>
-            <b>21. 本サービス提供の中断</b>
+            <b>21. {{ __('message.Suspension of provision of this service') }} </b>
             <p>
-                当社は、次のいずれかに該当する場合には、講師に事前に通知することなく、本サービスの提供を一時的に中断することができるものとします。<br>
-                &nbsp; ① 本サービス用設備の保守又は工事のため、やむを得ない場合<br>
-                &nbsp; ② 本サービス用設備に障害が発生し、やむを得ない場合<br>
-                &nbsp; ③ 電気通信事業者の提供する電気通信役務に起因して電気通信サービスの利用が不能になった場合<br>
-                &nbsp; ④ その他、運用上又は技術上当社が本サービスの一時的中断が必要と判断した場合<br>
+                {{ __('message.The Company shall be able to temporarily suspend the provision of this service without notifying the instructor in advance in any of the following cases.') }} <br>
+                &nbsp; ① {{ __('message.When it is unavoidable due to maintenance or construction of the equipment for this service') }} <br>
+                &nbsp; ② {{ __('message.When a failure occurs in the equipment for this service and it is unavoidable') }} <br>
+                &nbsp; ③ {{ __('message.When the telecommunications service becomes unavailable due to the telecommunications service provided by the telecommunications carrier') }} <br>
+                &nbsp; ④ {{ __('message.In addition, if we determine that this service needs to be temporarily suspended due to operational or technical reasons.') }} <br>
             </p>
             <br>
-            <b>22. 本サービスの内容の変更・追加</b>
+            <b>22. {{ __('message.Changes / additions to the contents of this service') }} </b>
             <p>
-                当社は、講師に事前に通知することなく、本サービスの内容を変更又は追加することができるものとします。
+                {{ __('message.The Company shall be able to change or add the contents of this service without notifying the instructor in advance.') }} 
             </p>
             <br>
-            <b>23. 本サービスの廃止</b>
+            <b>23. {{ __('message.Abolition of this service') }} </b>
             <p>
-                当社は、講師に通知することにより、本サービスを廃止することができるものとします。
+                {{ __('message.The Company shall be able to abolish this service by notifying the instructor.') }} 
             </p>
             <br>
-            <b>24. 権利の帰属</b>
+            <b>24. {{ __('message.Attribution of rights') }} </b>
             <p>
-                当社が本サービスにおいて提供する情報等（映像、音声、文章、写真、画像等を含みますがこれらに限りません。）に関する著作権、商標権等の知的財産権、肖像権、パブリシティ権その他一切の権利は、別段の定めがない限り、全て当社に帰属するものとします。
+                {{ __('message.Intellectual property rights such as copyrights, trademark rights, portrait rights, publicity rights, etc. regarding information, etc. (including but not limited to video, audio, text, photographs, images, etc.) provided by the Company in this service. Unless otherwise specified, all rights belong to the Company.') }} 
             </p>
             <br>
-            <b>25. 本規約等の改定</b>
+            <b>25. {{ __('message.Revision of these Terms, etc.') }} </b>
             <p>
-                25-1. 当社は、講師の承諾を得ることなく、本規約、当社が定める利用規約等を改定することができるものとします。<br>
-                25-2. 改定後の本規約、当社が定める利用規約等は、当社が講師に対してその改定内容を通知した時点から第3条第2項に従いその効力を生じるものとします。
+                25-1. {{ __('message.The Company shall be able to revise this agreement, the terms of use, etc. established by the Company without obtaining the consent of the instructor.') }} <br>
+                25-2. {{ __('message.The revised Terms and Conditions, Terms of Use, etc. established by the Company shall become effective in accordance with Article 3, Paragraph 2 from the time the Company notifies the instructor of the revised content.') }} 
             </p>
             <br>
-            <b>26. 損害賠償</b>
+            <b>26. {{ __('message.Compensation for damages') }} </b>
             <p>
-                本規約に特に定める他、講師は、本規約に違反したことにより、又は故意若しくは過失により、当社に損害を与えた場合、当社に対し、その全ての損害（合理的な弁護士費用を含みますがこれに限りません。）を直ちに賠償する責任を負うものとします。
+                {{ __('message.In addition to what is specifically stipulated in this agreement, if the instructor causes damage to the Company by violating this agreement, or intentionally or negligently, all damages (including reasonable attorney's fees) to the Company. (Not limited to this)) shall be liable for immediate compensation.') }} 
             </p>
             <br>
-            <b>27. 権利義務の移転・担保提供の禁止</b>
+            <b>27. {{ __('message.Prohibition of transfer of rights and obligations and provision of collateral') }} </b>
             <p>
-                講師は、本規約に基づく権利義務の全部若しくは一部を第三者に譲渡若しくは承継し、又は担保に供してはならないものとします。
+                {{ __('message.The instructor shall not assign or inherit all or part of the rights and obligations based on this agreement to a third party, or provide it as collateral.') }} 
             </p>
             <br>
-            <b>28. 反社会的勢力の排除</b>
+            <b>28. {{ __('message.Elimination of antisocial forces') }} </b>
             <p>
-                講師は、次の各号のいずれか一にも該当しないことを表明し、かつ将来にわたっても該当しないことを表明し、保証するものとします。<br>
-                ① 自らが、暴力団、暴力団員、暴力団員でなくなった時から5年を経過しない者、暴力団準構成員、暴力団関係企業、総会屋、社会運動等標ぼうゴロ又は特殊知能暴力集団等その他これらに準じる者（以下、総称して「暴力団員等」といいます）であること<br>
-                ② 暴力団員等が経営を支配していると認められる関係を有すること<br>
-                ③ 暴力団員等が経営に実質的に関与していると認められる関係を有すること<br>
-                ④ 自ら若しくは第三者の不正の利益を図る目的又は第三者に損害を加える目的をもってするなど、暴力団員等を利用していると認められる関係を有すること<br>
-                ⑤ 暴力団員等に対して資金等を提供し、又は便宜を供与するなどの関与をしていると認められる関係を有すること<br>
-                ⑥ 自らの役員又は自らの経営に実質的に関与している者が暴力団員等と社会的に非難されるべき関係を有すること <br>
+                {{ __('message.The instructor expresses that it does not fall under any one of the following items, and expresses that it does not fall under any of the following items, and warrants it.') }} <br>
+                ① {{ __('message.Those who have not passed 5 years since they became gangsters, gangsters, gangsters, associate members of gangsters, companies related to gangsters, general assembly shops, social movements, etc. (Hereinafter, collectively referred to as 'gang members, etc.')') }} <br>
+                ② {{ __('message.Having a relationship in which gangsters, etc. are recognized as controlling management') }} <br>
+                ③ {{ __('message.Having a relationship in which gangsters, etc. are deemed to be substantially involved in management') }} <br>
+                ④ {{ __('message.Having a relationship that is recognized as using gangsters, etc., for the purpose of gaining the wrongful profits of oneself or a third party, or for the purpose of damaging a third party.') }} <br>
+                ⑤ {{ __('message.Having a relationship that is recognized as being involved in providing funds, etc., or providing facilities to gangsters, etc.') }} <br>
+                ⑥ {{ __('message.A person who is substantially involved in his / her own management or his / her own management has a relationship that should be socially criticized with a member of a gangster, etc.') }}  <br>
             </p>
             <br>
-            <b>29. 準拠法</b>
+            <b>29. {{ __('message.Governing law') }} </b>
             <p>
-                本規約に関する準拠法は、日本法とします。
+                {{ __('message.The governing law for this agreement shall be Japanese law.') }} 
             </p>
             <br>
-            <b>30. 管轄裁判所</b>
+            <b>30. {{ __('message.Court of competent jurisdiction') }} </b>
             <p>
-                講師及び当社は、本サービスに関連して講師と当社との間又は受講者と講師との間で訴訟の必要が生じた場合、その訴額に応じて東京地方裁判所又は東京簡易裁判所を第一審の専属的合意管轄裁判所とすることに合意するものとします。
+                {{ __('message.If there is a need for a proceeding between the instructor and the Company or between the student and the instructor in connection with this service, the instructor in the court of jurisdiction and the Company shall file a proceeding with the Tokyo District Court or the Tokyo Summary Court according to the amount of the proceeding. You agree to be the exclusive agreement jurisdictional court of the first instance.') }} 
             </p>
             <br>
-            <b>31. 言語</b>
+            <b>31. {{ __('message.language') }} </b>
             <p>
-                本規約は、日本語と日本語以外の言語で作成されるものとし、日本語で作成された本規約と日本語以外の言語で作成された本規約の内容が異なる場合には、日本語で作成された本規約の内容に従うものとします。
+                {{ __('message.This agreement shall be written in Japanese and languages other than Japanese, and if the contents of this agreement created in Japanese and this agreement created in a language other than Japanese are different, it shall be written in Japanese. The contents of this agreement created shall be followed.') }} 
             </p>
             <br>
-            <b>32. 存続条項</b>
+            <b>32. {{ __('message.Survival clause') }} </b>
             <p>
-                講師登録抹消後といえども、第2 条、第3条、第5条第1項ないし第3項、同条第5項ないし第8項、第6条、第9条、第10条、第11条第2項、同条第5項ないし第7項、第12条、第14条ないし第17条、第18条第4項、第19条、第20条、第24条、第26条ないし本条の各規定はなお有効に存続するものとします。
+                {{ __('message.Even after the instructor registration is deleted, Article 2, Article 3, Article 5, Paragraphs 1 to 3, Article 5, Paragraphs 5 to 8, Article 6, Article 9, Article 10, Article 10 Article 11 Paragraph 2, Article 11 Paragraphs 5 to 7, Article 12, Article 14 to Article 17, Article 18 Paragraph 4, Article 19, Article 20, Article 24, Article 26 Or each provision of this article shall still be valid.') }} 
             </p>
             <br>
-            <b>33. 協議解決</b>
+            <b>33. {{ __('message.Talk resolution') }} </b>
             <p>
-                本規約に定めのない事項又は本規約の解釈について疑義が生じた事項については、講師と当社とで誠意をもって協議の上、解決にあたるものとします。
+                {{ __('message.Matters not stipulated in this agreement or matters that raise doubts about the interpretation of this agreement shall be resolved after discussions in good faith between the instructor and the Company.') }} 
             </p>
             <br>
-            <b>34. 附則</b>
+            <b>34. {{ __('message.Supplementary provisions') }} </b>
             <p>
-                2021年（令和3年）9月17日　制定・施行
+                {{ __('message.Enacted and enforced on September 17, 2021 (Reiwa 3)') }} 
             </p>
         </div>
     </section>

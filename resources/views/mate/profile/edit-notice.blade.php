@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'プロフィール設定')
+@section('title', __('message.Profile setting'))
 
 @section('content')
     <section class="l-content-block p-setting">
@@ -13,12 +13,12 @@
             @csrf
                 <div class="tab-content p-setting__content">
                     <div id="notification">
-                        <h2 class="p-heading1">通知設定</h2>
-                        <p class="small">講師からの連絡があった場合、メール通知を行うか設定できます</p>
+                        <h2 class="p-heading1">{{ __('message.Notification settings') }} </h2>
+                        <p class="small">{{ __('message.If you have contact from the instructor, you can set or set an email notification') }} </p>
                         <div class="p-form">
                             <div class="row">
                                 <div class="col-12">
-                                    <h3 class="p-heading2">通知設定<span class="badge bg-danger ms-2">必須</span></h3>
+                                    <h3 class="p-heading2">{{ __('message.Notification settings') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-check">
@@ -30,7 +30,7 @@
                                                {{ old('is_notice', $user->is_notice) == 1 ? 'checked' : '' }}
                                         />
                                         <label class="form-check-label" for="form-radio__notification-on">
-                                            受信する
+                                        {{ __('message.Receive') }} 
                                         </label>
                                     </div>
                                 </div>
@@ -44,7 +44,7 @@
                                                 {{ old('is_notice', $user->is_notice) == 0 ? 'checked' : '' }}
                                         />
                                         <label class="form-check-label" for="form-radio__notification-off">
-                                            受信しない
+                                        {{ __('message.Not received') }} 
                                         </label>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                 @enderror
                             </div>
                             <!--/.row -->
-                            <button type="submit" class="p-btn p-btn__defalut">保存する</button>
+                            <button type="submit" class="p-btn p-btn__defalut">{{ __('message.save') }} </button>
                         </div>
                     </div>
 

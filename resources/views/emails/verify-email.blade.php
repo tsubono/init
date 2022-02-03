@@ -1,11 +1,11 @@
-<p>以下の認証リンクをクリックしてください。</p>
+<p>{{ __('message.Please click the following authentication link.') }} </p>
 
-<a href="{{ $url }}" rel="nofollow" target="_blank">→メールアドレスを認証する</a>
+<a href="{{ $url }}" rel="nofollow" target="_blank">→{{ __('message.Authenticate email address') }} </a>
 
 <p>
-    ※「ログインして本登録を完了する」ボタンをがクリックできない場合は以下のURLをコピーしてブラウザに貼り付けてください。<br>
+    ※{{ __('message.If you can not click 'Log in and complete this registration' button, copy the following URL and paste it into the browser.') }} <br>
     {{ $url }}
 </p>
-<p>※こちらのメールは送信専用のメールアドレスより送信しています。恐れ入りますが、直接返信しないようお願いします。</p>
+<p>※{{ __('message.This email is sent from the send-only email address. Excuse me, but please do not reply directly.') }} </p>
 
 @include('emails._footer')

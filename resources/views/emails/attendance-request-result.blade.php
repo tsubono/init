@@ -1,15 +1,15 @@
-{{ $attendance->mateUser->full_name }} さま <br>
+{{ $attendance->mateUser->full_name }} {{ __('message.looks') }}  <br>
 <br>
-こんにちは、INITです。<br>
+{{ __('message.Hi, INIT.') }} <br>
 @if ($attendance->status == \App\Models\Attendance::STATUS_APPROVAL)
-    レッスン「{{ $attendance->lesson->name }}」への受講申請が承認されました！<br>
+{{ __('message.lesson') }} 「{{ $attendance->lesson->name }}」{{ __('message.Apply for attendance to!') }} <br>
 @else
-    レッスン「{{ $attendance->lesson->name }}」への受講申請が否認されました。<br>
+{{ __('message.lesson') }} 「{{ $attendance->lesson->name }}」{{ __('message.An application for attendance was denied.') }} <br>
 @endif
 <br>
-下記のリンクから受講申請の詳細を確認できます。 <br>
-<a href="{{ route('attendances.show', compact('attendance')) }}?type=mate">受講詳細</a>
+{{ __('message.You can check the details of the attendance application from the link below.') }}  <br>
+<a href="{{ route('attendances.show', compact('attendance')) }}?type=mate">{{ __('message.Taking details') }} </a>
 <br>
-<p>※こちらのメールは送信専用のメールアドレスより送信しています。恐れ入りますが、直接返信しないようお願いします。</p>
+<p>※{{ __('message.This email is sent from the send-only email address. Excuse me, but please do not reply directly.') }} </p>
 
 @include('emails._footer')
