@@ -17,7 +17,7 @@
                             <div class="row">
                                 <h3 class="p-heading2">{{ __('message.Personal information confirmation image (surface)') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
                                 <p class="small mb-2">
-                                    {{ __('message.※ Please attach one of the driver's license, insurance card, and minbal card.') }} <br>
+                                    {{ __('message.※ Please attach one of the drivers license, insurance card, and minbal card.') }} <br>
                                     {{ __('message.If you have a qualification, please attach the certificate.') }} 
                                 </p>
                                 <div class="row">
@@ -43,7 +43,7 @@
                                 </div>
 
                                 <h3 class="p-heading2">{{ __('message.Personal information confirmation image (back side)') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
-                                <p class="small mb-2">{{ __('message.※ Please attach one of the driver's license, insurance card, and minbal card.') }} </p>
+                                <p class="small mb-2">{{ __('message.※ Please attach one of the drivers license, insurance card, and minbal card.') }} </p>
                                 <div class="row">
                                     @for ($i=0; $i<4; $i++)
                                         <div class="col">
@@ -97,7 +97,7 @@
                                 </div>
                                 <p class="mt-2">
                                     {{ __('message.※ If it is not an account in Japan, it will be a payment method for PayPal remittance only.') }} <br>
-                                    {{ __('message.※ 'Control of payment method for overseas people' is only in Japan for bank transfer.') }} 
+                                    {{ __('message.※ Control of payment method for overseas people is only in Japan for bank transfer.') }} 
                                 </p>
                                 @error('payment_method')
                                 <div class="p-error-text" role="alert">

@@ -51,7 +51,7 @@
             1：{{ __('message.After applying for a lesson contract by a student, a lesson contract application is canceled by the student before the lecturer sends an e-mail of the application consent') }} <br>
             2：{{ __('message.After the lesson contract is established, 24 hours before the lesson start date and time of the lesson contract, the lesson contract after the establishment is canceled by the student') }} <br>
             <br>
-            「<b>{{ __('message.Coin return') }} </b>」{{ __('message.Is that, at the same time as the student applies for the lesson contract, the coins deducted from the student's coins as coins equivalent to the service fee related to the lesson contract are returned as the student's coins based on the cancellation policy. I say that.') }} <br>
+            「<b>{{ __('message.Coin return') }} </b>」{{ __('message.Is that, at the same time as the student applies for the lesson contract, the coins deducted from the students coins as coins equivalent to the service fee related to the lesson contract are returned as the students coins based on the cancellation policy. I say that.') }} <br>
             <br>
             <b>{{ __('message.penalty') }} </b><br>
             {{ __('message.Change lesson time by applying for students') }} <br>

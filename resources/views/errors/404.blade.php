@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '__('message.404 error')')
+@section('title', __('message.404 error'))
 
 @section('content')
     <section class="l-content-block">

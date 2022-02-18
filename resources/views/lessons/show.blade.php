@@ -86,7 +86,7 @@
                                                 </div>
                                             </div>
                                             <p class="small p-error-text">
-                                                {{ __('message.※ The lecturer's 'lessonable time' is a summer time deployment country and an uninfected country, and the display may be shifted by one hour.') }} 
+                                                {{ __('message.※ The lecturers lessonable time is a summer time deployment country and an uninfected country, and the display may be shifted by one hour.') }} 
                                             </p>
                                             @error('date')
                                             <div class="p-error-text" role="alert">

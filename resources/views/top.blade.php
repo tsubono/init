@@ -24,7 +24,7 @@
                     <div class="p-heading1__en blue">About</div>
                     {{ __('message.About init') }} 
                 </h2>
-                <p>{{ __('message.'Fun and enhancement in learning'') }} <br class="d-md-none">{{ __('message.Provided on the theme') }} <br class="d-none d-md-block">
+                <p>{{ __('message.Fun and enhancement in learning') }} <br class="d-md-none">{{ __('message.Provided on the theme') }} <br class="d-none d-md-block">
                     {{ __('message.Online with lecturers around the world') }} <br>
                     {{ __('message.Create a place where you can match') }} </p>
                 <a href="{{ route('about') }}" class="p-index-about__btn p-btn p-btn__defalut">{{ __('message.To the first one') }} </a>

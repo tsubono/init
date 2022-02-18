@@ -15,7 +15,7 @@
                 <b>•{{ __('message.About copyright') }} </b><br>
                 {{ __('message.Copyright is all works, for example, sentences, pictures, music, photos, images, computer brigames, etc., and that right is created and protected by creators.') }} <br>
                 <br>
-                {{ __('message.It is necessary to obtain the author's consent of the secondary use, regardless of why the work is for commercial and non-profit.') }} <br>
+                {{ __('message.It is necessary to obtain the authors consent of the secondary use, regardless of why the work is for commercial and non-profit.') }} <br>
             </p>
             <br>
             <p>
@@ -33,7 +33,7 @@
             <br>
             <p>
                 <b>•{{ __('message.Look at the INIT secretariat') }} </b><br>
-                {{ __('message.Since these rights are not legally stated rights, the cases of complaints and the judgment results of legal institutions will be reflected accordingly, and the disposition will be decided. Therefore, the Secretariat cannot make any judgments regarding these rights, such as 'this usage method is okay' or 'this usage method constitutes an infringement of the rights'.') }} <br>
+                {{ __('message.Since these rights are not legally stated rights, the cases of complaints and the judgment results of legal institutions will be reflected accordingly, and the disposition will be decided. Therefore, the Secretariat cannot make any judgments regarding these rights, such as this usage method is okay or this usage method constitutes an infringement of the rights.') }} <br>
                 <br>
                 {{ __('message.If there are inquiries, complaints, claims, etc. from concessionaires or third parties related to your use, or if there is a dispute, we will not be involved in this response. Please handle all matters such as expenses at your own risk.') }} <br>
                 <br>

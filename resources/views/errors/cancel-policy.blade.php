@@ -40,13 +40,13 @@
                     <br>
                     {{ __('message.【About notification measures】') }} <br>
                     {{ __('message.· Report to lecturer') }} <br>
-                    {{ __('message.If the instructor does not appear after a certain amount of time has passed since the start time of the lesson on the day, the student will be given the right to use the 'report button'. If the instructor is notified, the instructor will refund the full tuition fee to the student, and the evaluation may be lowered by the review from the student.') }} <br>
+                    {{ __('message.If the instructor does not appear after a certain amount of time has passed since the start time of the lesson on the day, the student will be given the right to use the report button. If the instructor is notified, the instructor will refund the full tuition fee to the student, and the evaluation may be lowered by the review from the student.') }} <br>
                     <br>
                     {{ __('message.· Report to the student') }} <br>
-                    {{ __('message.If the student does not appear after a certain amount of time has passed since the start time of the lesson on the day, the instructor will be given the right to use the 'report button'. If there is a report to the student, the secretariat shall collect 50% of the tuition fee from the student as the instructor and the remaining 50% as the operation and maintenance fee.') }} 
+                    {{ __('message.If the student does not appear after a certain amount of time has passed since the start time of the lesson on the day, the instructor will be given the right to use the report button. If there is a report to the student, the secretariat shall collect 50% of the tuition fee from the student as the instructor and the remaining 50% as the operation and maintenance fee.') }} 
                 </div>
                 <div id="adviser" class="tab-pane" role="tabpanel" aria-labelledby="adviser-tab">
-                    {{ __('message.This 'Cancellation Policy (Lecturer, Cancel Policy (Lecturer) ) ')' Below is called "this policy'.). In addition, the definition of terms in this policy is based on the definition of the 'Terms of Terms' (please URL) separately defined by the Company unless otherwise specified in this policy.') }} <br>
+                    {{ __('message.This Cancellation Policy (Lecturer, Cancel Policy (Lecturer) ) ) Below is called "this policy.). In addition, the definition of terms in this policy is based on the definition of the Terms of Terms (please URL) separately defined by the Company unless otherwise specified in this policy.') }} <br>
                     <br>
                     1. {{ __('message.The instructor shall freely judge whether or not to reject the lesson contract received from the student.') }} <br>
                     <br>
@@ -62,16 +62,16 @@
                         {{ __('message.· １ days ago') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_adviser')[1] * 100 }}%<br>
                         ・{{ __('message.Day') }}    {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_adviser')[0] * 100 }}%<br>
                     <br>
-                    {{ __('message.In addition, if the instructor does not appear after a certain amount of time has passed since the start time of the lesson on the day, the student will be given the right to use the 'report button'. If there is a report to the instructor, the entire tuition fee will be collected from the instructor as an operating fee, and the evaluation may be lowered by the review from the instructor.') }} <br>
+                    {{ __('message.In addition, if the instructor does not appear after a certain amount of time has passed since the start time of the lesson on the day, the student will be given the right to use the report button. If there is a report to the instructor, the entire tuition fee will be collected from the instructor as an operating fee, and the evaluation may be lowered by the review from the instructor.') }} <br>
                     <br>
                     3. {{ __('message.About matters that are not specified in this policy, we') }} 「<a href="{{ route('adviser-terms') }}" target="_blank" class="primary-link">{{ __('message.Instructors') }} </a>」{{ __('message.Is applied.') }} <br>
                     <br>
                     {{ __('message.【About notification measures】') }} <br>
                     {{ __('message.· Report to lecturer') }} <br>
-                    {{ __('message.If the instructor does not appear after a certain amount of time has passed since the start time of the lesson on the day, the student will be given the right to use the 'report button'. If the instructor is notified, the instructor will refund the full tuition fee to the student, and the evaluation may be lowered by the review from the student.') }} <br>
+                    {{ __('message.If the instructor does not appear after a certain amount of time has passed since the start time of the lesson on the day, the student will be given the right to use the report button. If the instructor is notified, the instructor will refund the full tuition fee to the student, and the evaluation may be lowered by the review from the student.') }} <br>
                     <br>
                     {{ __('message.· Report to the student') }} <br>
-                    {{ __('message.If the student does not appear after a certain amount of time has passed since the start time of the lesson on the day, the instructor will be given the right to use the 'report button'. If there is a report to the student, the secretariat shall collect 50% of the tuition fee from the student as the instructor and the remaining 50% as the operation and maintenance fee.') }} 
+                    {{ __('message.If the student does not appear after a certain amount of time has passed since the start time of the lesson on the day, the instructor will be given the right to use the report button. If there is a report to the student, the secretariat shall collect 50% of the tuition fee from the student as the instructor and the remaining 50% as the operation and maintenance fee.') }} 
                 </div>
             </div>
 @endsection

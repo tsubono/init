@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'レビュー登録')
+@section('title', __('message.Review registration'))
 
 @section('content')
     <section class="l-content-block p-setting p-review">
@@ -10,7 +10,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="p-heading2">評点<span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
+                        <h3 class="p-heading2">{{ __('message.Score') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
                         <div class="rate-form">
                             <input id="star5" type="radio" name="rate" value="5" {{ old('rate' == 5 ? 'checked' : '') }}>
                             <label for="star5">★</label>

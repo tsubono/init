@@ -11,7 +11,7 @@
                     <div class="p-heading1__en blue">About</div>
                     {{ __('message.About init') }} 
                 </h2>
-                <p>{{ __('message.'Fun and enhancement in learning'') }} <br class="d-md-none">{{ __('message.Provided on the theme') }} <br class="d-none d-md-block">
+                <p>{{ __('message.Fun and enhancement in learning') }} <br class="d-md-none">{{ __('message.Provided on the theme') }} <br class="d-none d-md-block">
                     {{ __('message.Online with lecturers around the world') }} <br>
                     {{ __('message.Create a place where you can match') }} </p>
             </div>
@@ -141,7 +141,7 @@
                         <div class="p-aboutlist__text">
                             <h3>{{ __('message.Skype registration') }} </h3>
                             <p>{{ __('message.In INIT lessons, use Skype.') }} <br>
-                                <a href="https://support.skype.com/ja/faq/FA11098/skype-noshi-ishi-mefang-wojiao-etekudasai" target="_blank" class="primary-link">{{ __('message.Click here for Skype's download and registration method') }} </a></p>
+                                <a href="https://support.skype.com/ja/faq/FA11098/skype-noshi-ishi-mefang-wojiao-etekudasai" target="_blank" class="primary-link">{{ __('message.Click here for Skypes download and registration method') }} </a></p>
                         </div>
                     </li>
                     <li class="p-aboutlist__box num02">
@@ -179,7 +179,7 @@
                         </div>
                         <div class="p-aboutlist__text">
                             <h3>{{ __('message.Lecturer / Lesson') }} </h3>
-                            <p>{{ __('message.Look for lecturers and lessons. Let's look for 'what you want to do' or 'Language to learn'') }} 。<br>
+                            <p>{{ __('message.Look for lecturers and lessons. Lets look for what you want to do or Language to learn') }} 。<br>
                                 {{ __('message.You can also look for from the origin of the instructor and the popularity.') }} </p>
                         </div>
                     </li>
@@ -192,7 +192,7 @@
                         </div>
                         <div class="p-aboutlist__text">
                             <h3>{{ __('message.Reserve a lesson') }} </h3>
-                            <p>{{ __('message.If you find lecturers and lessons you like, 'Check the schedule'') }} <br>
+                            <p>{{ __('message.If you find lecturers and lessons you like, Check the schedule') }} <br>
                                 {{ __('message.Make a request from the lesson.') }} </p>
                         </div>
                     </li>

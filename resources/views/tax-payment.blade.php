@@ -11,10 +11,10 @@
             </p>
             <br>
             <p>
-                •{{ __('message.Tokyo has a taxpayer support center in Japan Japan Tax Research Center, and has a window called 'Free consultation'.') }} <br>
+                •{{ __('message.Tokyo has a taxpayer support center in Japan Japan Tax Research Center, and has a window called Free consultation.') }} <br>
                 ➔  <a class="primary-link" href="http://www.jtri.or.jp/counsel/index.php" target="_blank">http://www.jtri.or.jp/counsel/index.php</a><br>
                 <br>
-                {{ __('message.National Tax Public Tax Answer is guided as a 'common tax question' for each type of tax.') }} <br>
+                {{ __('message.National Tax Public Tax Answer is guided as a common tax question for each type of tax.') }} <br>
                 ➔  <a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/index2.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/index2.htm</a> <br>
                 <br>
                 Internal Revenue Service（{{ __('message.United States International Revenue Agency English') }} ）<br>
@@ -34,7 +34,7 @@
             </p>
             <br>
             <p>
-                <b>•{{ __('message.In-lecturer Fee's income and income declaration') }} </b><br>
+                <b>•{{ __('message.In-lecturer Fees income and income declaration') }} </b><br>
                 {{ __('message.Depending on your income situation, employment status, etc., the income type will be declared.') }} <br>
                 ➔  {{ __('message.Summary of National Tax Agency / Tax Answer / Category of income') }}  (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm</a> )
             </p>
@@ -53,7 +53,7 @@
             <br>
             <p>
                 <b>•{{ __('message.Report in case of overseas living') }} </b><br>
-                {{ __('message.Tax payment obligations vary depending on whether they are judged to 'residents' and 'non-resident' from the number of days of stay at the residence and the real life of life.') }} <br>
+                {{ __('message.Tax payment obligations vary depending on whether they are judged to residents and non-resident from the number of days of stay at the residence and the real life of life.') }} <br>
                 {{ __('message.If non-residents revenue in init with init, basically, tax duty in Japan will not occur and it will conform to the current tax law.') }} <br>
                 {{ __('message.For example, if you live abroad in overseas travel and short-term study abroad, it is considered that non-residents will not be applicable, so it may be taxed in Japan.') }} <br>
                 ➔  {{ __('message.National Tax Agency / Tax Answer / Resident and Non-Residents') }}   (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2875.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2875.htm</a> )
