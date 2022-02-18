@@ -151,15 +151,14 @@ return [
     |
     */
 
-    // TODO: 下記配列のvalueの日本語を英語に変更する
     'attributes' => [
         'family_name' => 'family name',
         'middle_name' => 'middle name',
         'first_name' => 'first name',
-        'family_name_kana' => 'Alphabet(family name)', //英字 (姓)
-        'middle_name_kana' => 'Alphabet(middle name)', //英字 (ミドルネーム)
-        'first_name_kana' => 'Alphabet(irst name)', //英字 (名)
-        'email' => 'email address',
+        'family_name_kana' => 'alphabet(family name)', //英字 (姓)
+        'middle_name_kana' => 'alphabet(middle name)', //英字 (ミドルネーム)
+        'first_name_kana' => 'alphabet(first name)', //英字 (名)
+        'email' => 'email',
         'password' => 'password',
         'date' => 'date',
         'time' => 'time',
@@ -174,30 +173,30 @@ return [
         'mst_language_id' => 'language',
         'mst_language_ids' => 'language',
         'mst_category_ids' => 'category',
-        'coin_amount' => 'Required coins',
+        'coin_amount' => 'coin amount',
         'movies' => 'movie',
-        'birthday_y' => 'Year',
-        'birthday_m' => 'Month',
-        'birthday_d' => 'Day',
+        'birthday_y' => 'year',
+        'birthday_m' => 'month',
+        'birthday_d' => 'day',
         'tel' => 'telephone number',
-        'skype_name' => 'Skype name',
-        'skype_id' => 'SkypeID',
-        'from_country_id' => 'Country of origin',
-        'residence_country_id' => 'Country of Residence',
-        'qualification_text' => 'Qualifications to hold',
+        'skype_name' => 'skype name',
+        'skype_id' => 'skype id',
+        'from_country_id' => 'country of origin',
+        'residence_country_id' => 'country of residence',
+        'qualification_text' => 'qualification text',
         'pr_text' => 'about myself',
-        'reason_text' => 'Reasons and reasons for becoming an instructor',
+        'reason_text' => 'reasons and reasons for becoming an instructor',
         'passion_text' => 'Enthusiasm to be a teacher',
-        'old_password' => 'Current Password',
-        'personal_images_1' => 'Personal information confirmation image (front side)',
+        'old_password' => 'current password',
+        'personal_images_1' => 'personal information confirmation image (front side)',
         'personal_images_1.0' => '1st personal information confirmation image (front side)',
-        'personal_images_2' => 'Personal information confirmation image (back side)',
+        'personal_images_2' => 'personal information confirmation image (back side)',
         'personal_images_2.0' => '1st personal information confirmation image (back side)',
         'payment_method' => 'method of payment',
-        'paypal_email' => 'Paypal email address',
-        'account_image_1' => 'Account image (cover)',
-        'account_image_2' => 'Account image (spread page)',
-        'rate' => 'Score',
+        'paypal_email' => 'paypal email address',
+        'account_image_1' => 'account image (cover)',
+        'account_image_2' => 'account image (spread page)',
+        'rate' => 'score',
         'type' => 'kinds',
         'zipcode' => 'post code',
         'address' => 'address',
