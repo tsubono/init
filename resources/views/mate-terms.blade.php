@@ -100,6 +100,7 @@
             <p>
                 {{ __('message.If a student falls under any of the following items, the Company may suspend the provision of this service to the student or cancel the student registration without prior notice. increase. In addition, the unused points held by the student at the time when the student registration is deleted based on the main text of this article shall be extinguished at that time and shall not be refunded.') }}<br>
                 &nbsp; {{ __('message.1 If it has been found that the temporary registration of the student registration was received due to the violation of the Terms of Terms and the like in the past') }}<br>
+                &nbsp; {{ __('message.(2) When performing the act set in Article 16') }} <br>
                 &nbsp; ② {{ __('message.Article 16 When performing the acts specified in each issue') }}<br>
                 &nbsp; ③ {{ __('message.In addition to the provisions of the preceding two items, if you violate this agreement') }}<br>
                 &nbsp; {{ __('message.4 In addition, if our company is judged if it is inappropriate to provide this service or maintain a student registration') }}<br>
@@ -133,7 +134,7 @@
                 {{ __('message.13-4. Students shall be able to purchase coins from our company before applying for a lesson contract.') }}<br>
                 {{ __('message.13-5. When purchasing coins from our company, we must agree in advance that we must purchase a certain number of coins separately specified separately.') }}<br>
                 {{ __('message.13-6. The purchase price of coin is 1 coin 100 yen (tax included) except when we set up separately.') }}<br>
-                13-7. {{ __('message.If you wish to purchase coins, the Company shall make purchase application (hereinafter referred to as purchase application) by the method of specifying separately.') }}<br>
+                {{ __('message.13-7. If you wish to purchase coins, we shall apply for purchase application (hereinafter referred to as purchase application) by the method of specifying separately.') }} <br>
                 {{ __('message.13-8. Students shall not enter false content during purchase application.') }}<br>
                 {{ __('message.13-9. Purchasing of coin is payment by bank transfer, and a credit card of the student identifier (which will be limited to what is issued by a credit card company separately.) PayPal (Paypal) Payments Other Payments will be paid by the method separately.') }}<br>
                 {{ __('message.13-10. After making a purchase application, we will agree in advance that we can not withdraw or cancel the purchase application except when we admit separately.') }}<br>
