@@ -7,7 +7,7 @@
         <div class="container">
             <div class="p-profile__edit">
                 @if (auth()->guard('adviser')->check() && auth()->guard('adviser')->user()->id === $adviserUser->id)
-                <a href="{{ route('adviser.profile.edit') }}" class="p-btn p-btn--edit p-btn__outline">{{ __('message.Edit Profile') }} </a>
+                <a href="{{ route('adviser.profile.edit') }}" class="p-btn p-btn--edit p-btn__outline">{{ __('message.Edit Profile') }}</a>
                 @endif
             </div>
             <div class="row">
@@ -17,7 +17,7 @@
                 <div class="col-lg-9 col-md-8 p-profile__detail">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 class="p-heading2">{{ __('message.Language to be taught') }} </h3>
+                            <h3 class="p-heading2">{{ __('message.Language to be taught') }}</h3>
                             <ul class="p-profile__language">
                                 @foreach ($adviserUser->languages as $language)
                                     <li>・{{ $language->name }}</li>
@@ -25,12 +25,12 @@
                             </ul>
                         </div>
                         <div class="col-md-6">
-                            <h3 class="p-heading2">{{ __('message.Category taught') }} </h3>
+                            <h3 class="p-heading2">{{ __('message.Category taught') }}</h3>
                             <ul class="p-profile__category">
                                 @foreach ($adviserUser->categories as $category)
                                     <li>
                                         <div class="p-category">
-                                            <img src="{{ $category->icon_path }}" alt="{{ __('message.icon') }} " />
+                                            <img src="{{ $category->icon_path }}" alt="{{ __('message.icon') }}" />
                                             {{ $category->name }}
                                         </div>
                                     </li>
@@ -39,7 +39,7 @@
                         </div>
                         @if (!empty($adviserUser->qualification_text))
                             <div class="col-md-12">
-                                <h3 class="p-heading2">{{ __('message.Qualification') }} </h3>
+                                <h3 class="p-heading2">{{ __('message.Qualification') }}</h3>
                                 <div class="p-profile__message">
                                     <p>{!! nl2br(e($adviserUser->qualification_text)) !!}</p>
                                 </div>
@@ -47,7 +47,7 @@
                         @endif
                         @if (!empty($adviserUser->pr_text))
                             <div class="col-md-12">
-                                <h3 class="p-heading2">{{ __('message.Self-PR') }} </h3>
+                                <h3 class="p-heading2">{{ __('message.Self-PR') }}</h3>
                                 <div class="p-profile__message">
                                     <p>{!! nl2br(e($adviserUser->pr_text)) !!}</p>
                                 </div>
@@ -55,18 +55,18 @@
                         @endif
                         @if (count($adviserUser->adviserUserMovies) !== 0)
                             <div class="col-md-12">
-                                <h3 class="p-heading2">{{ __('message.Video URL') }} </h3>
+                                <h3 class="p-heading2">{{ __('message.Video URL') }}</h3>
                                 <movie-list :movies="{{ $adviserUser->adviserUserMovies }}"></movie-list>
                             </div><!-- /.col-md-12 -->
                         @endif
                         <div class="col-md-12">
-                            <h3 class="p-heading2">{{ __('message.An opportunity to') }} </h3>
+                            <h3 class="p-heading2">{{ __('message.An opportunity to') }}</h3>
                             <div class="p-profile__reason">
                                 <p>{!! nl2br(e($adviserUser->reason_text)) !!}</p>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <h3 class="p-heading2">{{ __('message.An enthusiasm to give a lecturer') }} </h3>
+                            <h3 class="p-heading2">{{ __('message.An enthusiasm to give a lecturer') }}</h3>
                             <div class="p-profile__enthusiasm">
                                 <p>{!! nl2br(e($adviserUser->passion_text)) !!}</p>
                             </div>
@@ -80,7 +80,7 @@
                                     <div class="modal fade p-modal" id="imageModal{{ $index }}" tabindex="-1" aria-labelledby="imageModal{{ $index }}Label">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }} "></button>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }}"></button>
                                                 <div class="modal-body">
                                                     <div class="iframe-wrapper">
                                                         <img src="{{ $image->image_path }}" alt="{{ $adviserUser->full_name }}" class="w-100">
@@ -120,7 +120,7 @@
                                     <div class="d-flex">
                                         <span class="ms-3">
                                             <img src="{{ asset('img/icon-point.svg') }}" alt="Point" class="me-1">
-                                            {{ number_format($lesson->coin_amount) }}{{ __('message.coin') }} 
+                                            {{ number_format($lesson->coin_amount) }}{{ __('message.coin') }}
                                         </span>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@
                         </div>
                     @empty
                         <div class="text-center w-100">
-                            <p>{{ __('message.I have not released lessons yet') }} </p>
+                            <p>{{ __('message.I have not released lessons yet') }}</p>
                         </div>
                     @endforelse
                 </div>

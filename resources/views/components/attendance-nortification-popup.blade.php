@@ -12,10 +12,10 @@
                     </form>
                 </li>
             @empty
-                <p class="m-2">{{ __('message.There is no notification yet') }} </p>
+                <p class="m-2">{{ __('message.There is no notification yet') }}</p>
             @endforelse
         </ul>
-        <a href="{{ route('attendance-notifications.index') }}" class="p-notification-popover__to-list primary-link">{{ __('message.To List') }} </a>
+        <a href="{{ route('attendance-notifications.index') }}" class="p-notification-popover__to-list primary-link">{{ __('message.To List') }}</a>
     </div>
 </template>
 

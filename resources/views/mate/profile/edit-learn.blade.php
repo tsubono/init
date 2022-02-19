@@ -13,11 +13,11 @@
             @csrf
                 <div class="tab-content p-setting__content">
                     <div id="learn">
-                        <h2 class="p-heading1">{{ __('message.Setting you want to learn') }} </h2>
+                        <h2 class="p-heading1">{{ __('message.Setting you want to learn') }}</h2>
                         <div class="p-form">
                             <div class="row">
                                 <div class="col-12">
-                                    <h3 class="p-heading2">{{ __('message.Language to learn') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
+                                    <h3 class="p-heading2">{{ __('message.Language to learn') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                                     <language-select-multi
                                             :languages="{{ $mst_languages }}"
                                             :value="{{ json_encode(old('mst_language_ids', $user ? $user->language_ids : [])) }}"
@@ -29,7 +29,7 @@
                                     @enderror
                                 </div><!-- /.col-12 -->
                                 <div class="col-12">
-                                    <h3 class="p-heading2">{{ __('message.Category you want to learn') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
+                                    <h3 class="p-heading2">{{ __('message.Category you want to learn') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                                     <category-select
                                             :rooms="{{ $mst_rooms }}"
                                             :value="{{ json_encode(old('mst_category_ids', $user ? $user->category_ids : [])) }}"
@@ -42,7 +42,7 @@
                                 </div><!-- /.col-12 -->
 
                                 <div class="col-12">
-                                    <h3 class="p-heading2">{{ __('message.Self-PR') }} </h3>
+                                    <h3 class="p-heading2">{{ __('message.Self-PR') }}</h3>
                                     <textarea class="form-control" cols="20" rows="10" name="pr_text">{{ old('pr_text', $user->pr_text) }}</textarea>
                                     @error('pr_text')
                                     <div class="p-error-text" role="alert">
@@ -51,7 +51,7 @@
                                     @enderror
                                 </div><!-- /.col12 -->
                             </div><!-- /.row -->
-                            <button type="submit" class="p-btn p-btn__defalut">{{ __('message.save') }} </button>
+                            <button type="submit" class="p-btn p-btn__defalut">{{ __('message.save') }}</button>
                         </div>
                     </div>
                 </div>

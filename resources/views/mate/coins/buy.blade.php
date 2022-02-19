@@ -3,26 +3,26 @@
 @section('title', __('message.Purchase coin'))
 
 @section('content')
-    <div class="alert alert-warning text-center">{{ __('message.Coin expiration date is from the date of purchase') }} {{ config('const.coin_expiration_month') }}{{ __('message.It is a month') }} </div>
+    <div class="alert alert-warning text-center">{{ __('message.Coin expiration date is from the date of purchase') }}{{ config('const.coin_expiration_month') }}{{ __('message.It is a month') }}</div>
     <section class="p-coin l-content-block">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-xs-12">
-                    <h3 class="p-heading2">{{ __('message.Buy coin number') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
-                    <input type="number" name="amount" class="form-control" placeholder="{{ __('message.Please enter the number of coins') }} " min="1" />
-                    <p class="mt-1">※ {{ __('message.1 coin = 100 yen') }} </p>
+                    <h3 class="p-heading2">{{ __('message.Buy coin number') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
+                    <input type="number" name="amount" class="form-control" placeholder="{{ __('message.Please enter the number of coins') }}" min="1" />
+                    <p class="mt-1">※ {{ __('message.1 coin = 100 yen') }}</p>
                     <p class="p-error-text" id="errorTxt"></p>
                 </div>
             </div>
             <div class="row button-area" id="paymentButtons">
                 <div class="col-md-6 col-xs-12">
-                    <h3 class="p-heading3 text-center mt-3">{{ __('message.PayPal payment') }} </h3>
-                    <!-- {{ __('message.PayPal payment') }} ボタン表示 -->
+                    <h3 class="p-heading3 text-center mt-3">{{ __('message.PayPal payment') }}</h3>
+                    <!-- {{ __('message.PayPal payment') }}ボタン表示 -->
                     <div id="paypal-button-container" class="pe-none o-60"></div>
                 </div>
 
                 <div class="col-md-6 col-xs-12">
-                    <h3 class="p-heading3 text-center mt-3">{{ __('message.Pay.jp payment') }} </h3>
+                    <h3 class="p-heading3 text-center mt-3">{{ __('message.Pay.jp payment') }}</h3>
                     <form action="{{ route('mate.coins.payment-by-payjp') }}" method="post" id="payjpForm1" class="pe-none o-60">
                         @csrf
                         <input type="hidden" name="price" class="price-input" />
@@ -35,7 +35,7 @@
                         ></script>
                     </form>
                     @if (!empty($cardList))
-                        <p class="my-3">{{ __('message.Or pay by a registered card') }} </p>
+                        <p class="my-3">{{ __('message.Or pay by a registered card') }}</p>
                         <form action="{{ route('mate.coins.payment-by-payjp') }}" method="post" id="payjpForm2" class="pe-none o-60">
                             @csrf
                             <input type="hidden" name="price" class="price-input" />
@@ -46,14 +46,14 @@
                                         <span class="brand">{{ $card['brand'] }}</span>
                                         <span>{{ $card['number'] }}</span>
                                         <div>
-                                            <p>{{ __('message.Name') }} : {{ $card['name'] }}</p>
-                                            <p>{{ __('message.Duration') }} : {{ $card['exp_year'] }}/{{ $card['exp_month'] }}</p>
+                                            <p>{{ __('message.Name') }}: {{ $card['name'] }}</p>
+                                            <p>{{ __('message.Duration') }}: {{ $card['exp_year'] }}/{{ $card['exp_month'] }}</p>
                                         </div>
                                     </label>
                                 </div>
                             @endforeach
                             <div class="text-center">
-                                <button type="submit" class="p-btn p-btn__defalut d-inline-block mt-3">{{ __('message.Settle with the selected card') }} </button>
+                                <button type="submit" class="p-btn p-btn__defalut d-inline-block mt-3">{{ __('message.Settle with the selected card') }}</button>
                             </div>
                         </form>
                     @endif
@@ -72,7 +72,7 @@
 @endsection
 
 @section('js')
-    <!-- {{ __('message.PayPal payment') }} 設定 -->
+    <!-- {{ __('message.PayPal payment') }}設定 -->
     <!-- Include the PayPal JavaScript SDK -->
     <script src="https://www.paypal.com/sdk/js?client-id={{ config('services.paypal.client_id') }}&currency=JPY&locale=ja_JP&disable-funding=card&intent=capture"></script>
     <script>
@@ -84,7 +84,7 @@
               amount: {
                 value: document.querySelector('[name=amount]').value * 100,
               },
-              description: '{{ __('message.Student user') }} ID: {{ auth()->user()->id }} によるコイン購入'
+              description: '{{ __('message.Student user') }}ID: {{ auth()->user()->id }} によるコイン購入'
             }],
           });
         },
@@ -127,7 +127,7 @@
         const payContainers = document.querySelectorAll('#paypal-button-container, #payjpForm1, #payjpForm2');
 
         if (value === '' || parseInt(value) < 1) {
-          document.querySelector('#errorTxt').textContent = {{ __('message.Please enter one coin or more') }} 
+          document.querySelector('#errorTxt').textContent = {{ __('message.Please enter one coin or more') }}
           payContainers.forEach(element => element.classList.add(...className));
         } else {
           document.querySelector('#errorTxt').textContent = ''

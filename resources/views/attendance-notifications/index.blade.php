@@ -9,7 +9,7 @@
                 <div class="mb-3 text-end">
                     <form action="{{ route('attendance-notifications.read-all') }}" method="post">
                         @csrf
-                        <button type="submit" class="p-btn btn-default py-1 px-2 d-inline">{{ __('message.All read') }} </button>
+                        <button type="submit" class="p-btn btn-default py-1 px-2 d-inline">{{ __('message.All read') }}</button>
                     </form>
                 </div>
             @endif
@@ -29,7 +29,7 @@
                     @endforeach
                 </ul>
             @else
-                <div class="text-center">{{ __('message.Notice has not been registered yet') }} </div>
+                <div class="text-center">{{ __('message.Notice has not been registered yet') }}</div>
             @endif
 
             <div class="text-center">

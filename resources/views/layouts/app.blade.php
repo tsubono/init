@@ -37,15 +37,15 @@
             </div>
             <div class="footer-nav-list">
                 <ul>
-                    <li><a href="{{ route('team') }}">{{ __('message.About Team INIT') }} </a></li>
-                    <li><a href="{{ route('tradelaw') }}">{{ __('message.Display based on special business') }} </a></li>
-                    <li><a href="{{ route('privacy') }}">{{ __('message.privacy policy') }} </a></li>
-                    <li><a href="{{ route('cancel-policy') }}">{{ __('message.cancellation policy') }} </a></li>
-                    <li><a href="{{ route('mate-terms') }}">{{ __('message.Terms of study') }} </a></li>
-                    <li><a href="{{ route('adviser-terms') }}">{{ __('message.Instructors') }} </a></li>
-                    <li><a href="{{ route('intellectual-property') }}">{{ __('message.Intellectual Property Length Guidelines') }} </a></li>
-                    <li><a href="{{ route('tax-payment') }}">{{ __('message.About tax payment') }} </a></li>
-                    <li><a href="{{ route('contact.index') }}">{{ __('message.inquiry') }} </a></li>
+                    <li><a href="{{ route('team') }}">{{ __('message.About Team INIT') }}</a></li>
+                    <li><a href="{{ route('tradelaw') }}">{{ __('message.Display based on special business') }}</a></li>
+                    <li><a href="{{ route('privacy') }}">{{ __('message.privacy policy') }}</a></li>
+                    <li><a href="{{ route('cancel-policy') }}">{{ __('message.cancellation policy') }}</a></li>
+                    <li><a href="{{ route('mate-terms') }}">{{ __('message.Terms of study') }}</a></li>
+                    <li><a href="{{ route('adviser-terms') }}">{{ __('message.Instructors') }}</a></li>
+                    <li><a href="{{ route('intellectual-property') }}">{{ __('message.Intellectual Property Length Guidelines') }}</a></li>
+                    <li><a href="{{ route('tax-payment') }}">{{ __('message.About tax payment') }}</a></li>
+                    <li><a href="{{ route('contact.index') }}">{{ __('message.inquiry') }}</a></li>
                 </ul>
             </div>
             <address>Copyright &copy; 2021 INIT. All Rights Reserved.</address>

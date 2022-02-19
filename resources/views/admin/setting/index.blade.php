@@ -10,7 +10,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="p-heading2">{{ __('message.Maintenance mode') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
+                        <h3 class="p-heading2">{{ __('message.Maintenance mode') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                     </div>
                     <div class="col-6">
                         <div class="form-check">
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="my-80px">
-                    <button type="submit" class="p-btn p-btn__defalut">{{ __('message.Update') }} </button>
+                    <button type="submit" class="p-btn p-btn__defalut">{{ __('message.Update') }}</button>
                 </div>
             </form>
         </div>

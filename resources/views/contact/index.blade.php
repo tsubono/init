@@ -10,7 +10,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="p-heading2">{{ __('message.Full name') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
+                        <h3 class="p-heading2">{{ __('message.Full name') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                         <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                         @error('name')
                         <div class="p-error-text" role="alert">
@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="col-12">
-                        <h3 class="p-heading2">{{ __('message.email address') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
+                        <h3 class="p-heading2">{{ __('message.email address') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                         <input type="text" class="form-control" name="email" value="{{ old('email') }}">
                         @error('email')
                         <div class="p-error-text" role="alert">
@@ -30,9 +30,9 @@
                     </div>
 
                     <div class="col-12">
-                        <h3 class="p-heading2">{{ __('message.category') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
+                        <h3 class="p-heading2">{{ __('message.category') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                         <select class="form-select" name="category">
-                            <option value="">{{ __('message.Please select') }} </option>
+                            <option value="">{{ __('message.Please select') }}</option>
                             @foreach (config('const.contact_categories') as $category)
                                 <option value="{{ $category }}" {{ old('category') === $category ? 'selected' : '' }}>
                                     {{ $category }}
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="col-12">
-                        <h3 class="p-heading2">{{ __('message.subject') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
+                        <h3 class="p-heading2">{{ __('message.subject') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                         <input type="text" class="form-control" name="title" value="{{ old('title') }}">
                         @error('title')
                         <div class="p-error-text" role="alert">
@@ -58,7 +58,7 @@
 
 
                     <div class="col-12">
-                        <h3 class="p-heading2">{{ __('message.Content') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
+                        <h3 class="p-heading2">{{ __('message.Content') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                         <textarea rows="10" class="form-control" name="content">{{ old('content') }}</textarea>
                         @error('content')
                         <div class="p-error-text" role="alert">
@@ -73,11 +73,11 @@
                         <div class="form-check p-card">
                             <input class="form-check-input" type="checkbox" name="agree_check" onchange="toggleSubmitButton()" />
                             <label class="form-check-label">
-                                <a href="{{ route('privacy') }}" target="_blank" class="primary-link">{{ __('message.privacy policy') }} </a>{{ __('message.Agree') }} 
+                                <a href="{{ route('privacy') }}" target="_blank" class="primary-link">{{ __('message.privacy policy') }}</a>{{ __('message.Agree') }}
                             </label>
                         </div>
                     </div>
-                    <button type="submit" class="p-btn p-btn__defalut" id="submitButton" disabled>{{ __('message.Send') }} </button>
+                    <button type="submit" class="p-btn p-btn__defalut" id="submitButton" disabled>{{ __('message.Send') }}</button>
                 </div>
             </form>
         </div>

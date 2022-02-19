@@ -1,1 +1,1 @@
-{{ __('message.Notification distribution creation') }} 
+{{ __('message.Notification distribution creation') }}

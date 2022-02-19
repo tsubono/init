@@ -11,7 +11,7 @@
                 @include('admin.info-mails._form')
 
                 <div class="my-80px">
-                    <button type="submit" class="p-btn p-btn__defalut">{{ __('message.save') }} </button>
+                    <button type="submit" class="p-btn p-btn__defalut">{{ __('message.save') }}</button>
                 </div>
             </form>
         </div>

@@ -10,7 +10,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="p-heading2">{{ __('message.Score') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
+                        <h3 class="p-heading2">{{ __('message.Score') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                         <div class="rate-form">
                             <input id="star5" type="radio" name="rate" value="5" {{ old('rate' == 5 ? 'checked' : '') }}>
                             <label for="star5">★</label>
@@ -31,7 +31,7 @@
                     @enderror
 
                     <div class="col-12">
-                        <h3 class="p-heading2">{{ __('message.Content') }} <span class="badge bg-danger ms-2">{{ __('message.Required') }} </span></h3>
+                        <h3 class="p-heading2">{{ __('message.Content') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                         <textarea rows="10" class="form-control" name="content">{{ old('content') }}</textarea>
                     </div>
                     @error('content')
@@ -42,7 +42,7 @@
                 </div><!-- /.row -->
 
                 <div class="my-80px">
-                    <button type="submit" class="p-btn p-btn__defalut">{{ __('message.sign up') }} </button>
+                    <button type="submit" class="p-btn p-btn__defalut">{{ __('message.sign up') }}</button>
                 </div>
             </form>
         </div>
