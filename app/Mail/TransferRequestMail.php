@@ -31,7 +31,7 @@ class TransferRequestMail extends Mailable
     public function build()
     {
         return $this->view('emails.transfer-request')
-            ->subject('【INIT】'. __('message.Transfer application has arrived'))
+            ->subject('【INIT】振り込み申請が届きました')
             ->with([
                 'transferRequest' => $this->transferRequest,
             ]);

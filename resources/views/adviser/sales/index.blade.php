@@ -48,7 +48,7 @@
 
                 @if (empty(auth()->guard('adviser')->user()->payment_method))
                     <p class="p-error-text font-weight-bold mt-3">
-                        <b>※ {{ __('message.In order to apply for transfer') }}<a class="primary-link" href="{{ route('adviser.profile.edit.personal') }}">{{ __('message.Profile Update Screen') }}</a>{{ __('message.Requires registration of payment method') }}</b>
+                        <b>※ {{ __('message.In order to apply for transfer') }} <a class="primary-link" href="{{ route('adviser.profile.edit.personal') }}"> {{ __('message.Profile Update Screen') }}</a> {{ __('message.Requires registration of payment method') }}</b>
                     </p>
                 @endif
 

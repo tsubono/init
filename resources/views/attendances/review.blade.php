@@ -42,7 +42,7 @@
                 </div><!-- /.row -->
 
                 <div class="my-80px">
-                    <button type="submit" class="p-btn p-btn__defalut">{{ __('message.sign up') }}</button>
+                    <button type="submit" class="p-btn p-btn__defalut">{{ __('message.submit') }}</button>
                 </div>
             </form>
         </div>

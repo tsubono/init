@@ -41,8 +41,8 @@
                                     <div class="modal-content">
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }}"></button>
                                         <div class="modal-body">
-                                            <h2 class="p-heading2 mt-0 text-center">{{ __('message.Absurdity') }}</h2>
-                                            <p class="text-center">{{ __('message.Representing an application from username', ['username' => $attendance->mateUser->full_name ?? '退会ユーザー']) }}</p>
+                                            <h2 class="p-heading2 mt-0 text-center">{{ __('message.Denial confirmation') }}</h2>
+                                            <p class="text-center">{{ __('message.Denial an request from username', ['username' => $attendance->mateUser->full_name ?? '退会ユーザー']) }}</p>
                                             <form action="{{ route('attendances.reject', compact('attendance')) }}" method="post">
                                                 @csrf
                                                 <textarea rows="5" class="form-control mt-2" name="reject_text" placeholder="{{ __('message.Please be sure to enter a non-negative message') }}" required></textarea>
@@ -63,8 +63,8 @@
                                     <div class="modal-content">
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }}"></button>
                                         <div class="modal-body">
-                                            <h2 class="p-heading2 mt-0 text-center">{{ __('message.Application Cancel Confirmation') }}</h2>
-                                            <p class="text-center">「{{ $attendance->lesson->name }}」{{ __('message.Cancel the attendance application.') }}</p>
+                                            <h2 class="p-heading2 mt-0 text-center">{{ __('message.Request Cancel Confirmation') }}</h2>
+                                            <p class="text-center">{{ __('message.Cancel the request for username', ['username' => $attendance->lesson->name]) }}</p>
                                             <form action="{{ route('attendances.cancel-request', compact('attendance')) }}" method="post">
                                                 @csrf
                                                 <button class="p-btn p-btn__defalut">{{ __('message.Cancel') }}</button>
@@ -91,8 +91,8 @@
                                     <div class="modal-content">
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }}"></button>
                                         <div class="modal-body">
-                                            <h2 class="p-heading2 mt-0 text-center">{{ __('message.Recruitment confirmation confirmation') }}</h2>
-                                            <p class="text-center">{{ $attendance->mateUser->full_name ?? '退会ユーザー' }}{{ __('message.Complete the attendance of.') }}<br>{{ __('message.Is it OK?') }}</p>
+                                            <h2 class="p-heading2 mt-0 text-center">{{ __('message.Confirmation of completion of attendance') }}</h2>
+                                            <p class="text-center">{{ __('message.Complete the attendance for username', ['username' => $attendance->mateUser->full_name ?? '退会ユーザー']) }}<br>{{ __('message.Is it OK?') }}</p>
                                             <form action="{{ route('attendances.close', compact('attendance')) }}" method="post">
                                                 @csrf
                                                 <button class="p-btn p-btn__defalut">{{ __('message.Be completed') }}</button>
@@ -119,7 +119,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }}"></button>
                                         <div class="modal-body">
                                             <h2 class="p-heading2 mt-0 text-center">{{ __('message.Cancel confirmation') }}</h2>
-                                            <p class="text-center">「{{ $attendance->lesson->name }}」{{ __('message.Cancel the attendant.') }}<br>{{ __('message.Is it OK?') }}</p>
+                                            <p class="text-center">{{ __('message.Cancel the attendance for username', ['username' => $attendance->lesson->name]) }}<br>{{ __('message.Is it OK?') }}</p>
                                             <form action="{{ route('attendances.cancel', compact('attendance')) }}" method="post">
                                                 @csrf
                                                 <button class="p-btn p-btn__defalut">{{ __('message.Cancel') }}</button>
@@ -136,8 +136,8 @@
                                         <div class="modal-content">
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }}"></button>
                                             <div class="modal-body">
-                                                <h2 class="p-heading2 mt-0 text-center">{{ __('message.Confirmation confirmation') }}</h2>
-                                                <p class="text-center">「{{ $attendance->lesson->name }}」{{ __('message.Report of') }}<br>{{ __('message.Is it OK?') }}</p>
+                                                <h2 class="p-heading2 mt-0 text-center">{{ __('message.Report confirmation') }}</h2>
+                                                <p class="text-center">{{ __('message.Report of lesson', ['lesson' => $attendance->lesson->name]) }}<br>{{ __('message.Is it OK?') }}</p>
                                                 <form action="{{ route('attendances.report', compact('attendance')) }}" method="post">
                                                     @csrf
                                                     <button class="p-btn p-btn__defalut">{{ __('message.report') }}</button>

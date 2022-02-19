@@ -172,7 +172,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }}"></button>
                         <div class="modal-body">
                             <h2 class="p-heading2 mt-0 text-center">{{ __('message.Recruitment confirmation confirmation') }}</h2>
-                            <p class="text-center">{{ $attendance->mateUser->full_name ?? '' }}{{ __('message.Complete the attendance of.') }}<br>{{ __('message.Is it OK?') }}</p>
+                            <p class="text-center">{{ __('message.Complete the course for username', ['username' => $attendance->mateUser->full_name ?? '']) }}<br>{{ __('message.Is it OK?') }}</p>
                             <form action="{{ route('attendances.close', compact('attendance')) }}" method="post">
                                 @csrf
                                 <button class="p-btn p-btn__defalut">{{ __('message.Be completed') }}</button>
