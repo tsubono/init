@@ -14,7 +14,7 @@
                 1-1. {{ __('message.In this agreement, the terms of each of the following items shall have the prescribed meaning of each item.') }}<br>
                 &nbsp; ①「{{ __('message.lesson') }}」：{{ __('message.Attendance application') }}<br>
                 &nbsp; ②{{ __('message.Students: Those who wish to take lessons or actually take them') }}<br>
-                &nbsp; ③{{ __('message.3 Lecturer: Person who wants to provide lessons or actually offers') }}<br>
+                &nbsp; ③{{ __('message.3 Adviser: Person who wants to provide lessons or actually offers') }}<br>
                 &nbsp; ④{{ __('message.Lesson contract: A contract regarding the provision and attendance of lessons concluded between the instructor and the student.') }}<br>
                 &nbsp; ⑤{{ __('message.Lesson fee: Fee paid by the student to the instructor through our company in consideration of the lesson contract') }}<br>
                 &nbsp; ⑥{{ __('message.6 Matching Service: Service that mediates the sign of lesson contract and payment of lesson fee') }}<br>
@@ -74,7 +74,7 @@
                 {{ __('message.In the unlikely event that the instructor suffers some damage or inconvenience from other students, instructors or other third parties, and if a problem occurs between the instructor and other instructors, students or other third parties, We will try to resolve the problem at our own risk and expense, and if we suffer any damage in connection with the trouble, all the damage (including but not limited to reasonable attorneys fees). ) Shall be liable for immediate compensation. If the Company resolves the problem, the instructor will be responsible for all costs (including but not limited to reasonable attorneys fees) required to resolve the problem.') }}
             </p>
             <br>
-            <b>7. {{ __('message.Lecturer registration') }}</b>
+            <b>7. {{ __('message.Adviser registration') }}</b>
             <p>
                 7-1. {{ __('message.The instructor himself enters his name, gender, e-mail address, desired password, country of residence and other information specified separately by us in the input form on the instructor registration page on our site, and sends it to us. Instructor registration application (hereinafter referred to as instructor registration application) shall be made by a method specified separately by. The instructor shall not allow a third party to apply for instructor registration, and shall not enter false information when applying for instructor registration.') }}<br>
                 7-2. {{ __('message.The Company shall approve the instructor registration application by sending an e-mail to the instructor to the effect that the instructor registration application is accepted or by any other method separately determined by the Company.') }}<br>
@@ -205,7 +205,7 @@
                 18-1. {{ __('message.When providing lessons, the instructor shall use the online calling software designated by us (hereinafter referred to as calling software) provided by a third party.') }}<br>
                 18-2. {{ __('message.When using the calling software, the instructor shall comply with the terms of use, terms of use and other provisions set by the third party who provides the calling software.') }}<br>
                 18-3. {{ __('message.Before registering as an instructor, the instructor must download the calling software and check whether the calling software can be used in the instructors environment.') }}<br>
-                18-4. {{ __('message.Our company could not use call software under the instructors environment, even if the lecturer could not provide lessons due to the hardware failure and setup required for the use of the call software. It shall be responsible.') }}
+                18-4. {{ __('message.Our company could not use call software under the instructors environment, even if the adviser could not provide lessons due to the hardware failure and setup required for the use of the call software. It shall be responsible.') }}
             </p>
             <br>
             <b>19. {{ __('message.Non-warranty / disclaimer') }}</b>

@@ -71,7 +71,7 @@ class LessonController extends Controller
         $adviserUser = auth()->guard('adviser')->user();
         $this->lessonRepository->store($request->all() + ['adviser_user_id' => $adviserUser->id]);
 
-        return redirect(route('adviser.lessons.index'))->with('success_message', 'レッスン情報を登録しました');
+        return redirect(route('adviser.lessons.index'))->with('success_message', __('message.I registered the lesson information'));
     }
 
     /**
@@ -100,7 +100,7 @@ class LessonController extends Controller
     {
         $this->lessonRepository->update($lesson->id, $request->all());
 
-        return redirect(route('adviser.lessons.index'))->with('success_message', 'レッスン情報を更新しました');
+        return redirect(route('adviser.lessons.index'))->with('success_message', __('message.Updated lesson information'));
     }
 
     /**
@@ -112,6 +112,6 @@ class LessonController extends Controller
     {
         $this->lessonRepository->destroy($lesson->id);
 
-        return redirect(route('adviser.lessons.index'))->with('success_message', 'レッスン情報を削除しました');
+        return redirect(route('adviser.lessons.index'))->with('success_message', __('message.Deleted lesson information'));
     }
 }

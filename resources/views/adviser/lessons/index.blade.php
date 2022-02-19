@@ -51,7 +51,7 @@
                             <div class="modal-content">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }}"></button>
                                 <div class="modal-body">
-                                    <h2 class="p-heading2 mt-0 text-center">{{ __('message.Deletion confirmation') }}</h2>
+                                    <h2 class="p-heading2 mt-0 text-center">{{ $lesson->name }}{{ __('message.Deletion confirmation') }}</h2>
                                     <p class="text-center">「{{ $lesson->name }}」{{ __('message.Remove.') }}<br>{{ __('message.Is it OK?') }}</p>
                                     <form action="{{ route('adviser.lessons.destroy', compact('lesson')) }}" method="post">
                                         @csrf

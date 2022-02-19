@@ -136,7 +136,7 @@ class AttendanceController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('lessons.show', compact('lesson')))->with('success_message', '受講申請が完了しました');
+        return redirect(route('lessons.show', compact('lesson')))->with('success_message', __('message.The application for attendance has been completed'));
     }
 
     /**

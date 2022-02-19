@@ -76,7 +76,7 @@ class InfoController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('admin.infos.index'))->with('success_message', 'お知らせを登録しました');
+        return redirect(route('admin.infos.index'))->with('success_message', __('message.I registered the notice'));
     }
 
     /**
@@ -117,7 +117,7 @@ class InfoController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('admin.infos.index'))->with('success_message', 'お知らせを更新しました');
+        return redirect(route('admin.infos.index'))->with('success_message', __('message.Updated the notice'));
     }
 
     /**
@@ -143,6 +143,6 @@ class InfoController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('admin.infos.index'))->with('success_message', 'お知らせを削除しました');
+        return redirect(route('admin.infos.index'))->with('success_message', __('message.The notice has been deleted'));
     }
 }

@@ -114,21 +114,21 @@ class CoinController extends Controller
 
             DB::commit();
 
-            return redirect(route('mate.coins.index'))->with('success_message', 'コイン購入が完了しました');
+            return redirect(route('mate.coins.index'))->with('success_message', __('message.The coin purchase is complete'));
 
         } catch (\Exception $e) {
             Log::error($e);
             DB::rollback();
 
             if (strpos($e, 'has already been used') !== false) {
-                return redirect()->back()->with('error_message', '既に登録されているカード情報です');
+                return redirect()->back()->with('error_message', __('message.This is the card information that has already been registered.'));
             }
 
             if (strpos($e, 'already has the same card') !== false) {
-                return redirect()->back()->with('error_message', '既に登録されているカード情報です');
+                return redirect()->back()->with('error_message', __('message.This is the card information that has already been registered.'));
             }
 
-            return redirect()->back()->with('error_message', 'システムエラーが発生しました');
+            return redirect()->back()->with('error_message', __('message.A system error has occurred'));
         }
     }
 

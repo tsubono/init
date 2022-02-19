@@ -108,7 +108,7 @@ class AttendanceMessageController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('attendances.messages', compact('attendance')))->with('success_message', 'メッセージを送信しました');
+        return redirect(route('attendances.messages', compact('attendance')))->with('success_message', __('message.Sent a message'));
     }
 
     /**

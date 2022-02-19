@@ -19,8 +19,8 @@
             「<b>{{ __('message.lesson') }}</b>」{{ __('message.Is a generic term for providing knowledge and information of knowledge, conversation and performance training, advice act.') }}<br>
             「<b>{{ __('message.Students') }}</b>」{{ __('message.And the person who wants to attend lessons or actually attends.') }}<br>
             「<b>{{ __('message.Teacher') }}</b>」{{ __('message.And, I would like to offer or actually provide lessons.') }}<br>
-            「<b>{{ __('message.Lesson contract') }}</b>」{{ __('message.And is a contract on the provision and attendance of lessons concluded between the lecturer and the student.') }}<br>
-            「<b>{{ __('message.Lesson Fee') }}</b>」{{ __('message.And, as a compensation for the lesson contract, the number of students pay the lecturer through our company.') }}<br>
+            「<b>{{ __('message.Lesson contract') }}</b>」{{ __('message.And is a contract on the provision and attendance of lessons concluded between the adviser and the student.') }}<br>
+            「<b>{{ __('message.Lesson Fee') }}</b>」{{ __('message.And, as a compensation for the lesson contract, the number of students pay the adviser through our company.') }}<br>
             「<b>{{ __('message.Matching service') }}</b>」{{ __('message.Is a service that mediates a lesson contract and a lesson fee payment, and it is a service that mediates a lesson-fee payment.') }}<br>
             「<b>{{ __('message.Matching fee') }}</b>」{{ __('message.And, as a compensation for matching service use, the number of charges paid to the Company (the amount of consumption tax equivalent fractional amount), which is compensation for the service in this service.') }}<br>
             「<b>{{ __('message.Service fee') }}</b>」{{ __('message.And is the total amount of matching fee for lessons and services (the amount of consumption tax equivalent).') }}<br>
@@ -48,7 +48,7 @@
             <br>
             <b>{{ __('message.Usage coin return') }}</b>
             {{ __('message.If the Company applies to the following 1. or 2., the company returns the coin used by the student when applying for a lesson contract.') }}<br>
-            1：{{ __('message.After applying for a lesson contract by a student, a lesson contract application is canceled by the student before the lecturer sends an e-mail of the application consent') }}<br>
+            1：{{ __('message.After applying for a lesson contract by a student, a lesson contract application is canceled by the student before the adviser sends an e-mail of the application consent') }}<br>
             2：{{ __('message.After the lesson contract is established, 24 hours before the lesson start date and time of the lesson contract, the lesson contract after the establishment is canceled by the student') }}<br>
             <br>
             「<b>{{ __('message.Coin return') }}</b>」{{ __('message.Is that, at the same time as the student applies for the lesson contract, the coins deducted from the students coins as coins equivalent to the service fee related to the lesson contract are returned as the students coins based on the cancellation policy. I say that.') }}<br>

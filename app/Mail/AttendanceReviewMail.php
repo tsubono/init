@@ -33,7 +33,7 @@ class AttendanceReviewMail extends Mailable
     public function build()
     {
         return $this->view('emails.attendance-review')
-            ->subject('【INIT】受講レビューが届きました')
+            ->subject('【INIT】'. __('message.Attendance review has arrived.'))
             ->with([
                 'attendance' => $this->attendance,
                 'userType' => $this->userType,

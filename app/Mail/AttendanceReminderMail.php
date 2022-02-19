@@ -32,7 +32,7 @@ class AttendanceReminderMail extends Mailable
     public function build()
     {
         return $this->view('emails.reminder-attendance')
-            ->subject('【INIT】受講リマインダー通知')
+            ->subject('【INIT】'. __('message.Attendance reminder notification'))
             ->with([
                 'attendance' => $this->attendance,
                 'userType' => $this->userType,

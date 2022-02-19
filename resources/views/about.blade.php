@@ -12,7 +12,7 @@
                     {{ __('message.About init') }}
                 </h2>
                 <p>{{ __('message.Fun and enhancement in learning') }}<br class="d-md-none">{{ __('message.Provided on the theme') }}<br class="d-none d-md-block">
-                    {{ __('message.Online with lecturers around the world') }}<br>
+                    {{ __('message.Online with advisers around the world') }}<br>
                     {{ __('message.Create a place where you can match') }}</p>
             </div>
         </div>
@@ -53,7 +53,7 @@
                     <h3 class="p-room-intro__head">
                         <button type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             {{ __('message.Ishore room') }}
-                            <p>{{ __('message.Fashion, Lifestyle, Beauty,') }}<br class="d-none d-md-block">{{ __('message.You can learn knowledge such as fitness.') }}<br>{{ __('message.Have fun with your lecturer.') }}</p>
+                            <p>{{ __('message.Fashion, Lifestyle, Beauty,') }}<br class="d-none d-md-block">{{ __('message.You can learn knowledge such as fitness.') }}<br>{{ __('message.Have fun with your adviser.') }}</p>
                         </button>
                     </h3>
                 </div>
@@ -178,8 +178,8 @@
                             </div>
                         </div>
                         <div class="p-aboutlist__text">
-                            <h3>{{ __('message.Lecturer / Lesson') }}</h3>
-                            <p>{{ __('message.Look for lecturers and lessons. Lets look for what you want to do or Language to learn') }}。<br>
+                            <h3>{{ __('message.Adviser / Lesson') }}</h3>
+                            <p>{{ __('message.Look for advisers and lessons. Lets look for what you want to do or Language to learn') }}。<br>
                                 {{ __('message.You can also look for from the origin of the instructor and the popularity.') }}</p>
                         </div>
                     </li>
@@ -192,8 +192,7 @@
                         </div>
                         <div class="p-aboutlist__text">
                             <h3>{{ __('message.Reserve a lesson') }}</h3>
-                            <p>{{ __('message.If you find lecturers and lessons you like, Check the schedule') }}<br>
-                                {{ __('message.Make a request from the lesson.') }}</p>
+                            <p>{{ __('message.If you find advisers and lessons you like, Check the schedule') }}</p>
                         </div>
                     </li>
                     <li class="p-aboutlist__box num06">

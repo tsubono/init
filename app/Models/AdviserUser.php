@@ -195,13 +195,13 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
     public function getAvailableTimesAttribute()
     {
         $days = [
-            'monday' => '月',
-            'tuesday' => '火',
-            'wednesday' => '水',
-            'thursday' => '木',
-            'friday' => '金',
-            'saturday' => '土',
-            'sunday' => '日'
+            'monday' => __('message.monday'),
+            'tuesday' => __('message.tuesday'),
+            'wednesday' => __('message.wednesday'),
+            'thursday' => __('message.thursday'),
+            'friday' => __('message.friday'),
+            'saturday' => __('message.saturday'),
+            'sunday' => __('message.sunday')
         ];
 
         $localized = collect();
@@ -255,10 +255,10 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
      * 時刻フォーマットの文字列であれば、アプリのタイムゾーンに修正して返す。
      * 時刻フォーマットでなければそのまま返す。
      *
-     * @param  string  $time_str
-     * @return string
+     * @param  ?string  $time_str
+     * @return ?string
      */
-    private function toAppTimezone (string $time_str): string
+    private function toAppTimezone (?string $time_str): ?string
     {
         if ($this->isTimeString($time_str)) {
             return UserTimezone::toAppTimezone(UserTimezone::parse($time_str))->format('H:i');
@@ -359,26 +359,26 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
          * ・3日以上の場合は「3日以上」
          */
         $diffDate = Carbon::now()->diff($this->last_login_at);
-        $lastLoginTxt = '未ログイン';
+        $lastLoginTxt = __('message.Not logged in');
 
         // dayが1日以上ある場合
         if ($diffDate->d >= 1) {
             $lastLoginTxt = $diffDate->d >= 3
-                ? '3日以上前'
-                : $diffDate->d.'日前ログイン';
+                ? __('message.3 days or more ago')
+                : __('message.Login num days ago', ['num' => $diffDate->d]);
         }
 
         // dayは0日、hourが1時間以上ある場合
         if ($diffDate->d === 0 && $diffDate->h >= 1) {
-            $lastLoginTxt = $diffDate->h.'時間前ログイン';
+            $lastLoginTxt = __('message.Login num hours ago', ['num' => $diffDate->h]);
         }
 
         // dayは0日、hourが0時間、minutesが1分以上ある場合
         if ($diffDate->d === 0 && $diffDate->h === 0 && $diffDate->i >= 1) {
             $minutes = ceil($diffDate->i / 10) * 10;
             $lastLoginTxt = $minutes === 60
-                ? '1時間前ログイン'
-                : $minutes.'分前ログイン';
+                ? __('message.Login num hours ago', ['num' => 1])
+                : __('message.Login num minutes ago', ['num' => $minutes]);
         }
 
         return $lastLoginTxt;

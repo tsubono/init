@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.List of students'))
+@section('title', __('message.List of attendances'))
 
 @section('content')
     <section class="p-searchblock bg-light l-content-block">
@@ -89,7 +89,7 @@
                             @if ($userType === 'mate')
                                 <div class="p-card3__advisor">
                                     <div class="p-card3__advisor_img">
-                                        <img src="{{ $attendance->adviserUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="{{ __('message.Lecturer image') }}">
+                                        <img src="{{ $attendance->adviserUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="{{ __('message.Adviser image') }}">
                                     </div>
                                     <div class="p-card3__advisor_text">
                                         <p>{{ __('message.Teacher') }}</p>
@@ -107,7 +107,7 @@
                             @elseif ($userType === 'adviser')
                                 <div class="p-card3__advisor">
                                     <div class="p-card3__advisor_img">
-                                        <img src="{{ $attendance->mateUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="{{ __('message.Lecturer image') }}">
+                                        <img src="{{ $attendance->mateUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="{{ __('message.Adviser image') }}">
                                     </div>
                                     <div class="p-card3__advisor_text">
                                         <p>{{ __('message.Students') }}</p>
@@ -117,7 +117,7 @@
                             @else
                                 <div class="p-card3__advisor">
                                     <div class="p-card3__advisor_img">
-                                        <img src="{{ $attendance->adviserUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="{{ __('message.Lecturer image') }}">
+                                        <img src="{{ $attendance->adviserUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="{{ __('message.Adviser image') }}">
                                     </div>
                                     <div class="p-card3__advisor_text">
                                         <p>{{ __('message.Teacher') }}</p>
@@ -134,7 +134,7 @@
                                 </div>
                                 <div class="p-card3__advisor">
                                     <div class="p-card3__advisor_img">
-                                        <img src="{{ $attendance->mateUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="{{ __('message.Lecturer image') }}">
+                                        <img src="{{ $attendance->mateUser->avatar_image ?? asset('img/default-avatar.png') }}" alt="{{ __('message.Adviser image') }}">
                                     </div>
                                     <div class="p-card3__advisor_text">
                                         <p>{{ __('message.Students') }}</p>
@@ -330,7 +330,7 @@
                         </div><!-- /.p-card3 -->
                         <!-- ********* /右上に表示するステータスラベル ********* -->
                     @empty
-                        <div>該当の受講は見つかりませんでした。</div>
+                        <div>{{ __('message.Could not find applicable.') }}</div>
                     @endforelse
                 </div><!--/.tab-pane -->
             </div><!-- /.p-search__content -->

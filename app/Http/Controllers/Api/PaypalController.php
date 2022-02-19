@@ -32,7 +32,7 @@ class PaypalController extends Controller
             'note' => 'PayPalによるコイン購入'
         ]);
 
-        session()->flash('success_message', 'コイン購入が完了しました');
+        session()->flash('success_message', __('message.The coin purchase is complete'));
 
         return response()->json(['status' => 'ok']);
     }

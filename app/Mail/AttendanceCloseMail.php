@@ -30,7 +30,7 @@ class AttendanceCloseMail extends Mailable
     public function build()
     {
         return $this->view('emails.attendance-close')
-            ->subject('【INIT】受講完了通知が届きました')
+            ->subject('【INIT】'. __('message.Completion of attendance has arrived'))
             ->with([
                 'attendance' => $this->attendance,
             ]);

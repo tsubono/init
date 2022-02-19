@@ -97,7 +97,7 @@ class AttendanceReviewController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('attendances.index'))->with('success_message', 'レビューを登録しました');
+        return redirect(route('attendances.index'))->with('success_message', __('message.I have registered a review'));
     }
 
     /**

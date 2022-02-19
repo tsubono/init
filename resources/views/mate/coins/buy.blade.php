@@ -3,7 +3,7 @@
 @section('title', __('message.Purchase coin'))
 
 @section('content')
-    <div class="alert alert-warning text-center">{{ __('message.Coin expiration date is from the date of purchase') }}{{ config('const.coin_expiration_month') }}{{ __('message.It is a month') }}</div>
+    <div class="alert alert-warning text-center">{{ __('message.Coin expiration date is from the date of purchase') }} {{ config('const.coin_expiration_month') }} {{ __('message.It is a month') }}</div>
     <section class="p-coin l-content-block">
         <div class="container">
             <div class="row">
@@ -17,7 +17,6 @@
             <div class="row button-area" id="paymentButtons">
                 <div class="col-md-6 col-xs-12">
                     <h3 class="p-heading3 text-center mt-3">{{ __('message.PayPal payment') }}</h3>
-                    <!-- {{ __('message.PayPal payment') }}ボタン表示 -->
                     <div id="paypal-button-container" class="pe-none o-60"></div>
                 </div>
 
@@ -30,8 +29,8 @@
                                 src="https://checkout.pay.jp/"
                                 class="payjp-button"
                                 data-key="{{ config('services.payjp.public_key') }}"
-                                data-text="クレジットカード情報を入力する"
-                                data-submit-text="クレジットカードを登録する"
+                                data-text="{{ __('message.Enter Credit Card Information') }}"
+                                data-submit-text="{{ __('message.Register your credit card') }}"
                         ></script>
                     </form>
                     @if (!empty($cardList))
@@ -46,7 +45,7 @@
                                         <span class="brand">{{ $card['brand'] }}</span>
                                         <span>{{ $card['number'] }}</span>
                                         <div>
-                                            <p>{{ __('message.Name') }}: {{ $card['name'] }}</p>
+                                            <p>{{ __('message.name') }}: {{ $card['name'] }}</p>
                                             <p>{{ __('message.Duration') }}: {{ $card['exp_year'] }}/{{ $card['exp_month'] }}</p>
                                         </div>
                                     </label>
@@ -72,7 +71,6 @@
 @endsection
 
 @section('js')
-    <!-- {{ __('message.PayPal payment') }}設定 -->
     <!-- Include the PayPal JavaScript SDK -->
     <script src="https://www.paypal.com/sdk/js?client-id={{ config('services.paypal.client_id') }}&currency=JPY&locale=ja_JP&disable-funding=card&intent=capture"></script>
     <script>
@@ -84,7 +82,7 @@
               amount: {
                 value: document.querySelector('[name=amount]').value * 100,
               },
-              description: '{{ __('message.Student user') }}ID: {{ auth()->user()->id }} によるコイン購入'
+              description: '受講者ユーザーIDID: {{ auth()->user()->id }} によるコイン購入'
             }],
           });
         },
@@ -127,7 +125,7 @@
         const payContainers = document.querySelectorAll('#paypal-button-container, #payjpForm1, #payjpForm2');
 
         if (value === '' || parseInt(value) < 1) {
-          document.querySelector('#errorTxt').textContent = {{ __('message.Please enter one coin or more') }}
+          document.querySelector('#errorTxt').textContent = "{{ __('message.Please enter one coin or more') }}"
           payContainers.forEach(element => element.classList.add(...className));
         } else {
           document.querySelector('#errorTxt').textContent = ''

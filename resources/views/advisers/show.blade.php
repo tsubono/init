@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.Lecturer profile'))
+@section('title', __('message.Adviser profile'))
 
 @section('content')
     <section class="l-content-block p-profile">
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <h3 class="p-heading2">{{ __('message.An enthusiasm to give a lecturer') }}</h3>
+                            <h3 class="p-heading2">{{ __('message.An enthusiasm to give a adviser') }}</h3>
                             <div class="p-profile__enthusiasm">
                                 <p>{!! nl2br(e($adviserUser->passion_text)) !!}</p>
                             </div>
@@ -98,7 +98,7 @@
             <div class="p-profile__lesson-block">
                 <h2 class="p-heading1 text-center">
                     <div class="p-heading1__en blue">lessons</div>
-                    レッスン一覧
+                    {{ __('message.Lesson list') }}
                 </h2>
                 <div class="p-profile__lesson-list">
                     @forelse ($adviserUser->open_lessons as $lesson)

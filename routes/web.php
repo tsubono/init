@@ -163,4 +163,7 @@ Route::middleware(['check.maintenance'])->namespace('App\Http\Controllers')->gro
     Route::get('/withdrawal', function () { return view('withdrawal'); })->name('withdrawal');
     Route::get('/intellectual-property', function () { return view('intellectual-property'); })->name('intellectual-property');
     Route::get('/tax-payment', function () { return view('tax-payment'); })->name('tax-payment');
+
+    // 言語切り替え
+    Route::get('/language/switch/{language}','LanguageController@switch')->name('language.switch');
 });

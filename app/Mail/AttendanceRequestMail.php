@@ -30,7 +30,7 @@ class AttendanceRequestMail extends Mailable
     public function build()
     {
         return $this->view('emails.attendance-request')
-            ->subject('【INIT】受講申請が届きました')
+            ->subject('【INIT】'. __('message.The application for attendance has arrived'))
             ->with([
                 'attendance' => $this->attendance,
             ]);

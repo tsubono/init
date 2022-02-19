@@ -60,6 +60,10 @@ header {
       }
     }
   }
+  a.dropdown-item {
+    color: #7db6fb !important;
+    font-weight: normal !important;
+  }
   .navbar {
     padding: 14px 60px;
     &.has-sub-menu {

@@ -66,7 +66,7 @@ class InfoMailController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('admin.info-mails.index'))->with('success_message', 'お知らせ配信を登録しました');
+        return redirect(route('admin.info-mails.index'))->with('success_message', __('message.I registered for notification delivery'));
     }
 
     /**
@@ -101,7 +101,7 @@ class InfoMailController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('admin.info-mails.index'))->with('success_message', 'お知らせ配信を更新しました');
+        return redirect(route('admin.info-mails.index'))->with('success_message', __('message.Notification delivery has been updated'));
     }
 
     /**
@@ -124,6 +124,6 @@ class InfoMailController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('admin.info-mails.index'))->with('success_message', 'お知らせ配信を削除しました');
+        return redirect(route('admin.info-mails.index'))->with('success_message', __('message.The notification delivery has been deleted'));
     }
 }

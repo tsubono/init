@@ -190,7 +190,7 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <h3 class="p-heading2">TEL<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
+                                    <h3 class="p-heading2">{{ __('message.TEL') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                                     <input type="tel" class="form-control" name="tel" value="{{ old('tel', $user->tel) }}">
                                     @error('tel')
                                     <div class="p-error-text" role="alert">

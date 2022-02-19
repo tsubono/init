@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.(Lecturer) Sales Details'))
+@section('title', __('message.(Adviser) Sales Details'))
 
 @section('content')
     <!-- TODO -->

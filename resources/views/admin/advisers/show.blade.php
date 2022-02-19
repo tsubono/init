@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.Lecturer Details'))
+@section('title', __('message.Adviser Details'))
 
 @section('content')
     <section class="p-admin-show l-content-block">
@@ -158,7 +158,7 @@
 
             <div class="my-5 text-center">
                 <a href="{{ route('admin.advisers.index') }}" class="p-btn p-btn__defalut d-inline-block px-80px">
-                    {{ __('message.Lecturer Back to list') }}
+                    {{ __('message.Adviser Back to list') }}
                 </a>
             </div>
         </div><!-- /.container -->

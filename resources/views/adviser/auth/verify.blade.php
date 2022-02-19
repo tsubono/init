@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', {{ __('message.sign up') }})
+@section('title', __('message.sign up'))
 
 @section('content')
     <section class="l-content-block p-setting">

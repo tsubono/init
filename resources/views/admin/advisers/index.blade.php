@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.Lecturer list'))
+@section('title', __('message.Adviser list'))
 
 @section('content')
     <section class="p-searchblock bg-light l-content-block">
@@ -76,7 +76,7 @@
                             </div>
                         </div><!-- /.p-card3 -->
                     @empty
-                        <div class="text-center">{{ __('message.Lecturer was not found.') }}</div>
+                        <div class="text-center">{{ __('message.Adviser was not found.') }}</div>
                     @endforelse
                 </div>
             </div><!-- /.p-search__content -->

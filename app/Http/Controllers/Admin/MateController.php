@@ -75,7 +75,7 @@ class MateController extends Controller
             ]);
         }
 
-        return redirect(route('admin.mates.index'))->with('success_message', '更新が完了しました');
+        return redirect(route('admin.mates.index'))->with('success_message', __('message.Update completed'));
     }
 
     /**

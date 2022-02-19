@@ -32,8 +32,9 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.contact')
-            ->subject($this->isAdmin ? '【INIT】お問い合わせが届きました' : '【INIT】お問い合わせを受け付けました')
+        $view = $this->isAdmin ? 'emails.contact-admin' : 'emails.contact';
+        return $this->view($view)
+            ->subject($this->isAdmin ? '【INIT】お問い合わせが届きました' : '【INIT】'. __('message.We have received your inquiry'))
             ->with([
                 'contact' => $this->contact,
                 'isAdmin' => $this->isAdmin,

@@ -32,7 +32,7 @@
         <div class="p-status__icon"><img src="{{ asset('img/status-lesson.svg') }}" alt=""></div>
         <div class="p-status__info">
             <div class="num">{{ count($adviserUser->lessons) }}</div>
-            レッスン
+            {{ __('message.lesson') }}
         </div>
     </div><!-- /.p-status__box -->
     <div class="p-status__box border-bottom border-start">

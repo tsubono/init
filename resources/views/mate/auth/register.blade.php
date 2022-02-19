@@ -89,7 +89,7 @@
                         @enderror
                     </div>
                     <div class="col-12">
-                        <h3 class="p-heading2">パスワード<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
+                        <h3 class="p-heading2">{{ __('message.password') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                         <input type="password" class="form-control" name="password">
                         <div class="mt-3 mb-1">{{ __('message.Please enter again.') }}</div>
                         <input type="password" class="form-control" name="password_confirmation">
@@ -105,7 +105,7 @@
                         <div class="form-check p-card">
                             <input class="form-check-input" type="checkbox" name="agree_check" onchange="toggleSubmitButton()" />
                             <label class="form-check-label">
-                                <a href="{{ route('privacy') }}" target="_blank" class="primary-link">{{ __('message.privacy policy') }}</a>{{ __('message.Agree') }}
+                                <a href="{{ route('privacy') }}" target="_blank" class="primary-link">{{ __('message.privacy policy') }}</a> {{ __('message.Agree') }}
                             </label>
                         </div>
                     </div>

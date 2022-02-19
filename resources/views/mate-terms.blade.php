@@ -16,7 +16,7 @@
                 1-1. {{ __('message.In this agreement, the terms of each of the following items shall have the prescribed meaning of each item.') }}<br>
                 &nbsp; ①{{ __('message.Lesson: A general term for teaching knowledge, providing information, training in conversation and performance, and giving advice.') }}<br>
                 &nbsp; ②{{ __('message.Students: Those who wish to take lessons or actually take them') }}<br>
-                &nbsp; ③{{ __('message.Lecturer: A person who wants or actually provides a lesson') }}<br>
+                &nbsp; ③{{ __('message.Adviser: A person who wants or actually provides a lesson') }}<br>
                 &nbsp; ④{{ __('message.Lesson contract: A contract regarding the provision and attendance of lessons concluded between the instructor and the student.') }}<br>
                 &nbsp; ⑤{{ __('message.Lesson fee: Fee paid by the student to the instructor through our company in consideration of the lesson contract') }}<br>
                 &nbsp; ⑥{{ __('message.6 Matching Service: Service that mediates the sign of lesson contract and payment of lesson fee') }}<br>
@@ -39,7 +39,7 @@
                 {{ __('message.2-1. The Terms of Terms shall apply for the use of this service by the student.') }}<br>
                 {{ __('message.2-2. All notices that the Company issues to students based on Article 3 including the terms of use and regulations established by the Company apart from these Terms and the postings on the Companys site (hereinafter collectively referred to as the Company. Terms of Service, etc. Established by) shall each form part of these Terms.') }}<br>
                 2-3. {{ __('message.If the provisions of this agreement differ from the terms of use, provisions, and notifications set forth in the preceding paragraph, the notice, provisions, terms of use, and agreement shall be applied in that order. If the content of the notification posted on our site is different from the content of the notification by other methods, the one notified later shall be applied with priority.') }}<br>
-                {{ __('message.2-4. Lecturers use of the service shall apply separately to the instructor terms that we establish separately.') }}<br>
+                {{ __('message.2-4. Advisers use of the service shall apply separately to the instructor terms that we establish separately.') }}<br>
                 2-5. {{ __('message.The date and time in this agreement shall be in accordance with the standard time in Japan.') }}<br>
             </p>
             <br>
@@ -57,13 +57,13 @@
             <b>5. {{ __('message.Regarding the use of this service') }}</b>
             <p>
                 {{ __('message.5-1. Students will be asked about the truth, accuracy, certainty, reliability, usefulness, etc. of the information provided by the Company, as well as the quality, accuracy, certainty, reliability, usefulness, etc. of this service. You make your own judgment and agree in advance to use these at your own risk.') }}<br>
-                {{ __('message.5-2. Students shall determine their own quality, accuracy, reliability, usefulness, etc. of the lessons provided by the lecturer, and we will agree in advance to use them at their own responsibility .') }}<br>
+                {{ __('message.5-2. Students shall determine their own quality, accuracy, reliability, usefulness, etc. of the lessons provided by the adviser, and we will agree in advance to use them at their own responsibility .') }}<br>
                 {{ __('message.5-3. Before applying for a lesson contract, students should thoroughly check the information about the instructor who provides the lesson before applying for the lesson contract, and question the identity of the instructor and the content of the lesson to be provided. If there is, we will contact the instructor directly using the mail function to the instructor on this service.') }}<br>
-                {{ __('message.5-4. Lessons shall be provided by the lecturer as a principle, and the Company does not provide lessons, except when we admit separately.') }}<br>
-                {{ __('message.5-5. Students shall agree in advance that the lecturer may be a lesson only for voice and the lecturer differences.') }}<br>
-                {{ __('message.5-6. The Company shall not assess and manage the information provided by the lecturer and the lecturer and the student.') }}<br>
-                {{ __('message.5-7. Our company shall not be guaranteed to all about the truth, accuracy, certainty, reliability, beneficiality, etc. of various information posted by instructors and other lecturers.') }}<br>
-                {{ __('message.5-8. The Company does not take any responsibility even if the lecturers or omissions of the lecturer or the third party suffered damage or losses.') }}<br>
+                {{ __('message.5-4. Lessons shall be provided by the adviser as a principle, and the Company does not provide lessons, except when we admit separately.') }}<br>
+                {{ __('message.5-5. Students shall agree in advance that the adviser may be a lesson only for voice and the adviser differences.') }}<br>
+                {{ __('message.5-6. The Company shall not assess and manage the information provided by the adviser and the adviser and the student.') }}<br>
+                {{ __('message.5-7. Our company shall not be guaranteed to all about the truth, accuracy, certainty, reliability, beneficiality, etc. of various information posted by instructors and other advisers.') }}<br>
+                {{ __('message.5-8. The Company does not take any responsibility even if the advisers or omissions of the adviser or the third party suffered damage or losses.') }}<br>
                 5-9. {{ __('message.The Company shall not be liable for any information, files, articles, etc. provided to each other between the student and the instructor, and the student shall provide the student with such information, files, articles, etc. You agree in advance that we will not be liable for any kind of damage or loss that occurs.') }}<br>
             </p>
             <br>
@@ -121,7 +121,7 @@
             <br>
             <b>{{ __('message.12. Establishment of lesson contract') }}</b>
             <p>
-                {{ __('message.12-1. The lesson contract shall be established when the lecturer sends an e-mail that the lecturer will use the system on this service using the system on the service. .') }}<br>
+                {{ __('message.12-1. The lesson contract shall be established when the adviser sends an e-mail that the adviser will use the system on this service using the system on the service. .') }}<br>
                 {{ __('message.12-2. Students may not accept the lesson contract application by the instructor or cancel the lesson contract after it is established, based on the Cancellation Policy (for instructors) separately set by the Company. I agree in advance.') }}
             </p>
             <br>
@@ -135,7 +135,7 @@
                 {{ __('message.13-6. The purchase price of coin is 1 coin 100 yen (tax included) except when we set up separately.') }}<br>
                 13-7. {{ __('message.If you wish to purchase coins, the Company shall make purchase application (hereinafter referred to as purchase application) by the method of specifying separately.') }}<br>
                 {{ __('message.13-8. Students shall not enter false content during purchase application.') }}<br>
-                {{ __('message.'13-9. Purchasing of coin is payment by bank transfer, and a credit card of the student identifier (which will be limited to what is issued by a credit card company separately.) PayPal (Paypal) Payments Other Payments will be paid by the method separately.') }}<br>
+                {{ __('message.13-9. Purchasing of coin is payment by bank transfer, and a credit card of the student identifier (which will be limited to what is issued by a credit card company separately.) PayPal (Paypal) Payments Other Payments will be paid by the method separately.') }}<br>
                 {{ __('message.13-10. After making a purchase application, we will agree in advance that we can not withdraw or cancel the purchase application except when we admit separately.') }}<br>
                 {{ __('message.13-11. If any of the following items are applicable to any of the following items, I can take the quarter of coin without prior notice.') }}<br>
                 &nbsp; {{ __('message.1 If it has been found that purchase application has been done by third parties other than the students') }}<br>
@@ -156,12 +156,12 @@
             <p>
                 {{ __('message.14-1. Canceling a lesson contract or a lesson time after the term of a lesson contract by a student or a loss of lesson time, and return use coin when canceled (from the preceding paragraph 3, from the preceding paragraph 3 It means to return the drawn coins as a coin of the student. The same applies to the handling of the company. will do.') }}<br>
                 {{ __('message.14-2. Otherwise, the students shall be able to return the usage coin to the Company if any of the following items are specified in the following section.') }}<br>
-                &nbsp; {{ __('message.1 Lesson contract after establishment is canceled with only our side or in the lecturer side, and if the student claims coin return to our company based on that fact.') }}<br>
+                &nbsp; {{ __('message.1 Lesson contract after establishment is canceled with only our side or in the adviser side, and if the student claims coin return to our company based on that fact.') }}<br>
                 {{ __('message.14-3. The Company can request the students who need to determine that the Company needs to be requested by the Company, and the student can immediately respond to the request. It must be.') }}<br>
-                &nbsp; {{ __('message.1 If the student or lecturer cancels the lesson contract after the establishment') }}<br>
-                &nbsp; {{ __('message.2 If our company determines if the lecturer may violate or violate the instructors') }}<br>
+                &nbsp; {{ __('message.1 If the student or adviser cancels the lesson contract after the establishment') }}<br>
+                &nbsp; {{ __('message.2 If our company determines if the adviser may violate or violate the instructors') }}<br>
                 &nbsp; ③ {{ __('message.In addition, when we deem it necessary') }}<br>
-                {{ __('message.14-4. As a result of our investigation with the largest sincerity for both the students and the lecturer, the Company finally judge The students and lecturers shall follow this.') }}<br>
+                {{ __('message.14-4. As a result of our investigation with the largest sincerity for both the students and the adviser, the Company finally judge The students and advisers shall follow this.') }}<br>
                 {{ __('message.14-5. Even in the case of Section 1 of this Article or Section 2 of this section, if a student was violated by a student in connection with a lesson contract that was a target of coin use, it has been found Both coin return is not performed.') }}<br>
             </p>
             <br>
@@ -184,16 +184,16 @@
                 &nbsp; ⑨ {{ __('message.Acts of sending or posting obscene or child abuse behaviors, acts, images, documents, etc.') }}<br>
                 &nbsp; ⑩ {{ __('message.Election campaigns or similar acts or acts that violate the Public Offices Election Act') }}<br>
                 &nbsp; {{ __('message.11 Acts or acts that use harmful programs such as computer virus or provide a third party') }}<br>
-                &nbsp; {{ __('message.12 Other students, lecturers and other third parties, acts to use this service') }}<br>
+                &nbsp; {{ __('message.12 Other students, advisers and other third parties, acts to use this service') }}<br>
                 &nbsp; ⑬ {{ __('message.Attempting unauthorized access to other computer systems or networks connected to this service') }}<br>
-                &nbsp; {{ __('message.14 In addition to the preceding items, the acts of contrary to law or public order and morals (including prostitution, violence, atrocities etc. but are not limited to these.) Or other students, lecturers, other third or other third party or our company Acts to give') }}<br>
+                &nbsp; {{ __('message.14 In addition to the preceding items, the acts of contrary to law or public order and morals (including prostitution, violence, atrocities etc. but are not limited to these.) Or other students, advisers, other third or other third party or our company Acts to give') }}<br>
                 &nbsp; {{ __('message.15 Other students, instructors Introduce services that may compete or conflict with this service for other third parties') }}<br>
                 &nbsp; {{ __('message.16 Create multiple accounts by the same person') }}<br>
                 &nbsp; ⑰ {{ __('message.Violent demands or unreasonable demands beyond legal responsibility') }}<br>
                 &nbsp; ⑱ {{ __('message.Acts of threatening behavior or using violence in relation to transactions') }}<br>
                 &nbsp; ⑲ {{ __('message.Acts of disseminating rumors, damaging the credibility of the other party or interfering with the other partys business by using counterfeiting or power') }}<br>
                 &nbsp; {{ __('message.⑳ A third party such as instructors and other students, an act that gives or imparts mental pain') }}<br>
-                &nbsp; {{ __('message.㉑ Init Secretariat and Take a Lesson Seminar without the permission of the lecturer, recording, recording, recording') }}<br>
+                &nbsp; {{ __('message.㉑ Init Secretariat and Take a Lesson Seminar without the permission of the adviser, recording, recording, recording') }}<br>
                 &nbsp; {{ __('message.㉒ The act of reconnaissance of the lesson and the purpose of the purpose of being for the purpose of carrying out the content of the lesson to be provided in our site or outside site, service etc.') }}<br>
                 &nbsp; ㉓ {{ __('message.Acts that promote or promote the acts specified in the preceding items') }}<br>
                 &nbsp; ㉔ {{ __('message.Other acts that the Company deems inappropriate') }}<br>
@@ -210,7 +210,7 @@
             <br>
             <b>18. {{ __('message.E-mail, uploaded information, etc.') }}</b>
             <p>
-                {{ __('message.18-1. The Company does not take any responsibility for the content of the student, the lecturer and other third parties created by the e-mail or uploaded information created.') }}<br>
+                {{ __('message.18-1. The Company does not take any responsibility for the content of the student, the adviser and other third parties created by the e-mail or uploaded information created.') }}<br>
                 {{ __('message.18-2. Students are solely responsible for sending e-mails, uploading information, dealing with e-mail service providers, and other conditions, warranties or representations related to such correspondence. , The student agrees to indemnify us from any kind of damage or loss as a result of the response.') }}<br>
             </p>
             <br>

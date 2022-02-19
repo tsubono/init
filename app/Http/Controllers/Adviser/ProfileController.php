@@ -74,7 +74,7 @@ class ProfileController extends Controller
             ]
         );
 
-        return redirect(route('adviser.profile.edit'))->with('success_message', 'プロフィールを更新しました');
+        return redirect(route('adviser.profile.edit'))->with('success_message', __('message.I updated my profile'));
     }
 
     /**
@@ -104,7 +104,7 @@ class ProfileController extends Controller
             auth()->guard('adviser')->user()->id, $request->all()
         );
 
-        return redirect(route('adviser.profile.edit.teach'))->with('success_message', 'プロフィールを更新しました');
+        return redirect(route('adviser.profile.edit.teach'))->with('success_message', __('message.I updated my profile'));
     }
 
     /**
@@ -134,7 +134,7 @@ class ProfileController extends Controller
             ]
         );
 
-        return redirect(route('adviser.profile.edit.password'))->with('success_message', 'プロフィールを更新しました');
+        return redirect(route('adviser.profile.edit.password'))->with('success_message', __('message.I updated my profile'));
     }
 
 
@@ -162,7 +162,7 @@ class ProfileController extends Controller
             auth()->guard('adviser')->user()->id, $request->all()
         );
 
-        return redirect(route('adviser.profile.edit.personal'))->with('success_message', 'プロフィールを更新しました');
+        return redirect(route('adviser.profile.edit.personal'))->with('success_message', __('message.I updated my profile'));
     }
 
     /**

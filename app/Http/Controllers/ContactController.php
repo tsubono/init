@@ -61,6 +61,6 @@ class ContactController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('contact.index'))->with('success_message', 'お問い合わせの送信が完了しました');
+        return redirect(route('contact.index'))->with('success_message', __('message.Your inquiry has been sent'));
     }
 }

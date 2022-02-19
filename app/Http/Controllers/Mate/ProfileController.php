@@ -70,7 +70,7 @@ class ProfileController extends Controller
             ]
         );
 
-        return redirect(route('mate.profile.edit'))->with('success_message', 'プロフィールを更新しました');
+        return redirect(route('mate.profile.edit'))->with('success_message', __('message.I updated my profile'));
     }
 
     /**
@@ -100,7 +100,7 @@ class ProfileController extends Controller
             auth()->guard('mate')->user()->id, $request->all()
         );
 
-        return redirect(route('mate.profile.edit.learn'))->with('success_message', 'プロフィールを更新しました');
+        return redirect(route('mate.profile.edit.learn'))->with('success_message', __('message.I updated my profile'));
     }
 
     /**
@@ -130,7 +130,7 @@ class ProfileController extends Controller
             ]
         );
 
-        return redirect(route('mate.profile.edit.password'))->with('success_message', 'プロフィールを更新しました');
+        return redirect(route('mate.profile.edit.password'))->with('success_message', __('message.I updated my profile'));
     }
 
     /**
@@ -155,7 +155,7 @@ class ProfileController extends Controller
     {
         $this->mateUserRepository->update(auth()->guard('mate')->user()->id, $request->all());
 
-        return redirect(route('mate.profile.edit.notice'))->with('success_message', 'プロフィールを更新しました');
+        return redirect(route('mate.profile.edit.notice'))->with('success_message', __('message.I updated my profile'));
     }
 
     /**

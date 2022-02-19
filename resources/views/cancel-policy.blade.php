@@ -27,47 +27,47 @@
                     {{ __('message.After the lesson contract is concluded by sending an e-mail to the effect that the instructor accepts the lesson contract application by the student using the system on this service, the student will be subject to the following cancellation policy, and the date will be changed. Regardless, the instructor will be charged a cancellation fee of 50% and the secretariat will be charged a cancellation fee of 50%.') }}<br>
                     <br>
                         {{ __('message.· 7 days or more ago') }} {{ __('message.0% of the tuition fee') }}<br>
-                        {{ __('message.· 7 days ago') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_mate')[7] * 100 }}%<br>
-                        {{ __('message.· 6 days ago') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_mate')[6] * 100 }}%<br>
-                        {{ __('message.· 5 days ago') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_mate')[5] * 100 }}%<br>
-                        {{ __('message.· 4 days ago') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_mate')[4] * 100 }}%<br>
-                        {{ __('message.· 3 days ago') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_mate')[3] * 100 }}%<br>
-                        {{ __('message.· 2 days ago') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_mate')[2] * 100 }}%<br>
-                        {{ __('message.· １ days ago') }}  {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_mate')[1] * 100 }}%<br>
-                        ・{{ __('message.Day') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_mate')[0] * 100 }}%<br>
+                        {{ __('message.· 7 days ago') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_mate')[7] * 100 }}%<br>
+                        {{ __('message.· 6 days ago') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_mate')[6] * 100 }}%<br>
+                        {{ __('message.· 5 days ago') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_mate')[5] * 100 }}%<br>
+                        {{ __('message.· 4 days ago') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_mate')[4] * 100 }}%<br>
+                        {{ __('message.· 3 days ago') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_mate')[3] * 100 }}%<br>
+                        {{ __('message.· 2 days ago') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_mate')[2] * 100 }}%<br>
+                        {{ __('message.·1 day ago') }}  {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_mate')[1] * 100 }}%<br>
+                        ・{{ __('message.ToDay') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_mate')[0] * 100 }}%<br>
                     <br>
                     {{ __('message.About matters that are not specified in this policy, we') }}「<a href="{{ route('mate-terms') }}" target="_blank" class="primary-link">{{ __('message.Terms of study') }}</a>」{{ __('message.Is applied.') }}<br>
                     <br>
                     {{ __('message.【About notification measures】') }}<br>
-                    {{ __('message.· Report to lecturer') }}<br>
+                    {{ __('message.· Report to adviser') }}<br>
                     {{ __('message.If the instructor does not appear after a certain amount of time has passed since the start time of the lesson on the day, the student will be given the right to use the report button. If the instructor is notified, the instructor will refund the full tuition fee to the student, and the evaluation may be lowered by the review from the student.') }}<br>
                     <br>
                     {{ __('message.· Report to the student') }}<br>
                     {{ __('message.If the student does not appear after a certain amount of time has passed since the start time of the lesson on the day, the instructor will be given the right to use the report button. If there is a report to the student, the secretariat shall collect 50% of the tuition fee from the student as the instructor and the remaining 50% as the operation and maintenance fee.') }}
                 </div>
                 <div id="adviser" class="tab-pane" role="tabpanel" aria-labelledby="adviser-tab">
-                    {{ __('message.This 'Cancellation Policy (Lecturer, Cancel Policy (Lecturer) ) ')' Below is called "this policy'.). In addition, the definition of terms in this policy is based on the definition of the Terms of Terms (please URL) separately defined by the Company unless otherwise specified in this policy.') }}<br>
+                    {{ __('message.Regarding whether or not the instructor can refuse the lesson contract application received from the student, whether or not the lesson contract can be canceled or the time can be changed after it is established, and how to handle the case where the lesson contract is canceled after it is established, this Cancellation Policy (Adviser) For) ”(hereinafter referred to as“ this policy ”). Unless otherwise specified in this policy, the definitions of terms in this policy shall be based on the definition of Adviser Terms (URL please) separately defined by the Company.') }}<br>
                     <br>
-                    1. {{ __('message.The instructor shall freely judge whether or not to reject the lesson contract received from the student.') }}<br>
+                    1. {{ __('message.The adviser is free to decide whether or not to reject the lesson contract application received from the mate.') }}<br>
                     <br>
-                    2. {{ __('message.The instructor sends an e-mail to accept the application of the lesson contract by the student using the system on the service and the following cancellation policy is applied, and the following cancellation policy is applied, and regardless of the date The secretariat shall be paid for cancellation fee.') }}<br>
+                    2. {{ __('message.The adviser will use the system on this service to send an e-mail to the effect that the mate accepts the lesson contract application, and after the lesson contract is concluded, the following cancellation policy will be applied, regardless of the date. The secretariat shall be required to pay a cancellation fee.') }}<br>
                     <br>
                         {{ __('message.· 7 days or more ago') }} {{ __('message.0% of the tuition fee') }}<br>
-                        {{ __('message.· 7 days ago') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_adviser')[7] * 100 }}%<br>
-                        {{ __('message.· 6 days ago') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_adviser')[6] * 100 }}%<br>
-                        {{ __('message.· 5 days ago') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_adviser')[5] * 100 }}%<br>
-                        {{ __('message.· 4 days ago') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_adviser')[4] * 100 }}%<br>
-                        {{ __('message.· 3 days ago') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_adviser')[3] * 100 }}%<br>
-                        {{ __('message.· 2 days ago') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_adviser')[2] * 100 }}%<br>
-                        {{ __('message.· １ days ago') }}  {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_adviser')[1] * 100 }}%<br>
-                        ・{{ __('message.Day') }}   {{ __('message.Tuition') }}{{ config('const.cancel_rate.to_adviser')[0] * 100 }}%<br>
+                        {{ __('message.· 7 days ago') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_adviser')[7] * 100 }}%<br>
+                        {{ __('message.· 6 days ago') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_adviser')[6] * 100 }}%<br>
+                        {{ __('message.· 5 days ago') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_adviser')[5] * 100 }}%<br>
+                        {{ __('message.· 4 days ago') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_adviser')[4] * 100 }}%<br>
+                        {{ __('message.· 3 days ago') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_adviser')[3] * 100 }}%<br>
+                        {{ __('message.· 2 days ago') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_adviser')[2] * 100 }}%<br>
+                        {{ __('message.·1 day ago') }}  {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_adviser')[1] * 100 }}%<br>
+                        ・{{ __('message.ToDay') }}   {{ __('message.Tuition') }} {{ config('const.cancel_rate.to_adviser')[0] * 100 }}%<br>
                     <br>
                     {{ __('message.In addition, if the instructor does not appear after a certain amount of time has passed since the start time of the lesson on the day, the student will be given the right to use the report button. If there is a report to the instructor, the entire tuition fee will be collected from the instructor as an operating fee, and the evaluation may be lowered by the review from the instructor.') }}<br>
                     <br>
                     3. {{ __('message.About matters that are not specified in this policy, we') }}「<a href="{{ route('adviser-terms') }}" target="_blank" class="primary-link">{{ __('message.Instructors') }}</a>」{{ __('message.Is applied.') }}<br>
                     <br>
                     {{ __('message.【About notification measures】') }}<br>
-                    {{ __('message.· Report to lecturer') }}<br>
+                    {{ __('message.· Report to adviser') }}<br>
                     {{ __('message.If the instructor does not appear after a certain amount of time has passed since the start time of the lesson on the day, the student will be given the right to use the report button. If the instructor is notified, the instructor will refund the full tuition fee to the student, and the evaluation may be lowered by the review from the student.') }}<br>
                     <br>
                     {{ __('message.· Report to the student') }}<br>

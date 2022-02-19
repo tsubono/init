@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.Studer login'))
+@section('title', __('message.Mate login'))
 
 @section('content')
     <section class="l-content-block p-setting">
@@ -18,7 +18,7 @@
                         @enderror
                     </div>
                     <div class="col-12">
-                        <h3 class="p-heading2">パスワード<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
+                        <h3 class="p-heading2">{{ __('message.password') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                         <input type="password" class="form-control" name="password">
                         @error('password')
                         <div class="p-error-text" role="alert">

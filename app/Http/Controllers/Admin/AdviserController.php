@@ -59,7 +59,7 @@ class AdviserController extends Controller
     {
         $this->adviserUserRepository->update($adviserUser->id, $request->all());
 
-        return redirect(route('admin.advisers.index'))->with('success_message', '更新が完了しました');
+        return redirect(route('admin.advisers.index'))->with('success_message', __('message.Update completed'));
     }
 
     /**

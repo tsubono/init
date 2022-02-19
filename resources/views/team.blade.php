@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="mt-5 w-75 mx-auto">
-                <a class="p-btn p-btn__defalut" href="{{ route('adviser.register') }}">{{ __('message.Register as a lecturer') }}</a>
+                <a class="p-btn p-btn__defalut" href="{{ route('adviser.register') }}">{{ __('message.Register as a adviser') }}</a>
                 <a class="p-btn p-btn__defalut mt-3" href="{{ route('contact.index') }}">{{ __('message.Under recruiting staff') }}</a>
             </div>
         </div>

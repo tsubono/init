@@ -43,6 +43,6 @@ class SettingController extends Controller
     {
         $this->settingRepository->update($setting->id, $request->all());
 
-        return redirect(route('admin.setting.index'))->with('success_message', '設定を更新しました');
+        return redirect(route('admin.setting.index'))->with('success_message', __('message.Updated settings'));
     }
 }

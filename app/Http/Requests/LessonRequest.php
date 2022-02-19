@@ -39,7 +39,7 @@ class LessonRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'レッスン名'
+            'name' => __('message.lesson name')
         ];
     }
 }

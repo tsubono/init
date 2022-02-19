@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.Lecturer registration'))
+@section('title', __('message.Adviser registration'))
 
 @section('content')
     <section class="l-content-block p-setting">

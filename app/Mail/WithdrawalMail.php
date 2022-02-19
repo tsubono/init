@@ -29,7 +29,7 @@ class WithdrawalMail extends Mailable
     public function build()
     {
         return $this->view('emails.withdrawal')
-            ->subject('【INIT】退会処理が完了しました')
+            ->subject('【INIT】'. __('message.The withdrawal process has been completed'))
             ->with([
                 'user' => $this->user,
             ]);

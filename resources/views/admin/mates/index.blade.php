@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.List of students'))
+@section('title', __('message.List of attendances'))
 
 @section('content')
     <section class="p-searchblock bg-light l-content-block">

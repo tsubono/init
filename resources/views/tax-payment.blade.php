@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.About tax payment of lecturer fee'))
+@section('title', __('message.About tax payment of adviser fee'))
 
 @section('content')
     <section class="l-content-block p-team">
@@ -22,19 +22,19 @@
             </p>
             <br>
             <p>
-                <b>•{{ __('message.About final income tax return to lecturer activities in the side work') }}</b><br>
+                <b>•{{ __('message.About final income tax return to adviser activities in the side work') }}</b><br>
                 {{ __('message.Generally, if your income other than salary income (income-necessary expenses) is less than 200,000 yen per year, you do not need to file a tax return. However, if you have side business income other than INIT, you need to determine whether they also exceed 200,000 yen.') }}
                 ➔  {{ __('message.Summary of National Tax Agency / Tax Answer / Category of income') }} (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm</a> )
             </p>
             <br>
             <p>
-                <b>•{{ __('message.About declaration of consumption tax of income obtained in lecturer activity') }}</b><br>
+                <b>•{{ __('message.About declaration of consumption tax of income obtained in adviser activity') }}</b><br>
                 {{ __('message.Those who have been instructors for less than two years or who earned less than 10 million yen in the business two years ago are not considered to need to file a consumption tax, but please check the details of the business. Please.') }}
                 ➔  {{ __('message.National Tax Agency / Tax Answer / Consumption Tax') }}  (<a class="primary-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/shouhi.htm" target="_blank">https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/shouhi.htm</a> )
             </p>
             <br>
             <p>
-                <b>•{{ __('message.In-lecturer Fees income and income declaration') }}</b><br>
+                <b>•{{ __('message.In-adviser Fees income and income declaration') }}</b><br>
                 {{ __('message.Depending on your income situation, employment status, etc., the income type will be declared.') }}<br>
                 ➔  {{ __('message.Summary of National Tax Agency / Tax Answer / Category of income') }} (<a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1300.htm</a> )
             </p>

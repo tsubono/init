@@ -44,7 +44,7 @@
 
             <div class="my-5 text-center">
                 <a href="{{ route('admin.mates.index') }}" class="p-btn p-btn__defalut d-inline-block px-80px">
-                    {{ __('message.Back to the list of students') }}
+                    {{ __('message.Back to the list of attendances') }}
                 </a>
             </div>
         </div><!-- /.container -->

@@ -33,7 +33,7 @@ class AttendanceCancelMail extends Mailable
     public function build()
     {
         return $this->view('emails.attendance-cancel')
-            ->subject('【INIT】受講へのキャンセルが届きました')
+            ->subject('【INIT】'. __('message.Cancellation to attendance has arrived'))
             ->with([
                 'attendance' => $this->attendance,
                 'userType' => $this->userType,

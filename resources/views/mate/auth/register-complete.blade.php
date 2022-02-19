@@ -11,7 +11,7 @@
                     <img src="{{ asset('img/about-flow02.svg') }}" alt="{{ __('message.Profile input') }}">
                 </div>
                 <div>
-                    <div class="fs-5 fw-bold">{{ __('message.Let's enter a profile') }}</div>
+                    <div class="fs-5 fw-bold">{{ __('message.Lets enter a profile') }}</div>
                     <div class="mt-3 lh-lg">
                         {{ __('message.Thank you for your registration.') }}<br>
                         {{ __('message.Please enter your profile to use the service.') }}

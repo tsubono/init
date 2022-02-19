@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('message.Search for lecturers'))
+@section('title', __('message.Search for advisers'))
 
 @section('content')
     <search-advisers

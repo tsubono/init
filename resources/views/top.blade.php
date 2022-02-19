@@ -7,12 +7,12 @@
     <section class="p-index-main">
         <div class="p-index-main__inner">
             <h1 class="p-index-main__catch">{{ __('message.From all over the world online') }}<br>
-                {{ __('message.Find your lecturer') }}</h1>
-            <div class="p-index-main__read"><span class="p-obi p-obi__blue">“{{ __('message.Thing you want to do') }}”</span>を<span class="p-obi p-obi__purple">“{{ __('message.Language to learn') }}”</span>で。<br>
-                Init!（イニット）{{ __('message.Support people who challenge') }}</div>
+                {{ __('message.Find your adviser') }}</h1>
+            <div class="p-index-main__read"><span class="p-obi p-obi__blue">“{{ __('message.Thing you want to do') }}”</span>{{ __('message.wo') }}<span class="p-obi p-obi__purple">“{{ __('message.Language to learn') }}”</span>{{ __('message.de') }}<br>
+                Init!{{ __('message.init kana') }}{{ __('message.Support people who challenge') }}</div>
             <div class="btn-area">
                 <a href="{{ route('mate.register') }}" class="p-index-main__btn p-btn p-btn__defalut">{{ __('message.Newly register') }}</a>
-                <a href="{{ route('adviser.register') }}" class="p-index-main__btn p-btn p-btn__defalut">{{ __('message.Lecturer') }}</a>
+                <a href="{{ route('adviser.register') }}" class="p-index-main__btn p-btn p-btn__defalut">{{ __('message.Adviser') }}</a>
             </div>
         </div>
     </section>
@@ -25,7 +25,7 @@
                     {{ __('message.About init') }}
                 </h2>
                 <p>{{ __('message.Fun and enhancement in learning') }}<br class="d-md-none">{{ __('message.Provided on the theme') }}<br class="d-none d-md-block">
-                    {{ __('message.Online with lecturers around the world') }}<br>
+                    {{ __('message.Online with advisers around the world') }}<br>
                     {{ __('message.Create a place where you can match') }}</p>
                 <a href="{{ route('about') }}" class="p-index-about__btn p-btn p-btn__defalut">{{ __('message.To the first one') }}</a>
             </div>
@@ -49,7 +49,7 @@
                     <li>
                         <div class="p-room-intro__box yourself">
                             <h3 class="p-room-intro__head">{{ __('message.Ishore room') }}</h3>
-                            <p>{{ __('message.Fashion, Lifestyle, Beauty,') }}<br class="d-none d-md-block">{{ __('message.You can learn knowledge such as fitness.') }}<br>{{ __('message.Have fun with your lecturer.') }}</p>
+                            <p>{{ __('message.Fashion, Lifestyle, Beauty,') }}<br class="d-none d-md-block">{{ __('message.You can learn knowledge such as fitness.') }}<br>{{ __('message.Have fun with your adviser.') }}</p>
                             <a class="p-room-intro__btn" href="{{ route('about') }}#roomSection">MORE</a>
                         </div>
                     </li>
@@ -92,7 +92,7 @@
                         <div class="p-flowlist__icon">
                             <img src="{{ asset('img/flow-icon03.svg') }}" alt="">
                         </div>
-                        <p>{{ __('message.Lecturer') }}<br class="d-none d-md-block">{{ __('message.Offer') }}</p>
+                        <p>{{ __('message.Adviser') }}<br class="d-none d-md-block">{{ __('message.Offer') }}</p>
                     </li>
                     <li class="p-flowlist__box num04">
                         <div class="p-flowlist__num">4</div>
@@ -117,7 +117,7 @@
                     <div class="p-card">
                         <a href="{{ route('advisers.show', compact('adviserUser')) }}">
                             <div class="p-card__img">
-                                <img src="{{ $adviserUser->avatar_image }}" alt="{{ __('message.Lecturer image') }}">
+                                <img src="{{ $adviserUser->avatar_image }}" alt="{{ __('message.Adviser image') }}">
                             </div>
                             <div class="p-card__info">
                                 <div class="p-card__name">{{ $adviserUser->full_name }}</div>
@@ -137,7 +137,7 @@
                     </div>
                 @endforeach
             </div><!-- index-advisor__list -->
-            <a href="{{ route('advisers.index') }}" class="p-index-advisor__btn p-btn p-btn__defalut">{{ __('message.Search for lecturers') }}</a>
+            <a href="{{ route('advisers.index') }}" class="p-index-advisor__btn p-btn p-btn__defalut">{{ __('message.Search for advisers') }}</a>
         </div>
     </section>
     <section class="p-index-lesson l-content-block">
@@ -161,7 +161,7 @@
                                 <div class="p-lesson__point">{{ number_format($lesson->coin_amount) }} Coin</div>
                             </div>
                             <div class="p-lesson__adviser">
-                                <div class="p-lesson__adviser-img"><img src="{{ $lesson->adviserUser->avatar_image }}" alt="{{ __('message.Lecturer image') }}"></div>
+                                <div class="p-lesson__adviser-img"><img src="{{ $lesson->adviserUser->avatar_image }}" alt="{{ __('message.Adviser image') }}"></div>
                                 <div class="p-lesson__adviser-info">
                                     <div class="p-lesson__name">{{ $lesson->adviserUser->full_name }}</div>
                                     <div class="p-lesson__details">

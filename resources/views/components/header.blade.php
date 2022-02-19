@@ -31,8 +31,8 @@
                             {{ __('message.Login') }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="{{ route('mate.login') }}">{{ __('message.Studer login') }}</a></li>
-                            <li><a class="dropdown-item" href="{{ route('adviser.login') }}">{{ __('message.Lecturer login') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('mate.login') }}">{{ __('message.Mate login') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('adviser.login') }}">{{ __('message.Adviser login') }}</a></li>
                         </ul>
                     </div>
                 @endif
@@ -47,7 +47,17 @@
                     <li class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page"><a href="{{ route('top') }}">{{ __('message.home') }}</a></li>
                     <li class="nav-link {{ request()->is('about') ? 'active' : '' }}"><a href="{{ route('about') }}">{{ __('message.For the first time') }}</a></li>
                     <li class="nav-link {{ request()->is('lessons', 'lessons/*') ? 'active' : '' }}"><a href="{{ route('lessons.index') }}">{{ __('message.Lesson search') }}</a></li>
-                    <li class="nav-link {{ request()->is('advisers', 'advisers/*') ? 'active' : '' }}"><a href="{{ route('advisers.index') }}">{{ __('message.Lecturer search') }}</a></li>
+                    <li class="nav-link {{ request()->is('advisers', 'advisers/*') ? 'active' : '' }}"><a href="{{ route('advisers.index') }}">{{ __('message.Adviser search') }}</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLinkForLanguage" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ __('message.language') }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkForLanguage">
+                            <a class="dropdown-item" href="{{ route('language.switch', ['language' => 'ja']) }}">{{ __('message.Japanese') }}</a>
+                            <a class="dropdown-item" href="{{ route('language.switch', ['language' => 'en']) }}">{{ __('message.English') }}</a>
+                        </div>
+                    </li>
+
                     @if (auth()->guard('mate')->check())
                         <li class="nav-link nav-link__login">
                             <a onclick="document.getElementById('logoutForm').submit()">{{ __('message.Logout') }}</a>
@@ -74,8 +84,8 @@
                     {{ __('message.Login') }}
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="{{ route('mate.login') }}">{{ __('message.Studer login') }}</a></li>
-                    <li><a class="dropdown-item" href="{{ route('adviser.login') }}">{{ __('message.Lecturer login') }}</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mate.login') }}">{{ __('message.Mate login') }}</a></li>
+                    <li><a class="dropdown-item" href="{{ route('adviser.login') }}">{{ __('message.Adviser login') }}</a></li>
                 </ul>
             </div>
         @endif
@@ -93,7 +103,7 @@
                             @include('components.attendance-notification-icon', ['user' => auth()->guard('mate')->user()])
                         </li>
                         <li class="nav-link {{ request()->is('mate/profile/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('mate.profile.edit') }}">{{ __('message.profile') }}</a></li>
-                        <li class="nav-link {{ request()->is('attendances', 'attendances/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('attendances.index') }}">{{ __('message.List of students') }}</a></li>
+                        <li class="nav-link {{ request()->is('attendances', 'attendances/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('attendances.index') }}">{{ __('message.List of attendances') }}</a></li>
                         <li class="nav-link {{ request()->is('mate/coins', 'mate/coins/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('mate.coins.index') }}">{{ __('message.Coin management') }}</a></li>
                     @elseif (auth()->guard('adviser')->check())
                         <li class="mx-3 d-none d-lg-block">
@@ -103,12 +113,12 @@
                             @include('components.attendance-notification-icon', ['user' => auth()->guard('adviser')->user()])
                         </li>
                         <li class="nav-link {{ request()->is('adviser/profile/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('adviser.profile.edit') }}">{{ __('message.profile') }}</a></li>
-                        <li class="nav-link {{ request()->is('attendances', 'attendances/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('attendances.index') }}">{{ __('message.List of students') }}</a></li>
+                        <li class="nav-link {{ request()->is('attendances', 'attendances/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('attendances.index') }}">{{ __('message.List of attendances') }}</a></li>
                         <li class="nav-link {{ request()->is('adviser/lessons', 'adviser/lessons/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('adviser.lessons.index') }}">{{ __('message.Lesson management') }}</a></li>
                         <li class="nav-link {{ request()->is('adviser/sales', 'adviser/sales/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('adviser.sales.index') }}">{{ __('message.sales management') }}</a></li>
                     @elseif (auth()->guard('admin')->check())
                         <!-- TODO -->
-                        <li class="nav-link {{ request()->is('admin/advisers/*', 'admin/advisers/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.advisers.index') }}">{{ __('message.Lecturer management') }}</a></li>
+                        <li class="nav-link {{ request()->is('admin/advisers/*', 'admin/advisers/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.advisers.index') }}">{{ __('message.Adviser management') }}</a></li>
                         <li class="nav-link {{ request()->is('admin/mates', 'admin/mates/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.mates.index') }}">{{ __('message.Student management') }}</a></li>
                         <li class="nav-link {{ request()->is('admin/coins', 'admin/coins/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.coins.index') }}">{{ __('message.Coin management') }}</a></li>
                         <li class="nav-link {{ request()->is('admin/attendances', 'admin/attendances/*') ? 'active' : '' }}" aria-current="page"><a href="{{ route('admin.attendances.index') }}">{{ __('message.Taking management') }}</a></li>

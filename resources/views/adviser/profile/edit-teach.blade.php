@@ -123,7 +123,7 @@
                                     </div>
                                     @enderror
 
-                                    <h3 class="p-heading2">{{ __('message.An enthusiasm to give a lecturer') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
+                                    <h3 class="p-heading2">{{ __('message.An enthusiasm to give a adviser') }}<span class="badge bg-danger ms-2">{{ __('message.Required') }}</span></h3>
                                     <textarea class="form-control" cols="20" rows="10" name="passion_text">{{ old('passion_text', $user->passion_text) }}</textarea>
                                     @error('passion_text')
                                     <div class="p-error-text" role="alert">

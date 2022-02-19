@@ -33,7 +33,7 @@
                         1) {{ __('message.We will not use personal information for purposes other than those necessary to achieve the specified purpose of use. In addition, in order to prevent the use of personal information for purposes other than the intended purpose, we will carry out daily inspections and internal audits of the personal information management system.') }}<br>
                         2) {{ __('message.The main use of personal information collected by our company is as follows.') }}<br>
                         &nbsp; ① {{ __('message.Purpose to operate this service smoothly') }}<br>
-                        &nbsp; ② {{ __('message.Purpose to reserve and carry out languages ​​lessons between lecturers who wish to provide language lessons in this service and students who wish to attend language lessons') }}<br>
+                        &nbsp; ② {{ __('message.Purpose to reserve and carry out languages ​​lessons between advisers who wish to provide language lessons in this service and students who wish to attend language lessons') }}<br>
                         &nbsp; ③ {{ __('message.The purpose of creating and publishing a public profile of the instructor who wishes to provide lessons using this service, and for the students to pay the instructor through our company as a consideration for providing language lessons.') }}<br>
                         &nbsp; ④ {{ __('message.Purpose to confirm the identity') }}<br>
                         &nbsp; ⑤ {{ __('message.For purposes of making the construction and improvement of the service and other services provided by the Company') }}<br>

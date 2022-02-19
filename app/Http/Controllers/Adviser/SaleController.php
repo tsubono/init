@@ -85,7 +85,7 @@ class SaleController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('adviser.sales.index'))->with('success_message', '振り込み申請が完了しました');
+        return redirect(route('adviser.sales.index'))->with('success_message', __('message.The transfer application has been completed'));
     }
 
     private function getPricesBySales($sales)
