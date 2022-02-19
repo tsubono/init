@@ -44,6 +44,6 @@ class TransferRequestController extends Controller
             'status' => TransferRequest::STATUS_COMPLETE,
         ]);
 
-        return redirect(route('admin.transfer-requests.index'))->with('success_message', 'ステータスを更新しました');
+        return redirect(route('admin.transfer-requests.index'))->with('success_message', __('message.Updated status'));
     }
 }

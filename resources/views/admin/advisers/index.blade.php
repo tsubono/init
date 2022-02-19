@@ -19,7 +19,7 @@
                             />
                         </div>
                         <div class="col-md-6 mb-3 mb-md-4">
-                            <h3 class="p-heading3">{{ __('message.telephone number') }}</h3>
+                            <h3 class="p-heading3">{{ __('message.TEL') }}</h3>
                             <input type="text" class="form-control" placeholder="{{ __('message.Please fill in') }}"
                                    name="condition[tel]"
                                    value="{{ isset($condition['tel']) ? $condition['tel'] : '' }}"

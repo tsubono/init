@@ -113,25 +113,25 @@ class Attendance extends Model
         $statusTxt = '';
         switch ($this->status) {
             case self::STATUS_REQUEST_CANCEL:
-                $statusTxt = '受講申請キャンセル';
+                $statusTxt = __('message.Cancel Cancel Cancel');
                 break;
             case self::STATUS_REQUEST:
-                $statusTxt = '受講申請中';
+                $statusTxt = __('message.Request');
                 break;
             case self::STATUS_APPROVAL:
-                $statusTxt = '受講中';
+                $statusTxt = __('message.Taking');
                 break;
             case self::STATUS_REJECT:
-                $statusTxt = '受講否認';
+                $statusTxt = __('message.Denial');
                 break;
             case self::STATUS_CANCEL:
-                $statusTxt = 'キャンセル';
+                $statusTxt = __('message.Cancel');
                 break;
             case self::STATUS_REPORT:
-                $statusTxt = '通報';
+                $statusTxt = __('message.Report');
                 break;
             case self::STATUS_CLOSED:
-                $statusTxt = '受講完了';
+                $statusTxt = __('message.Completion');
                 break;
             default:
                 break;

@@ -14,11 +14,11 @@
                 </p>
             </div>
             <div class="mb-3">
-                <h3 class="p-heading3">{{ __('message.telephone number') }}</h3>
+                <h3 class="p-heading3">{{ __('message.TEL') }}</h3>
                 <p>{{ $adviserUser->tel }}</p>
             </div>
             <div class="mb-3">
-                <h3 class="p-heading3">メール</h3>
+                <h3 class="p-heading3">{{ __('message.Email') }}</h3>
                 <p>{{ $adviserUser->email }}</p>
             </div>
             <div class="mb-3">

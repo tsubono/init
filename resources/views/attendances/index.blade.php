@@ -33,13 +33,13 @@
                                 {{ __('message.Cancel Cancel Cancel') }}
                                 </option>
                                 <option value="1" {{ (isset($condition['status']) ? $condition['status'] : '') == 1 ? 'selected' : '' }}>
-                                {{ __('message.During attendance') }}
+                                {{ __('message.Request') }}
                                 </option>
                                 <option value="2" {{ (isset($condition['status']) ? $condition['status'] : '') == 2 ? 'selected' : '' }}>
                                 {{ __('message.Taking') }}
                                 </option>
                                 <option value="3" {{ (isset($condition['status']) ? $condition['status'] : '') == 3 ? 'selected' : '' }}>
-                                {{ __('message.Subject') }}
+                                {{ __('message.Denial') }}
                                 </option>
                                 <option value="4" {{ (isset($condition['status']) ? $condition['status'] : '') == 4 ? 'selected' : '' }}>
                                     {{ __('message.Cancel') }}
@@ -161,7 +161,7 @@
                             @if ($userType !== 'admin')
                                 <!-- ********* ステータスに応じた各アクション ********* -->
                                 <div class="p-card3__controls">
-                                        @if ($attendance->status_txt === '受講申請中')
+                                        @if ($attendance->status_txt === __('message.Request'))
                                             @if (auth()->guard('adviser')->check())
                                                 <button type="button" class="p-btn--rect btn-success" data-bs-toggle="modal" data-bs-target="#approvalModal{{ $index }}">
                                                 {{ __('message.approve') }}
@@ -175,11 +175,11 @@
                                                 </button>
                                             @endif
                                         @endif
-                                        @if ($attendance->status_txt === '受講中' || $attendance->status_txt === '受講完了' ||
-                                             $attendance->status_txt === 'キャンセル' || $attendance->status_txt === '通報')
+                                        @if ($attendance->status_txt === __('message.Taking') || $attendance->status_txt === __('message.Completion') ||
+                                             $attendance->status_txt === __('message.Cancel') || $attendance->status_txt === __('message.Report'))
                                             <a class="p-btn--rect py-2 px-3 p-btn__defalut" href="{{ route('attendances.messages', compact('attendance')) }}">{{ __('message.message') }}</a>
                                         @endif
-                                        @if ($attendance->status_txt === '受講中')
+                                        @if ($attendance->status_txt === __('message.Taking'))
                                             @if (auth()->guard('adviser')->check())
                                                 <button type="button" class="p-btn--rect btn-success" data-bs-toggle="modal" data-bs-target="#closeModal{{ $index }}">
                                                 {{ __('message.To attend the completion') }}
@@ -204,7 +204,7 @@
                                     </div><!-- /.p-card3__controls -->
                                 <!-- ********* /ステータスに応じた各アクション ********* -->
                                 <!-- ************ モーダルたち ************ -->
-                                @if ($attendance->status_txt === '受講申請中')
+                                @if ($attendance->status_txt === __('message.Request'))
                                     @if (auth()->guard('adviser')->check())
                                         <!-- 承認モーダル -->
                                             <div class="modal p-modal p-setting fade" id="approvalModal{{ $index }}" tabindex="-1" aria-labelledby="approvalModalLabel{{ $index }}">
@@ -213,7 +213,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }}"></button>
                                                         <div class="modal-body">
                                                             <h2 class="p-heading2 mt-0 text-center">{{ __('message.Approval confirmation') }}</h2>
-                                                            <p class="text-center">{{ $attendance->mateUser->full_name ?? '退会ユーザー' }}{{ __('message.Approve the application from Mr..') }}<br>{{ __('message.Is it OK?') }}</p>
+                                                            <p class="text-center">{{ __('message.Approve the application from username', ['username' => $attendance->mateUser->full_name ?? '退会ユーザー']) }}<br>{{ __('message.Is it OK?') }}</p>
                                                             <form action="{{ route('attendances.approval', compact('attendance')) }}" method="post">
                                                                 @csrf
                                                                 <button class="p-btn p-btn__defalut">{{ __('message.approve') }}</button>
@@ -230,7 +230,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }}"></button>
                                                         <div class="modal-body">
                                                             <h2 class="p-heading2 mt-0 text-center">{{ __('message.Absurdity') }}</h2>
-                                                            <p class="text-center">{{ $attendance->mateUser->full_name ?? '退会ユーザー' }}{{ __('message.Representing an application from Mr..') }}</p>
+                                                            <p class="text-center">{{ __('message.Representing an application from username', ['username' => $attendance->mateUser->full_name ?? '退会ユーザー']) }}</p>
                                                             <form action="{{ route('attendances.reject', compact('attendance')) }}" method="post">
                                                                 @csrf
                                                                 <textarea rows="5" class="form-control mt-2" name="reject_text" placeholder="{{ __('message.Please be sure to enter a non-negative message') }}" required></textarea>
@@ -261,7 +261,7 @@
                                             <!-- /申請キャンセルモーダル -->
                                     @endif
                                 @endif
-                                @if ($attendance->status_txt === '受講中')
+                                @if ($attendance->status_txt === __('message.Taking'))
                                     @if (auth()->guard('adviser')->check())
                                         <!-- 受講完了モーダル -->
                                             <div class="modal p-modal p-setting fade" id="closeModal{{ $index }}" tabindex="-1" aria-labelledby="closeModalLabel{{ $index }}">

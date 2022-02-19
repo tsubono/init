@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '{{ __('message.Coin Details') }}')
+@section('title', __('message.Coin Details'))
 
 @section('content')
     <section class="p-coin l-content-block">

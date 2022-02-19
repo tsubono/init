@@ -174,7 +174,7 @@ class AttendanceController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('attendances.index'))->with('success_message', 'ステータスを更新しました');
+        return redirect(route('attendances.index'))->with('success_message', __('message.Updated status'));
     }
 
     /**
@@ -221,7 +221,7 @@ class AttendanceController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('attendances.index'))->with('success_message', 'ステータスを更新しました');
+        return redirect(route('attendances.index'))->with('success_message', __('message.Updated status'));
     }
 
     /**
@@ -276,7 +276,7 @@ class AttendanceController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('attendances.index'))->with('success_message', 'ステータスを更新しました');
+        return redirect(route('attendances.index'))->with('success_message', __('message.Updated status'));
     }
 
     /**
@@ -340,7 +340,7 @@ class AttendanceController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('attendances.index'))->with('success_message', 'ステータスを更新しました');
+        return redirect(route('attendances.index'))->with('success_message', __('message.Updated status'));
     }
 
     /**
@@ -408,7 +408,7 @@ class AttendanceController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('attendances.index'))->with('success_message', 'ステータスを更新しました');
+        return redirect(route('attendances.index'))->with('success_message', __('message.Updated status'));
     }
 
     /**
@@ -474,7 +474,7 @@ class AttendanceController extends Controller
             throw new \Exception($e);
         }
 
-        return redirect(route('attendances.index'))->with('success_message', 'ステータスを更新しました');
+        return redirect(route('attendances.index'))->with('success_message', __('message.Updated status'));
     }
 
     /**

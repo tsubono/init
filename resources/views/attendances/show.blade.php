@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '{{ __('message.Taking details') }}')
+@section('title', __('message.Taking details'))
 
 @section('content')
     <section class="p-attendance l-content-block">
@@ -10,7 +10,7 @@
                     {{ $attendance->status_txt }}
                 </div>
                 <div class="p-attendance__header">
-                    @if ($attendance->status_txt === '受講申請中')
+                    @if ($attendance->status_txt === __('message.Request'))
                         @if (auth()->guard('adviser')->check())
                             <button type="button" class="p-btn--rect py-1 px-2 btn-success" data-bs-toggle="modal" data-bs-target="#approvalModal">
                             {{ __('message.approve') }}
@@ -25,7 +25,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }}"></button>
                                         <div class="modal-body">
                                             <h2 class="p-heading2 mt-0 text-center">{{ __('message.Approval confirmation') }}</h2>
-                                            <p class="text-center">{{ $attendance->mateUser->full_name ?? '退会ユーザー' }}{{ __('message.Approve the application from Mr..') }}<br>{{ __('message.Is it OK?') }}</p>
+                                            <p class="text-center">{{ __('message.Approve the application from username', ['username' => $attendance->mateUser->full_name ?? '退会ユーザー']) }}<br>{{ __('message.Is it OK?') }}</p>
                                             <form action="{{ route('attendances.approval', compact('attendance')) }}" method="post">
                                                 @csrf
                                                 <button class="p-btn p-btn__defalut">{{ __('message.approve') }}</button>
@@ -42,7 +42,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('message.close up') }}"></button>
                                         <div class="modal-body">
                                             <h2 class="p-heading2 mt-0 text-center">{{ __('message.Absurdity') }}</h2>
-                                            <p class="text-center">{{ $attendance->mateUser->full_name ?? '退会ユーザー' }}{{ __('message.Representing an application from Mr..') }}</p>
+                                            <p class="text-center">{{ __('message.Representing an application from username', ['username' => $attendance->mateUser->full_name ?? '退会ユーザー']) }}</p>
                                             <form action="{{ route('attendances.reject', compact('attendance')) }}" method="post">
                                                 @csrf
                                                 <textarea rows="5" class="form-control mt-2" name="reject_text" placeholder="{{ __('message.Please be sure to enter a non-negative message') }}" required></textarea>
@@ -76,11 +76,11 @@
                             <!-- /申請キャンセルモーダル -->
                         @endif
                     @endif
-                    @if ($attendance->status_txt === '受講中' || $attendance->status_txt === '受講完了' ||
-                         $attendance->status_txt === 'キャンセル' || $attendance->status_txt === '通報')
+                    @if ($attendance->status_txt === __('message.Taking') || $attendance->status_txt === __('message.Completion') ||
+                         $attendance->status_txt === __('message.Cancel') || $attendance->status_txt === __('message.Report'))
                         <a class="p-btn--rect py-2 px-3 p-btn__defalut" href="{{ route('attendances.messages', compact('attendance')) }}">{{ __('message.message') }}</a>
                     @endif
-                    @if ($attendance->status_txt === '受講中')
+                    @if ($attendance->status_txt === __('message.Taking'))
                         @if (auth()->guard('adviser')->check())
                             <button type="button" class="p-btn--rect py-1 px-2 btn-success" data-bs-toggle="modal" data-bs-target="#closeModal">
                             {{ __('message.To attend the completion') }}
