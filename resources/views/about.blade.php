@@ -180,7 +180,7 @@
                         <div class="p-aboutlist__text">
                             <h3>{{ __('message.Adviser / Lesson') }}</h3>
                             <p>{{ __('message.Look for advisers and lessons. Lets look for what you want to do or Language to learn') }}。<br>
-                                {{ __('message.You can also look for from the origin of the instructor and the popularity.') }}</p>
+                                {{ __('message.You can also look for from the origin of the adviser and the popularity.') }}</p>
                         </div>
                     </li>
                     <li class="p-aboutlist__box num05">
@@ -204,7 +204,7 @@
                         </div>
                         <div class="p-aboutlist__text">
                             <h3>{{ __('message.After the lesson date, we will start') }}</h3>
-                            <p>{{ __('message.When your teacher confirms your lesson request, you will receive a contract email. This completes the lesson reservation. Before the lesson, the instructor will send you a request to add Skype contact information, so please approve it.') }}</p>
+                            <p>{{ __('message.When your teacher confirms your lesson request, you will receive a contract email. This completes the lesson reservation. Before the lesson, the adviser will send you a request to add Skype contact information, so please approve it.') }}</p>
                         </div>
                     </li>
                 </ul>

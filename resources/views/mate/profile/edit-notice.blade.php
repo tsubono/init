@@ -14,7 +14,7 @@
                 <div class="tab-content p-setting__content">
                     <div id="notification">
                         <h2 class="p-heading1">{{ __('message.Notification settings') }}</h2>
-                        <p class="small">{{ __('message.If you have contact from the instructor, you can set or set an email notification') }}</p>
+                        <p class="small">{{ __('message.If you have contact from the adviser, you can set or set an email notification') }}</p>
                         <div class="p-form">
                             <div class="row">
                                 <div class="col-12">

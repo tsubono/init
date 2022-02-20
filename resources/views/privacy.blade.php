@@ -25,7 +25,7 @@
                         &nbsp; ③ {{ __('message.Information on workers unity, group negotiations and other group behavior acts') }}<br>
                         &nbsp; ④ {{ __('message.Information on the participation in the population regeneration, and the exercise of the exercise of the petition right') }}<br>
                         &nbsp; ⑤ {{ __('message.Information about health care or sexual life') }}<br>
-                        4) {{ __('message.We will use the information obtained by the cookie of the student or the instructor (the industry standard technology that the web server identifies the browser of the person, the same shall apply hereinafter), the page used, the usage environment, etc. of the person. We automatically receive them from your browser and analyze them to improve the quality of the services we provide on our site. This information is not personal information because it is not possible to identify a specific individual, but if you do not want us to obtain information by cookie, please set the cookie in your browser settings. Can be disabled.') }}
+                        4) {{ __('message.We will use the information obtained by the cookie of the student or the adviser (the industry standard technology that the web server identifies the browser of the person, the same shall apply hereinafter), the page used, the usage environment, etc. of the person. We automatically receive them from your browser and analyze them to improve the quality of the services we provide on our site. This information is not personal information because it is not possible to identify a specific individual, but if you do not want us to obtain information by cookie, please set the cookie in your browser settings. Can be disabled.') }}
                     </p>
                     <br>
                     <b>4. {{ __('message.Prohibition of unusual use of personal information') }}</b>
@@ -34,7 +34,7 @@
                         2) {{ __('message.The main use of personal information collected by our company is as follows.') }}<br>
                         &nbsp; ① {{ __('message.Purpose to operate this service smoothly') }}<br>
                         &nbsp; ② {{ __('message.Purpose to reserve and carry out languages ​​lessons between advisers who wish to provide language lessons in this service and students who wish to attend language lessons') }}<br>
-                        &nbsp; ③ {{ __('message.The purpose of creating and publishing a public profile of the instructor who wishes to provide lessons using this service, and for the students to pay the instructor through our company as a consideration for providing language lessons.') }}<br>
+                        &nbsp; ③ {{ __('message.The purpose of creating and publishing a public profile of the adviser who wishes to provide lessons using this service, and for the students to pay the adviser through our company as a consideration for providing language lessons.') }}<br>
                         &nbsp; ④ {{ __('message.Purpose to confirm the identity') }}<br>
                         &nbsp; ⑤ {{ __('message.For purposes of making the construction and improvement of the service and other services provided by the Company') }}<br>
                         &nbsp; ⑥ {{ __('message.Purpose of mail magazine delivery') }}<br>

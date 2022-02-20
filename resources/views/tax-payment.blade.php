@@ -29,7 +29,7 @@
             <br>
             <p>
                 <b>•{{ __('message.About declaration of consumption tax of income obtained in adviser activity') }}</b><br>
-                {{ __('message.Those who have been instructors for less than two years or who earned less than 10 million yen in the business two years ago are not considered to need to file a consumption tax, but please check the details of the business. Please.') }}
+                {{ __('message.Those who have been advisers for less than two years or who earned less than 10 million yen in the business two years ago are not considered to need to file a consumption tax, but please check the details of the business. Please.') }}
                 ➔  {{ __('message.National Tax Agency / Tax Answer / Consumption Tax') }}  (<a class="primary-link" href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/shouhi.htm" target="_blank">https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/shouhi.htm</a> )
             </p>
             <br>

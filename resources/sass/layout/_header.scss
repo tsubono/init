@@ -63,6 +63,10 @@ header {
   a.dropdown-item {
     color: #7db6fb !important;
     font-weight: normal !important;
+
+    @include breakpoint-md {
+      padding: 10px !important;
+    }
   }
   .navbar {
     padding: 14px 60px;

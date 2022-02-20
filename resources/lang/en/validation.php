@@ -185,7 +185,7 @@ return [
         'residence_country_id' => 'country of residence',
         'qualification_text' => 'qualification text',
         'pr_text' => 'about myself',
-        'reason_text' => 'reasons and reasons for becoming an instructor',
+        'reason_text' => 'reasons and reasons for becoming an adviser',
         'passion_text' => 'Enthusiasm to be a teacher',
         'old_password' => 'current password',
         'personal_images_1' => 'personal information confirmation image (front side)',

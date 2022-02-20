@@ -17,20 +17,20 @@
                 &nbsp; ①{{ __('message.Lesson: A general term for teaching knowledge, providing information, training in conversation and performance, and giving advice.') }}<br>
                 &nbsp; ②{{ __('message.Students: Those who wish to take lessons or actually take them') }}<br>
                 &nbsp; ③{{ __('message.Adviser: A person who wants or actually provides a lesson') }}<br>
-                &nbsp; ④{{ __('message.Lesson contract: A contract regarding the provision and attendance of lessons concluded between the instructor and the student.') }}<br>
-                &nbsp; ⑤{{ __('message.Lesson fee: Fee paid by the student to the instructor through our company in consideration of the lesson contract') }}<br>
+                &nbsp; ④{{ __('message.Lesson contract: A contract regarding the provision and attendance of lessons concluded between the adviser and the student.') }}<br>
+                &nbsp; ⑤{{ __('message.Lesson fee: Fee paid by the student to the adviser through our company in consideration of the lesson contract') }}<br>
                 &nbsp; ⑥{{ __('message.6 Matching Service: Service that mediates the sign of lesson contract and payment of lesson fee') }}<br>
                 &nbsp; ⑦{{ __('message.Matching fee: Fee paid by the student to the Company as a consideration for using the matching service') }}<br>
                 &nbsp; {{ __('message.8 Service Fee: Total amount of lesson fee and matching fee') }}<br>
                 &nbsp; ⑨{{ __('message.Coin: An electromagnetic record given to students by the Company in exchange for a certain amount of money, which is a means of paying service fees.') }}<br>
                 &nbsp; ⑩{{ __('message.Our site: The latest website operated by our company') }}<br>
-                {{ __('message.1-2. This service uses the following items of the following items.') }}
+                {{ __('message.1-2. This service uses the following items of the following items.') }}<br>
                 &nbsp; ①{{ __('message.1 Service that searches for lessons by students, application for lesson contracts, application for application lesson contracts, etc.') }}によるレッスンの検索、レッスン契約の申込、申込済みのレッスン契約の管理等を容易にするサービス<br>
                 &nbsp; ② {{ __('message.Matching service') }}<br>
                 &nbsp; ③ {{ __('message.A service that provides counseling to students regarding the services of the previous items') }}<br>
                 &nbsp; ④ {{ __('message.Service to give lessons to students') }}<br>
                 &nbsp; ⑤ {{ __('message.A service that regularly or irregularly distributes updated information on our site, campaign information, and other information separately determined by our company to students by e-mail (hereinafter referred to as email magazine service).') }}<br>
-                &nbsp; ⑥ {{ __('message.A service that facilitates the instructors acceptance of lesson contract applications from students') }}<br>
+                &nbsp; ⑥ {{ __('message.A service that facilitates the advisers acceptance of lesson contract applications from students') }}<br>
                 &nbsp; ⑦ {{ __('message.Other services separately determined by the Company') }}<br>
             </p>
             <br>
@@ -39,14 +39,14 @@
                 {{ __('message.2-1. The Terms of Terms shall apply for the use of this service by the student.') }}<br>
                 {{ __('message.2-2. All notices that the Company issues to students based on Article 3 including the terms of use and regulations established by the Company apart from these Terms and the postings on the Companys site (hereinafter collectively referred to as the Company. Terms of Service, etc. Established by) shall each form part of these Terms.') }}<br>
                 2-3. {{ __('message.If the provisions of this agreement differ from the terms of use, provisions, and notifications set forth in the preceding paragraph, the notice, provisions, terms of use, and agreement shall be applied in that order. If the content of the notification posted on our site is different from the content of the notification by other methods, the one notified later shall be applied with priority.') }}<br>
-                {{ __('message.2-4. Advisers use of the service shall apply separately to the instructor terms that we establish separately.') }}<br>
-                2-5. {{ __('message.The date and time in this agreement shall be in accordance with the standard time in Japan.') }}<br>
+                {{ __('message.2-4. Advisers use of the service shall apply separately to the adviser terms that we establish separately.') }}<br>
+                {{ __('message.2-5. Date and time in this term shall follow the standard time of Japan.') }}<br>
             </p>
             <br>
             <b>3. {{ __('message.Notice from us') }}</b>
             <p>
                 {{ __('message.3-1. The Company shall notify students who need to be determined that the Company needs to be necessary by the students by any means, by handicapping, posting emails, sending emails, sending emails and other methods. increase.') }}<br>
-                3-2. {{ __('message.For the notice set forth in the preceding paragraph, if the Company has posted the notice set forth in the preceding paragraph on the Companys site, sent an e-mail, or sent a document, the Company will post it on the Companys site, send an e-mail, or send a document. It shall take effect from the time of shipment.') }}
+                {{ __('message.3-2. Notifications of the preceding paragraph will post notifications of the preceding paragraph on our site, send e-mails or sending documents, and we post and send emails Or, it shall produce that potency from the time of shipping the document.') }}
             </p>
             <br>
             <b>4. {{ __('message.Eligibility to use this service') }}</b>
@@ -58,18 +58,18 @@
             <p>
                 {{ __('message.5-1. Students will be asked about the truth, accuracy, certainty, reliability, usefulness, etc. of the information provided by the Company, as well as the quality, accuracy, certainty, reliability, usefulness, etc. of this service. You make your own judgment and agree in advance to use these at your own risk.') }}<br>
                 {{ __('message.5-2. Students shall determine their own quality, accuracy, reliability, usefulness, etc. of the lessons provided by the adviser, and we will agree in advance to use them at their own responsibility .') }}<br>
-                {{ __('message.5-3. Before applying for a lesson contract, students should thoroughly check the information about the instructor who provides the lesson before applying for the lesson contract, and question the identity of the instructor and the content of the lesson to be provided. If there is, we will contact the instructor directly using the mail function to the instructor on this service.') }}<br>
+                {{ __('message.5-3. Before applying for a lesson contract, students should thoroughly check the information about the adviser who provides the lesson before applying for the lesson contract, and question the identity of the adviser and the content of the lesson to be provided. If there is, we will contact the adviser directly using the mail function to the adviser on this service.') }}<br>
                 {{ __('message.5-4. Lessons shall be provided by the adviser as a principle, and the Company does not provide lessons, except when we admit separately.') }}<br>
                 {{ __('message.5-5. Students shall agree in advance that the adviser may be a lesson only for voice and the adviser differences.') }}<br>
                 {{ __('message.5-6. The Company shall not assess and manage the information provided by the adviser and the adviser and the student.') }}<br>
-                {{ __('message.5-7. Our company shall not be guaranteed to all about the truth, accuracy, certainty, reliability, beneficiality, etc. of various information posted by instructors and other advisers.') }}<br>
+                {{ __('message.5-7. Our company shall not be guaranteed to all about the truth, accuracy, certainty, reliability, beneficiality, etc. of various information posted by advisers and other advisers.') }}<br>
                 {{ __('message.5-8. The Company does not take any responsibility even if the advisers or omissions of the adviser or the third party suffered damage or losses.') }}<br>
-                5-9. {{ __('message.The Company shall not be liable for any information, files, articles, etc. provided to each other between the student and the instructor, and the student shall provide the student with such information, files, articles, etc. You agree in advance that we will not be liable for any kind of damage or loss that occurs.') }}<br>
+                5-9. {{ __('message.The Company shall not be liable for any information, files, articles, etc. provided to each other between the student and the adviser, and the student shall provide the student with such information, files, articles, etc. You agree in advance that we will not be liable for any kind of damage or loss that occurs.') }}<br>
             </p>
             <br>
             <b>{{ __('message.6. Trouble with other students') }}</b>
             <p>
-                {{ __('message.In the unlikely event that a problem occurs between the student and another student, instructor or other third party, such as suffering some damage or inconvenience from another student, instructor or other third party. , We will try to solve the problem at our own risk and expense, and if our company suffers damage in connection with the trouble, all the damage (including but not limited to reasonable attorneys fee) ) Shall be liable for immediate compensation. If the Company resolves the problem, all expenses (including but not limited to reasonable attorneys fees) required for the resolution will be borne by the student.') }}
+                {{ __('message.In the unlikely event that a problem occurs between the student and another student, adviser or other third party, such as suffering some damage or inconvenience from another student, adviser or other third party. , We will try to solve the problem at our own risk and expense, and if our company suffers damage in connection with the trouble, all the damage (including but not limited to reasonable attorneys fee) ) Shall be liable for immediate compensation. If the Company resolves the problem, all expenses (including but not limited to reasonable attorneys fees) required for the resolution will be borne by the student.') }}
             </p>
             <br>
             <b>7. {{ __('message.Registration') }}</b>
@@ -81,7 +81,7 @@
                 &nbsp; {{ __('message.(1) If it is found that the student registration application has been made by a third party other than the student (but except when we admit separately.)') }}<br>
                 &nbsp; {{ __('message.2 If it has been found that there was false, false or input leaks in the content input at the time of registration application application') }}<br>
                 &nbsp; {{ __('message.(3) When it is found that the student has received a temporary disposition of the student registration due to a violation of the Terms and the like in the past') }}<br>
-                &nbsp; {{ __('message.(4) If the number of blocks from the instructor reaches a certain level, and it is difficult to continue using the service by the students and the Company judged') }}<br>
+                &nbsp; {{ __('message.(4) If the number of blocks from the adviser reaches a certain level, and it is difficult to continue using the service by the students and the Company judged') }}<br>
                 &nbsp; {{ __('message.5 If our company is judged if you do not want to attend for a fee, such as the number of free lessons are significantly.') }}<br>
                 &nbsp; {{ __('message.6. Other if we judge that we are inappropriate to accept the attendee registration application') }}<br>
                 {{ __('message.7-5. The student will immediately report to our company by the way that the Company will definitely change if you change the name, e-mail address, residence and other information that we entered at the time of registration application. .') }}<br>
@@ -122,13 +122,13 @@
             <b>{{ __('message.12. Establishment of lesson contract') }}</b>
             <p>
                 {{ __('message.12-1. The lesson contract shall be established when the adviser sends an e-mail that the adviser will use the system on this service using the system on the service. .') }}<br>
-                {{ __('message.12-2. Students may not accept the lesson contract application by the instructor or cancel the lesson contract after it is established, based on the Cancellation Policy (for instructors) separately set by the Company. I agree in advance.') }}
+                {{ __('message.12-2. Students may not accept the lesson contract application by the adviser or cancel the lesson contract after it is established, based on the Cancellation Policy (for advisers) separately set by the Company. I agree in advance.') }}
             </p>
             <br>
             <b>{{ __('message.13. Purchase, management, use, etc. of coin') }}</b>
             <p>
-                {{ __('message.13-1. Students shall purchase coins from us and pay us the service fee by using the purchased coins. Of the service fees, the lesson fee shall be paid by our company by transfer of cash to the instructor on behalf of the student.') }}<br>
-                {{ __('message.13-2. An instructor shall determine the number of coins required for service fee payment.') }}<br>
+                {{ __('message.13-1. Students shall purchase coins from us and pay us the service fee by using the purchased coins. Of the service fees, the lesson fee shall be paid by our company by transfer of cash to the adviser on behalf of the student.') }}<br>
+                {{ __('message.13-2. An adviser shall determine the number of coins required for service fee payment.') }}<br>
                 {{ __('message.13-3. At the same time, the number of courses of the students will be subtracted from the held coins of the student from the held coin of the student.') }}<br>
                 {{ __('message.13-4. Students shall be able to purchase coins from our company before applying for a lesson contract.') }}<br>
                 {{ __('message.13-5. When purchasing coins from our company, we must agree in advance that we must purchase a certain number of coins separately specified separately.') }}<br>
@@ -159,7 +159,7 @@
                 &nbsp; {{ __('message.1 Lesson contract after establishment is canceled with only our side or in the adviser side, and if the student claims coin return to our company based on that fact.') }}<br>
                 {{ __('message.14-3. The Company can request the students who need to determine that the Company needs to be requested by the Company, and the student can immediately respond to the request. It must be.') }}<br>
                 &nbsp; {{ __('message.1 If the student or adviser cancels the lesson contract after the establishment') }}<br>
-                &nbsp; {{ __('message.2 If our company determines if the adviser may violate or violate the instructors') }}<br>
+                &nbsp; {{ __('message.2 If our company determines if the adviser may violate or violate the advisers') }}<br>
                 &nbsp; ③ {{ __('message.In addition, when we deem it necessary') }}<br>
                 {{ __('message.14-4. As a result of our investigation with the largest sincerity for both the students and the adviser, the Company finally judge The students and advisers shall follow this.') }}<br>
                 {{ __('message.14-5. Even in the case of Section 1 of this Article or Section 2 of this section, if a student was violated by a student in connection with a lesson contract that was a target of coin use, it has been found Both coin return is not performed.') }}<br>
@@ -175,10 +175,10 @@
                 {{ __('message.16-1. Students shall not conduct the act of the following items in connection with the use of this service or take a lesson.') }}<br>
                 &nbsp; {{ __('message.1 Acts to send or post information against facts') }}<br>
                 &nbsp; {{ __('message.2 Acts to tamper or erase information that can be used by this service or acts that attempts it') }}<br>
-                &nbsp; {{ __('message.3 Other students, instructors, other third parties or other acts that violate intellectual property rights such as our copyright, trademark rights, acts that may violate') }}<br>
-                &nbsp;{{ __('message.4 Other students, instructors or other third parties or our company discrimination or slandering or other students and other third or other third or other third party or our honor or credit') }}<br>
-                &nbsp; {{ __('message.5 Other students, instructors, other third parties or our property, privacy, portrait right or act of violating the right to violate') }}<br>
-                &nbsp; {{ __('message.6 Other students, instructors, other third or other third parties or other people who send e-mails such as advertising, advertising, solicitation, etc. Acts that interfere with e-mail reception, act that requests a third party or an act that conducts email transfer according to the request') }}<br>
+                &nbsp; {{ __('message.3 Other students, advisers, other third parties or other acts that violate intellectual property rights such as our copyright, trademark rights, acts that may violate') }}<br>
+                &nbsp; {{ __('message.4 Other students, advisers or other third parties or our company discrimination or slandering or other students and other third or other third or other third party or our honor or credit') }}<br>
+                &nbsp; {{ __('message.5 Other students, advisers, other third parties or our property, privacy, portrait right or act of violating the right to violate') }}<br>
+                &nbsp; {{ __('message.6 Other students, advisers, other third or other third parties or other people who send e-mails such as advertising, advertising, solicitation, etc. Acts that interfere with e-mail reception, act that requests a third party or an act that conducts email transfer according to the request') }}<br>
                 &nbsp; {{ __('message.7 Acts connected to crimes such as fraud') }}<br>
                 &nbsp; ⑧ {{ __('message.Acts aimed at soliciting religions, political associations, MLM, etc.') }}<br>
                 &nbsp; ⑨ {{ __('message.Acts of sending or posting obscene or child abuse behaviors, acts, images, documents, etc.') }}<br>
@@ -187,17 +187,17 @@
                 &nbsp; {{ __('message.12 Other students, advisers and other third parties, acts to use this service') }}<br>
                 &nbsp; ⑬ {{ __('message.Attempting unauthorized access to other computer systems or networks connected to this service') }}<br>
                 &nbsp; {{ __('message.14 In addition to the preceding items, the acts of contrary to law or public order and morals (including prostitution, violence, atrocities etc. but are not limited to these.) Or other students, advisers, other third or other third party or our company Acts to give') }}<br>
-                &nbsp; {{ __('message.15 Other students, instructors Introduce services that may compete or conflict with this service for other third parties') }}<br>
+                &nbsp; {{ __('message.15 Other students, advisers Introduce services that may compete or conflict with this service for other third parties') }}<br>
                 &nbsp; {{ __('message.16 Create multiple accounts by the same person') }}<br>
                 &nbsp; ⑰ {{ __('message.Violent demands or unreasonable demands beyond legal responsibility') }}<br>
                 &nbsp; ⑱ {{ __('message.Acts of threatening behavior or using violence in relation to transactions') }}<br>
                 &nbsp; ⑲ {{ __('message.Acts of disseminating rumors, damaging the credibility of the other party or interfering with the other partys business by using counterfeiting or power') }}<br>
-                &nbsp; {{ __('message.⑳ A third party such as instructors and other students, an act that gives or imparts mental pain') }}<br>
+                &nbsp; {{ __('message.⑳ A third party such as advisers and other students, an act that gives or imparts mental pain') }}<br>
                 &nbsp; {{ __('message.㉑ Init Secretariat and Take a Lesson Seminar without the permission of the adviser, recording, recording, recording') }}<br>
                 &nbsp; {{ __('message.㉒ The act of reconnaissance of the lesson and the purpose of the purpose of being for the purpose of carrying out the content of the lesson to be provided in our site or outside site, service etc.') }}<br>
                 &nbsp; ㉓ {{ __('message.Acts that promote or promote the acts specified in the preceding items') }}<br>
                 &nbsp; ㉔ {{ __('message.Other acts that the Company deems inappropriate') }}<br>
-                {{ __('message.16-2. Students can use this service and conclude a lesson contract with the matching service to provide information about the instructor that they have learned in connection with this service, not only during student registration but also after the student registration has been deleted. It shall not be used for any purpose other than the fulfillment of the above, and no direct lesson application, etc. shall be made to the instructor included in the information without using the matching service.') }}
+                {{ __('message.16-2. Students can use this service and conclude a lesson contract with the matching service to provide information about the adviser that they have learned in connection with this service, not only during student registration but also after the student registration has been deleted. It shall not be used for any purpose other than the fulfillment of the above, and no direct lesson application, etc. shall be made to the adviser included in the information without using the matching service.') }}
             </p>
             <br>
             <b>17. {{ __('message.Use of calling software') }}</b>
@@ -216,9 +216,9 @@
             <br>
             <b>19. {{ __('message.Handling of confidential information, etc.') }}</b>
             <p>
-                {{ __('message.19-1. Students will be required to use this service and take lessons at other occasions when they apply for registration, and the personal information of the students and other information about the students will be specified separately by the Company. (Hereinafter referred to as personal information, etc.) shall be provided to the Company. Of the personal information, etc., the information that the student has agreed in advance to post on this site after clearly stating that the company will post it on this site for the purpose of notifying the instructor separately in the input form etc. It shall be posted on the site.') }}<br>
-                {{ __('message.19-2. In addition to what is specifically stipulated in this agreement, students are other students obtained in connection with the use of this service or taking lessons, not only during student registration but also after the student registration has been deleted. , Instructors and other third parties and all information about our company shall be kept strictly confidential, and may be disclosed or leaked to third parties regardless of the method, and the use of this service and the use of this service and It shall not be used for any purpose other than the fulfillment of the lesson contract entered into by the matching service.') }}<br>
-                {{ __('message.19-3. Another participation in the course of this Customer, the student is another number of students, instructors and other third parties through our site or lesson. It shall not be provided to.') }}<br>
+                {{ __('message.19-1. Students will be required to use this service and take lessons at other occasions when they apply for registration, and the personal information of the students and other information about the students will be specified separately by the Company. (Hereinafter referred to as personal information, etc.) shall be provided to the Company. Of the personal information, etc., the information that the student has agreed in advance to post on this site after clearly stating that the company will post it on this site for the purpose of notifying the adviser separately in the input form etc. It shall be posted on the site.') }}<br>
+                {{ __('message.19-2. In addition to what is specifically stipulated in this agreement, students are other students obtained in connection with the use of this service or taking lessons, not only during student registration but also after the student registration has been deleted. , Advisers and other third parties and all information about our company shall be kept strictly confidential, and may be disclosed or leaked to third parties regardless of the method, and the use of this service and the use of this service and It shall not be used for any purpose other than the fulfillment of the lesson contract entered into by the matching service.') }}<br>
+                {{ __('message.19-3. Another participation in the course of this Customer, the student is another number of students, advisers and other third parties through our site or lesson. It shall not be provided to.') }}<br>
             </p>
             <br>
             <b>20. {{ __('message.Grant of license right') }}</b>
@@ -232,7 +232,7 @@
                 21-2. {{ __('message.The Company shall not be liable for any damage or loss incurred by the student due to suspension of the provision of this service, cancellation of student registration, interruption, change, addition, abolition, etc. of this service.') }}<br>
                 {{ __('message.21-3. The Company shall not take any responsibility for damages or losses that have a third party, including other students, including other students.') }}<br>
                 {{ __('message.21-4. Otherwise, the Company shall not take any responsibility for the use of the service or the loss or loss, etc. in connection with the use of the service or the lesson.') }}<br>
-                {{ __('message.21-5. The Company shall not be liable for any damage or loss caused by the student to other students, instructors or other third parties in connection with the use of this service or taking lessons. increase.') }}<br>
+                {{ __('message.21-5. The Company shall not be liable for any damage or loss caused by the student to other students, advisers or other third parties in connection with the use of this service or taking lessons. increase.') }}<br>
             </p>
             <br>
             <b>22. {{ __('message.Relationship with advertisers, etc.') }}</b>
@@ -306,7 +306,7 @@
             <br>
             <b>33. {{ __('message.Court of competent jurisdiction') }}</b>
             <p>
-                {{ __('message.If there is a need for a lawsuit between the student and the Company or between the student and the instructor in connection with this service, the student and the Company will go to the Tokyo District Court or the Tokyo Summary Court according to the amount of the lawsuit. You agree to have the exclusive agreement jurisdiction court of the first instance.') }}
+                {{ __('message.If there is a need for a lawsuit between the student and the Company or between the student and the adviser in connection with this service, the student and the Company will go to the Tokyo District Court or the Tokyo Summary Court according to the amount of the lawsuit. You agree to have the exclusive agreement jurisdiction court of the first instance.') }}
             </p>
             <br>
             <b>34. {{ __('message.language') }}</b>

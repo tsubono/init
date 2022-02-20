@@ -12,7 +12,7 @@
                 Init!{{ __('message.init kana') }}{{ __('message.Support people who challenge') }}</div>
             <div class="btn-area">
                 <a href="{{ route('mate.register') }}" class="p-index-main__btn p-btn p-btn__defalut">{{ __('message.Newly register') }}</a>
-                <a href="{{ route('adviser.register') }}" class="p-index-main__btn p-btn p-btn__defalut">{{ __('message.Adviser') }}</a>
+                <a href="{{ route('adviser.register') }}" class="p-index-main__btn p-btn p-btn__defalut">{{ __('message.Register adviser') }}</a>
             </div>
         </div>
     </section>
@@ -92,7 +92,7 @@
                         <div class="p-flowlist__icon">
                             <img src="{{ asset('img/flow-icon03.svg') }}" alt="">
                         </div>
-                        <p>{{ __('message.Adviser') }}<br class="d-none d-md-block">{{ __('message.Offer') }}</p>
+                        <p>{{ __('message.Register adviser') }}<br class="d-none d-md-block">{{ __('message.Offer') }}</p>
                     </li>
                     <li class="p-flowlist__box num04">
                         <div class="p-flowlist__num">4</div>
@@ -110,7 +110,7 @@
         <div class="container">
             <h2 class="p-heading1">
                 <div class="p-heading1__en purple">Advisor</div>
-                {{ __('message.Instructor introduction') }}
+                {{ __('message.Adviser introduction') }}
             </h2>
             <div class="p-index-advisor__list">
                 @foreach ($adviserUsers as $adviserUser)

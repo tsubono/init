@@ -12,7 +12,7 @@
             <br>
             <b>{{ __('message.Compensation of services') }}</b><br>
             {{ __('message.We will provide matching services to students as a service through this service. As a consideration for the service, the student will pay us a matching fee. The amount of the matching fee, which is the consideration for the service, is the balance after deducting the amount of the lesson fee from the amount of the service fee paid by the student.') }}<br>
-            {{ __('message.The amount of the service fee is the amount corresponding to the number of coins set by the instructor, and the ratio of the amount of the matching fee, which is the consideration for the service, to the amount of the lesson fee in the amount of the service fee is individually between our company and the instructor. It shall be determined. The number of coins set by the above instructor will be displayed on our website.') }}<br>
+            {{ __('message.The amount of the service fee is the amount corresponding to the number of coins set by the adviser, and the ratio of the amount of the matching fee, which is the consideration for the service, to the amount of the lesson fee in the amount of the service fee is individually between our company and the adviser. It shall be determined. The number of coins set by the above adviser will be displayed on our website.') }}<br>
             「<b>{{ __('message.Operating company') }}</b>」{{ __('message.And') }}<br>
             「<b>{{ __('message.This service') }}</b>」{{ __('message.And INIT is called the service operated by our company.') }}<br>
             「<b>{{ __('message.Our site') }}</b>」{{ __('message.And the latest websites managed by our company.') }}<br>

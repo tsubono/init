@@ -42,7 +42,7 @@
                     <li><a href="{{ route('privacy') }}">{{ __('message.privacy policy') }}</a></li>
                     <li><a href="{{ route('cancel-policy') }}">{{ __('message.cancellation policy') }}</a></li>
                     <li><a href="{{ route('mate-terms') }}">{{ __('message.Terms of study') }}</a></li>
-                    <li><a href="{{ route('adviser-terms') }}">{{ __('message.Instructors') }}</a></li>
+                    <li><a href="{{ route('adviser-terms') }}">{{ __('message.Terms of adviser') }}</a></li>
                     <li><a href="{{ route('intellectual-property') }}">{{ __('message.Intellectual Property Length Guidelines') }}</a></li>
                     <li><a href="{{ route('tax-payment') }}">{{ __('message.About tax payment') }}</a></li>
                     <li><a href="{{ route('contact.index') }}">{{ __('message.inquiry') }}</a></li>
