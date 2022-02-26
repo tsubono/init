@@ -1,7 +1,7 @@
 <template>
     <div class="p-searchresult__info">
         <div class="p-searchresult__num">
-            検索結果 <span class="num">{{ total.toLocaleString() }}</span>
+          {{  $t('Search result') }} <span class="num">{{ total.toLocaleString() }}</span>
         </div>
         <ul
             id="p-searchresult__sort"
@@ -17,7 +17,7 @@
                     :aria-selected="isActive('new')"
                     @click="setOrder('new')"
                 >
-                    新着順
+                  {{  $t('order by new') }}
                 </button>
             </li>
             <li role="presentation">
@@ -29,7 +29,7 @@
                     :aria-selected="isActive('fav')"
                     @click="setOrder('fav')"
                 >
-                    人気順
+                  {{ $t('order by popularity')}}
                 </button>
             </li>
             <li role="presentation">
@@ -42,7 +42,7 @@
                     :aria-selected="isActive('evaluation')"
                     @click="setOrder('evaluation')"
                 >
-                    評価が高い順
+                  {{ $t('order by rate')}}
                 </button>
             </li>
         </ul>

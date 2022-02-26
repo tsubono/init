@@ -2,7 +2,7 @@
   <div>
     <label class="p-input-file px-100px">
       <input type="file" @change="onSelect">
-      <span>ファイルを選択</span>
+      <span>{{ $t('select file')}}</span>
     </label>
     <input type="hidden" :name="nameFilePath" :value="filePath" />
     <input type="hidden" :name="nameFileName" :value="fileName" />
@@ -62,12 +62,12 @@ export default {
       let fileList = event.target.files || event.dataTransfer.files
       // ファイルが無い時は処理を中止
       if (!fileList.length || !fileList[0].type.match('image.*')) {
-        this.msg = 'ファイル形式が不正です。'
+        this.msg = $t('The file format is invalid.')
         return false
       }
       // ファイルサイズチェック
       if(fileList[0].size > 8000000){
-        this.msg = '一度にアップロードできる画像サイズの容量を超えました'
+        this.msg = $t('The size of the image that can be uploaded at one time has been exceeded.')
         return false
       }
 

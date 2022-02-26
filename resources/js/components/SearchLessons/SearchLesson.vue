@@ -10,7 +10,7 @@
                 <h3>{{ lesson.name }}</h3>
                 <p>
                     {{ description }}
-                    <a :href="lessonUrl"><span class="more">もっと見る</span></a>
+                    <a :href="lessonUrl"><span class="more">{{ $t('more')}}</span></a>
                 </p>
                 <div class="p-card3__info">
                     <div class="p-card3__info_cate">
@@ -24,7 +24,7 @@
                         </ul>
                     </div>
                     <div class="p-card3__info_point">
-                        {{ lesson.coin_amount.toLocaleString() }}コイン
+                        {{ lesson.coin_amount.toLocaleString() }}{{ $t('Coin') }}
                     </div>
                 </div><!-- /.p-card3__info -->
                 <div class="p-card3__advisor">
@@ -36,7 +36,7 @@
                             {{ lesson.adviser_user.full_name }}
                         </h4>
                         <div class="p-card3__box">
-                            <h5 class="p-heading3">言語</h5>
+                            <h5 class="p-heading3">{{ $t('Language') }}</h5>
                             <div class="p-card3__country">
                                 <p>
                                     {{ languages }}
@@ -51,7 +51,7 @@
             <div class="border p-timezone text-center">
                 <a data-bs-toggle="collapse" href="#collapseDetail2" role="button" aria-expanded="false"
                    aria-controls="collapseDetail2">
-                    <h3>レッスン可能な時間帯</h3>
+                    <h3>{{ $t('Lesson available time') }}</h3>
                 </a>
                 <div class="collapse" id="collapseDetail2">
                     <div class="inner py-4">
@@ -85,13 +85,13 @@ export default {
 
     data: () => ({
         days: {
-            monday: "月",
-            tuesday: "火",
-            wednesday: "水",
-            thursday: "木",
-            friday: "金",
-            saturday: "土",
-            sunday: "日",
+            monday: $t('monday'),
+            tuesday: $t('tuesday'),
+            wednesday: $t('wednesday'),
+            thursday: $t('thursday'),
+            friday: $t('friday'),
+            saturday: $t('saturday'),
+            sunday: $t('sunday'),
         },
     }),
 

@@ -13,7 +13,7 @@
                 <div class="modal-content">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
                     <div class="modal-body">
-                        <h2 class="p-heading2 mt-0">カテゴリ</h2>
+                        <h2 class="p-heading2 mt-0">{{ $t('Category')}}</h2>
                         <div class="row">
                             <template v-for="(room, index) in rooms">
                                 <div
@@ -51,7 +51,7 @@
                                 </div>
                             </template>
                         </div><!-- /. row -->
-                        <button type="button" class="p-btn p-btn__defalut" data-bs-dismiss="modal">閉じる</button>
+                        <button type="button" class="p-btn p-btn__defalut" data-bs-dismiss="modal">{{ $t('Close')}}</button>
                     </div><!-- /.modal-body -->
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

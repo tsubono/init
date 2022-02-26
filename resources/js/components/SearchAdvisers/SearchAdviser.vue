@@ -12,8 +12,8 @@
                 <div class="row">
                     <div class="col-lg-8 p-card3__box">
                         <h4 class="p-heading3">
-                            出身国 /<br class="d-lg-none">
-                            住居国
+                          {{ $t('Country of origin') }} /<br class="d-lg-none">
+                          {{ $t('Country of residence') }}
                         </h4>
                         <div class="p-card3__country">
                             <div>
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 p-card3__box">
-                        <h4 class="p-heading3 gender">性別</h4>
+                        <h4 class="p-heading3 gender">{{ $t('gender') }}</h4>
                         <div class="p-card3__gender">
                             <div
                                 class="p-label__age"
@@ -37,13 +37,13 @@
                         </div>
                     </div>
                     <div class="col-md-12 p-card3__box">
-                        <h4 class="p-heading3">言語</h4>
+                        <h4 class="p-heading3">{{ $t('Language') }}</h4>
                         <div class="p-card3__country">
                             <p>{{ _adviser.languagesText }}</p>
                         </div>
                     </div>
                     <div class="col-md-12 p-card3__box">
-                        <h4 class="p-heading3">カテゴリー</h4>
+                        <h4 class="p-heading3">{{ $t('Category') }}</h4>
                         <div class="p-card3__country">
                             <ul class="p-profile__category">
                                 <li
@@ -64,7 +64,7 @@
             <div class="border p-timezone text-center">
                 <a data-bs-toggle="collapse" href="#collapseDetail2" role="button" aria-expanded="false"
                    aria-controls="collapseDetail2">
-                    <h3>レッスン可能な時間帯</h3>
+                    <h3>{{ $t('Lesson available time') }}</h3>
                 </a>
                 <div class="collapse" id="collapseDetail2">
                     <div class="inner py-4">

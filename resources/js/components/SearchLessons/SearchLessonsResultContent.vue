@@ -1,6 +1,6 @@
 <template>
     <div class="p-search__content">
-        <div v-if="isEmpty">該当のレッスンは見つかりませんでした。</div>
+        <div v-if="isEmpty">{{ $t('The lesson was not found.')}}</div>
         <template v-else>
             <SearchLesson
                 v-for="lesson in lessons"
@@ -16,7 +16,7 @@
                     class="mx-auto p-btn p-btn__defalut"
                     @click="onClickLoadMoreButton"
                 >
-                    もっと読み込む
+                  {{ $t('more')}}
                 </button>
             </div>
         </template>

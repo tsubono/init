@@ -52,6 +52,9 @@
         </div>
     </footer>
 
+    <script>
+      var __locale = '{{ app()->getLocale() }}'
+    </script>
     <!-- Scripts -->
     @if (!request()->is('mate/coins/buy') && !request()->is('/'))
         <script src="{{ mix('js/app.js') }}" defer></script>

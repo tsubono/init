@@ -1,6 +1,6 @@
 <template>
     <div class="InstagramThumbnail">
-        動画URLからのサムネイル取得にはAPIとの連携が必要
+      {{ $t('Linkage with API is required to get thumbnails from video URLs') }}
     </div>
 </template>
 

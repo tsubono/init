@@ -5,7 +5,7 @@
         </p>
 
         <button type="button" class="p-btn p-btn__black" data-bs-toggle="modal" data-bs-target="#form-languagemodal">
-            選択してください
+          {{ $t('Please select')}}
         </button>
 
         <div class="modal p-modal fade" id="form-languagemodal" tabindex="-1" aria-labelledby="form-languagemodalLabel">
@@ -13,7 +13,7 @@
                 <div class="modal-content">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
                     <div class="modal-body">
-                        <h2 class="p-heading2">言語</h2>
+                        <h2 class="p-heading2">{{ $t('Language')}}</h2>
                         <div class="row">
                             <div
                                 v-for="(language, index) in languages"
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         </div><!-- /. row -->
-                        <button type="button" class="p-btn p-btn__defalut" data-bs-dismiss="modal">閉じる</button>
+                        <button type="button" class="p-btn p-btn__defalut" data-bs-dismiss="modal">{{ $t('Close')}}</button>
                     </div><!-- /.modal-body -->
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

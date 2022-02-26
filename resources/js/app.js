@@ -3,13 +3,23 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
 require('./bootstrap');
 const VueFormulate = require('@braid/vue-formulate');
 
 window.Vue = require('vue').default;
 
 Vue.use(VueFormulate.default)
+
+import VueI18n from "vue-i18n"
+
+Vue.use(VueI18n)
+const i18n = new VueI18n({
+  locale: __locale,
+  messages: {
+    ja : require('../lang/ja.json'),
+    en : require('../lang/en.json')
+  }
+})
 
 /**
  * The following block of code may be used to automatically register your
@@ -50,4 +60,5 @@ if (Cookies.get('timezone') !== timezone) {
 
 const app = new Vue({
     el: '#app',
+    i18n,
 });

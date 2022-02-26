@@ -6,13 +6,13 @@
                 @submit.prevent.stop
             >
                 <h2 class="p-searchblock__all">
-                    <span class="d-none d-md-inline">探しているのは</span>
+                    <span class="d-none d-md-inline">{{ $t('Looking for')}}</span>
                     <select
                         class="form-select"
                         v-model="formData.category"
                         @change="search"
                     >
-                        <option value="">すべてのカテゴリ</option>
+                        <option value="">{{ $t('All category')}}</option>
                         <option
                             v-for="category in categories"
                             :key="category.id"
@@ -21,7 +21,7 @@
                             {{ category.name }}
                         </option>
                     </select>
-                    のレッスン。
+                  {{ $t('Lesson.')}}
                 </h2>
                 <a
                     class="p-btn p-btn__outline d-md-none"
@@ -31,7 +31,7 @@
                     aria-expanded="false"
                     aria-controls="collapseDetail"
                 >
-                    詳細検索
+                  {{ $t('Search detail')}}
                 </a>
                 <div
                     class="collapse"
@@ -39,13 +39,13 @@
                 >
                     <div class="row">
                         <div class="col-md-6 mb-3 mb-md-4">
-                            <h3 class="p-heading3">講師が話せる言語</h3>
+                            <h3 class="p-heading3">{{ $t('Adviser language')}}</h3>
                             <select
                                 class="form-select"
                                 v-model="formData.language"
                                 @change="search"
                             >
-                                <option value="">指定しない</option>
+                                <option value="">{{ $t('Not specified')}}</option>
                                 <option
                                     v-for="language in languages"
                                     :key="language.id"
@@ -56,25 +56,25 @@
                             </select>
                         </div>
                         <div class="col-md-6 mb-3 mb-md-4">
-                            <h3 class="p-heading3">レッスン名</h3>
+                            <h3 class="p-heading3">{{ $t('Lesson name')}}</h3>
                             <input
                                 type="text"
                                 class="form-control"
-                                placeholder="記入してください"
+                                placeholder=""
                                 v-model="formData.room"
                                 @change="search"
                             >
                         </div>
                         <div class="col-lg-3 col-6 mb-md-4">
                             <h3 class="p-heading3">
-                                <span class="d-none d-md-inline">講師の</span>出身国
+                                <span class="d-none d-md-inline">{{ $t('Adviser') }}</span>{{ $t('Country of origin') }}
                             </h3>
                             <select
                                 class="form-select"
                                 v-model="formData.country"
                                 @change="search"
                             >
-                                <option value="">指定しない</option>
+                                <option value="">{{ $t('Not specified')}}</option>
                                 <option
                                     v-for="country in countries"
                                     :key="country.id"
@@ -86,25 +86,25 @@
                         </div>
                         <div class="col-lg-3 col-6">
                             <h3 class="p-heading3">
-                                <span class="d-none d-md-inline">講師の</span>性別
+                                <span class="d-none d-md-inline">{{ $t('Adviser') }}</span>{{ $t('gender') }}
                             </h3>
                             <select
                                 class="form-select"
                                 v-model="formData.gender"
                                 @change="search"
                             >
-                                <option value="">すべて</option>
-                                <option value="男性">男性</option>
-                                <option value="女性">女性</option>
+                                <option value="">{{ $t('All') }}</option>
+                                <option value="男性">{{ $t('Male') }}</option>
+                                <option value="女性">{{ $t('Woman') }}</option>
                             </select>
                         </div>
                         <div class="col-lg-6">
-                            <h3 class="p-heading3">必要コイン</h3>
+                            <h3 class="p-heading3">{{ $t('Required coins') }}</h3>
                             <div class="d-flex align-items-center">
                                 <input
                                     type="number"
                                     class="form-control"
-                                    placeholder="最低コイン"
+                                    placeholder=""
                                     v-model="formData.coinMin"
                                     @change="search"
                                 >
@@ -112,7 +112,7 @@
                                 <input
                                     type="number"
                                     class="form-control"
-                                    placeholder="上限コイン"
+                                    placeholder=""
                                     v-model="formData.coinMax"
                                     @change="search"
                                 >
