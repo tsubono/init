@@ -16,7 +16,9 @@
     <div class="col-6 mb-3">
         <h4 class="p-heading3">{{ __('message.sex') }}</h4>
         @if (!empty($adviserUser->gender))
-            <div class="p-label__age {{ $adviserUser->gender === '男性' ? 'men' : 'woman' }}">{{ $adviserUser->gender }}</div>
+            <div class="p-label__age {{ $adviserUser->gender === '男性' ? 'men' : 'woman' }}">
+                {{ $adviserUser->gender === '男性' ? __('message.male') : __('message.woman') }}
+            </div>
         @else
             {{ __('message.Unregistered') }}
         @endif

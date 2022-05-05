@@ -14,15 +14,7 @@
                         <h4 class="p-heading3">
                           {{ $t('Country of origin') }} /<br>{{ $t('Country of residence') }}
                         </h4>
-                        <div class="p-card3__country">
-                            <div>
-                                {{ _adviser.fromCountryName }}
-                            </div>
-                            <span class="d-none d-lg-inline">/</span>
-                            <div>
-                                {{ _adviser.residenceCountryName }}
-                            </div>
-                        </div>
+                      {{ _adviser.fromCountryName }} /<br>{{ _adviser.residenceCountryName }}
                     </div>
                     <div class="col-lg-4 p-card3__box">
                         <h4 class="p-heading3 gender">{{ $t('gender') }}</h4>
@@ -31,7 +23,8 @@
                                 class="p-label__age"
                                 :class="genderIconClass"
                             >
-                                {{ _adviser.gender }}
+                              <span v-if="_adviser.gender === '男性'">{{ $t('Male') }}</span>
+                              <span v-if="_adviser.gender === '女性'">{{ $t('Woman') }}</span>
                             </div>
                         </div>
                     </div>
