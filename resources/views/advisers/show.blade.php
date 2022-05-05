@@ -20,7 +20,7 @@
                             <h3 class="p-heading2">{{ __('message.Language to be taught') }}</h3>
                             <ul class="p-profile__language">
                                 @foreach ($adviserUser->languages as $language)
-                                    <li>・{{ $language->name }}</li>
+                                    <li>・{{ $language->name_locale }}</li>
                                 @endforeach
                             </ul>
                         </div>
@@ -31,7 +31,7 @@
                                     <li>
                                         <div class="p-category">
                                             <img src="{{ $category->icon_path }}" alt="{{ __('message.icon') }}" />
-                                            {{ $category->name }}
+                                            {{ $category->name_locale }}
                                         </div>
                                     </li>
                                 @endforeach
@@ -113,7 +113,7 @@
                                     <div class="p-card__category mt-3">
                                         <ul class="justify-content-start">
                                             @foreach ($lesson->categories as $category)
-                                                <li>#{{ $category->name }}</li>
+                                                <li>#{{ $category->name_locale }}</li>
                                             @endforeach
                                         </ul>
                                     </div>

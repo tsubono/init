@@ -88,11 +88,6 @@
         height: 20px;
         transform: rotate(45deg);
       }
-      &::after {
-        content: "人";
-        position: absolute;
-        font-size: 0.875rem;
-      }
     }
   }
   &__tab {

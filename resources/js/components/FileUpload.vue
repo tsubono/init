@@ -86,7 +86,6 @@
             left: 0;
             right: 0;
             height: 40px;
-            content: '選択してください';
             color: #fff;
             background-color: #bababa;
             text-align: center;

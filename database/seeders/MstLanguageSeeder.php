@@ -17,9 +17,10 @@ class MstLanguageSeeder extends Seeder
 		$language = DB::table('mst_languages')->where('name', '日本語')->first();
         if (empty($language)) {
             DB::table('mst_languages')->insert([
-                    [ 'name' => '日本語' ],
-                    [ 'name' => '英語' ],
-                    [ 'name' => 'タイ語' ],
+                    [ 'name' => '日本語', 'name_en' => 'Japanese' ],
+                    [ 'name' => '英語', 'name_en' => 'English language' ],
+                    [ 'name' => 'タイ語', 'name_en' => 'Thai' ],
+                    [ 'name' => '韓国語', 'name_en' => 'Korean' ],
                 ]
             );
         }

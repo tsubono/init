@@ -17,9 +17,9 @@ class MstRoomSeeder extends Seeder
         $category = DB::table('mst_rooms')->first();
         if (empty($category)) {
             DB::table('mst_rooms')->insert([
-                    ['id' => 1,  'name' => 'ビジネスルーム' ],
-                    ['id' => 2, 'name' => '自分磨きルーム' ],
-                    ['id' => 3, 'name' => 'スキルアップルーム'],
+                    ['id' => 1,  'name' => 'ビジネスルーム', 'name_en' => 'Business room' ],
+                    ['id' => 2, 'name' => '自分磨きルーム', 'name_en' => 'Self-polishing room' ],
+                    ['id' => 3, 'name' => 'スキルアップルーム', 'name_en' => 'Skill up room' ],
                 ]
             );
         }

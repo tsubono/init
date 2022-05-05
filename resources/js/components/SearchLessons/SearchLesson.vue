@@ -18,7 +18,7 @@
                             <li v-for="category in lesson.categories">
                                 <div class="p-category">
                                     <img :src="category.icon_path" alt="アイコン"/>
-                                    {{ category.name }}
+                                    {{ category.name_locale }}
                                 </div>
                             </li>
                         </ul>

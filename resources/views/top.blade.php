@@ -122,12 +122,12 @@
                             <div class="p-card__info">
                                 <div class="p-card__name">{{ $adviserUser->full_name }}</div>
                                 <div class="p-card__lang">
-                                    <div class="p-lang">{{ $adviserUser->fromCountry->name ?? '' }}</div>
+                                    <div class="p-lang">{{ $adviserUser->fromCountry->name_locale ?? '' }}</div>
                                 </div>
                                 <div class="p-card__category">
                                     <ul>
                                         @foreach ($adviserUser->categories as $category)
-                                            <li>#{{ $category->name }}</li>
+                                            <li>#{{ $category->name_locale }}</li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -155,7 +155,7 @@
                             <div class="p-lesson__info">
                                 @foreach ($lesson->categories as $index => $category)
                                     @if ($index < 2)
-                                        <div class="p-lesson__category">{{ $category->name }}</div>
+                                        <div class="p-lesson__category">{{ $category->name_locale }}</div>
                                     @endif
                                 @endforeach
                                 <div class="p-lesson__point">{{ number_format($lesson->coin_amount) }} Coin</div>
@@ -166,7 +166,7 @@
                                     <div class="p-lesson__name">{{ $lesson->adviserUser->full_name }}</div>
                                     <div class="p-lesson__details">
                                         <div class="p-lesson__details_item">
-                                            {{ __('message.Country of origin') }}：<div class="p-lang p-lang__france">{{ $lesson->adviserUser->fromCountry->name }}</div>
+                                            {{ __('message.Country of origin') }}：<div class="p-lang p-lang__france">{{ $lesson->adviserUser->fromCountry->name_locale }}</div>
                                         </div>
                                         <div class="p-lesson__details_item">{{ __('message.age') }}：{{ $lesson->adviserUser->age_txt }}</div>
                                     </div>

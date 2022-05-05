@@ -41,7 +41,11 @@
   "Adviser name": "Adviser name",
   "Country of Residence": "Country of Residence",
   "Age": "Age",
-  "Linkage with API is required to get thumbnails from video URLs": "Linkage with API is required to get thumbnails from video URLs"
+  "Linkage with API is required to get thumbnails from video URLs": "Linkage with API is required to get thumbnails from video URLs",
+  "cases": "cases",
+  "people": "people",
+  "of Adviser.": "of Adviser.",
+  "detailed search": "detailed search"
 }
 
 

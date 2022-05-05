@@ -1,7 +1,7 @@
 <template>
     <div class="p-searchresult__info">
         <div class="p-searchresult__num">
-          {{  $t('Search result') }} <span class="num">{{ total.toLocaleString() }}</span>
+          {{  $t('Search result') }} <span class="num">{{ total.toLocaleString() }}</span> {{  $t('cases') }}
         </div>
         <ul
             id="p-searchresult__sort"
@@ -102,9 +102,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-.num:after {
-    content: "件"
-}
-</style>

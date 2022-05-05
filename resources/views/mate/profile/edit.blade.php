@@ -252,7 +252,7 @@
                                         @foreach ($mst_countries as $mst_country)
                                             <option value="{{ $mst_country->id }}"
                                                     {{ old('from_country_id', $user->from_country_id) == $mst_country->id ? 'selected' : '' }}>
-                                                {{ $mst_country->name }}
+                                                {{ $mst_country->name_locale }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -270,7 +270,7 @@
                                         @foreach ($mst_countries as $mst_country)
                                             <option value="{{ $mst_country->id }}"
                                                     {{ old('residence_country_id', $user->residence_country_id) == $mst_country->id ? 'selected' : '' }}>
-                                                {{ $mst_country->name }}
+                                                {{ $mst_country->name_locale }}
                                             </option>
                                         @endforeach
                                     </select>

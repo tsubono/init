@@ -7,11 +7,11 @@
 <div class="row text-center">
     <div class="col-6 mb-3">
         <h4 class="p-heading3">{{ __('message.Country of origin') }}</h4>
-        <div>{{ $adviserUser->fromCountry->name }}</div>
+        <div>{{ $adviserUser->fromCountry->name_locale }}</div>
     </div>
     <div class="col-6 mb-3">
         <h4 class="p-heading3">{{ __('message.Country of Residence') }}</h4>
-        <div>{{ $adviserUser->residenceCountry->name }}</div>
+        <div>{{ $adviserUser->residenceCountry->name_locale }}</div>
     </div>
     <div class="col-6 mb-3">
         <h4 class="p-heading3">{{ __('message.sex') }}</h4>

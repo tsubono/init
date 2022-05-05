@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\AttendanceReminder::class,
-        Commands\SendInformationMail::class
+        Commands\SendInformationMail::class,
+        Commands\AddNameEnToMasters::class,
     ];
 
     /**

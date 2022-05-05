@@ -31,7 +31,7 @@
                                         class="form-check-label"
                                         :for="`form-check__language${index}`"
                                     >
-                                        {{ language.name }}
+                                        {{ language.name_locale }}
                                     </label>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@ export default {
 
     computed: {
         languagesSelected () {
-            return this.languages.filter(({id}) => this.selected.includes(id)).map(({name}) => name).join('、')
+            return this.languages.filter(({id}) => this.selected.includes(id)).map(({name_locale}) => name_locale).join('、')
         }
     },
 }

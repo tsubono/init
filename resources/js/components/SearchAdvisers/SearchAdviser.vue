@@ -12,8 +12,7 @@
                 <div class="row">
                     <div class="col-lg-8 p-card3__box">
                         <h4 class="p-heading3">
-                          {{ $t('Country of origin') }} /<br class="d-lg-none">
-                          {{ $t('Country of residence') }}
+                          {{ $t('Country of origin') }} /<br>{{ $t('Country of residence') }}
                         </h4>
                         <div class="p-card3__country">
                             <div>
@@ -51,7 +50,7 @@
                                     :key="category.id"
                                 >
                                     <div class="p-category language">
-                                        {{ category.name }}
+                                        {{ category.name_locale }}
                                     </div>
                                 </li>
                             </ul>
@@ -73,6 +72,7 @@
                                 v-for="(availableTime, day) in _adviser.availableTimes"
                                 :key="day"
                             >
+                              {{day}}
                                 {{ availableTime.day }}
                                 <span class="time time-first">{{ availableTime.start }}</span>
                                 <span class="time time-last">{{ availableTime.end }}</span>

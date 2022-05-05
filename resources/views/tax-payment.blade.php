@@ -15,7 +15,7 @@
                 ➔  <a class="primary-link" href="http://www.jtri.or.jp/counsel/index.php" target="_blank">http://www.jtri.or.jp/counsel/index.php</a><br>
                 <br>
                 {{ __('message.National Tax Public Tax Answer is guided as a common tax question for each type of tax.') }}<br>
-                ➔  <a class="primary-link" href="//www.nta.go.jp/taxes/shiraberu/taxanswer/index2.htm" target="_blank">www.nta.go.jp/taxes/shiraberu/taxanswer/index2.htm</a> <br>
+                ➔  <a class="primary-link" href="{{ __('message.tax link') }}" target="_blank">{{ __('message.tax link') }}</a> <br>
                 <br>
                 Internal Revenue Service（{{ __('message.United States International Revenue Agency English') }}）<br>
                 ➔  <a class="primary-link" href="//www.irs.gov/" target="_blank">www.irs.gov/</a> <br>

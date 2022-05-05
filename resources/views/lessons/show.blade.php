@@ -16,7 +16,7 @@
                         <li>
                             <div class="p-category d-inline-block pe-5">
                                 <img src="{{ $category->icon_path }}" alt="{{ __('message.icon') }}" />
-                                {{ $category->name }}
+                                {{ $category->name_locale }}
                             </div>
                         </li>
                     @endforeach
@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="flex-fill ms-3">
                                     <h3 class="p-heading2 mb-0">{{ __('message.language') }}</h3>
-                                    <div class="border p-3">{{ $lesson->language->name }}</div>
+                                    <div class="border p-3">{{ $lesson->language->name_locale }}</div>
                                 </div>
                             </div>
                         </div>

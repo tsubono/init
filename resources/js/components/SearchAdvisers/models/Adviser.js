@@ -66,15 +66,15 @@ export class Adviser {
     }
 
     get fromCountryName () {
-        return this.#fromCountry.name
+        return this.#fromCountry.name_locale
     }
 
     get residenceCountryName () {
-        return this.#residenceCountry.name
+        return this.#residenceCountry.name_locale
     }
 
     get languagesText () {
-        return this.#languages.map(({name}) => name).join(' / ')
+        return this.#languages.map(({name_locale}) => name_locale).join(' / ')
     }
 
     get categories () {

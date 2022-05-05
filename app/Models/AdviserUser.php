@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 
 class AdviserUser extends Authenticatable implements MustVerifyEmail
 {
@@ -288,34 +289,34 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
 
         switch ($age) {
             case $age <= 19:
-                $ageTxt = '〜19歳';
+                $ageTxt = App::isLocale('en') ? '〜19 years old' : '〜19歳';
                 break;
             case $age <= 29:
-                $ageTxt = '20〜29歳';
+                $ageTxt = App::isLocale('en') ? '20〜29 years old' : '20〜29歳';
                 break;
             case $age <= 39:
-                $ageTxt = '30〜39歳';
+                $ageTxt = App::isLocale('en') ? '30〜39 years old' : '30〜39歳';
                 break;
             case $age <= 49:
-                $ageTxt = '40〜49歳';
+                $ageTxt = App::isLocale('en') ? '40〜49 years old' : '40〜49歳';
                 break;
             case $age <= 59:
-                $ageTxt = '50〜59歳';
+                $ageTxt = App::isLocale('en') ? '50〜59 years old' : '50〜59歳';
                 break;
             case $age <= 69:
-                $ageTxt = '60〜69歳';
+                $ageTxt = App::isLocale('en') ? '60〜69 years old' : '60〜69歳';
                 break;
             case $age <= 79:
-                $ageTxt = '70〜79歳';
+                $ageTxt = App::isLocale('en') ? '70〜79 years old' : '70〜79歳';
                 break;
             case $age <= 89:
-                $ageTxt = '80〜89歳';
+                $ageTxt = App::isLocale('en') ? '80〜89 years old' : '80〜89歳';
                 break;
             case $age <= 99:
-                $ageTxt = '90〜99歳';
+                $ageTxt = App::isLocale('en') ? '90〜99 years old' : '90〜99歳';
                 break;
             case $age <= 109:
-                $ageTxt = '100〜109歳';
+                $ageTxt = App::isLocale('en') ? '100〜109 years old' : '100〜109歳';
                 break;
         };
 
@@ -391,8 +392,13 @@ class AdviserUser extends Authenticatable implements MustVerifyEmail
      */
     public function getFullNameAttribute(): string
     {
-        return !is_null($this->middle_name) ?
-            "{$this->first_name} {$this->middle_name} {$this->family_name}" : "{$this->first_name} {$this->family_name}";
+        if (App::isLocale('en')) {
+            return !is_null($this->middle_name_kana) ?
+                "{$this->first_name_kana} {$this->middle_name_kana} {$this->family_name_kana}" : "{$this->first_name_kana} {$this->family_name_kana}";
+        } else {
+            return !is_null($this->middle_name) ?
+                "{$this->first_name} {$this->middle_name} {$this->family_name}" : "{$this->first_name} {$this->family_name}";
+        }
     }
 
     /**

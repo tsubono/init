@@ -141,7 +141,7 @@
                         <div class="p-aboutlist__text">
                             <h3>{{ __('message.Skype registration') }}</h3>
                             <p>{{ __('message.In INIT lessons, use Skype.') }}<br>
-                                <a href="https://support.skype.com/ja/faq/FA11098/skype-noshi-ishi-mefang-wojiao-etekudasai" target="_blank" class="primary-link">{{ __('message.Click here for Skypes download and registration method') }}</a></p>
+                                <a href="{{ __('message.skype link') }}" target="_blank" class="primary-link">{{ __('message.Click here for Skypes download and registration method') }}</a></p>
                         </div>
                     </li>
                     <li class="p-aboutlist__box num02">

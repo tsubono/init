@@ -16,12 +16,12 @@
                         <option
                             v-for="category in categories"
                             :key="category.id"
-                            :value="category.name"
+                            :value="category.name_locale"
                         >
-                            {{ category.name }}
+                            {{ category.name_locale }}
                         </option>
                     </select>
-                    の講師。
+                    {{  $t('of Adviser.') }}
                 </h2>
                 <a
                     class="p-btn p-btn__outline d-md-none"
@@ -31,7 +31,7 @@
                     aria-expanded="false"
                     aria-controls="collapseDetail"
                 >
-                    詳細検索
+                  {{  $t('detailed search') }}
                 </a>
                 <div
                     class="collapse"
@@ -45,13 +45,13 @@
                                 v-model="formData.language"
                                 @change="search"
                             >
-                                <option value="">指定しない</option>
+                                <option value="">{{  $t('Not specified') }}</option>
                                 <option
                                     v-for="language in languages"
                                     :key="language.id"
-                                    :value="language.name"
+                                    :value="language.name_locale"
                                 >
-                                    {{ language.name }}
+                                    {{ language.name_locale }}
                                 </option>
                             </select>
                         </div>
@@ -78,9 +78,9 @@
                                 <option
                                     v-for="country in countries"
                                     :key="country.id"
-                                    :value="country.name"
+                                    :value="country.name_locale"
                                 >
-                                    {{ country.name }}
+                                    {{ country.name_locale }}
                                 </option>
                             </select>
                         </div>
@@ -97,9 +97,9 @@
                                 <option
                                     v-for="country in countries"
                                     :key="country.id"
-                                    :value="country.name"
+                                    :value="country.name_locale"
                                 >
-                                    {{ country.name }}
+                                    {{ country.name_locale }}
                                 </option>
                             </select>
                         </div>

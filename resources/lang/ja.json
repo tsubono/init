@@ -39,7 +39,11 @@
   "Search result": "検索結果",
   "The adviser was not found.": "該当の講師は見つかりませんでした。",
   "Adviser name": "講師名",
-  "Country of Residence": "居住国",
+  "Country of residence": "居住国",
   "Age": "年齢",
-  "Linkage with API is required to get thumbnails from video URLs": "動画URLからのサムネイル取得にはAPIとの連携が必要"
+  "Linkage with API is required to get thumbnails from video URLs": "動画URLからのサムネイル取得にはAPIとの連携が必要",
+  "cases": "件",
+  "people": "人",
+  "of Adviser.": "の講師。",
+  "detailed search": "詳細検索"
 }

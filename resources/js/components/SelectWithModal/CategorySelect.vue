@@ -5,7 +5,7 @@
         </p>
         <!-- 切り替えボタンの設定 -->
         <button type="button" class="p-btn p-btn__black" data-bs-toggle="modal" data-bs-target="#form-categorymodal">
-            選択してください
+          {{ $t('Please select')}}
         </button>
         <!-- モーダルの設定 -->
         <div class="modal p-modal fade" id="form-categorymodal" tabindex="-1" aria-labelledby="form-categorymodalLabel">
@@ -21,7 +21,7 @@
                                     class="col-12 mb-3"
                                 >
                                     <h3>
-                                        <strong>{{ room.name }}</strong>
+                                        <strong>{{ room.name_locale }}</strong>
                                     </h3>
                                 </div>
                                 <div
@@ -43,9 +43,9 @@
                                             :for="`form-check__cate${index}${index2}`"
                                         >
                                             <div class="p-card2__icon">
-                                                <img :src="category.icon_path" :alt="category.name">
+                                                <img :src="category.icon_path" :alt="category.name_locale">
                                             </div>
-                                            {{ category.name }}
+                                            {{ category.name_locale }}
                                         </label>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@ export default {
         },
 
         categoriesSelected () {
-            return this.categories.filter(({id}) => this.selected.includes(id)).map(({name}) => name).join('、')
+            return this.categories.filter(({id}) => this.selected.includes(id)).map(({name_locale}) => name_locale).join('、')
         }
     },
 }

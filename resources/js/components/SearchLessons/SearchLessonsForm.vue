@@ -16,9 +16,9 @@
                         <option
                             v-for="category in categories"
                             :key="category.id"
-                            :value="category.name"
+                            :value="category.name_locale"
                         >
-                            {{ category.name }}
+                            {{ category.name_locale }}
                         </option>
                     </select>
                   {{ $t('Lesson.')}}
@@ -49,9 +49,9 @@
                                 <option
                                     v-for="language in languages"
                                     :key="language.id"
-                                    :value="language.name"
+                                    :value="language.name_locale"
                                 >
-                                    {{ language.name }}
+                                    {{ language.name_locale }}
                                 </option>
                             </select>
                         </div>
@@ -78,9 +78,9 @@
                                 <option
                                     v-for="country in countries"
                                     :key="country.id"
-                                    :value="country.name"
+                                    :value="country.name_locale"
                                 >
-                                    {{ country.name }}
+                                    {{ country.name_locale }}
                                 </option>
                             </select>
                         </div>

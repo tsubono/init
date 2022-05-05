@@ -23,7 +23,7 @@
                                 <div class="p-card__category mt-3">
                                     <ul class="justify-content-start">
                                         @foreach ($lesson->categories as $category)
-                                            <li>#{{ $category->name }}</li>
+                                            <li>#{{ $category->name_locale }}</li>
                                         @endforeach
                                     </ul>
                                 </div>

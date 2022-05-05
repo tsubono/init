@@ -5,7 +5,7 @@
         </p>
          <!-- 切り替えボタンの設定 -->
         <button type="button" class="p-btn p-btn__black" data-bs-toggle="modal" data-bs-target="#form-languagemodal">
-            選択してください
+          {{ $t('Please select')}}
         </button>
         <!-- モーダルの設定 -->
         <div class="modal p-modal fade" id="form-languagemodal" tabindex="-1" aria-labelledby="form-languagemodalLabel">
@@ -33,7 +33,7 @@
                                         class="form-check-label"
                                         :for="`form-check__language${index}`"
                                     >
-                                        {{ language.name }}
+                                        {{ language.name_locale }}
                                     </label>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@ export default {
 
     computed: {
         languageSelected () {
-            return this.languages.find(({id}) => id === this.selected)?.name
+            return this.languages.find(({id}) => id === this.selected)?.name_locale
         },
     },
 }
