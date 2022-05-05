@@ -89,3 +89,4 @@ export class Adviser {
         return location.origin + '/advisers/' + this.#id
     }
 }
+

@@ -85,13 +85,13 @@ export default {
 
     data: () => ({
         days: {
-            monday: $t('monday'),
-            tuesday: $t('tuesday'),
-            wednesday: $t('wednesday'),
-            thursday: $t('thursday'),
-            friday: $t('friday'),
-            saturday: $t('saturday'),
-            sunday: $t('sunday'),
+          monday: "月",
+          tuesday: "火",
+          wednesday: "水",
+          thursday: "木",
+          friday: "金",
+          saturday: "土",
+          sunday: "日",
         },
     }),
 
@@ -107,7 +107,7 @@ export default {
             }
         },
         languages () {
-            return this.lesson.adviser_user.languages.map(({name}) => name).join(' / ')
+            return this.lesson.adviser_user.languages.map(({name_locale}) => name_locale).join(' / ')
         }
     },
 

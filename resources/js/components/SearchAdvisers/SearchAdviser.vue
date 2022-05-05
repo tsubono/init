@@ -65,7 +65,6 @@
                                 v-for="(availableTime, day) in _adviser.availableTimes"
                                 :key="day"
                             >
-                              {{day}}
                                 {{ availableTime.day }}
                                 <span class="time time-first">{{ availableTime.start }}</span>
                                 <span class="time time-last">{{ availableTime.end }}</span>

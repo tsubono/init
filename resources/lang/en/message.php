@@ -560,6 +560,7 @@ return [
     "In addition, if the adviser does not appear after a certain amount of time has passed since the start time of the lesson on the day, the student will be given the right to use the report button. If there is a report to the adviser, the entire tuition fee will be collected from the adviser as an operating fee, and the evaluation may be lowered by the review from the adviser." => "In addition, if the adviser does not appear after a certain amount of time has passed since the start time of the lesson on the day, the student will be given the right to use the report button. If there is a report to the adviser, the entire tuition fee will be collected from the adviser as an operating fee, and the evaluation may be lowered by the review from the adviser.",
     "3. About matters that are not specified in this policy, we will establish the latest " => "3. About matters that are not specified in this policy, we will establish the latest ",
     "age" => "Age",
+    "years old" => "years old",
     "lesson" => "Lesson",
     "Attendance" => "Attendance",
     "Usually, we accept applications 12 hours before the desired lesson date." => "Usually, we accept applications 12 hours before the desired lesson date.",

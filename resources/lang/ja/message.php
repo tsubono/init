@@ -561,6 +561,7 @@ return [
     "In addition, if the adviser does not appear after a certain amount of time has passed since the start time of the lesson on the day, the student will be given the right to use the report button. If there is a report to the adviser, the entire tuition fee will be collected from the adviser as an operating fee, and the evaluation may be lowered by the review from the adviser." => "また、当日レッスンの開始時刻を一定の時間経過しても講師が現れない場合は、受講者に「通報ボタン」の使用権利が与えられます。講師への通報があった場合は、講師から受講料全額を運営手数料として徴収し、受講者からのレビューにて、評価が下がる可能性があるものとします。",
     "3. About matters that are not specified in this policy, we will establish the latest " => "本ポリシーに定めのない事項については、当社が別途定める最新の「",
     "age" => "年齢",
+    "years old" => "歳",
     "lesson" => "レッスン",
     "Attendance" => "受講生徒",
     "Usually, we accept applications 12 hours before the desired lesson date." => "通常、希望レッスン日時の12時間前まで申込みを受け付けています。",

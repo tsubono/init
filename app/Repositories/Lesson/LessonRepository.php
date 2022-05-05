@@ -78,13 +78,15 @@ class LessonRepository implements LessonRepositoryInterface
 
         if ($category) {
             $query->whereHas('categories', function (Builder $query) use ($category) {
-                $query->where('name', $category);
+                $query->where('name', $category)
+                    ->orWhere('name_en', $category);
             });
         }
 
         if ($language) {
             $query->whereHas('adviserUser.languages', function (Builder $query) use ($language) {
-                $query->where('name', $language);
+                $query->where('name', $language)
+                    ->orWhere('name_en', $language);
             });
         }
 
@@ -94,7 +96,8 @@ class LessonRepository implements LessonRepositoryInterface
 
         if ($country) {
             $query->whereHas('adviserUser.fromCountry', function (Builder $query) use ($country) {
-                $query->where('name', $country);
+                $query->where('name', $country)
+                    ->orWhere('name_en', $country);
             });
         }
 

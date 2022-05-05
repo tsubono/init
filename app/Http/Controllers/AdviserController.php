@@ -47,16 +47,16 @@ class AdviserController extends Controller
         $languages = $this->mstLanguageRepository->all();
         $countries = $this->mstCountryRepository->all();
         $ages = collect([
-            '〜19歳',
-            '20〜29歳',
-            '30〜39歳',
-            '40〜49歳',
-            '50〜59歳',
-            '60〜69歳',
-            '70〜79歳',
-            '80〜89歳',
-            '90〜99歳',
-            '100〜109歳',
+            '〜19'. __('message.years old'),
+            '20〜29'. __('message.years old'),
+            '30〜39'. __('message.years old'),
+            '40〜49'. __('message.years old'),
+            '50〜59'. __('message.years old'),
+            '60〜69'. __('message.years old'),
+            '70〜79'. __('message.years old'),
+            '80〜89'. __('message.years old'),
+            '90〜99'. __('message.years old'),
+            '100〜109'. __('message.years old'),
         ]);
 
         $advisersPagination = $this->adviserUserRepository->getByConditionPaginate(
