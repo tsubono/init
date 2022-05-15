@@ -56,14 +56,41 @@
                 <div class="collapse" id="collapseDetail2">
                     <div class="inner py-4">
                         <ul class="p-timezone__list">
-                            <li
-                                v-for="(dayText, day) in days"
-                                :key="day"
-                            >
-                                {{ dayText }}
-                                <span class="time time-first">{{ getStartTime(day) }}</span>
-                                <span class="time time-last">{{ getEndTime(day) }}</span>
-                            </li>
+                          <li>
+                            {{ $t('monday') }}
+                            <span class="time time-first">{{ getStartTime('monday') }}</span>
+                            <span class="time time-last">{{ getEndTime('monday') }}</span>
+                          </li>
+                          <li>
+                            {{ $t('tuesday') }}
+                            <span class="time time-first">{{ getStartTime('tuesday') }}</span>
+                            <span class="time time-last">{{ getEndTime('tuesday') }}</span>
+                          </li>
+                          <li>
+                            {{ $t('wednesday') }}
+                            <span class="time time-first">{{ getStartTime('wednesday') }}</span>
+                            <span class="time time-last">{{ getEndTime('wednesday') }}</span>
+                          </li>
+                          <li>
+                            {{ $t('thursday') }}
+                            <span class="time time-first">{{ getStartTime('thursday') }}</span>
+                            <span class="time time-last">{{ getEndTime('thursday') }}</span>
+                          </li>
+                          <li>
+                            {{ $t('friday') }}
+                            <span class="time time-first">{{ getStartTime('friday') }}</span>
+                            <span class="time time-last">{{ getEndTime('friday') }}</span>
+                          </li>
+                          <li>
+                            {{ $t('saturday') }}
+                            <span class="time time-first">{{ getStartTime('saturday') }}</span>
+                            <span class="time time-last">{{ getEndTime('saturday') }}</span>
+                          </li>
+                          <li>
+                            {{ $t('sunday') }}
+                            <span class="time time-first">{{ getStartTime('sunday') }}</span>
+                            <span class="time time-last">{{ getEndTime('sunday') }}</span>
+                          </li>
                         </ul>
                     </div>
                 </div>
@@ -82,18 +109,6 @@ export default {
             required: true,
         },
     },
-
-    data: () => ({
-        days: {
-          monday: "月",
-          tuesday: "火",
-          wednesday: "水",
-          thursday: "木",
-          friday: "金",
-          saturday: "土",
-          sunday: "日",
-        },
-    }),
 
     computed: {
         lessonUrl () {

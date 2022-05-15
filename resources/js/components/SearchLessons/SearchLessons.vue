@@ -52,6 +52,11 @@ export default {
             type: Array,
             required: true,
         },
+
+        locale: {
+          type: String,
+          default: null,
+        },
     },
 
     data: () => ({
@@ -103,6 +108,7 @@ export default {
             const params = {
                 ...this.searchParamsFiltered,
                 order: this.order,
+                locale: this.locale
             }
 
             try {

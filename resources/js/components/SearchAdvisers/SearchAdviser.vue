@@ -60,16 +60,43 @@
                 </a>
                 <div class="collapse" id="collapseDetail2">
                     <div class="inner py-4">
-                        <ul class="p-timezone__list">
-                            <li
-                                v-for="(availableTime, day) in _adviser.availableTimes"
-                                :key="day"
-                            >
-                                {{ availableTime.day }}
-                                <span class="time time-first">{{ availableTime.start }}</span>
-                                <span class="time time-last">{{ availableTime.end }}</span>
-                            </li>
-                        </ul>
+                      <ul class="p-timezone__list">
+                        <li>
+                          {{ $t('monday') }}
+                          <span class="time time-first">{{ getStartTime('monday') }}</span>
+                          <span class="time time-last">{{ getEndTime('monday') }}</span>
+                        </li>
+                        <li>
+                          {{ $t('tuesday') }}
+                          <span class="time time-first">{{ getStartTime('tuesday') }}</span>
+                          <span class="time time-last">{{ getEndTime('tuesday') }}</span>
+                        </li>
+                        <li>
+                          {{ $t('wednesday') }}
+                          <span class="time time-first">{{ getStartTime('wednesday') }}</span>
+                          <span class="time time-last">{{ getEndTime('wednesday') }}</span>
+                        </li>
+                        <li>
+                          {{ $t('thursday') }}
+                          <span class="time time-first">{{ getStartTime('thursday') }}</span>
+                          <span class="time time-last">{{ getEndTime('thursday') }}</span>
+                        </li>
+                        <li>
+                          {{ $t('friday') }}
+                          <span class="time time-first">{{ getStartTime('friday') }}</span>
+                          <span class="time time-last">{{ getEndTime('friday') }}</span>
+                        </li>
+                        <li>
+                          {{ $t('saturday') }}
+                          <span class="time time-first">{{ getStartTime('saturday') }}</span>
+                          <span class="time time-last">{{ getEndTime('saturday') }}</span>
+                        </li>
+                        <li>
+                          {{ $t('sunday') }}
+                          <span class="time time-first">{{ getStartTime('sunday') }}</span>
+                          <span class="time time-last">{{ getEndTime('sunday') }}</span>
+                        </li>
+                      </ul>
                     </div>
                 </div>
             </div><!-- /.p-timezone -->
@@ -99,5 +126,14 @@ export default {
             return this._adviser.gender === '女性' ? 'woman' : 'men'
         },
     },
+
+  methods: {
+    getStartTime (day) {
+      return this.adviser.available_times.find((times) => times.day === day).start
+    },
+    getEndTime (day) {
+      return this.adviser.available_times.find((times) => times.day === day).end
+    },
+  },
 }
 </script>

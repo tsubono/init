@@ -10,5 +10,6 @@
         :advisers="{{ $advisers }}"
         :ages="{{ $ages }}"
         :total="{{ $total }}"
+        locale="{{ str_replace('_', '-', app()->getLocale()) }}"
     ></search-advisers>
 @endsection

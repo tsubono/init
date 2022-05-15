@@ -9,5 +9,6 @@
         :countries="{{ $countries }}"
         :lessons="{{ $lessons }}"
         :total="{{ $total }}"
+        locale="{{ str_replace('_', '-', app()->getLocale()) }}"
     ></search-lessons>
 @endsection
